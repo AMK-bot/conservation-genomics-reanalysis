@@ -1,19 +1,36 @@
 #!/usr/bin/env bash
 # Fetch raw datasets from Dryad into data/ (symlinked to USB).
-# Reproducible: resolves the CURRENT file list + download URLs from the Dryad API
-# by DOI, so it keeps working if Dryad re-issues file IDs.
 #
-#   Peafowl: 10.5061/dryad.ffbg79ctc  (~0.79 GB)
+# Dryad requires an OAuth2 bearer token for file downloads. Create credentials at
+# https://datadryad.org/account  (My account -> API / Applications), then:
+#
+#   export DRYAD_CLIENT_ID=...
+#   export DRYAD_CLIENT_SECRET=...
+#   scripts/fetch_data.sh                 # -> <repo>/data  (symlinks to USB)
+#
+# Credentials are read from the environment and never written to disk or git.
+# Tokens last ~10 h — ample for the 12.7 GB total.
+#
+#   Peafowl: 10.5061/dryad.ffbg79ctc  (~0.79 GB, 18 files)
 #   Wolf:    10.5061/dryad.7m0cfxpzj  (~11.9 GB; vcf.tar.gz is one 11.6 GB file)
-#
-# Usage: scripts/fetch_data.sh [DEST_ROOT]   (default: <repo>/data)
 set -euo pipefail
 
 DEST_ROOT="${1:-$(cd "$(dirname "$0")/.." && pwd)/data}"
 PEAFOWL_DOI="10.5061/dryad.ffbg79ctc"
 WOLF_DOI="10.5061/dryad.7m0cfxpzj"
+: "${DRYAD_CLIENT_ID:?set DRYAD_CLIENT_ID — create at https://datadryad.org/account}"
+: "${DRYAD_CLIENT_SECRET:?set DRYAD_CLIENT_SECRET}"
 
-resolve() {  # doi -> "path<TAB>url" lines, via the Dryad REST API
+echo "[$(date +%H:%M:%S)] requesting Dryad access token ..."
+TOKEN=$(curl -sS --fail -X POST "https://datadryad.org/oauth/token" \
+  -d grant_type=client_credentials \
+  -d "client_id=${DRYAD_CLIENT_ID}" \
+  -d "client_secret=${DRYAD_CLIENT_SECRET}" \
+  | python3 -c "import json,sys; print(json.load(sys.stdin)['access_token'])")
+[ -n "${TOKEN:-}" ] || { echo "ERROR: could not obtain access token"; exit 1; }
+echo "[$(date +%H:%M:%S)] token acquired."
+
+resolve() {  # doi -> "path<TAB>download_url" lines, via the Dryad REST API
   python3 - "$1" <<'PY'
 import json, sys, urllib.request, urllib.parse
 BASE = "https://datadryad.org/api/v2"
@@ -42,7 +59,8 @@ fetch() {  # subdir doi
   echo "[$(date +%H:%M:%S)] resolving $sub ($doi) ..."
   resolve "$doi" | while IFS=$'\t' read -r path url; do
     echo "[$(date +%H:%M:%S)] -> $sub/$path"
-    curl -L -C - --retry 5 --retry-delay 5 --fail -sS -o "$dir/$path" "$url"
+    curl -L -C - --retry 5 --retry-delay 5 --fail -sS \
+      -H "Authorization: Bearer $TOKEN" -o "$dir/$path" "$url"
   done
 }
 
