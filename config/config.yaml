@@ -57,8 +57,8 @@ peafowl:
     admixture_cv_folds: 10
 
   ne:
-    methods: [currentNe2, NeEstimator_LDNe]          # GONE2 = trajectory context only
-    ldne_pcrit: [0.05, 0.02, 0.01]
+    methods: [currentNe2]                            # automated. NeEstimator-LDNe = manual GUI cross-check; GONE2 = trajectory context
+    ldne_pcrit: [0.05, 0.02, 0.01]                   # for the manual NeEstimator-LDNe cross-check
     structure_modes: [per_population, pooled]        # unmodeled structure biases N_e low
 
 # ── GBF indicators (plan §6) ───────────────────────────────────────────────────
@@ -69,7 +69,7 @@ gbf:
 # ── The fragility cube: filter × Ne-method × structure (plan §5) ───────────────
 cube:
   filter_presets: [lenient, standard, strict]
-  ne_methods: [currentNe2, NeEstimator_LDNe]
+  ne_methods: [currentNe2]   # only automated axis (the app reads cube["ne_method"].unique()); NeEstimator = manual cross-check
   structure_modes: [per_population, pooled]
 
 # ── Chapter 2: Scandinavian wolf (Canis lupus) ─────────────────────────────────
@@ -80,6 +80,6 @@ wolf:
     long_roh_threshold_mb: 1.5      # long (recent) vs short (ancient) ROH
   load:
     impact_classes: [HIGH, MODERATE, LOW]   # VEP consequence classes
-    gerp_threshold: 2.0                       # conserved-site cutoff (deleterious)
+    gerp_threshold: 4.0                       # source (Smeds & Ellegren 2022) used GERP>4; expose as a sensitivity knob
     polarize_with_outgroup: true
     generations: 5                            # ~5 inbreeding generations tracked

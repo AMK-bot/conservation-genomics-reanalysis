@@ -1,6 +1,7 @@
 # OS / tooling
 .DS_Store
 .gstack/
+.claude/          # session-local state (scheduled-task locks, etc.)
 
 # Data (large / external) — keep only the README
 /data/*

@@ -66,8 +66,10 @@ caveats apply. The fragility cube quantifies, rather than hides, this uncertaint
 
 # Reproducibility statement
 
-`conda env create -f environment.yml`; `renv::restore()`; `snakemake --use-conda`.
-All thresholds in `config/config.yaml`; the full DAG re-runs from scratch.
+`micromamba create -p $(conda info --base)/envs/congen -f environment.yml` (classic conda
+OOM-kills on 8 GB), `conda activate congen`, `scripts/build_tools.sh`, `scripts/fetch_data.sh`
++ `scripts/extract_data.sh`, then `snakemake --cores 4`. All thresholds live in
+`config/config.yaml`; the full DAG re-runs from scratch. R packages ship with the env.
 
 # References
 

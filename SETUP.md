@@ -33,10 +33,10 @@ Tracks the plan's §3 Phase 0 (CGplan.md). Updated 2026-06-19.
 
 ## 3.2 Verification gates
 
-- [x] **Peafowl multi-population gate** — PASS (resolved 2026-06-17 in the plan): 3 pops, 22 unrelated.
-- [~] **Wolf gate** — data downloaded + integrity-verified; `vep`/`gerp` present; tarballs extracted. TODO: confirm outgroup polarization file, per-chromosome `bcftools view` test, bounded RAM.
-- [ ] Reproduce both papers' sample tables (data sanity check).
-- [ ] Peafowl Phase-1 coverage check (route to ANGSD/GL stack if low-coverage).
+- [x] **Peafowl multi-population gate** — PASS: Set A/B = **22 unrelated** × 3 pops (`KQ/PE`, `g_*`, `s_*`); 790,705 (neutral) / 1,139,469 (all) SNPs.
+- [x] **Wolf gate** — PASS: 211 samples; polarized (`INFO/AA`, `Pol.2out` = 2 outgroups, **no separate file needed**); `vep`/`gerp` present + extracted; per-chromosome `bcftools view -r 1` = 443,717 records at **24 MB peak RAM** (csi-indexed streaming) → RAM bounded ✓.
+- [x] Sample-table sanity — peafowl Set A/B 22, comparative 11, wolf 211; consistent with the deposits.
+- [x] Peafowl coverage check — comparative callset all **≥9× (range 9–86×)**; adequate for the deposited hard-called genotypes → **ANGSD/GL not forced** by coverage (available as fallback). Angle-G *metric* = a Phase-1 design choice, not a data blocker.
 
 ## Data — DOWNLOADED + VERIFIED (2026-06-19)
 
@@ -59,3 +59,19 @@ or exFAT/cable issue); files ≤293 MB wrote fine.
 
 > Cleanup-able: `~/Desktop/PS-backup-20260618/` and the stale `/Volumes/PS/CG/data`
 > copies. Consider testing/replacing the USB before trusting it again.
+
+## Audit (HANDOFF.md) — fixes applied 2026-06-19
+
+A prior audit (`HANDOFF.md`) listed Phase-0 gaps; the agent-actionable ones are done:
+- Real callset paths wired into `config.yaml`; `scripts/extract_data.sh` added (reproducible, idempotent extraction + wolf VCF indexing).
+- Repro recipe fixed (README + report): **micromamba** (classic conda OOMs on 8 GB), dropped the unwired `--use-conda`, noted R ships with the env.
+- currentNe2/GONE2 **pinned to commits** (`4ee170d` / `5896504`) in `build_tools.sh` + `tools/README.md`.
+- config: GERP threshold → **4.0** (source value; a sensitivity knob); **NeEstimator removed from the automated cube axis** (Java GUI → manual cross-check).
+- git hygiene: `.claude/` gitignored + untracked. *(Stray empty `data dryad api/` folder at repo root — left for the user to delete.)*
+
+## Open decisions for Phase 1 (need the user)
+
+1. **Angle-G scope** — temporal erosion as *N_e* (LD-based; wide CIs from small per-timepoint n) vs *diversity/heterozygosity* erosion vs qualitative. Coverage is fine (≥9×), so this is a design choice.
+2. **Filter-axis headroom** — the deposit ships pre-filtered callsets; confirm the lenient→strict knob actually moves the verdict on `Modern_all`, or reframe presets (don't engineer artificial fragility). If it genuinely doesn't move, that is itself an honest finding.
+3. **R ownership** — conda-owned (drop `renv::restore()`, current state) vs renv-owned (`renv::snapshot()` + test `restore()` under Rosetta first — sf/terra/igraph may source-rebuild).
+4. **GERP threshold** — keep source's **4.0** vs expose as the wolf-load sensitivity knob (recommended; fits the fragility thesis).

@@ -15,7 +15,11 @@ TOOLS="$(cd "$(dirname "$0")/.." && pwd)/tools"
 OMP="-Xpreprocessor -fopenmp -I$PREFIX/include -L$PREFIX/lib -lomp -Wl,-rpath,$PREFIX/lib"
 
 echo "== currentNe2 (N_e workhorse) =="
-[ -d "$TOOLS/currentNe2" ] || git clone --depth 1 https://github.com/esrud/currentNe2 "$TOOLS/currentNe2"
+# pinned commit for reproducibility (built + verified 2026-06-19)
+if [ ! -d "$TOOLS/currentNe2" ]; then
+  git clone https://github.com/esrud/currentNe2 "$TOOLS/currentNe2"
+  git -C "$TOOLS/currentNe2" checkout 4ee170d369fbf7b4111b4d44b689fe7ae15d40c0
+fi
 cd "$TOOLS/currentNe2"
 # Apple clang rejects VLA brace-initialization; rewrite the one offending line (idempotent).
 if grep -q 'int valid_idx\[contaloc2\] = {0};' currentne2.cpp; then
@@ -25,7 +29,10 @@ clang++ -arch x86_64 -std=c++14 -O3 -w $OMP -o currentne2 currentne2.cpp lib/*.c
 echo "  -> $TOOLS/currentNe2/currentne2"
 
 echo "== GONE2 (recent-trajectory context only) =="
-[ -d "$TOOLS/GONE2" ] || git clone --depth 1 https://github.com/esrud/GONE2 "$TOOLS/GONE2"
+if [ ! -d "$TOOLS/GONE2" ]; then
+  git clone https://github.com/esrud/GONE2 "$TOOLS/GONE2"
+  git -C "$TOOLS/GONE2" checkout 5896504c8f0f870debf274c1499ee4e491a4116e
+fi
 cd "$TOOLS/GONE2"
 make macos CC='clang++ -arch x86_64' MAC_FLAGS="-w $OMP -std=c++11"
 echo "  -> $TOOLS/GONE2/gone2"

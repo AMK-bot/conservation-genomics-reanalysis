@@ -22,15 +22,21 @@ Two chapters:
   (filtering stringency × N_e method × structure modeled/ignored) wiggle the peafowl
   N_e / GBF pass-fail verdict in real time.
 
-## One-command reproduction (target)
+## Reproduction
 
 ```bash
-conda env create -f environment.yml      # build the osx-64 toolchain
-conda activate congen
-Rscript -e 'renv::restore()'             # restore pinned R packages
-snakemake --use-conda --cores 4          # build results/cube/results_cube.parquet
+# Build the osx-64 toolchain. Classic conda OOM-kills on 8 GB RAM — use micromamba.
+CONDA_SUBDIR=osx-64 micromamba create -p "$(conda info --base)/envs/congen" -f environment.yml
+conda activate congen                    # env lives in the anaconda envs dir
+scripts/build_tools.sh                   # compile currentNe2 + GONE2 (pinned commits)
+scripts/fetch_data.sh && scripts/extract_data.sh   # Dryad data (needs DRYAD_CLIENT_ID/SECRET)
+snakemake --cores 4                      # build results/cube/results_cube.parquet
 streamlit run app/streamlit_app.py       # explore the verdict
 ```
+
+R packages (SNPRelate / dartR / hierfstat / adegenet) ship with the conda env. For exact
+pins use `environment.lock.yml`. *(R-package ownership — conda vs renv — is a Phase-1 decision;
+see `SETUP.md`.)*
 
 ## Layout
 
