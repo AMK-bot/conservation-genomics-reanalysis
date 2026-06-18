@@ -1,0 +1,75 @@
+---
+title: "Genetic status across the conservation-genomics toolkit: GBF indicators, contemporary N_e, and genetic load — and how fragile each verdict is to analyst choices"
+author: "andakprapakorn"
+date: today
+format:
+  html:
+    toc: true
+    number-sections: true
+    code-fold: true
+  pdf:
+    toc: true
+    number-sections: true
+bibliography: references.bib
+execute:
+  echo: false
+  warning: false
+---
+
+<!-- Written paper-grade from day one (plan §0): "write the paper" = reformat, not rewrite. -->
+
+# Introduction
+
+Two chapters across the modern conservation-genomics toolkit: (1) the new Global
+Biodiversity Framework (GBF) genetic-diversity indicators on the endangered green
+peafowl (*Pavo muticus*), and (2) realized-vs-masked genetic load in the inbred
+Scandinavian wolf (*Canis lupus*). The cross-cutting thesis: **each verdict is
+fragile to analyst choices** — filtering stringency, N_e method, and whether
+population structure is modeled.
+
+# Methods
+
+## Data
+
+- **Green peafowl** — Dong et al. 2021, Dryad `10.5061/dryad.ffbg79ctc`. 31 modern +
+  6 museum genomes → 22 unrelated across 3 populations (Yunnan, Vietnam, Thailand).
+- **Scandinavian wolf** — Smeds & Ellegren 2022, Dryad `10.5061/dryad.7m0cfxpzj`.
+  WGS + VEP + GERP → turnkey genetic load.
+
+## QC & filtering
+
+Two callsets (structure/N_e vs diversity); thresholds in `config/config.yaml`; kin
+screen before structure/N_e. *(Phase 1.)*
+
+## Contemporary N_e and the fragility cube
+
+The parameter sweep `{filter} × {method} × {structure}` → `results_cube.parquet`.
+*(Phase 2.)*
+
+## GBF indicators
+
+N_e > 500 indicator; Populations Maintained; N_c proxy contrast. *(Phase 3.)*
+
+## Genetic load & ROH (wolf)
+
+Streaming VEP × GERP → realized vs masked; `bcftools roh` → F_ROH. *(Phase 4.)*
+
+# Results
+
+*(Populated from the results cube and tables.)*
+
+# Limitations
+
+We claim *risk*, not demonstrated inbreeding depression. Small per-population n
+yields wide CIs; ascertainment and (for low-coverage data) genotype-likelihood
+caveats apply. The fragility cube quantifies, rather than hides, this uncertainty.
+
+# Reproducibility statement
+
+`conda env create -f environment.yml`; `renv::restore()`; `snakemake --use-conda`.
+All thresholds in `config/config.yaml`; the full DAG re-runs from scratch.
+
+# References
+
+::: {#refs}
+:::

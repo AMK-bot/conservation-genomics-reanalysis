@@ -1,0 +1,46 @@
+# congen — osx-64 toolchain (Apple Silicon via Rosetta).
+# Pin the env to x86_64 so every Bioconda tool resolves:
+#   CONDA_SUBDIR=osx-64 conda env create -f environment.yml
+#   conda activate congen
+#   conda config --env --set subdir osx-64
+# After the first successful solve, re-export a fully pinned lock:
+#   conda env export --no-builds > environment.lock.yml
+name: congen
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.11
+  # ── workflow engine ──
+  - snakemake-minimal
+  # ── bioinformatics CLI ──
+  - bcftools
+  - samtools
+  - htslib            # tabix / bgzip
+  - vcftools
+  - plink
+  - plink2
+  - admixture
+  - pixy
+  # ── python analysis + app ──
+  - scikit-allel
+  - pandas
+  - numpy
+  - scipy
+  - pyarrow           # results_cube.parquet
+  - streamlit
+  - plotly
+  - matplotlib
+  # ── R stack (SNPRelate / dartR / hierfstat) ──
+  - r-base
+  - r-essentials
+  - r-renv            # renv::restore() for reproducible R packages
+  - bioconductor-snprelate
+  - r-adegenet
+  - r-hierfstat
+  - r-dartr
+  # ── reporting ──
+  - quarto
+# Built from source (not reliably on bioconda/osx-64): currentNe2, GONE2 — tools/README.md
+# NeEstimator v2 is a Java GUI used only as a manual cross-check.

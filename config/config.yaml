@@ -1,0 +1,70 @@
+# config/config.yaml
+# ALL filtering thresholds, N_e settings, paths, and the parameter grid live here.
+# Nothing in workflow/ hard-codes a threshold — every rule reads it from this file.
+# The fragility cube IS this config's parameter grid made executable (plan §5).
+
+project:
+  name: congen-reanalysis
+  seed: 42
+
+paths:
+  data: data                                       # symlinked to USB (see data/README.md)
+  peafowl_vcf: data/peafowl/raw/peafowl.vcf.gz     # TODO: confirm filename post-download
+  wolf_vcf: data/wolf/raw/wolf.vcf.gz              # TODO: confirm filename post-download
+  results: results
+  cube: results/cube/results_cube.parquet
+
+# ── Chapter 1: Green peafowl (Pavo muticus) ────────────────────────────────────
+peafowl:
+  populations: [Yunnan, Vietnam, Thailand]         # Cambodia n=1 dropped (plan §0)
+
+  # QC / filtering → TWO callsets (plan §4):
+  #   Set A: neutral + LD-pruned   → structure / N_e
+  #   Set B: lightly filtered, no MAF → diversity (Ho/He, allelic richness)
+  filtering:
+    biallelic_snps_only: true
+    hwe_per_population: 1.0e-6
+    ld_prune: "50 10 0.1"                           # PLINK --indep-pairwise win step r2
+    # "filtering stringency" knob of the fragility cube:
+    presets:
+      lenient:  {max_missing: 0.7, min_gq: 15, min_dp: 4, mac: 3}
+      standard: {max_missing: 0.8, min_gq: 20, min_dp: 6, mac: 3}
+      strict:   {max_missing: 0.9, min_gq: 30, min_dp: 8, mac: 3}
+
+  kinship:
+    method: king                                    # PLINK2 --make-king / KING
+    relatedness_cutoff: 0.0884                       # 2nd-degree; drop relatives FIRST
+
+  structure:
+    pca_components: 10
+    admixture_K: [1, 2, 3, 4, 5]
+    admixture_seeds: [1, 2, 3, 4, 5]
+    admixture_cv_folds: 10
+
+  ne:
+    methods: [currentNe2, NeEstimator_LDNe]          # GONE2 = trajectory context only
+    ldne_pcrit: [0.05, 0.02, 0.01]
+    structure_modes: [per_population, pooled]        # unmodeled structure biases N_e low
+
+# ── GBF indicators (plan §6) ───────────────────────────────────────────────────
+gbf:
+  ne_threshold: 500            # the N_e > 500 genetic-diversity indicator
+  nc_proxy_threshold: 5000     # census-size proxy (N_c) contrast
+
+# ── The fragility cube: filter × Ne-method × structure (plan §5) ───────────────
+cube:
+  filter_presets: [lenient, standard, strict]
+  ne_methods: [currentNe2, NeEstimator_LDNe]
+  structure_modes: [per_population, pooled]
+
+# ── Chapter 2: Scandinavian wolf (Canis lupus) ─────────────────────────────────
+# 12 GB deposit; CLI-streaming-first, per-chromosome — never load whole VCF into RAM.
+wolf:
+  roh:
+    caller: bcftools_roh
+    long_roh_threshold_mb: 1.5      # long (recent) vs short (ancient) ROH
+  load:
+    impact_classes: [HIGH, MODERATE, LOW]   # VEP consequence classes
+    gerp_threshold: 2.0                       # conserved-site cutoff (deleterious)
+    polarize_with_outgroup: true
+    generations: 5                            # ~5 inbreeding generations tracked

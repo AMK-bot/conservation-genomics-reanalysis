@@ -1,0 +1,38 @@
+# OS
+.DS_Store
+
+# Data (large / external) — keep only the README
+/data/*
+!/data/README.md
+
+# Conda / R environments
+environment.lock.yml.bak
+renv/library/
+renv/local/
+renv/cellar/
+renv/staging/
+.Rproj.user/
+.Rhistory
+.RData
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+
+# Tools built from source — keep only the README
+/tools/*
+!/tools/README.md
+
+# Results: keep structure (.gitkeep) + tables/figures; ignore heavy genomic files
+results/**/*.bcf
+results/**/*.vcf
+results/**/*.vcf.gz
+results/**/*.bed
+results/**/*.bim
+
+# Snakemake / logs
+.snakemake/
+*.log
+logs/

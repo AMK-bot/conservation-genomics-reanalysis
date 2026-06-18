@@ -1,0 +1,23 @@
+# workflow/Snakefile
+# The DAG that builds results/cube/results_cube.parquet.
+# Heavy bioinformatics runs HERE; the Streamlit app only READS the cube.
+#
+# Phase 0 scaffold: rules are stubbed in workflow/rules/*.smk and wired into the
+# `all` target as each phase is implemented (plan §4–§7).
+
+configfile: "config/config.yaml"
+
+include: "rules/qc.smk"
+include: "rules/structure.smk"
+include: "rules/ne.smk"
+include: "rules/gbf.smk"
+include: "rules/load.smk"
+
+
+rule all:
+    input:
+        # Final target = the fragility results cube. Wired up in Phase 2/3 once the
+        # QC -> structure -> N_e chain produces it. Empty for the Phase 0 scaffold so
+        # `snakemake -n` reports "nothing to be done" instead of a missing-rule error.
+        # config["paths"]["cube"],
+        [],
