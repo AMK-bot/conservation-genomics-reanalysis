@@ -12,7 +12,7 @@ Tracks the plan's §3 Phase 0 (CGplan.md). Updated 2026-06-18.
 | conda | Anaconda3 base, **already `osx-64`/x86_64 under Rosetta** — conda **4.12.0** (old classic solver) |
 | R | ❌ not installed → arrives via the `congen` env (`r-base`) |
 | Internal disk free | ~206 GB |
-| USB `PS` | mounted; **FAT32** (⚠️ 4 GB max file size); ~920 GB free; project folder `/Volumes/PS/CG` (empty) |
+| USB `PS` | **exFAT** (reformatted 2026-06-18 from FAT32 to lift the 4 GB cap; GPT, 988 GB); data root `/Volumes/PS/CG/data` |
 
 ## 3.1 Environment
 
@@ -25,7 +25,7 @@ Tracks the plan's §3 Phase 0 (CGplan.md). Updated 2026-06-18.
 - [x] Repo skeleton created (config / workflow / scripts / results / app / report / data / tools).
 - [x] `git init` + initial commit.
 - [ ] `renv::init()` (needs R from the env first).
-- [ ] `data/` → external-storage symlink (**blocked**: see storage decision below).
+- [x] `data/` → USB symlinks (`data/peafowl`, `data/wolf` → `/Volumes/PS/CG/data/...`; `data/README.md` stays tracked).
 
 ## 3.2 Verification gates
 
@@ -34,9 +34,13 @@ Tracks the plan's §3 Phase 0 (CGplan.md). Updated 2026-06-18.
 - [ ] Reproduce both papers' sample tables (data sanity check).
 - [ ] Peafowl Phase-1 coverage check (route to ANGSD/GL stack if low-coverage).
 
-## ⚠️ Open decision — data storage
+## Storage — RESOLVED (2026-06-18)
 
-The plan stores data on the USB, but `PS` is **FAT32** (4 GB/file cap) and the wolf
-deposit is **12 GB** as one archive → it will not fit. Resolution pending (reformat
-USB to exFAT vs. store data on the 206 GB internal disk). `data/` symlink + downloads
-are deferred until this is settled.
+The USB `PS` was reformatted **FAT32 → exFAT** (GPT) to lift the 4 GB single-file
+cap so the 12 GB wolf deposit fits. Pre-erase contents were backed up to
+`~/Desktop/PS-backup-20260618/` (verified) and the user's `Polygraph` +
+`Sandisk Original` folders were restored afterward. The repo's `data/peafowl` and
+`data/wolf` are now symlinks into `/Volumes/PS/CG/data/`. Downloads can proceed.
+
+> The backup at `~/Desktop/PS-backup-20260618/` can be deleted once you're satisfied
+> the USB restore is intact.

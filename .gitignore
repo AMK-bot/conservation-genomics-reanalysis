@@ -1,5 +1,6 @@
-# OS
+# OS / tooling
 .DS_Store
+.gstack/
 
 # Data (large / external) — keep only the README
 /data/*

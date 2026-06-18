@@ -3,18 +3,19 @@
 Raw VCFs + per-chromosome splits + intermediates. **Not committed** (large) — only
 this README is tracked.
 
-In the reproducible setup, `data/` is a **symlink to external storage** so the
-12 GB wolf deposit and peafowl VCFs live off the 460 GB internal disk and off git.
+`data/peafowl` and `data/wolf` are **symlinks to the USB** (`/Volumes/PS/CG/data/`)
+so the 12 GB wolf deposit and peafowl VCFs live off the internal disk and off git.
+Only this `README.md` is tracked.
 
 ```
 data/
-├── peafowl/
+├── README.md       # tracked
+├── peafowl  ->  /Volumes/PS/CG/data/peafowl
 │   └── raw/        # Dryad 10.5061/dryad.ffbg79ctc
-└── wolf/
+└── wolf     ->  /Volumes/PS/CG/data/wolf
     └── raw/        # Dryad 10.5061/dryad.7m0cfxpzj  (12 GB; VEP + GERP + outgroup)
 ```
 
-> ⚠️ **Storage note (2026-06-18):** the inserted USB `PS` is **FAT32**, which caps
-> single files at **4 GB** — it cannot hold the 12 GB wolf archive as one file.
-> Final storage location is pending a decision (reformat USB to exFAT vs. use internal
-> disk). See `SETUP.md`.
+> **Storage (2026-06-18):** USB `PS` was reformatted FAT32 → **exFAT** to lift the
+> 4 GB single-file cap (the wolf deposit is 12 GB). If the symlinks dangle, the USB
+> isn't mounted — replug `PS`. See `SETUP.md`.
