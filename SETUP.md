@@ -1,6 +1,6 @@
 # Phase 0 — Setup & Verification status
 
-Tracks the plan's §3 Phase 0 (CGplan.md). Updated 2026-06-18.
+Tracks the plan's §3 Phase 0 (CGplan.md). Updated 2026-06-19.
 
 ## Machine (verified 2026-06-18)
 
@@ -11,8 +11,8 @@ Tracks the plan's §3 Phase 0 (CGplan.md). Updated 2026-06-18.
 | Xcode Command Line Tools | ✅ clang 15 (source builds OK for currentNe2/GONE2) |
 | conda | Anaconda3 base, **already `osx-64`/x86_64 under Rosetta** — conda **4.12.0** (old classic solver) |
 | R | ✅ 4.4.3 (via the `congen` env) |
-| Internal disk free | ~206 GB |
-| USB `PS` | **exFAT** (reformatted 2026-06-18 from FAT32 to lift the 4 GB cap; GPT, 988 GB); data root `/Volumes/PS/CG/data` |
+| Internal disk free | ~178 GB (data moved here) |
+| USB `PS` | exFAT (reformatted from FAT32). ⚠️ **Corrupts large writes** — both 11.6 GB wolf downloads failed integrity at random offsets; internal copy clean. **No longer used** for project data. |
 
 ## 3.1 Environment
 
@@ -25,7 +25,7 @@ Tracks the plan's §3 Phase 0 (CGplan.md). Updated 2026-06-18.
 - [x] Repo skeleton created (config / workflow / scripts / results / app / report / data / tools).
 - [x] `git init` + commits.
 - [x] `renv::init(bare=TRUE)` — scaffolding created (`.Rprofile`, `renv/`). `renv.lock` populated via `renv::snapshot()` in Phase 1 (R pkgs currently sourced from conda).
-- [x] `data/` → USB symlinks (`data/peafowl`, `data/wolf` → `/Volumes/PS/CG/data/...`; `data/README.md` stays tracked).
+- [x] `data/` → **internal-SSD** symlinks (`data/peafowl`, `data/wolf` → `~/Desktop/MMP/congen_data/...`). Was USB, but the USB corrupts large writes → moved to internal (see Storage).
 
 > **Solver note:** the build tool is `micromamba` (the OOM with classic conda is the
 > documented Apple-Silicon/8 GB risk). The env is still a standard conda env at
@@ -34,28 +34,28 @@ Tracks the plan's §3 Phase 0 (CGplan.md). Updated 2026-06-18.
 ## 3.2 Verification gates
 
 - [x] **Peafowl multi-population gate** — PASS (resolved 2026-06-17 in the plan): 3 pops, 22 unrelated.
-- [ ] **Wolf gate** — `vep.tar.gz` + `gerp.tar.gz` **confirmed present** in the deposit (file list resolved); still TODO after download: confirm outgroup polarization file, test per-chromosome `bcftools view`, confirm RAM stays bounded.
+- [~] **Wolf gate** — data downloaded + integrity-verified; `vep`/`gerp` present; tarballs extracted. TODO: confirm outgroup polarization file, per-chromosome `bcftools view` test, bounded RAM.
 - [ ] Reproduce both papers' sample tables (data sanity check).
 - [ ] Peafowl Phase-1 coverage check (route to ANGSD/GL stack if low-coverage).
 
-## ⏳ Only remaining blocker — data download (gated on you)
+## Data — DOWNLOADED + VERIFIED (2026-06-19)
 
-Dryad now requires an **OAuth2 bearer token** for file downloads (`401 "must have
-current bearer token"`). Create API credentials at <https://datadryad.org/account>
-and provide them, then `scripts/fetch_data.sh` pulls all 22 files (12.7 GB) to the USB:
+All 22 files fetched via `scripts/fetch_data.sh` (Dryad OAuth2; token from env vars):
+peafowl 18 files (751 MB) + wolf 4 files (11 GB). Every archive passes `gzip -t`; the
+11.6 GB wolf `vcf.tar.gz` is triple-verified (Apple gzip + full zlib decompression).
+Dryad now requires an OAuth2 bearer token for downloads — credentials are created at
+<https://datadryad.org/account> and passed via `DRYAD_CLIENT_ID`/`DRYAD_CLIENT_SECRET`.
 
-```bash
-export DRYAD_CLIENT_ID=...  DRYAD_CLIENT_SECRET=...
-scripts/fetch_data.sh
-```
+## Storage — internal SSD (USB abandoned, 2026-06-19)
 
-## Storage — RESOLVED (2026-06-18)
+The USB `PS` was reformatted FAT32 → exFAT to lift the 4 GB cap, but the drive
+**corrupts large writes**: the 11.6 GB wolf VCF failed integrity on two separate
+downloads at *different* random offsets (11.45 GB, 11.17 GB), while a copy to the
+internal SSD verified clean. Diagnosis: faulty large-file write path (failing drive,
+or exFAT/cable issue); files ≤293 MB wrote fine.
 
-The USB `PS` was reformatted **FAT32 → exFAT** (GPT) to lift the 4 GB single-file
-cap so the 12 GB wolf deposit fits. Pre-erase contents were backed up to
-`~/Desktop/PS-backup-20260618/` (verified) and the user's `Polygraph` +
-`Sandisk Original` folders were restored afterward. The repo's `data/peafowl` and
-`data/wolf` are now symlinks into `/Volumes/PS/CG/data/`. Downloads can proceed.
+**Resolution: all data lives on the internal SSD** at `~/Desktop/MMP/congen_data/`;
+`data/peafowl` + `data/wolf` symlink there. The USB is no longer used for the project.
 
-> The backup at `~/Desktop/PS-backup-20260618/` can be deleted once you're satisfied
-> the USB restore is intact.
+> Cleanup-able: `~/Desktop/PS-backup-20260618/` and the stale `/Volumes/PS/CG/data`
+> copies. Consider testing/replacing the USB before trusting it again.

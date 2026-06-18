@@ -8,11 +8,26 @@ project:
   seed: 42
 
 paths:
-  data: data                                       # symlinked to USB (see data/README.md)
-  peafowl_vcf: data/peafowl/raw/peafowl.vcf.gz     # TODO: confirm filename post-download
-  wolf_vcf: data/wolf/raw/wolf.vcf.gz              # TODO: confirm filename post-download
+  data: data                 # symlink to internal SSD ~/Desktop/MMP/congen_data (see data/README.md)
   results: results
   cube: results/cube/results_cube.parquet
+  peafowl:
+    # Set A — neutral, LD-pruned -> structure / N_e   (22 samples, 790,705 SNPs)
+    set_a_neutral: "data/peafowl/Modern_genomic_dataset_unlinked_neutral/Modern_genomic_dataset_unlinked&neutral.vcf"
+    # Set B — all sites, lightly filtered -> diversity (22 samples, 1,139,469 SNPs)
+    set_b_all:     "data/peafowl/Modern_genomic_dataset_all/Modern_genomic_dataset_all.vcf"
+    # museum <-> modern comparative -> temporal erosion (angle G)
+    comparative:   "data/peafowl/raw/Comparative_genomic_dataset_F.vcf.gz"
+    reference:     "data/peafowl/pseudochromosomes.no_blank_shortIDname.fasta"
+    gff:           "data/peafowl/green_peafowl_genome.all.gff"
+  wolf:
+    # genome-wide all-SNPs (GERP / ROH); 211 samples; BGZF + csi index; INFO/AA polarized (2 outgroups)
+    allsnps:    "data/wolf/vcf/Pol.2out.mac2/100S95F14R.chr1-38.allSNPs.wfm.vcf.gz"
+    # coding variants with VEP impact -> genetic load
+    coding_vep: "data/wolf/vcf/Pol.2out.mac2/100S95F14R.chr1-38.vepfinal.wfm.vcf.gz"
+    chrx:       "data/wolf/vcf/Pol.2out.mac2/74Females.chrX.vepfinal.wfm.vcf.gz"
+    vep_dir:    "data/wolf/vep/Pol.2out.mac2"
+    gerp_dir:   "data/wolf/gerp"
 
 # ── Chapter 1: Green peafowl (Pavo muticus) ────────────────────────────────────
 peafowl:
