@@ -8,22 +8,24 @@
 
 ---
 
+> **Adaptation note (2026-06-19):** Phase 0 is **COMPLETE**. This plan was revised in a structured grilling session to match what Phase 0 actually built — see `SETUP.md` (verified status) + `HANDOFF.md` (audit trail). Material changes from the original: storage **USB → internal SSD** (USB corrupts large writes); env built with **micromamba**, not classic conda (8 GB OOM); **R is conda-owned**, `renv.lock` dropped; **`--use-conda` dropped** (single env); **angle G rescoped** from temporal *N_e* to temporal *diversity* erosion (comparative set is only 5 museum + 6 modern); the cube's **N_e-method knob = currentNe2 vs GONE2** (NeEstimator demoted to a manual cross-check table); the **wolf tab = two live sensitivity tables** (load×GERP, F_ROH×ROH-length); per-population n is **7 / 10 / 5**, not 11/12/7. Sections below reflect these.
+
 ## 0. Decisions locked (the inputs to this plan)
 
 | Decision | Resolution | Why |
 |---|---|---|
 | **Structure** | Two chapters: broad flagship → deep frontier | Covers the whole conservation-genomics toolkit; learns easy→hard |
-| **Chapter 1 dataset** | **Green peafowl** *(Pavo muticus)* — Dryad `10.5061/dryad.ffbg79ctc`. **Gate PASSED 2026-06-17:** 31 modern + 6 museum genomes → 22 unrelated, across 3 structured populations (Yunnan ~11, Vietnam ~12, Thailand 7) | Verified turnkey WGS VCF + scripts; multi-country; SE Asian icon (IUCN Endangered). Small per-pop n → wide N_e CIs, *folded into the fragility thesis* |
+| **Chapter 1 dataset** | **Green peafowl** *(Pavo muticus)* — Dryad `10.5061/dryad.ffbg79ctc`. **Gate PASSED:** the deposited modern callset *is* the authors' **22 unrelated** across 3 structured pops; **per-pop n = 7 / 10 / 5** (KQ+PE / g_* / s_*) — thinner than first estimated. Comparative callset = **5 museum (`kiz*`) + 6 modern** (temporal contrast). The 31-sample pre-kin callset is **not** deposited. | Verified turnkey WGS VCF + scripts; multi-country; SE Asian icon (IUCN Endangered). Small per-pop n → wide N_e CIs, *folded into the fragility thesis* |
 | **Chapter 2 dataset** | **Scandinavian wolf** *(Canis lupus)* — Dryad `10.5061/dryad.7m0cfxpzj` | Only deposit on Earth shipping WGS + VEP + GERP → turnkey genetic load |
 | **Data type** | WGS for both | Unlocks the full analysis menu (diversity, N_e, ROH, load) |
-| **Chapter 1 angles** | A (GBF indicators) + B (modern N_e) + C (robustness) + D (structure) + **G (temporal erosion: 6 museum vs 31 modern — CONFIRMED feasible)** [+ F pixy — stretch] | Scoping doc's flagship, enriched by WGS; G promoted to core after the Phase-0 gate revealed museum samples |
+| **Chapter 1 angles** | A (GBF indicators) + B (modern N_e) + C (robustness) + D (structure) + **G (temporal *diversity* erosion: 5 museum vs 6 modern — Ho/He + rarefied allelic richness, *not* N_e)** [+ F pixy — stretch] | Scoping doc's flagship, enriched by WGS; G kept as a *supporting diversity contrast* — rescoped from N_e (comparative n too small for credible LD-N_e); presented as a static figure, not a tool knob |
 | **Chapter 2 angles** | H (genetic load: realized vs masked) + E (ROH inbreeding history) | The field's hottest frontier, turnkey here |
 | **Primary deliverables** | (1) Reproducible repo, (2) interactive **"fragility explorer"** (Streamlit) | Citable + clickable + reproducible; legible to non-specialists |
 | **Paper** | Stretch, *after* the two deliverables — but `report.qmd` is written paper-grade from day one so "write the paper" = reformat, not rewrite | Keeps preprint optionality cheap |
-| **Tool concept** | Fragility explorer: a **three-knob cube** (filtering stringency × N_e method × structure modeled/ignored) → live N_e + CI + treaty pass/fail verdict | Turns angle C (robustness) into the headline interaction |
+| **Tool concept** | Fragility explorer: a **three-knob cube** (filtering stringency × N_e method [**currentNe2 vs GONE2**] × structure modeled/ignored) → live N_e + CI + treaty pass/fail verdict. Badge uses currentNe2 (contemporary); GONE2 = recent-trajectory contrast | Turns angle C (robustness) into the headline interaction |
 | **Architecture** | Workflow computes a **"results cube"** (tidy table); Streamlit just reads it | Deployable on free hosting; reproducible; the cube *is* angle C |
-| **Compute** | All local: Apple **M1 / 8 GB RAM** + large USB drive | User's machine; no cloud |
-| **Workflow infra** | **Snakemake** + conda `env.yml` + R `renv.lock` | Genomics standard (snpArcher-citable); purpose-built for the parameter sweep |
+| **Compute** | All local: Apple **M1 / 8 GB RAM** + **internal SSD** (USB abandoned — corrupts large writes) | User's machine; no cloud |
+| **Workflow infra** | **Snakemake** + **micromamba** env (osx-64) pinned in `environment.lock.yml`; **R conda-owned** (renv dropped) | Genomics standard (snpArcher-citable); micromamba because classic conda OOMs on 8 GB |
 | **Tooling split** | CLI (PLINK/bcftools/VCFtools/ADMIXTURE/currentNe2/GONE2) + Python (scikit-allel, Streamlit — user's strength) + R (SNPRelate/dartR/hierfstat — being learned) | Plays to strengths; R is a targeted learning goal |
 
 **The narrative tie:** *"Assessing genetic status across the modern conservation-genomics toolkit — from the new global biodiversity-treaty indicators on an endangered SE Asian bird, to realized-vs-masked genetic load in an inbred carnivore — and showing how fragile each verdict is to analyst choices."*
@@ -32,8 +34,8 @@
 
 ## 1. Definition of done
 
-- **Repo (load-bearing):** one-command reproduction (`snakemake --use-conda`), pinned `env.yml` + `renv.lock`, the Snakefile, config of all thresholds, the results cube, all figures, and a paper-grade `report.qmd`.
-- **Fragility explorer (load-bearing):** live public URL; three knobs wiggle the peafowl N_e/GBF verdict in real time; tabs for structure and the wolf's load.
+- **Repo (load-bearing):** one-command reproduction (`snakemake --cores N` inside the activated `congen` env), pinned `environment.lock.yml` (R packages included — R is conda-owned; no `renv.lock`), the Snakefile, config of all thresholds, the results cube (+ `wolf_load`/`wolf_roh` tables), all figures, and a paper-grade `report.qmd`.
+- **Fragility explorer (load-bearing):** live public URL; three knobs (filter × currentNe2/GONE2 × structure) wiggle the peafowl N_e/GBF verdict in real time; a structure/diversity tab (PCA/ADMIXTURE + the static museum-vs-modern temporal-G figure); a wolf tab with two live sensitivity knobs (load×GERP, F_ROH×ROH-length).
 - **Preprint (stretch):** `report.qmd` rendered + posted to EcoEvoRxiv/bioRxiv with a DOI.
 
 ---
@@ -43,8 +45,8 @@
 ```
 congen-reanalysis/
 ├── README.md                  # one-command reproduction + the story
-├── environment.yml            # conda (osx-64), pinned
-├── renv.lock                  # R packages, pinned
+├── environment.yml            # loose spec; build with micromamba
+├── environment.lock.yml       # 702 pkgs pinned (R included — conda-owned; no renv.lock)
 ├── config/
 │   └── config.yaml            # ALL filtering thresholds, N_e settings, paths
 ├── workflow/
@@ -52,21 +54,23 @@ congen-reanalysis/
 │   └── rules/                 # qc.smk, structure.smk, ne.smk, gbf.smk, load.smk
 ├── scripts/                   # python/ + R/ analysis scripts called by rules
 ├── results/
-│   ├── cube/                  # results_cube.parquet  ← the tool's backend
+│   ├── cube/                  # results_cube.parquet (peafowl) + wolf_load.parquet + wolf_roh.parquet  ← the tool's backends
 │   ├── tables/                # diversity, N_e, GBF, load summaries
 │   └── figures/
 ├── app/
 │   └── streamlit_app.py       # the fragility explorer (reads results/cube/)
 ├── report/
 │   └── report.qmd             # paper-grade methods/results/limitations
-└── data/  (symlinked to USB)  # raw VCFs + per-chromosome splits + intermediates
+└── data/  (symlinked to internal SSD)  # raw VCFs + per-chromosome splits + intermediates
 ```
 
 **Data flow:** raw VCF → (Snakemake: QC → kin-screen → structure/diversity/N_e across the parameter grid) → `results_cube.parquet` → Streamlit reads the cube. The heavy bioinformatics never runs in the app.
 
 ---
 
-## 3. Phase 0 — Setup & verification (the foundation)
+## 3. Phase 0 — Setup & verification (the foundation)  ✅ COMPLETE (2026-06-19)
+
+> **Done — see `SETUP.md` (verified status) + `HANDOFF.md` (audit).** Deltas from the recipe below as actually executed: env built with **micromamba** (classic conda OOM'd on 8 GB); data on **internal SSD** (not USB); **renv dropped** (R conda-owned). The §3.1 code block is kept as historical intent.
 
 **3.1 Environment (the #1 snag — Apple Silicon).** Build a uniform `osx-64` env so every Bioconda tool installs under Rosetta:
 ```bash
@@ -83,15 +87,15 @@ conda install -c bioconda -c conda-forge \
 Then: `git init`; `renv::init()`; export `environment.yml`; create the repo skeleton (§2); symlink `data/` → USB.
 
 **3.2 Verification gates — DO NOT skip (the scoping doc's "verify before committing"):**
-- ✅ **PEAFOWL MULTI-POPULATION GATE — RESOLVED 2026-06-17 (PASS with caveats).** Confirmed from Dong et al. 2021: **31 modern + 6 museum** genomes → **22 unrelated** across **3 structured populations** (Yunnan ~11, Vietnam ~12, Thailand 7; Cambodia n=1 dropped). Verdict: viable. Two consequences baked into the plan: (a) small per-population n → wide N_e CIs, treated as a **feature of the fragility thesis** (small-sample uncertainty in real endangered species), with `currentNe2` as the small-n-appropriate workhorse; (b) the museum/modern split **promotes the temporal-erosion angle (G) to core**. **Sharpened fallback trigger:** switch to brook trout (Dryad `10.5061/dryad.2fqz612sb`, 82 wild sites) *only if* Phase 1 finds usable individuals collapse to <5 in more than one population. **Still to confirm in Phase 1:** resequencing coverage — if low-coverage WGS, route N_e/diversity through the ANGSD/genotype-likelihood stack (deposit already ships ANGSD scripts, so this is anticipated).
-- **WOLF GATE.** Download the 12 GB deposit to USB; confirm `vep.tar.gz` + `gerp.tar.gz` + the outgroup polarization file; test a per-chromosome `bcftools view`; confirm RAM stays bounded.
+- ✅ **PEAFOWL MULTI-POPULATION GATE — PASS (verified on the actual deposit).** The deposited modern callset *is* the authors' **22 unrelated** across **3 structured populations** — actual **n = 7 / 10 / 5** (KQ+PE / g_* / s_*; the Dong et al. 2021 paper's pre-kin estimate of ~11/12/7 refers to the undeposited 31-sample set). Comparative callset = **5 museum (`kiz*`) + 6 modern**. Verdict: viable. Two consequences baked into the plan: (a) small per-population n → wide N_e CIs, treated as a **feature of the fragility thesis**, with `currentNe2` as the small-n workhorse; (b) the museum/modern split feeds the **temporal angle (G) — rescoped to a *diversity* contrast** (Ho/He + rarefied allelic richness), since 5-vs-6 is too thin for credible LD-N_e. **Fallback trigger:** brook trout (Dryad `10.5061/dryad.2fqz612sb`) *only if* usable individuals collapse to <5 in more than one population (not fired — see §3.3). **Coverage RESOLVED:** comparative samples all **≥9× (range 9–86×)** → adequate for the deposited hard calls; ANGSD/GL not forced (available as fallback).
+- ✅ **WOLF GATE — PASS (2026-06-19).** 211 samples (confirmed `bcftools query -l`); `vep`/`gerp` present + extracted; polarization **already baked into the VCF** (`INFO/AA`, `Pol.2out` = 2 outgroups — no separate file needed); per-chromosome `bcftools view -r 1` = 443,717 records at **24 MB peak RAM** (csi-indexed streaming) → RAM bounded. Data on internal SSD.
 - Reproduce both papers' sample tables as a data sanity check.
 
 **Output:** working env, repo skeleton, both datasets downloaded + verified, Chapter-1 dataset confirmed (peafowl, or a fallback from §3.3).
 **Reading:** Speciation Genomics setup + filtering tutorials; the two source papers' methods (Dong et al. 2021; Smeds & Ellegren 2022).
 
 ### 3.3 Chapter-1 fallback ladder
-*Fires only if Phase 1 reveals peafowl's usable per-population n collapses to <5 in more than one population. Try in order:*
+*Fires only if Phase 1 reveals peafowl's usable per-population n collapses to <5 in more than one population.* **Current n = 7 / 10 / 5 → not fired** (Thailand `s_*` sits at the n=5 boundary; the Phase-1 kin policy in §4 is designed not to breach it). *Try in order:*
 
 1. **SEA option — but reads-only (escalation required): Sunda pangolin** *(Manis javanica)*, Thailand — bioRxiv 2025 (Ewart et al.), ~30 whole genomes across **4 Thai populations** (Western, Khao Yai, Mid-south, Southernmost; F_ST 0.06–0.14). Thailand-**endemic** + a wildlife-forensics / "most-trafficked-mammal" narrative. **Verified 2026-06-17:** data is **openly available but READS-ONLY** — NCBI BioProject `PRJNA1240953`, SRA `SRR32831660`–`SRR32831689` (30 runs), no deposited VCF. → Using it means **calling variants from WGS reads** = the §6 "escalation to avoid," and rough on an all-local 8 GB machine. *Viable only if you deliberately opt into that variant-calling escalation; otherwise there is no turnkey SEA fallback.*
 2. **Reliable default — strongest analytical fit: Alpine ibex** *(Capra ibex)* — Dryad `10.5061/dryad.n276d`, **12 populations, 173 individuals (~15/pop)** along a documented reintroduction/drift gradient = the textbook multi-population N_e / "proportion of populations" story (better per-pop n than peafowl). **Verified 2026-06-17:** openly downloadable; single file `DRYAD.raw.SNPfile.gz` (159 MB) is a **GATK-produced VCF — NO format conversion needed** (better than the scoping doc assumed); 101,822 SNPs. Non-SEA. *Analytically stronger than peafowl for the GBF flagship — peafowl wins primary only on the SEA tie + WGS/temporal-erosion angle.*
@@ -101,11 +105,11 @@ Then: `git init`; `renv::init()`; export `environment.yml`; create the repo skel
 
 ## 4. Phase 1 — Peafowl QC & baseline *(structure + diversity)*
 
-- **QC/filtering → TWO callsets:** `bcftools norm -m -any` → biallelic SNPs → depth/GQ/missingness (`--max-missing 0.8–0.9`) → **MAC ≥ 3** → per-**population** HWE. Set A: neutral, LD-pruned (`--indep-pairwise 50 10 0.1`) for structure/N_e. Set B: lightly filtered (no MAF) for diversity. *Document every threshold in `config.yaml`.*
-- **Kin/duplicate screen FIRST** (PLINK `--king` / KING) — remove relatives before structure/N_e (undetected kin bias everything).
+- **QC/filtering → TWO callsets:** `bcftools norm -m -any` → biallelic SNPs → depth/GQ/missingness → **MAC ≥ 3** → per-**population** HWE. **Set A (structure/N_e) is re-derived *per filter preset* from `Modern_all`** (then LD-pruned `--indep-pairwise 50 10 0.1`) — this *is* the cube's filtering knob: lenient/standard/strict → **1,044k / 420k / 30k** SNPs (~35× spread, confirmed). The authors' pre-pruned neutral set (790,705 SNPs) is a **frozen validation reference only**, never a cube input. Set B (diversity): lightly filtered, no MAF. *Every threshold in `config.yaml`.*
+- **Kin/duplicate screen** (PLINK2 KING) — but the deposited 22 are *already* the authors' post-kin set (31→22 happened pre-deposit). So run KING as a **confirmatory QC gate**: report the relatedness matrix as a figure; if a pair exceeds our cutoff but the authors kept it, **keep the published 22 and document it** (don't drop from an n=5 pop). "Where you draw the kin cutoff" is itself an analyst degree of freedom — note it.
 - **Structure:** PCA (scikit-allel or SNPRelate) + **ADMIXTURE** over a grid of K with replicate seeds; present multiple K + triangulate with PCA; don't over-interpret "best K."
-- **Diversity:** Ho/He, rarefied allelic richness, individual heterozygosity. π via **pixy** only if invariant sites exist; else report Ho/He + caveat.
-- Reproduce the paper's headline structure/diversity numbers.
+- **Diversity (incl. angle G):** Ho/He, rarefied allelic richness, individual heterozygosity. π via **pixy** only if invariant sites exist; else Ho/He + caveat. **Angle G (temporal diversity erosion):** museum (5 `kiz*`) vs modern (6) Ho/He + allelic richness **rarefied to equal n**, with an **ancient-DNA damage caveat** (deamination can inflate apparent diversity). The contrast is geographically narrow (modern side is mostly Thailand `s_*`) → report as a **static figure** (diversity tab + report), not a tool knob.
+- Reproduce the paper's headline numbers **that the deposited callsets support** (structure/diversity on the 22 + the comparative contrast). Numbers computed on the undeposited 31-sample raw set are out of reach — say so.
 
 **Conceptual checkpoint:** *Explain the difference between Ho, He, π, and F. Why screen kin before structure?*
 **Reading:** O'Leary 2018 (filtering); Sopniewski & Catullo 2024 (heterozygosity pitfalls); "diversity ≠ inbreeding ≠ N_e" (scoping §8).
@@ -114,9 +118,9 @@ Then: `git init`; `renv::init()`; export `environment.yml`; create the repo skel
 
 ## 5. Phase 2 — Peafowl N_e + the results cube *(the engineering core)*
 
-- **Contemporary N_e:** currentNe2 (no genetic map needed → ideal) + NeEstimator-LDNe across PCrit (cross-check). **Recent trajectory:** GONE2 (context only — GBF guidance excludes it from the contemporary indicator).
+- **Contemporary N_e:** **currentNe2** (no genetic map needed → ideal; drives the GBF verdict). **GONE2** is now the *second automated cube axis* for the N_e-method knob (recent-trajectory estimator — a **different time horizon**; label it clearly, and keep the PASS/FAIL-vs-500 badge on currentNe2). **NeEstimator-LDNe** across PCrit = a **manual cross-check table in the report**, not a cube axis (Java GUI, unscriptable).
 - **Structure modeling:** per-population vs pooled (unmodeled structure biases N_e 10–100× low).
-- **Build the Snakemake parameter sweep → `results_cube.parquet`:** `{filter preset (lenient/standard/strict)} × {N_e method} × {structure on/off}` → `{N_e, CI}`. This declarative grid is exactly what Snakemake is for.
+- **Build the Snakemake parameter sweep → `results_cube.parquet`:** `{filter preset: lenient/standard/strict} × {N_e method: currentNe2, GONE2} × {structure: per_population/pooled}` → `{N_e, CI}`. GONE2's most-recent-generation N_e + bootstrap CI fills its rows. This declarative grid is exactly what Snakemake is for.
 
 **Conceptual checkpoint:** *Why do LD-N_e estimates collapse when structure is unmodeled? What time horizon does each method estimate?*
 **Reading:** Waples 2024 N_e review; "Idiot's Guide to N_e"; Santiago et al. 2025 (structure bias); currentNe2/GONE2 docs.
@@ -127,7 +131,7 @@ Then: `git init`; `renv::init()`; export `environment.yml`; create the repo skel
 
 - Compute the **N_e > 500 indicator** (proportion of populations above threshold) + **Populations Maintained**, from the cube. Contrast genomic N_e with the census proxy (N_c ≥ 5,000).
 - **Robustness (angle C):** quantify how the pass/fail verdict moves across the cube.
-- **Build the Streamlit fragility explorer** reading the cube: three knobs → verdict flips live; tabs for N_e/GBF (main) + structure (PCA/ADMIXTURE). Deploy to **Streamlit Community Cloud / HF Spaces** → live URL.
+- **Build the Streamlit fragility explorer** reading the cube: three knobs → verdict flips live (badge from currentNe2; selecting GONE2 shows its trajectory point with a time-horizon note). Tabs: **N_e/GBF** (main) + **structure/diversity** (PCA/ADMIXTURE + the static museum-vs-modern temporal-G figure). [Wolf tab added in Phase 4.] Deploy to **Streamlit Community Cloud / HF Spaces** → live URL.
 
 **Conceptual checkpoint:** *What does N_e > 500 actually mean? Why was the indicator designed to be computable without DNA?*
 **Reading:** GBF indicator guidelines (ccgenetics.github.io); Mastretta-Yanes 2024; Clark 2024.
@@ -137,11 +141,11 @@ Then: `git init`; `renv::init()`; export `environment.yml`; create the repo skel
 
 ## 7. Phase 4 — Wolf deep chapter: genetic load + ROH *(the frontier; 8 GB-safe)*
 
-CLI-streaming-first throughout — the 12 GB VCF never enters RAM:
-- Per-chromosome `bcftools view` splits (on USB); stream-filter.
+CLI-streaming-first throughout — the 12 GB VCF never enters RAM (verified: per-chrom view = 24 MB peak). Data on **internal SSD** (not USB):
+- Per-chromosome `bcftools view` splits; stream-filter. 211-sample `Pol.2out.mac2` callset; `chrX` = 74 females (separate file).
 - **ROH:** `bcftools roh` per sample/chromosome (HMM, low RAM); classify long (recent) vs short (ancient); F_ROH per individual.
-- **Genetic load:** stream the VEP impact classes + GERP scores; polarize derived alleles with the deposited outgroups; tally **realized** (homozygous derived-deleterious) vs **masked** (heterozygous) load per individual / generation; track change across the ~5 inbreeding generations.
-- Add a **wolf-load tab** to the explorer (realized vs masked; ROH-parameter sensitivity).
+- **Genetic load:** stream the VEP impact classes + GERP scores (derived-allele polarization **already baked into the VCF** as `INFO/AA`); tally **realized** (homozygous derived-deleterious) vs **masked** (heterozygous) load per individual / generation; track change across the ~5 inbreeding generations. GERP default **4.0** (source value), swept over **[2,3,4]**.
+- Add a **wolf tab** to the explorer driven by **two live sensitivity tables** the workflow builds: `wolf_load.parquet` (per-individual realized vs masked load **× GERP threshold [2,3,4]**) and `wolf_roh.parquet` (per-individual F_ROH **× ROH-length cutoff**). Two knobs (GERP, ROH-length) → the load/inbreeding verdicts move live (fragility thesis on the wolf side).
 
 **Conceptual checkpoint:** *Realized vs masked load — why does inbreeding convert one to the other? Why prefer GERP over PolyPhen for non-human species?*
 **Reading:** Bertorelle 2022 (load); Dussex 2023 (purging); Smeds & Ellegren 2022 (source); ROH sensitivity (PLOS Comp Biol 2024); Stoffel & Hoffman 2025 (long ROH & inbreeding depression).
@@ -152,7 +156,7 @@ CLI-streaming-first throughout — the 12 GB VCF never enters RAM:
 
 - Polish the explorer (captions, a **limitations panel** surfacing the §8 caveats — claim *risk* not *depression*, CIs, ascertainment, small-n power).
 - Write `report.qmd`: intro → methods → results → **limitations** → reproducibility statement.
-- Finalize repo: `env.yml`, `renv.lock`, Snakefile, config, README one-command reproduction. **Re-run the whole DAG from scratch to prove reproducibility.**
+- Finalize repo: `environment.lock.yml` (R included — no `renv.lock`), Snakefile, config, README one-command reproduction (`micromamba create -f environment.lock.yml` → activate → `snakemake --cores N`). **Re-run the whole DAG from scratch to prove reproducibility.**
 
 ---
 
@@ -179,10 +183,11 @@ Phase 0 → 1 → 2 → 3   = the load-bearing spine (peafowl + live tool). A co
 
 | Risk | Likelihood | Mitigation |
 |---|---|---|
-| **Peafowl too thin for multi-pop N_e/GBF** | ~~Med~~ → **Resolved (PASS):** 3 pops, 22 unrelated; small n folded into the fragility thesis | Phase-1 coverage check (GL stack if low-cov); **fallback ladder §3.3** (pangolin → ibex → trout), fires only if usable n <5 in >1 population |
-| Apple-Silicon conda fails | Med | `osx-64`/Rosetta env (§3.1); cross-compiled tools tested in Phase 0 |
-| Wolf 12 GB strains 8 GB RAM | Med | CLI-streaming-first; `bcftools roh` over RZooRoH; per-chromosome; USB for storage |
-| currentNe2/GONE2 won't build on osx-64 | Med | Build with Xcode CLT in Phase 0; currentNe2 is the workhorse, NeEstimator a manual cross-check |
+| **Peafowl too thin for multi-pop N_e/GBF** | ~~Med~~ → **Resolved (PASS):** 3 pops, 22 unrelated (**n = 7/10/5**); small n folded into the fragility thesis | Confirmatory kin gate keeps the published 22 (§4); **fallback ladder §3.3** (pangolin → ibex → trout), fires only if usable n <5 in >1 population |
+| Apple-Silicon conda fails | ~~Med~~ → **Resolved:** classic conda OOM'd on 8 GB → built with **micromamba** (osx-64/Rosetta); tools cross-compiled + tested |
+| Wolf 12 GB strains 8 GB RAM | ~~Med~~ → **Resolved (low):** verified **24 MB peak** per-chrom; CLI-streaming-first; `bcftools roh`; per-chromosome; **internal SSD** (USB abandoned) |
+| currentNe2/GONE2 won't build on osx-64 | ~~Med~~ → **Resolved:** both built (osx-64, pinned SHAs); currentNe2 needed a 1-line clang patch; NeEstimator = manual cross-check |
+| **GONE2 vs currentNe2 conflated** in the method knob (different time horizons) | Med | Badge uses currentNe2 (contemporary) only; GONE2 labelled "recent trajectory"; report explains they answer different questions |
 | **Over-claiming** (beginner risk) | Med | Conceptual checkpoints each phase; limitations panel + report section; claim *risk* not *depression* |
 | Scope creep into raw-read variant calling | Low | VCF-start by design; both datasets are deposited VCFs |
 | NeEstimator GUI not scriptable | Low | Use it only for cross-check; currentNe2 (CLI) drives the Snakemake sweep |

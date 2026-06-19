@@ -25,7 +25,7 @@ st.caption(
 if not CUBE.exists():
     st.warning(
         "The results cube hasn't been built yet. Run the workflow first:\n\n"
-        "```bash\nsnakemake --use-conda --cores 4\n```\n\n"
+        "```bash\nsnakemake --cores 4\n```\n\n"
         f"Expected at `{CUBE}`."
     )
     st.stop()
