@@ -69,9 +69,9 @@ A prior audit (`HANDOFF.md`) listed Phase-0 gaps; the agent-actionable ones are 
 - config: GERP threshold → **4.0** (source value; a sensitivity knob); **NeEstimator removed from the automated cube axis** (Java GUI → manual cross-check).
 - git hygiene: `.claude/` gitignored + untracked. *(Stray empty `data dryad api/` folder at repo root — left for the user to delete.)*
 
-## Open decisions for Phase 1 (need the user)
+## Phase-1 decisions — RESOLVED 2026-06-19 (user)
 
-1. **Angle-G scope** — temporal erosion as *N_e* (LD-based; wide CIs from small per-timepoint n) vs *diversity/heterozygosity* erosion vs qualitative. Coverage is fine (≥9×), so this is a design choice.
-2. **Filter-axis headroom** — the deposit ships pre-filtered callsets; confirm the lenient→strict knob actually moves the verdict on `Modern_all`, or reframe presets (don't engineer artificial fragility). If it genuinely doesn't move, that is itself an honest finding.
-3. **R ownership** — conda-owned (drop `renv::restore()`, current state) vs renv-owned (`renv::snapshot()` + test `restore()` under Rosetta first — sf/terra/igraph may source-rebuild).
-4. **GERP threshold** — keep source's **4.0** vs expose as the wolf-load sensitivity knob (recommended; fits the fragility thesis).
+1. **Angle-G scope → diversity/heterozygosity erosion.** Comparative set is n≈5 museum (`kiz*`) + 6 modern — too few for credible LD-based contemporary N_e (CIs uninformative). Measure Ho/He + allelic richness (rarefied to equal n) museum-vs-modern, with a museum-DNA damage caveat (deamination can inflate apparent diversity). Mirrors the deposit's own modern-vs-historical π. *(Scope reduction from the plan's "temporal N_e erosion" — flagged openly; coverage ≥9× is fine, n is the limiter.)*
+2. **Filter-axis headroom → confirmed (the knob bites).** Biallelic-SNP counts on `Modern_all` (1,139,469 total): lenient (mm0.7/dp4/gq15/mac3) **1,044,447** → standard (mm0.8/dp6/gq20) **419,616** → strict (mm0.9/dp8/gq30) **29,851** — a ~35× spread. So Set A is re-derived **per preset** from `Modern_all` (carries `GT:AD:DP:FT:GQ:PL`); the authors' pre-pruned `set_a_neutral` (790,705 SNPs, frozen) is a **validation reference only**, never the cube input. (Verdict-moves-across-500 check completes once currentNe2 runs in Phase 1/2.)
+3. **R ownership → conda-owned.** R + packages ship from the `congen` env; `renv::restore()` dropped from the repro recipe (README updated). renv scaffolding left inert.
+4. **GERP threshold → exposed as sensitivity knob.** `wolf.load.gerp_sensitivity: [2.0, 3.0, 4.0]`, default 4.0 (source value). The wolf-load tab sweeps it (fits the fragility thesis).

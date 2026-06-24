@@ -197,3 +197,79 @@ Phase 0 → 1 → 2 → 3   = the load-bearing spine (peafowl + live tool). A co
 ## 12. The learning track (mapped to phases)
 
 Phase 0–1: Speciation Genomics tutorials; O'Leary 2018. · Phase 2: Waples 2024 + "Idiot's Guide to N_e" + Santiago 2025. · Phase 3: GBF guidelines + Mastretta-Yanes 2024. · Phase 4: Bertorelle 2022 + Dussex 2023 + ROH-sensitivity. Every phase ends with a one-paragraph conceptual checkpoint you must be able to answer before interpreting results.
+
+## Deviations
+
+deviations from phase 1:
+
+**Phase 1 status: COMPLETE (2026-06-20).** Full DAG (`snakemake -s workflow/Snakefile phase1`, 42 jobs)
+runs clean from the cached norm-parent; validation = **0 FAIL / 7 PASS / 3 WARN** (`results/PHASE1_VALIDATION.md`).
+Implementation = `workflow/rules/{qc,structure,diversity}.smk` + `scripts/python/{diversity,pca,to_hierfstat,plots,validate}.py`
++ `scripts/R/allelic_richness.R` + `scripts/filter_preset.sh`. Verified by an adversarial code-review workflow
+(5 dimensions → find → verify; 3 confirmed bugs fixed, 11 refuted) plus runtime diagnosis.
+
+*Structural / tooling deviations:*
+- **(A) New rule file `diversity.smk`.** Plan §2 listed qc/structure/ne/gbf/load; diversity (Ho/He/AR + temporal)
+  got its own file rather than being folded into structure.smk — clearer separation.
+- **(B) Autosomes made explicit.** Set A/B restricted to the 32 `chromosome_<int>` contigs;
+  `chromosome_Z`, `chromosome_W`, `mitochondrion`, and 157 scaffolds dropped (`config/peafowl_autosomes.txt`).
+  Plan didn't specify; required for LD/structure/N_e. Z/W are explicitly named in the assembly → no sex-chr ambiguity.
+- **(E) Set B params added to config** (`peafowl.set_b`: DP≥4, GQ≥15, max_missing 0.5; no MAF/MAC/HWE/LD-prune).
+- **(F) Allelic richness via a Python→hierfstat bridge.** `dartR::gl.read.vcf` needs **vcfR**, which is NOT in the
+  locked env. Rather than mutate `environment.lock.yml`, `to_hierfstat.py` (scikit-allel) writes the hierfstat
+  genotype table and `allelic_richness.R` does only the stats. Rarefaction reaches the true smallest-pop n=5 via
+  `--complete-only` (complete-case loci) + a seeded thin (`peafowl.diversity.ar_max_sites: 50000`) for 8 GB safety.
+- **(G) R invoked as `Rscript --vanilla`.** The repo's inert renv `.Rprofile` (`source("renv/activate.R")`) shadows
+  the conda R library (plan already dropped renv) → without `--vanilla`, R sees an empty library. Every R rule uses
+  it. *Recommend the user eventually neuter `.Rprofile` so interactive R in this dir also works.*
+- **(H) plink `--double-id` everywhere.** Sample IDs contain `_` (PE125_220, s_9_1, g_1); plink's default FID/IID
+  split errors otherwise.
+- **(J) ADMIXTURE bed uses integer chromosomes** — `.bim` chr column stripped of the `chromosome_` prefix (portable
+  `sed`, no `-i`) so ADMIXTURE accepts the codes.
+- **(N) Structure/kinship preset = standard** (`peafowl.kinship.structure_preset`); PCA/ADMIXTURE/KING figures use the
+  standard-preset pruned Set A.
+
+*Counts / methods:*
+- **(C) Re-derived per-preset post-MAC counts** = lenient **1,046,916** / standard **420,826** / strict **30,143**,
+  vs the HANDOFF targets 1,044,447 / 419,616 / 29,851 (**+0.2 to +1.0%**). The excess is `bcftools norm -m -any`
+  splitting multiallelic SNP sites into biallelic records (the plan's stated method); the HANDOFF figures likely
+  dropped multiallelics outright. The 35× filter-knob spread is fully reproduced. Persisted to `*.postmac_count`.
+- **(D) Per-population HWE via `vcftools --hardy` union.** A site is dropped if P_HWE < 1e-6 in ANY of the 3
+  populations (pooled HWE rejected — population structure / Wahlund creates false departures). P_HWE column located
+  by header name for version robustness (`scripts/filter_preset.sh`).
+
+*Bugs caught + fixed during build (the verification half earned its keep):*
+- **(I) LD-prune was a silent no-op — REAL BUG (high), caught at runtime.** All VCF IDs are `.`, so `--extract
+  prune.in` matched every `.`-ID variant and kept the FULL set (standard "pruned" = 420,826, not 19,611). ADMIXTURE
+  was crunching 420k *linked* SNPs (slow + scientifically wrong). Fixed with `--set-missing-var-ids '@:#:$1:$2'`
+  (unique chr:pos:allele IDs) → standard prunes correctly to **19,611**. plink **1.9** kept (plink2 refuses LD
+  pruning at n<50; small-n is folded into the fragility thesis, not avoided).
+- **(K) KING read from the pruned VCF, not the bed — REAL BUG, caught at runtime.** Because (J) made the bed's chr
+  codes integers, plink2 reads `27` as human-autosome-27 (invalid) even with `--allow-extra-chr`. KING now runs on
+  the pruned **VCF** (non-numeric `chromosome_*` names, which `--allow-extra-chr` does handle).
+- **(L) Temporal callset normalized for diversity, raw for π — from the review (med).** Ho/He/AR were computed on the
+  RAW comparative VCF (2,056 indels/multiallelics), inconsistent with the normalized Set B, and `to_hierfstat.py`'s
+  11/12/22 coding mis-counted multiallelic alleles. New `comparative_norm` rule → biallelic SNP autosomes + Set-B
+  mask feeds `temporal_diversity`; `temporal_pi` **deliberately stays on the raw deposited comparative** (faithful to
+  Dong et al. 2021's `vcftools --window-pi`). `to_hierfstat.py` also drops multiallelic loci defensively.
+- **(O) plots.py ADMIXTURE NaN-CV guard** (drop NaN before best-seed `idxmin`) — low-severity robustness, from review.
+
+*Data-level deviation (documented as a caveat, not fixable):*
+- **(M) `s_9_2 → PE125_220` in the temporal modern group.** The authors' raw `Nucleotide_diversity_.sh` used 6 Thai
+  `s_*` (incl. `s_9_2`, which is NOT in the deposit). The deposited comparative substitutes `PE125_220` (Yunnan), so
+  the museum-vs-modern contrast is geographically narrow (modern = 5 Thai + 1 Yunnan vs museum `kiz*`).
+
+**Phase-1 scientific findings to carry forward (honest, non-overclaimed):**
+- **Modern diversity:** Thailand (n=5) lowest (He 0.395 / rarefied AR 1.93); Vietnam highest Ho; **Yunnan Fis = 0.086**
+  (heterozygote deficit), coherent with elevated within-Yunnan KING relatedness — a related/captive-source signal.
+- **Structure:** PCA cleanly separates 3 pops (centroid gap 91 vs within-spread 38) but per-PC variance is low
+  (PC1 ≈ 9%); ADMIXTURE CV is **monotonic in K (favours K=1)** — a small-n artifact, so structure is read from PCA,
+  not CV. (Triangulate, don't over-interpret "best K" — as planned.)
+- **Kinship gate:** KING flags **151/231 pairs ≥ 0.0884** — KING-robust is biased under strong structure, so the
+  cross-population values are unreliable; the interpretable signal is within-population. **All 22 birds kept** (plan §4).
+- **Temporal erosion (angle G):** the signal is **weak and metric-dependent** — median π and Ho weakly museum>modern
+  (erosion-consistent: π 3.70e-4 vs 3.42e-4), but He (0.458 vs 0.463) and rarefied AR (1.984 vs 1.989) are essentially
+  flat. Reported as a contrast direction only, with aDNA-deamination + geographic-mismatch caveats. No strong erosion claim.
+
+**Known follow-ups (deferred, not blockers):** (1) the kinship figure could split within- vs cross-population pairs to
+make the KING-under-structure caveat visual; (2) neuter the renv `.Rprofile`; (3) the 3 WARN checks are reported-not-asserted by design.

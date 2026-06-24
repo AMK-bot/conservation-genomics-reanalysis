@@ -15,9 +15,9 @@ Two chapters:
 
 ## Deliverables
 
-- **Reproducible repo** — one-command reproduction (`snakemake --use-conda`), pinned
-  `environment.yml` + `renv.lock`, the Snakefile, a config of all thresholds, the
-  results cube, all figures, and a paper-grade `report/report.qmd`.
+- **Reproducible repo** — one-command reproduction (`snakemake --cores N`), pinned
+  `environment.lock.yml` (R packages included — R is conda-owned), the Snakefile, a
+  config of all thresholds, the results cube, all figures, and a paper-grade `report/report.qmd`.
 - **Fragility explorer** (`app/streamlit_app.py`) — a live tool whose three knobs
   (filtering stringency × N_e method × structure modeled/ignored) wiggle the peafowl
   N_e / GBF pass-fail verdict in real time.
@@ -34,9 +34,8 @@ snakemake --cores 4                      # build results/cube/results_cube.parqu
 streamlit run app/streamlit_app.py       # explore the verdict
 ```
 
-R packages (SNPRelate / dartR / hierfstat / adegenet) ship with the conda env. For exact
-pins use `environment.lock.yml`. *(R-package ownership — conda vs renv — is a Phase-1 decision;
-see `SETUP.md`.)*
+R packages (SNPRelate / dartR / hierfstat / adegenet) ship with the conda env — **R is
+conda-owned** (renv not used); for exact pins use `environment.lock.yml`.
 
 ## Layout
 
@@ -47,9 +46,9 @@ scripts/     python/ + R/ analysis scripts called by the rules
 results/      cube/ (results_cube.parquet) + tables/ + figures/
 app/          streamlit_app.py — the fragility explorer (reads the cube)
 report/       report.qmd — paper-grade methods/results/limitations
-data/         raw VCFs + intermediates (symlinked to USB; see data/README.md)
+data/         raw VCFs + intermediates (symlinked to internal SSD; see data/README.md)
 tools/        currentNe2 / GONE2 (built from source) — see tools/README.md
 ```
 
 See **CGplan.md** for the full execution plan and **SETUP.md** for environment setup
-status. Project status: **Phase 0 (setup & verification).**
+status. Project status: **Phase 0 complete → Phase 1 (peafowl QC → structure → diversity).**

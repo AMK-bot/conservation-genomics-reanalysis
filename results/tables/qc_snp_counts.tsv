@@ -1,0 +1,12 @@
+callset	preset	snps
+setA_postMAC	lenient	1046916
+setA_postHWE	lenient	1046916
+setA_pruned	lenient	39626
+setA_postMAC	standard	420826
+setA_postHWE	standard	420826
+setA_pruned	standard	19611
+setA_postMAC	strict	30143
+setA_postHWE	strict	30143
+setA_pruned	strict	2783
+setB	-	1131720
+frozen_neutral_ref	-	790705

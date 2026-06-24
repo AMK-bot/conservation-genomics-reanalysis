@@ -20,6 +20,12 @@ paths:
     comparative:   "data/peafowl/raw/Comparative_genomic_dataset_F.vcf.gz"
     reference:     "data/peafowl/pseudochromosomes.no_blank_shortIDname.fasta"
     gff:           "data/peafowl/green_peafowl_genome.all.gff"
+    # Phase-1 derived inputs
+    popmap:        "config/peafowl_popmap.tsv"          # sample -> population (22 birds)
+    autosomes:     "config/peafowl_autosomes.txt"       # 32 chromosome_<int> (Z/W/mito/scaffolds dropped)
+    # Shared parent: Modern_all -> bcftools norm -m -any -> biallelic SNPs on autosomes.
+    # Set A is re-derived PER PRESET from this (the cube's filter knob); set_a_neutral above is a frozen validation ref only.
+    norm_parent:   "data/peafowl/intermediates/modern.norm.bial.auto.vcf.gz"
   wolf:
     # genome-wide all-SNPs (GERP / ROH); 211 samples; BGZF + csi index; INFO/AA polarized (2 outgroups)
     allsnps:    "data/wolf/vcf/Pol.2out.mac2/100S95F14R.chr1-38.allSNPs.wfm.vcf.gz"
@@ -46,9 +52,30 @@ peafowl:
       standard: {max_missing: 0.8, min_gq: 20, min_dp: 6, mac: 3}
       strict:   {max_missing: 0.9, min_gq: 30, min_dp: 8, mac: 3}
 
+  # Set B — diversity callset: lightly filtered, NO MAF/MAC, NO HWE, NO LD-prune
+  # (preserves rare alleles for Ho/He + allelic richness; plan §4).
+  set_b:
+    min_dp: 4
+    min_gq: 15
+    max_missing: 0.5                                 # keep sites with >=50% genotypes present
+
+  diversity:
+    ar_max_sites: 50000                              # random (seeded) thin for hierfstat allelic.richness
+                                                     # — memory-bounded on 8 GB; AR is a per-locus mean so a thin is stable
+
+  # Angle G — temporal diversity erosion: museum (kiz*) vs modern, rarefied to equal n.
+  # Mirrors Dong et al. 2021's windowed-pi (Nucleotide_diversity_.sh); see deviations re s_9_2->PE125_220.
+  temporal:
+    museum:  [kiz14594, kiz4651, kiz4652, kiz4653, kiz8252]
+    modern:  [s_5, s_6, s_7, s_8, s_9_1, PE125_220]
+    rarefy_n: 5                                      # smallest group (museum n=5)
+    window_pi: 50000                                 # vcftools --window-pi (authors' value)
+    window_pi_step: 20000
+
   kinship:
     method: king                                    # PLINK2 --make-king / KING
-    relatedness_cutoff: 0.0884                       # 2nd-degree; drop relatives FIRST
+    relatedness_cutoff: 0.0884                       # 2nd-degree; CONFIRMATORY gate — keep published 22 (plan §4)
+    structure_preset: standard                       # which filter preset feeds KING / PCA / ADMIXTURE figures
 
   structure:
     pca_components: 10
@@ -80,6 +107,7 @@ wolf:
     long_roh_threshold_mb: 1.5      # long (recent) vs short (ancient) ROH
   load:
     impact_classes: [HIGH, MODERATE, LOW]   # VEP consequence classes
-    gerp_threshold: 4.0                       # source (Smeds & Ellegren 2022) used GERP>4; expose as a sensitivity knob
+    gerp_threshold: 4.0                       # default = source value (Smeds & Ellegren 2022, GERP>4)
+    gerp_sensitivity: [2.0, 3.0, 4.0]         # wolf-load GERP sensitivity axis (decision O4); default 4.0
     polarize_with_outgroup: true
     generations: 5                            # ~5 inbreeding generations tracked
