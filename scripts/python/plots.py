@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Phase-1 static figures. Subcommands: pca | admixture | kinship | diversity | temporal.
+"""Phase-1/2 static figures. Subcommands: pca | admixture | kinship | diversity | temporal | gone2 | cube.
 
 Figures are for the report / validation. The load-bearing outputs are the TSVs;
 the Streamlit app (Phase 3) re-plots from those, so these stay deliberately plain.
@@ -163,6 +163,58 @@ def temporal(a):
     fig.tight_layout(); fig.savefig(a.out, dpi=150, bbox_inches="tight")
 
 
+def gone2(a):
+    """GONE2 recent-N_e trajectory — CONTEXT ONLY (plan §5). Caveats are ON the figure."""
+    df = pd.read_csv(a.ne, sep="\t")   # normalized: generation, Ne
+    if getattr(a, "max_gen", None):    # cutoff in GENERATIONS (rows are non-contiguous binned gens)
+        df = df[df["generation"] <= float(a.max_gen)]
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.plot(df["generation"], df["Ne"], color="#1f77b4", lw=2, marker="o", ms=3)
+    ax.set_yscale("log")
+    ax.set_xlabel("Generations before present (1 = most recent)")
+    ax.set_ylabel("N_e (diploids)")
+    ax.set_title("GONE2 recent N_e trajectory — CONTEXT ONLY (not the GBF badge)\n"
+                 "all 22 birds, -x metapopulation, -g 0; borrowed constant rate 3 cM/Mb "
+                 "(peafowl has no\ngenetic map); microchromosomes <20 cM dropped; "
+                 "recent-past ≠ contemporary N_e; thin n", fontsize=9)
+    fig.tight_layout(); fig.savefig(a.out, dpi=150, bbox_inches="tight")
+
+
+def cube(a):
+    """Static fragility view of the results cube: per-population N_e across presets, with the
+    N_e=500 line and the pooled (Wahlund) contrast. Phase 3 makes the interactive version."""
+    df = pd.read_parquet(a.cube)
+    presets = ["lenient", "standard", "strict"]
+    xmap = {p: i for i, p in enumerate(presets)}
+    perpop = df[df.structure_mode == "per_population"]
+    pops = _order(perpop["population"])
+    fig, ax = plt.subplots(figsize=(9, 5.5))
+    # display cap for unbounded (inf) upper CIs -> open arrows
+    finite_hi = df["ci_high"].replace([np.inf], np.nan).dropna()
+    cap = (finite_hi.max() if len(finite_hi) else 1000) * 3
+    for k, pop in enumerate(pops):
+        sub = perpop[perpop.population == pop].set_index("filter_preset").reindex(presets)
+        xs = np.array([xmap[p] for p in presets]) + (k - len(pops) / 2) * 0.06
+        ys = sub["ne_point"].to_numpy(float)
+        lo = sub["ci_low"].to_numpy(float)
+        hi = sub["ci_high"].to_numpy(float)
+        inf_up = np.isinf(hi)
+        hi_disp = np.where(inf_up, cap, hi)
+        yerr = np.vstack([np.clip(ys - lo, 0, None), np.clip(hi_disp - ys, 0, None)])
+        ax.errorbar(xs, ys, yerr=yerr, fmt="o", color=COLORS.get(pop, f"C{k}"),
+                    label=pop, capsize=3, uplims=inf_up, lw=1.2)
+    pooled = df[df.structure_mode == "pooled"].set_index("filter_preset").reindex(presets)
+    ax.plot(range(len(presets)), pooled["ne_point"], "kx--", label="pooled (Wahlund-biased low)")
+    thr = float(getattr(a, "threshold", None) or 500)   # GBF N_e threshold (config-driven via the rule)
+    ax.axhline(thr, color="red", ls=":", lw=1.5, label=f"N_e = {thr:.0f} (GBF)")
+    ax.set_yscale("log"); ax.set_xticks(range(len(presets))); ax.set_xticklabels(presets)
+    ax.set_xlabel("filtering preset"); ax.set_ylabel("contemporary N_e (cross-chromosome)")
+    ax.set_title("Fragility cube — currentNe2 N_e (90% CI; ↑ = unbounded). "
+                 "n = 7/10/5 -> wide CIs by design", fontsize=10)
+    ax.legend(frameon=False, fontsize=8, ncol=2)
+    fig.tight_layout(); fig.savefig(a.out, dpi=150, bbox_inches="tight")
+
+
 def main():
     p = argparse.ArgumentParser()
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -176,9 +228,11 @@ def main():
     s = sub.add_parser("temporal")
     for f in ["--pi-museum", "--pi-modern", "--div", "--ar", "--out"]:
         s.add_argument(f)
+    s = sub.add_parser("gone2"); s.add_argument("--ne"); s.add_argument("--out"); s.add_argument("--max-gen")
+    s = sub.add_parser("cube");  s.add_argument("--cube"); s.add_argument("--out"); s.add_argument("--threshold")
     a = p.parse_args()
     {"pca": pca, "admixture": admixture, "kinship": kinship,
-     "diversity": diversity, "temporal": temporal}[a.cmd](a)
+     "diversity": diversity, "temporal": temporal, "gone2": gone2, "cube": cube}[a.cmd](a)
 
 
 if __name__ == "__main__":

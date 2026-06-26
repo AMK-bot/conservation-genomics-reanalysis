@@ -25,6 +25,19 @@ cd "$TOOLS/currentNe2"
 if grep -q 'int valid_idx\[contaloc2\] = {0};' currentne2.cpp; then
   perl -0pi -e 's/  int valid_idx\[contaloc2\] = \{0\};/  int valid_idx[contaloc2];\n  for (int _zi = 0; _zi < contaloc2; _zi++) valid_idx[_zi] = 0;  \/\/ clang: VLA can'\''t be brace-initialized/' currentne2.cpp
 fi
+# Shrink the 4 GB static genotype array (char indi[MAXIND][MAXLOCI]) to sizes our data needs.
+# Upstream builds with -mcmodel=medium for the 4 GB BSS; build_tools.sh dropped that flag, so on
+# x86_64 the small code model can't address it -> segfault on EVERY run (not just large data).
+# 22 peafowl, <=1.05M loci -> MAXIND 64 / MAXLOCI 1,100,000 keeps it ~70 MB and 8 GB-safe. (idempotent)
+sed -i.bak -E 's/^#define MAXIND 2000$/#define MAXIND 64/; s/^#define MAXLOCI 2000000$/#define MAXLOCI 1100000/' currentne2.cpp && rm -f currentne2.cpp.bak
+# Deterministic RNG: seed mt19937 from a fixed value (was std::random_device) so the seeded -s SNP
+# subsampling is REPRODUCIBLE (the cube must re-run identically). (idempotent)
+perl -0pi -e 's/std::mt19937 g\(rd\(\)\);\n  g\.seed\(rd\(\)\);/std::mt19937 g(42);  \/\/ fixed seed -> reproducible -s subsampling (was rd())\n  g.seed(42);/' currentne2.cpp
+# Fail loudly if any patch silently no-op'd (upstream source drifted) — a missed RNG patch would
+# make -s subsampling non-deterministic, breaking the "cube re-runs identically" guarantee.
+grep -q 'g.seed(42)'            currentne2.cpp || { echo "ERROR: RNG-seed patch did not apply (source drifted?)"; exit 1; }
+grep -q '#define MAXLOCI 1100000' currentne2.cpp || { echo "ERROR: MAXLOCI patch did not apply"; exit 1; }
+grep -q '#define MAXIND 64'     currentne2.cpp || { echo "ERROR: MAXIND patch did not apply"; exit 1; }
 clang++ -arch x86_64 -std=c++14 -O3 -w $OMP -o currentne2 currentne2.cpp lib/*.cpp
 echo "  -> $TOOLS/currentNe2/currentne2"
 

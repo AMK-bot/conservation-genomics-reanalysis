@@ -87,6 +87,28 @@ peafowl:
     methods: [currentNe2]                            # automated. NeEstimator-LDNe = manual GUI cross-check; GONE2 = trajectory context
     ldne_pcrit: [0.05, 0.02, 0.01]                   # for the manual NeEstimator-LDNe cross-check
     structure_modes: [per_population, pooled]        # unmodeled structure biases N_e low
+    # currentNe2 (the badge): cross-chromosome estimate. UN-pruned Set A is the input (LD-Ne
+    # reads N_e *from* LD; pruning destroys the signal — plan §5). Genome size in Morgans = the
+    # autosome count -> currentNe2's "no genetic map needed" cross-chromosome mode.
+    genome_size_morgans: 32                          # = config/peafowl_autosomes.txt count
+    snp_cap: 25000                                   # seeded -s cap. RUNTIME (not RAM) is the limit:
+                                                     # currentNe2 pair work is ~quadratic in SNPs and the
+                                                     # cross-chrom estimate saturates far below this (~3e8 pairs).
+                                                     # Reproducible: the binary is patched to a fixed RNG seed.
+    threads: 4
+    ci_pct: 90                                       # currentNe2 emits 50% & 90% CIs; the cube stores the 90%
+    # GONE2 — recent-trajectory CONTEXT panel only (NOT a cube axis, NOT in the badge; plan §5).
+    gone2:
+      rec_rate_cm_per_mb: 3.0                        # borrowed generic-bird rate (peafowl has no map) — documented
+      genotype_mode: 0                               # -g 0 unphased diploids
+      metapopulation: true                           # -x (random sample from equal-size subpops)
+      snp_cap: 50000                                 # -s cap (context figure -> keep tractable)
+      structure_preset: standard                     # which un-pruned Set A feeds the trajectory
+      # GONE2 ABORTS unless EVERY chromosome is 20-1000 cM. At 3 cM/Mb the peafowl
+      # microchromosomes fall below 20 cM, so we restrict the trajectory to macrochromosomes
+      # whose SNP span is in [min,max] cM (margin above 20 so -s subsampling can't drop them).
+      min_chrom_cm: 25
+      max_chrom_cm: 1000
 
 # ── GBF indicators (plan §6) ───────────────────────────────────────────────────
 gbf:

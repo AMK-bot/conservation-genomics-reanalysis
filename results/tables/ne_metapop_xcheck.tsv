@@ -1,0 +1,4 @@
+preset	NeT	NeT_lo90	NeT_hi90	Fst	migration	n_subpops	note
+lenient	64.65			0.073427	0.203337	6.0	converged (no CIs in genome-size mode)
+standard	132.36			0.035648	0.025547	2.0	converged (no CIs in genome-size mode)
+strict	1637.02			0.00017	0.448247	2.0	converged (no CIs in genome-size mode)

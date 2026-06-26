@@ -1,19 +1,37 @@
 """Fragility Explorer — how fragile is the conservation verdict?
 
-Green peafowl N_e / GBF pass-fail under analyst choices. Three knobs:
-    filtering stringency  x  N_e method  x  structure (modeled / ignored)
--> live N_e + CI + treaty pass/fail verdict.
+Green peafowl N_e / GBF verdict under analyst choices. Two knobs:
+    filtering stringency  x  structure (modeled per_population / ignored pooled)
+-> live N_e + 90% CI + treaty pass / fail / indeterminate verdict (currentNe2).
 
 This app ONLY reads results/cube/results_cube.parquet. All heavy bioinformatics
-runs in the Snakemake workflow, never here (plan §2, §6).
+runs in the Snakemake workflow, never here (plan §2, §6). Phase 3 adds the GONE2
+recent-trajectory panel + structure/diversity + wolf tabs.
 """
+import math
 from pathlib import Path
 
 import pandas as pd
 import streamlit as st
+import yaml
 
 CUBE = Path("results/cube/results_cube.parquet")
-NE_THRESHOLD = 500  # GBF N_e > 500 genetic-diversity indicator
+CONFIG = Path("config/config.yaml")
+# GBF N_e indicator threshold — single source of truth is config (the cube's gbf_state is built
+# from it); read it here so the badge label can't drift from the verdict. Fallback if config absent.
+try:
+    NE_THRESHOLD = yaml.safe_load(CONFIG.read_text())["gbf"]["ne_threshold"]
+except Exception:
+    NE_THRESHOLD = 500
+
+
+def _fmt_ci(x):
+    """CI bound -> display: NaN (non-convergence) -> n/a, inf (unbounded) -> ∞, else thousands."""
+    if math.isnan(x):
+        return "n/a"
+    if math.isinf(x):
+        return "∞"
+    return f"{x:,.0f}"
 
 st.set_page_config(page_title="Fragility Explorer", layout="wide")
 st.title("🦚 Fragility Explorer")
@@ -32,27 +50,40 @@ if not CUBE.exists():
 
 cube = pd.read_parquet(CUBE)
 
-# ── The three knobs ────────────────────────────────────────────────────────────
-c1, c2, c3 = st.columns(3)
+# ── The two knobs (filter x structure); Phase 3 adds the GONE2 panel + tabs ─────
+# ponytail: minimal Phase-2 read of the cube so it's demonstrably consumable; the full
+# explorer (population selector polish, GONE2 panel, structure/wolf tabs) is the Phase-3 build.
+c1, c2 = st.columns(2)
 with c1:
     filt = st.select_slider("Filtering stringency", options=["lenient", "standard", "strict"], value="standard")
 with c2:
-    method = st.selectbox("N_e method", sorted(cube["ne_method"].unique()))
-with c3:
     structure = st.radio("Population structure", ["per_population", "pooled"], horizontal=True)
 
-# ── Verdict ──────────────────────────────────────────────────────────────────
-sel = cube.query("filter_preset == @filt and ne_method == @method and structure_mode == @structure")
+sel = cube.query("filter_preset == @filt and structure_mode == @structure")
 if sel.empty:
     st.error("No cube cell for that combination yet.")
     st.stop()
 
-ne = float(sel["ne"].iloc[0])
-ci_lo, ci_hi = float(sel["ci_low"].iloc[0]), float(sel["ci_high"].iloc[0])
-passes = ne > NE_THRESHOLD
+if structure == "per_population":
+    pop = st.radio("Population", sorted(sel["population"]), horizontal=True)
+    sel = sel.query("population == @pop")
 
-st.metric("Contemporary N_e", f"{ne:,.0f}", help=f"95% CI: {ci_lo:,.0f} – {ci_hi:,.0f}")
-st.subheader(("✅ PASS" if passes else "❌ FAIL") + f"  — N_e {'>' if passes else '≤'} {NE_THRESHOLD}")
+# ── Verdict (three-state, precomputed in the workflow) ─────────────────────────
+row = sel.iloc[0]
+ne = float(row["ne_point"]); ci_lo, ci_hi = float(row["ci_low"]), float(row["ci_high"])
+state = row["gbf_state"]
+ne_txt = "—" if math.isnan(ne) else ("∞" if math.isinf(ne) else f"{ne:,.0f}")  # NaN -> em dash, inf -> ∞
+
+st.metric("Contemporary N_e (cross-chromosome)", ne_txt,
+          help=f"90% CI: {_fmt_ci(ci_lo)} – {_fmt_ci(ci_hi)}")
+if structure == "pooled":
+    # Pooled (population = ALL) is the Wahlund contrast, never a GBF input -> show no pass/fail badge.
+    st.subheader("⚖️ Wahlund contrast — not a GBF verdict")
+    st.caption("Pooling across structured populations biases N_e LOW (Wahlund). This is a cautionary "
+               "contrast for the per-population estimates, never a GBF pass/fail input.")
+else:
+    badge = {"pass": "✅ PASS", "fail": "❌ FAIL", "indeterminate": "⚠️ INDETERMINATE"}[state]
+    st.subheader(f"{badge}  — vs N_e = {NE_THRESHOLD} (GBF)")
 
 st.divider()
 with st.expander("Limitations"):

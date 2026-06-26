@@ -1,0 +1,13 @@
+check	status	detail
+cube has 12 rows	PASS	got 12, expected 12 = 3 presets x (3 pops + 1 pooled)
+schema columns present	PASS	all present
+every preset has 3 per_population + 1 pooled(ALL)	PASS	all presets complete
+ne_method == [currentNe2]	PASS	got ['currentNe2']
+gbf_state in {pass,fail,indeterminate}	PASS	got ['fail', 'indeterminate']
+ne_basis matches convergence	PASS	7 cross_chromosome (headline), 0 whole_genome (fallback), 5 non-converged (basis=none)
+unbounded upper CIs stored as inf	WARN	0/12 cells have ci_high = inf (expected at n=7/10/5)
+pass/fail cells have a point estimate	PASS	ok
+Wahlund direction (pooled vs per-pop)	WARN	lenient: pooled=52 vs per-pop median=76; standard: pooled=89 vs per-pop median=88
+GBF fraction N_e>500 (per_population)	WARN	lenient: 0/3 pass, 1 indeterminate; standard: 0/3 pass, 2 indeterminate; strict: 0/3 pass, 3 indeterminate
+GONE2 context trajectory present	PASS	results/tables/gone2_trajectory.tsv ok
+metapop -x cross-check table present	PASS	results/tables/ne_metapop_xcheck.tsv present

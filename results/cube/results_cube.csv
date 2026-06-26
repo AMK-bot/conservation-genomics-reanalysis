@@ -1,0 +1,13 @@
+filter_preset	structure_mode	population	ne_method	ne_point	ci_low	ci_high	n_ind	n_snps	k	ne_basis	gbf_state
+lenient	per_population	Thailand	currentNe2	75.6	17.87	319.79	5	25000		cross_chromosome	fail
+lenient	per_population	Vietnam	currentNe2	2292.8	139.09	37794.98	10	25000	0.0	cross_chromosome	indeterminate
+lenient	per_population	Yunnan	currentNe2	55.32	20.1	152.26	7	25000		cross_chromosome	fail
+lenient	pooled	ALL	currentNe2	52.0	33.54	80.61	22	25000	0.0	cross_chromosome	fail
+standard	per_population	Thailand	currentNe2				5	25000		none	indeterminate
+standard	per_population	Vietnam	currentNe2				10	25000		none	indeterminate
+standard	per_population	Yunnan	currentNe2	88.4	26.92	290.31	7	25000	0.0	cross_chromosome	fail
+standard	pooled	ALL	currentNe2	88.8	50.68	155.61	22	25000	1.54	cross_chromosome	fail
+strict	per_population	Thailand	currentNe2				5	22911		none	indeterminate
+strict	per_population	Vietnam	currentNe2				10	25000		none	indeterminate
+strict	per_population	Yunnan	currentNe2				7	25000		none	indeterminate
+strict	pooled	ALL	currentNe2	107.78	64.52	180.07	22	25000		cross_chromosome	fail

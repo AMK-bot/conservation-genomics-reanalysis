@@ -41,6 +41,37 @@ rule phase1:
     input: PHASE1
 
 
+# ── Phase 2 outputs (the results cube + N_e context/cross-check) ───────────────
+PHASE2 = [
+    "results/cube/results_cube.parquet",   # the fragility cube (currentNe2 x filter x structure)
+    "results/cube/results_cube.csv",        # human-readable mirror
+    "results/figures/ne_cube.png",          # static fragility view
+    "results/tables/gone2_trajectory.tsv",  # GONE2 recent-trajectory context
+    "results/figures/gone2_trajectory.png",
+    "results/tables/ne_metapop_xcheck.tsv", # currentNe2 -x metapopulation report cross-check
+    "results/ne/neestimator/setA.standard.pruned.genepop",  # input for the MANUAL NeEstimator cross-check
+    "results/PHASE2_VALIDATION.md",
+]
+
+
+rule phase2:
+    input: PHASE2
+
+
+rule validate_phase2:
+    """Cube well-formed + N_e verdicts sane (plan §5). Final Phase-2 gate."""
+    input:
+        cube  = "results/cube/results_cube.parquet",
+        gone2 = "results/tables/gone2_trajectory.tsv",
+        xchk  = "results/tables/ne_metapop_xcheck.tsv",
+    output:
+        md  = "results/PHASE2_VALIDATION.md",
+        tsv = "results/tables/validation_phase2.tsv",
+    log: "results/logs/validate_phase2.log"
+    shell:
+        "python3 scripts/python/validate_phase2.py > {log} 2>&1 || (cat {log}; exit 1)"
+
+
 rule validate:
     """Reproduce-check vs the deposit/paper anchors (plan §4). Final Phase-1 gate."""
     input:
@@ -62,5 +93,6 @@ rule validate:
 
 rule all:
     input:
-        # Phase 1 spine for now; the results cube is wired in Phase 2/3.
+        # Phase 1 spine + Phase 2 results cube / N_e context. (Phase 3 = GBF + the live app.)
         PHASE1,
+        PHASE2,

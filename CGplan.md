@@ -8,7 +8,7 @@
 
 ---
 
-> **Adaptation note (2026-06-19):** Phase 0 is **COMPLETE**. This plan was revised in a structured grilling session to match what Phase 0 actually built — see `SETUP.md` (verified status) + `HANDOFF.md` (audit trail). Material changes from the original: storage **USB → internal SSD** (USB corrupts large writes); env built with **micromamba**, not classic conda (8 GB OOM); **R is conda-owned**, `renv.lock` dropped; **`--use-conda` dropped** (single env); **angle G rescoped** from temporal *N_e* to temporal *diversity* erosion (comparative set is only 5 museum + 6 modern); the cube's **N_e-method knob = currentNe2 vs GONE2** (NeEstimator demoted to a manual cross-check table); the **wolf tab = two live sensitivity tables** (load×GERP, F_ROH×ROH-length); per-population n is **7 / 10 / 5**, not 11/12/7. Sections below reflect these.
+> **Adaptation note (2026-06-19):** Phase 0 is **COMPLETE**. This plan was revised in a structured grilling session to match what Phase 0 actually built — see `SETUP.md` (verified status) + `HANDOFF.md` (audit trail). Material changes from the original: storage **USB → internal SSD** (USB corrupts large writes); env built with **micromamba**, not classic conda (8 GB OOM); **R is conda-owned**, `renv.lock` dropped; **`--use-conda` dropped** (single env); **angle G rescoped** from temporal *N_e* to temporal *diversity* erosion (comparative set is only 5 museum + 6 modern); ~~the cube's **N_e-method knob = currentNe2 vs GONE2**~~ (*superseded 2026-06-26 — see §5 adaptation note: the method knob is dropped, GONE2 is context-only, cube = filter × structure*; NeEstimator demoted to a manual cross-check table); the **wolf tab = two live sensitivity tables** (load×GERP, F_ROH×ROH-length); per-population n is **7 / 10 / 5**, not 11/12/7. Sections below reflect these.
 
 ## 0. Decisions locked (the inputs to this plan)
 
@@ -22,7 +22,7 @@
 | **Chapter 2 angles** | H (genetic load: realized vs masked) + E (ROH inbreeding history) | The field's hottest frontier, turnkey here |
 | **Primary deliverables** | (1) Reproducible repo, (2) interactive **"fragility explorer"** (Streamlit) | Citable + clickable + reproducible; legible to non-specialists |
 | **Paper** | Stretch, *after* the two deliverables — but `report.qmd` is written paper-grade from day one so "write the paper" = reformat, not rewrite | Keeps preprint optionality cheap |
-| **Tool concept** | Fragility explorer: a **three-knob cube** (filtering stringency × N_e method [**currentNe2 vs GONE2**] × structure modeled/ignored) → live N_e + CI + treaty pass/fail verdict. Badge uses currentNe2 (contemporary); GONE2 = recent-trajectory contrast | Turns angle C (robustness) into the headline interaction |
+| **Tool concept** | Fragility explorer: a **two-knob cube** (filtering stringency × structure modeled/ignored) → live N_e + CI + treaty pass/fail/**indeterminate** verdict, all from **currentNe2**. **GONE2** = a recent-trajectory **context panel** (not a knob, not in the badge — different time horizon, borrowed recombination rate; see §5 adaptation note) | Turns angle C (robustness) into the headline interaction |
 | **Architecture** | Workflow computes a **"results cube"** (tidy table); Streamlit just reads it | Deployable on free hosting; reproducible; the cube *is* angle C |
 | **Compute** | All local: Apple **M1 / 8 GB RAM** + **internal SSD** (USB abandoned — corrupts large writes) | User's machine; no cloud |
 | **Workflow infra** | **Snakemake** + **micromamba** env (osx-64) pinned in `environment.lock.yml`; **R conda-owned** (renv dropped) | Genomics standard (snpArcher-citable); micromamba because classic conda OOMs on 8 GB |
@@ -35,7 +35,7 @@
 ## 1. Definition of done
 
 - **Repo (load-bearing):** one-command reproduction (`snakemake --cores N` inside the activated `congen` env), pinned `environment.lock.yml` (R packages included — R is conda-owned; no `renv.lock`), the Snakefile, config of all thresholds, the results cube (+ `wolf_load`/`wolf_roh` tables), all figures, and a paper-grade `report.qmd`.
-- **Fragility explorer (load-bearing):** live public URL; three knobs (filter × currentNe2/GONE2 × structure) wiggle the peafowl N_e/GBF verdict in real time; a structure/diversity tab (PCA/ADMIXTURE + the static museum-vs-modern temporal-G figure); a wolf tab with two live sensitivity knobs (load×GERP, F_ROH×ROH-length).
+- **Fragility explorer (load-bearing):** live public URL; **two knobs (filter × structure)** wiggle the peafowl N_e/GBF verdict in real time (currentNe2; verdict can read pass / fail / **indeterminate**) **+ a GONE2 recent-trajectory context panel**; a structure/diversity tab (PCA/ADMIXTURE + the static museum-vs-modern temporal-G figure); a wolf tab with two live sensitivity knobs (load×GERP, F_ROH×ROH-length).
 - **Preprint (stretch):** `report.qmd` rendered + posted to EcoEvoRxiv/bioRxiv with a DOI.
 
 ---
@@ -118,12 +118,21 @@ Then: `git init`; `renv::init()`; export `environment.yml`; create the repo skel
 
 ## 5. Phase 2 — Peafowl N_e + the results cube *(the engineering core)*
 
-- **Contemporary N_e:** **currentNe2** (no genetic map needed → ideal; drives the GBF verdict). **GONE2** is now the *second automated cube axis* for the N_e-method knob (recent-trajectory estimator — a **different time horizon**; label it clearly, and keep the PASS/FAIL-vs-500 badge on currentNe2). **NeEstimator-LDNe** across PCrit = a **manual cross-check table in the report**, not a cube axis (Java GUI, unscriptable).
-- **Structure modeling:** per-population vs pooled (unmodeled structure biases N_e 10–100× low).
-- **Build the Snakemake parameter sweep → `results_cube.parquet`:** `{filter preset: lenient/standard/strict} × {N_e method: currentNe2, GONE2} × {structure: per_population/pooled}` → `{N_e, CI}`. GONE2's most-recent-generation N_e + bootstrap CI fills its rows. This declarative grid is exactly what Snakemake is for.
+> **Adaptation note (2026-06-26):** §5 rewritten *after* Phase 1 deployed, in a structured grilling session — six decisions, all forced by what Phase 1 actually built (an **LD-pruned** Set A) and by how the N_e tools actually work (they read N_e *out of* LD). The deployed `config.yaml` already encodes the result (cube = filter × structure, `ne_methods: [currentNe2]`); this prose now matches it. **Headline change vs the original §5:** the **N_e-method knob is dropped** — GONE2 measures a different time horizon than currentNe2 *and* structurally needs a recombination map peafowl lacks — so the cube is **filter × structure** only, and **GONE2 becomes a context panel**, not an axis. The "three-knob cube" framing in §0/§1 is corrected to two knobs + a trajectory panel.
 
-**Conceptual checkpoint:** *Why do LD-N_e estimates collapse when structure is unmodeled? What time horizon does each method estimate?*
-**Reading:** Waples 2024 N_e review; "Idiot's Guide to N_e"; Santiago et al. 2025 (structure bias); currentNe2/GONE2 docs.
+- **Input — the load-bearing Phase-1 correction.** LD-N_e estimators read N_e *from* linkage disequilibrium, so the **LD-pruned** Set A (right for PCA/ADMIXTURE/KING) is the **wrong** input here. Phase 2 feeds the per-preset **un-pruned** `results/qc/setA.{preset}.vcf.gz`, and hands currentNe2 the **genome size = 32 Morgans** (the autosome count) so it uses SNP pairs **on different chromosomes** — its "no genetic-map needed" mode, the reason it was chosen. *(The pruned Set A is reused exactly once downstream, as the NeEstimator cross-check input — see below — so it isn't wasted.)*
+- **Contemporary N_e (the badge): `currentNe2`, one run per cube cell.** `-k` (full-sib correction) left at default = estimated from the data. **Unbounded upper CIs (∞) are expected at n = 7/10/5** and stored as `inf`. Pass/fail-vs-500 is read off the **point estimate**; when the **CI straddles 500 the verdict is `indeterminate`** — a third badge state, not a forced pass/fail. That indeterminate band *is* the robustness/fragility story (angle C), not a defect. *8 GB guard:* currentNe2 is RAM-hungry; cap SNPs with `-s` (seeded) when a preset exceeds ~200k sites (lenient ≈ 1M). `# ponytail: -s cap only if it OOMs; raise the cap when RAM allows`.
+- **The two knobs → cube = filter × structure (currentNe2 only):**
+  - **filter** = lenient/standard/strict (the Phase-1 knob, re-used: each preset's *un-pruned* Set A).
+  - **structure** = **modeled** (`per_population`: currentNe2 run separately on each of the 3 pops → the three values feeding the GBF "fraction > 500") **vs ignored** (`pooled`: all 22 lumped, no correction → Wahlund-biased low — the cautionary "10–100× low" contrast). currentNe2's `-x` metapopulation correction is a **report cross-check, not a third knob position**.
+  - → 3 × 2 = **6 currentNe2 runs per preset-set** (3 per-pop + 1 pooled, per preset).
+- **The cube — `results/cube/results_cube.parquet`, long/tidy, one row per estimate:** `preset · structure_mode · population · ne_method · ne_point · ci_low · ci_high · n_ind · n_snps · k`. `ne_method` is the constant `currentNe2` (the single automated estimator; the validator asserts it stays constant). **Pooled rows carry `population = ALL`.** The GBF fraction (Phase 3) reads **per_population rows only**; pooled rows are the structure-bias contrast, never a GBF input.
+- **GONE2 — recent-trajectory *context panel* (NOT a cube axis, NOT in the badge):** one curve, **all 22** birds, `-x` (metapopulation of equal-size subpops), standard-preset **un-pruned** Set A, `-g 0` (unphased diploids), and a **documented constant `-r ≈ 3 cM/Mb`** (generic-bird stand-in — peafowl has no map). One figure, "recent species-level trajectory — context only," with the caveats on it: thin n, borrowed rate, recent-past ≠ contemporary. GBF guidance excludes recent-trajectory from the contemporary indicator, so it never touches the verdict.
+- **NeEstimator-LDNe — manual field-standard cross-check (outside the DAG):** Java GUI → hand-run on the **standard-preset LD-pruned Set A** (NeEstimator *assumes unlinked* markers, so the pruned VCF is exactly its input — the one N_e use of Phase 1's pruned output), **3 pops × 3 PCrit** (0.05/0.02/0.01), pasted into **one report table** against currentNe2's per-pop numbers. Confirms the headline N_e isn't a currentNe2-specific artifact.
+- **New code:** `workflow/rules/ne.smk` (`currentne2` [one preset × structure cell], `gone2_context`, `assemble_cube`); thin `scripts/python/{currentne2_parse,assemble_cube}.py` (tool text → tidy rows); Snakefile `phase2` target + a `validate` extension (cube non-empty; 6 cells/preset present; badge states sane; ∞ handled). NeEstimator stays manual.
+
+**Conceptual checkpoint:** *Why do LD-N_e estimates collapse when structure is unmodeled (Wahlund inflates LD → N_e biased low)? Why is currentNe2's "different-chromosome" estimate the cleaner one — and why does LD-pruning destroy the very signal it measures? What time horizon does each tool see: currentNe2 (now) vs GONE2 (recent past)?*
+**Reading:** Waples 2024 N_e review; "Idiot's Guide to N_e"; Santiago et al. 2024/2025 (currentNe + structure bias); Do et al. 2014 (NeEstimator); currentNe2/GONE2 docs.
 
 ---
 
@@ -131,7 +140,7 @@ Then: `git init`; `renv::init()`; export `environment.yml`; create the repo skel
 
 - Compute the **N_e > 500 indicator** (proportion of populations above threshold) + **Populations Maintained**, from the cube. Contrast genomic N_e with the census proxy (N_c ≥ 5,000).
 - **Robustness (angle C):** quantify how the pass/fail verdict moves across the cube.
-- **Build the Streamlit fragility explorer** reading the cube: three knobs → verdict flips live (badge from currentNe2; selecting GONE2 shows its trajectory point with a time-horizon note). Tabs: **N_e/GBF** (main) + **structure/diversity** (PCA/ADMIXTURE + the static museum-vs-modern temporal-G figure). [Wolf tab added in Phase 4.] Deploy to **Streamlit Community Cloud / HF Spaces** → live URL.
+- **Build the Streamlit fragility explorer** reading the cube: **two knobs (filter × structure) → verdict flips live** (currentNe2 badge: pass / fail / **indeterminate**). A **separate GONE2 trajectory panel** shows the recent-N_e curve with a time-horizon + borrowed-rate note (context only, not wired to the verdict). Tabs: **N_e/GBF** (main) + **structure/diversity** (PCA/ADMIXTURE + the static museum-vs-modern temporal-G figure). [Wolf tab added in Phase 4.] Deploy to **Streamlit Community Cloud / HF Spaces** → live URL.
 
 **Conceptual checkpoint:** *What does N_e > 500 actually mean? Why was the indicator designed to be computable without DNA?*
 **Reading:** GBF indicator guidelines (ccgenetics.github.io); Mastretta-Yanes 2024; Clark 2024.
@@ -187,7 +196,7 @@ Phase 0 → 1 → 2 → 3   = the load-bearing spine (peafowl + live tool). A co
 | Apple-Silicon conda fails | ~~Med~~ → **Resolved:** classic conda OOM'd on 8 GB → built with **micromamba** (osx-64/Rosetta); tools cross-compiled + tested |
 | Wolf 12 GB strains 8 GB RAM | ~~Med~~ → **Resolved (low):** verified **24 MB peak** per-chrom; CLI-streaming-first; `bcftools roh`; per-chromosome; **internal SSD** (USB abandoned) |
 | currentNe2/GONE2 won't build on osx-64 | ~~Med~~ → **Resolved:** both built (osx-64, pinned SHAs); currentNe2 needed a 1-line clang patch; NeEstimator = manual cross-check |
-| **GONE2 vs currentNe2 conflated** in the method knob (different time horizons) | Med | Badge uses currentNe2 (contemporary) only; GONE2 labelled "recent trajectory"; report explains they answer different questions |
+| **GONE2 vs currentNe2 conflated** (different time horizons) | ~~Med~~ → **Resolved (plan-adapt §5):** GONE2 is **context-only**, not a cube axis; cube knob is filter × structure (currentNe2); badge currentNe2-only | GONE2 panel labelled "recent trajectory" + borrowed-rate caveat; report explains the two tools answer different questions |
 | **Over-claiming** (beginner risk) | Med | Conceptual checkpoints each phase; limitations panel + report section; claim *risk* not *depression* |
 | Scope creep into raw-read variant calling | Low | VCF-start by design; both datasets are deposited VCFs |
 | NeEstimator GUI not scriptable | Low | Use it only for cross-check; currentNe2 (CLI) drives the Snakemake sweep |
@@ -273,3 +282,104 @@ Implementation = `workflow/rules/{qc,structure,diversity}.smk` + `scripts/python
 
 **Known follow-ups (deferred, not blockers):** (1) the kinship figure could split within- vs cross-population pairs to
 make the KING-under-structure caveat visual; (2) neuter the renv `.Rprofile`; (3) the 3 WARN checks are reported-not-asserted by design.
+
+---
+
+deviations from phase 2:
+
+**Phase 2 status: COMPLETE (2026-06-26).** `snakemake -s workflow/Snakefile phase2 --cores 8` (20-job DAG) runs clean;
+validation = **0 FAIL / 9 PASS / 3 WARN** (`results/PHASE2_VALIDATION.md`). Deliverables built: the fragility cube
+`results/cube/results_cube.parquet` (+ `.csv` mirror, 12 rows), `results/figures/ne_cube.png`, the GONE2 context trajectory
+(`results/tables/gone2_trajectory.tsv` + `results/figures/gone2_trajectory.png`), the currentNe2 `-x` cross-check
+(`results/tables/ne_metapop_xcheck.tsv`), and the NeEstimator GenePop input (`results/ne/neestimator/setA.standard.pruned.genepop`).
+Every currentNe2 output is kept raw under `results/ne/raw/` for audit.
+
+*Tooling fixes — the N_e binaries had never actually been run on data (HANDOFF only verified `--help`):*
+- **(P2-A) currentNe2 segfaulted on EVERY run — REAL BUG (high), caught at first data run.** `build_tools.sh` compiled
+  without upstream's `-mcmodel=medium`, but the source declares a **4 GB static array** `char indi[2000][2000000]`. Under
+  the x86_64 small code model that symbol isn't addressable → SIGSEGV on any input (even 200 SNPs), independent of data size.
+  **Fix:** shrink the compile-time caps to what our data needs — `MAXIND 2000→64`, `MAXLOCI 2000000→1100000` (covers the full
+  un-pruned lenient ~1.05M) → arrays ~70 MB. Measured peak RSS **8.5 MB**. Baked into `build_tools.sh` (idempotent sed). The
+  plan's "8 GB RAM guard / cap when >200k sites" was aimed at RAM, which turns out to be a non-issue.
+- **(P2-B) Deterministic RNG seed for reproducible `-s` — patch.** currentNe2 seeds `std::mt19937` from
+  `std::random_device` (and exposes **no seed CLI flag**), so its `-s` SNP subsampling is non-reproducible — fatal for a
+  re-runnable cube. Patched the seed to a fixed constant (`g(42)`). Verified: identical cross-chromosome estimates across
+  repeat runs **and** across thread counts (`-t 2` vs `-t 4`). This is the only route to the plan's "`-s` (seeded)" — the
+  flag the plan assumed doesn't exist.
+- **(P2-C) SNP cap = 25,000, not "~200k"; chosen for RUNTIME, not RAM.** currentNe2's pair work is ~quadratic in SNP count
+  (`-s 50k` ≈ 6 min per pooled run; `-s 200k` would be ~90 min **per run**, hours for the sweep). RAM is 8.5 MB regardless.
+  Cap 25,000 keeps pooled runs ~50 s, per-pop ~30 s (full sweep ~9 min) while the cross-chromosome estimate is already
+  saturated (~3×10⁸ SNP pairs — NeEstimator routinely uses far fewer). `config: peafowl.ne.snp_cap`.
+
+*Method decisions (forced by how currentNe2 actually writes output):*
+- **(P2-D) Headline = the cross-chromosome estimate; CI = 90%; whole-genome fallback.** With a genome size + a multi-chromosome
+  VCF, currentNe2 emits TWO estimates: "integration over the whole genome" (all pairs) and "based only on LD between
+  chromosomes". Per plan §5 the **cross-chromosome** one is the headline (`currentne2_parse.py` prefers it, falling back to
+  whole-genome only on non-convergence, recorded in column `ne_basis`). currentNe2 reports **50% and 90% CIs (not 95%)** — the
+  cube stores the **90%**, and the stub app's "95% CI" label is corrected to 90%. Verified `flag_chr` (the cross-chromosome
+  branch) only fires when the input spans >1 chromosome — the un-pruned per-preset Set A does; a single-chromosome slice
+  silently degrades to whole-genome. Unbounded / ≥1e7 upper bounds → `inf` (none occurred — actual CIs are wide-but-finite,
+  e.g. Vietnam-lenient upper = 37,795; the plan's expectation of literal ∞ didn't materialise at these n).
+- **(P2-E) Cube = 12 rows (4 per preset) — clarifies the plan's "6 cells/preset".** Concrete enumeration: 3 presets ×
+  (3 `per_population` pops + 1 `pooled`=ALL) = **12 rows**. The plan's "3×2 = 6 … 6 cells/preset" double-counts (it conflates
+  the 6 preset×structure_mode *combinations* with per-cell rows); the operative count is 3 per-pop + 1 pooled = 4 rows/preset.
+  `validate_phase2.py` asserts exactly this shape.
+- **(P2-F) Cube schema + minimal app touch.** Columns: `filter_preset, structure_mode, population, ne_method, ne_point,
+  ci_low, ci_high, n_ind, n_snps, k` (plan §5) **plus two provenance columns**: `ne_basis` (cross_chromosome|whole_genome) and
+  `gbf_state` (the three-state verdict). Used `filter_preset` (the app's name, clearer than the plan's `preset`) and
+  `ne_point` (the plan's name). Made a **minimal** edit to the Phase-0 stub `app/streamlit_app.py` so it reads the new cube
+  without a KeyError (`ne`→`ne_point`, added the population selector `per_population` needs, three-state badge); the full
+  explorer build stays Phase 3.
+- **(P2-G) GBF three-state verdict lives in the workflow, not the app.** `gbf_state` = `indeterminate` if no estimate
+  converged OR the 90% CI straddles 500; else `pass` (point>500) / `fail`. Computed in `currentne2_parse.py` (testable,
+  validated), displayed by the app — not recomputed client-side.
+
+*GONE2 (context panel) — two hard requirements discovered at first data run:*
+- **(P2-H) GONE2 aborts unless EVERY chromosome is 20–1000 cM → restricted to macrochromosomes.** `lib/sample.cpp` sets
+  `okchromsize=false` and `exit(EXIT_FAILURE)` for any chromosome outside 20–1000 cM (it does **not** drop them). At the
+  borrowed 3 cM/Mb the peafowl microchromosomes (<6.67 Mb SNP-span) fall below 20 cM, so GONE2 refused to run on the full
+  autosome set. **Fix:** the `gone2_context` rule restricts the input to chromosomes whose SNP-span × rate ∈ **[25, 1000] cM**
+  (25 = margin above 20 so `-s` subsampling can't push a near-boundary chromosome under) → **17 macrochromosomes, ~377k SNPs**.
+  Stated on the figure as a caveat. `config: peafowl.ne.gone2.{min_chrom_cm,max_chrom_cm}`.
+- **(P2-I) GONE2 `-x` writes `_GONE2_Ne_mix` in a different layout.** The metapopulation run outputs `…_GONE2_Ne_mix`
+  (header with Fst/migration/n_subpops, then columns `Rec_rate_bin generation N_T_metapop Ne_metapop d²`), **not** the
+  panmictic `…_GONE2_Ne` (`Generation Ne_diploids`). New `gone2_parse.py` normalises either into a clean `generation⇥Ne`
+  TSV, taking **N_T_metapop** (the total metapopulation N_e = the species-level trajectory) for `-x`. The borrowed-rate +
+  microchromosome-drop + "recent-past ≠ contemporary" caveats are printed on the figure. Result: a clear recent decline,
+  N_T ≈ 3,500 (≈400 gen ago) → ≈177 (most recent) — context only, never the badge.
+- **(P2-J) currentNe2 `-x` metapopulation cross-check emits no CIs in genome-size mode.** With a genome size supplied,
+  currentNe2's `-x` branch prints "No CIs are calculated", so `ne_metapop_xcheck.tsv` carries N_T + Fst + migration with blank
+  CI columns (handled by `ne_xcheck_collate.py`, robust to non-convergence). This is a report cross-check, never a cube axis.
+
+*NeEstimator (manual, outside the DAG) — input automated:*
+- **(P2-K)** Added `vcf_to_genepop.py` + rule `neestimator_input` producing the GenePop input (standard-preset **LD-pruned**
+  Set A — the one N_e use of Phase 1's pruned output; NeEstimator assumes unlinked markers). `report/ne_crosscheck.md` has the
+  GUI procedure + a fill-in comparison table. Only the GUI run + the comparison table stay manual (as the plan intends).
+
+*New code (plan §5 "new code" delivered):* `workflow/rules/ne.smk` (`currentne2_cell`, `assemble_cube`, `cube_figure`,
+`currentne2_xcheck`, `xcheck_table`, `neestimator_input`, `gone2_context`); `scripts/python/{currentne2_parse, assemble_cube,
+ne_xcheck_collate, gone2_parse, vcf_to_genepop, validate_phase2}.py`; `plots.py` += `gone2`,`cube` subcommands;
+`config.yaml` += `peafowl.ne.{genome_size_morgans, snp_cap, threads, ci_pct, gone2.*}`; `Snakefile` += `phase2` /
+`validate_phase2` targets (and `rule all` now includes Phase 2). `build_tools.sh` += the two currentNe2 patches (P2-A/B).
+Wildcard rename `pop`→`grp` (Snakemake reserves `pop`).
+
+**Phase-2 scientific findings (honest, non-overclaimed — the fragility result, not a bug):**
+- **No population confidently passes N_e > 500 under any preset.** Per-population GBF fraction = **0/3 pass** for lenient,
+  standard and strict. Verdicts are `fail` (point and 90% CI below 500) or `indeterminate` (CI straddles 500, or currentNe2
+  could not estimate). Exactly the plan's stated honest expectation at n = 7/10/5.
+- **currentNe2 contemporary N_e is small and CIs are wide.** Lenient cross-chromosome: Yunnan 55 [20–152], Thailand 76
+  [18–320], Vietnam 2,293 [139–37,795] (the lone point above 500, but its CI straddles → indeterminate). Standard/strict
+  per-pop mostly **fail to converge** (extreme heterozygote excess at small n + MAC filtering, e.g. strict Thailand F = −0.89)
+  → indeterminate. Convergence itself is preset-fragile (Vietnam converges lenient, not standard) — part of the story.
+- **Wahlund contrast visible but noisy.** Pooled (all 22, structure ignored) trends low and rises with stringency
+  (lenient 52 → standard 89 → strict 108), below most per-population estimates — the predicted "pooling biases N_e low"
+  direction, muddied by small-n noise (Vietnam's wild 2,293). Reported, not asserted.
+- **`-x` metapopulation cross-check** gives N_T = 65 / 132 / 1,637 (lenient/standard/strict) — itself wildly preset-fragile,
+  reinforcing the robustness thesis rather than pinning a number.
+- **GONE2 context trajectory** shows a recent decline (N_T ~3,500 → ~177 over ~400 generations) — consistent with an
+  endangered species, but on thin n + a borrowed avian recombination rate + macrochromosomes only, so it is presented as
+  context with caveats on the figure, never as the contemporary indicator.
+
+**Known follow-ups (deferred, not blockers):** (1) the Phase-3 app build wires the GONE2 panel + structure/diversity tab and a
+limitations panel onto this cube; (2) the NeEstimator-LDNe GUI run + comparison table (`report/ne_crosscheck.md`) are the one
+manual step; (3) literal ∞ upper-CI handling is implemented but untriggered at these n (CIs were wide-but-finite).
