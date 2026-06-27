@@ -33,13 +33,18 @@ snakemake -s workflow/Snakefile results/ne/neestimator/setA.standard.pruned.gene
 
 ## Comparison table (fill in after the GUI run)
 
-`currentNe2` reference (standard preset, per_population, cross-chromosome) — copy from the cube:
+`currentNe2` reference (standard preset, per_population, cross-chromosome) — from `results/cube/results_cube.csv`:
 
-| population | currentNe2 N_e | currentNe2 90% CI |
-|---|---|---|
-| Yunnan   | … | … |
-| Vietnam  | … | … |
-| Thailand | … | … |
+| population | currentNe2 N_e | currentNe2 90% CI | verdict vs 500 |
+|---|---|---|---|
+| Yunnan   | 88.4 | 26.92 – 290.31 | **fail** |
+| Vietnam  | non-converged | — | indeterminate |
+| Thailand | non-converged | — | indeterminate |
+
+> At the standard preset only **Yunnan** converged (N_e = 88.4, cross-chromosome — far below 500).
+> Vietnam (n = 10) and Thailand (n = 5) did **not** converge (`ne_basis = none` → indeterminate).
+> Whether that non-convergence is `currentNe2`-specific is exactly what the LDNe run below tests:
+> if NeEstimator-LDNe also returns low/unbounded/indeterminate for these two, the verdicts agree.
 
 NeEstimator-LDNe (this manual run):
 

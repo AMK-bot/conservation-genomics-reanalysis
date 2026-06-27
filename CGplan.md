@@ -138,8 +138,10 @@ Then: `git init`; `renv::init()`; export `environment.yml`; create the repo skel
 
 ## 6. Phase 3 — GBF indicators + robustness + fragility-explorer MVP  ← **MVP milestone**
 
-- Compute the **N_e > 500 indicator** (proportion of populations above threshold) + **Populations Maintained**, from the cube. Contrast genomic N_e with the census proxy (N_c ≥ 5,000).
+- Compute the **N_e > 500 indicator** (proportion of per-population N_e above threshold) **from the cube** — currently **0/3 pass** (mostly indeterminate at n = 7/10/5). The complementary **Populations Maintained** indicator is **literature-derived, not from the cube** (range/occurrence data): see `report/populations_maintained.md` — country-unit **PM = 0.60** (band 0.60–0.80; India/Laos are the swing cases). Contrast genomic N_e with the **census proxy** (`config.gbf.census`: IUCN/BirdLife 2018 ≈ 10k–20k mature; N_e:N_c = 0.1 → N_c ≥ 5,000).
 - **Robustness (angle C):** quantify how the pass/fail verdict moves across the cube.
+
+> **Resolved (2026-06-28):** PM curated (0.60, country-unit, sourced); census wired into `config.yaml`; slim `requirements.txt` added (Streamlit Cloud deploy). **Open (manual, off-DAG):** NeEstimator-LDNe GUI run; live IUCN/BirdLife flag verification (India/Laos/N. Vietnam). **Still to build:** the indicator-computation code + the full multi-tab Streamlit explorer (current `app/streamlit_app.py` is the N_e/GBF skeleton only).
 - **Build the Streamlit fragility explorer** reading the cube: **two knobs (filter × structure) → verdict flips live** (currentNe2 badge: pass / fail / **indeterminate**). A **separate GONE2 trajectory panel** shows the recent-N_e curve with a time-horizon + borrowed-rate note (context only, not wired to the verdict). Tabs: **N_e/GBF** (main) + **structure/diversity** (PCA/ADMIXTURE + the static museum-vs-modern temporal-G figure). [Wolf tab added in Phase 4.] Deploy to **Streamlit Community Cloud / HF Spaces** → live URL.
 
 **Conceptual checkpoint:** *What does N_e > 500 actually mean? Why was the indicator designed to be computable without DNA?*

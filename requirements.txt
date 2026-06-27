@@ -1,0 +1,8 @@
+# Slim deploy deps for the Streamlit fragility-explorer (Streamlit Community Cloud).
+# NOT the analysis stack — that's environment.yml (heavy conda bioinformatics env).
+# The app reads ONE prebuilt file (results/cube/results_cube.parquet) + config/config.yaml.
+# pyarrow is required even though nothing imports it: pd.read_parquet needs an engine.
+streamlit>=1.30
+pandas>=2.0
+pyarrow>=14
+PyYAML>=6

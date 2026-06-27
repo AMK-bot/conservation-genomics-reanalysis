@@ -113,7 +113,18 @@ peafowl:
 # ── GBF indicators (plan §6) ───────────────────────────────────────────────────
 gbf:
   ne_threshold: 500            # the N_e > 500 genetic-diversity indicator
-  nc_proxy_threshold: 5000     # census-size proxy (N_c) contrast
+  nc_proxy_threshold: 5000     # census-size proxy (N_c) contrast = ne_threshold / ne_nc_ratio
+  ne_nc_ratio: 0.1             # conservative vertebrate N_e:N_c (Frankham) -> N_e=500 <-> N_c=5000
+  # Documented census for the N_c contrast (plan §6). Range-wide N_c nominally exceeds 5000, BUT
+  # that is the WRONG denominator for a PER-population indicator: the species is fragmented into
+  # subpopulations far below it (e.g. Keo Seima, Cambodia ~745) -> expected per-pop N_e << 500,
+  # and the measured genomic N_e is lower still. The N_e:N_c gap is the conservation signal.
+  census:
+    peafowl:
+      n_mature_low:  10000     # mature individuals, range-wide
+      n_mature_high: 19999
+      iucn_category: EN        # Endangered, trend decreasing
+      source: "IUCN Red List / BirdLife International 2018 (Pavo muticus)"
 
 # ── The fragility cube: filter × Ne-method × structure (plan §5) ───────────────
 cube:
