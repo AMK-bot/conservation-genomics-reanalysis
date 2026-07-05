@@ -1,0 +1,9 @@
+indicator	value	detail
+ne500_fraction_pass_lenient	0/3	1 indeterminate, 2 fail (fraction_pass=0.0)
+ne500_fraction_pass_standard	0/3	2 indeterminate, 1 fail (fraction_pass=0.0)
+ne500_fraction_pass_strict	0/3	3 indeterminate, 0 fail (fraction_pass=0.0)
+ne500_headline	0/3 best-case pass (at lenient)	fraction_pass identical across presets (headline robust); 2/3 populations change verdict across presets (point estimates preset-fragile)
+pm_headline	0.6	6/10 range units maintained (conservative; 2 swing case(s))
+pm_band	0.6-0.8	band spans the swing cases (India/Laos)
+census_nc_proxy_threshold	5000	N_e=500 <-> N_c=5000 at N_e:N_c=0.1
+census_n_mature	10000-19999	EN; IUCN Red List / BirdLife International 2018 (Pavo muticus)

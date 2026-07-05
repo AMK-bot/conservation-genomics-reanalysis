@@ -385,3 +385,50 @@ Wildcard rename `pop`→`grp` (Snakemake reserves `pop`).
 **Known follow-ups (deferred, not blockers):** (1) the Phase-3 app build wires the GONE2 panel + structure/diversity tab and a
 limitations panel onto this cube; (2) the NeEstimator-LDNe GUI run + comparison table (`report/ne_crosscheck.md`) are the one
 manual step; (3) literal ∞ upper-CI handling is implemented but untriggered at these n (CIs were wide-but-finite).
+
+---
+
+deviations from phase 3:
+
+**Phase 3 status: COMPLETE (2026-07-05).** GBF Goal-A indicators + the full multi-tab fragility explorer built.
+`snakemake -s workflow/Snakefile phase3 --cores 4` (`gbf_indicators` → `validate_phase3`) runs clean; validation =
+**0 FAIL / 9 PASS / 3 WARN** (`results/PHASE3_VALIDATION.md`; the 3 WARN are the reported-not-asserted fragility findings).
+Deliverables: `results/tables/gbf_{ne500,robustness,populations_maintained,summary}.tsv` + the rewritten `app/streamlit_app.py`
+(3 tabs: N_e/GBF verdict · structure & diversity · about/limitations). Verified by an adversarial code-review workflow
+(4 dimensions → find → refute) + a `gbf_indicators.py --check` self-test + a headless `AppTest` smoke test.
+
+*Architecture (honoring the load-bearing rule — heavy compute in the DAG, the app READS only):*
+- Indicator computation lives in the workflow (`scripts/python/gbf_indicators.py`, rule `gbf_indicators`), NOT the app. The
+  app reads the four `gbf_*.tsv` + the cube + the static figures + config. `config.yaml gbf.ne_threshold` stays the single
+  source of the 500 threshold (the app reads it so the badge label can't drift from the cube's precomputed `gbf_state`).
+
+*Indicator definitions (plan §6 made concrete):*
+- **(P3-A) N_e>500 indicator = per-preset fraction of `per_population` populations passing** (`gbf_ne500.tsv`): 0/3 under
+  every preset. Also emits `fraction_not_fail` (the optimistic ceiling if every indeterminate resolved to pass) so the
+  fragility span is explicit. pooled/ALL rows are excluded (Wahlund contrast, never a GBF input).
+- **(P3-B) Populations Maintained (PM) — curated, non-genomic.** Machine-readable source = `config/populations_maintained.tsv`
+  (per-country table; `maintained` ∈ {yes,no,swing}). `gbf_indicators.py` DERIVES the headline (yes/total = 6/10 = 0.60) and
+  the band (swing cases toggled → 0.60–0.80) from it — the band is computed, not hardcoded. Resolves the report's ponytail
+  "no machine-readable TSV yet" note; the report md stays the human narrative and points at the TSV as the source.
+- **(P3-C) Robustness (angle C) = population × preset verdict matrix + a `stable` flag** (`gbf_robustness.tsv`). Finding: the
+  *headline* (0/3 pass) is robust across presets, but **2/3 populations (Thailand, Yunnan) change verdict** and convergence
+  itself is preset-fragile (Vietnam estimable under lenient, indeterminate under stricter filters) — that instability IS the
+  reported angle-C result, honestly surfaced.
+- **(P3-D) Census/N_c contrast** surfaced from config (`gbf.census` + `ne_nc_ratio`): N_e=500 ↔ N_c=5000 at 0.1; range-wide
+  ~10k–20k mature is framed as the *wrong denominator* for a per-population indicator (the N_e:N_c gap is the signal).
+
+*App (the flagship live tool):*
+- **(P3-E)** Rewrote the Phase-2 skeleton into a 3-tab explorer. Tab 1 keeps the two-knob live badge (filter × structure →
+  pass/fail/indeterminate; pooled shows the Wahlund contrast with no badge) and adds both GBF indicators, the robustness
+  matrix (selected preset highlighted), and the GONE2 recent-trajectory *context* panel (figure + caveats, never wired to the
+  verdict). Tab 2 = PCA/ADMIXTURE/kinship/diversity/temporal figures with honest captions. Tab 3 = limitations (claim *risk*
+  not depression) + the one-command reproduction recipe. Every table/figure load degrades gracefully if not yet built.
+- **(P3-F) Deploy-hardening.** Switched `use_container_width=True` → `width="stretch"` (the old kwarg is removed after
+  2025-12-31 and Streamlit Cloud pulls the latest) and pinned `requirements.txt` to `streamlit>=1.49,<2` (floor = first
+  release with the unified width API; `<2` caps the next major). All app paths are repo-root-relative and reference only
+  git-tracked outputs (cube + `gbf_*.tsv` + png), so the read-only deploy resolves on Streamlit Community Cloud.
+
+**Known follow-ups (deferred, not blockers):** (1) the NeEstimator-LDNe GUI cross-check + comparison table
+(`report/ne_crosscheck.md`) — the one genuinely manual step, off the DAG; (2) live IUCN/BirdLife per-country flag
+verification (India/Laos/N. Vietnam) before publication; (3) DEPLOY to Streamlit Community Cloud needs the user's account
+authorization — the app + `requirements.txt` are deploy-ready; (4) the wolf load tab lands in Phase 4.

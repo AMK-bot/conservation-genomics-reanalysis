@@ -56,5 +56,7 @@ genetically eroded. That gap is the conservation message.
 4. Reintroduced/feral populations (Peninsular Malaysia ~2005; Myanmar Hlawga) are not counted as
    wild persistence.
 
-<!-- ponytail: literature-derived static indicator; no machine-readable TSV yet — add when the
-     Streamlit GBF tab actually reads it. The app currently reads only the cube. -->
+<!-- Machine-readable source of this per-country tally = config/populations_maintained.tsv. The
+     Phase-3 rule `gbf_indicators` reads it, derives PM (0.60, band 0.60-0.80) into
+     results/tables/gbf_*.tsv, and the Streamlit GBF tab reads those tables. Keep this narrative
+     and that TSV in sync (this markdown is the human-readable mirror, the TSV is authoritative). -->

@@ -1,0 +1,4 @@
+filter_preset	n_pops	n_pass	n_fail	n_indeterminate	fraction_pass	fraction_not_fail	ne_threshold
+lenient	3	0	2	1	0.0	0.333	500
+standard	3	0	1	2	0.0	0.667	500
+strict	3	0	0	3	0.0	1.0	500

@@ -18,9 +18,11 @@ Two chapters:
 - **Reproducible repo** — one-command reproduction (`snakemake --cores N`), pinned
   `environment.lock.yml` (R packages included — R is conda-owned), the Snakefile, a
   config of all thresholds, the results cube, all figures, and a paper-grade `report/report.qmd`.
-- **Fragility explorer** (`app/streamlit_app.py`) — a live tool whose three knobs
-  (filtering stringency × N_e method × structure modeled/ignored) wiggle the peafowl
-  N_e / GBF pass-fail verdict in real time.
+- **Fragility explorer** (`app/streamlit_app.py`) — a live tool whose two knobs
+  (filtering stringency × structure modeled/ignored) wiggle the peafowl N_e / GBF
+  pass-fail verdict in real time, alongside both GBF Goal-A indicators, a robustness
+  matrix, and a GONE2 recent-trajectory context panel. (The N_e-method knob was dropped
+  in Phase 2 — GONE2 measures a different time horizon, so it is context, not an axis.)
 
 ## Reproduction
 
@@ -51,4 +53,5 @@ tools/        currentNe2 / GONE2 (built from source) — see tools/README.md
 ```
 
 See **CGplan.md** for the full execution plan and **SETUP.md** for environment setup
-status. Project status: **Phase 0 complete → Phase 1 (peafowl QC → structure → diversity).**
+status. Project status: **Phases 0–3 complete** (peafowl QC → structure → diversity →
+N_e cube → GBF indicators + live explorer). Next: Phase 4 (wolf genetic load + ROH).

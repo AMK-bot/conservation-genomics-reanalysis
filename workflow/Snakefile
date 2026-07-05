@@ -58,6 +58,36 @@ rule phase2:
     input: PHASE2
 
 
+# ── Phase 3 outputs (GBF Goal-A indicators + robustness; the live app reads these) ─
+PHASE3 = [
+    "results/tables/gbf_ne500.tsv",                   # N_e>500 indicator, per preset
+    "results/tables/gbf_robustness.tsv",              # angle C — verdict stability across presets
+    "results/tables/gbf_populations_maintained.tsv",  # PM (non-genomic, curated)
+    "results/tables/gbf_summary.tsv",                 # headline scalars for the app
+    "results/PHASE3_VALIDATION.md",
+]
+
+
+rule phase3:
+    input: PHASE3
+
+
+rule validate_phase3:
+    """GBF indicator tables well-formed + reconcile with the cube (plan §6). Final Phase-3 gate."""
+    input:
+        cube    = "results/cube/results_cube.parquet",
+        ne500   = "results/tables/gbf_ne500.tsv",
+        robust  = "results/tables/gbf_robustness.tsv",
+        pm      = "results/tables/gbf_populations_maintained.tsv",
+        summary = "results/tables/gbf_summary.tsv",
+    output:
+        md  = "results/PHASE3_VALIDATION.md",
+        tsv = "results/tables/validation_phase3.tsv",
+    log: "results/logs/validate_phase3.log"
+    shell:
+        "python3 scripts/python/validate_phase3.py > {log} 2>&1 || (cat {log}; exit 1)"
+
+
 rule validate_phase2:
     """Cube well-formed + N_e verdicts sane (plan §5). Final Phase-2 gate."""
     input:
@@ -93,6 +123,8 @@ rule validate:
 
 rule all:
     input:
-        # Phase 1 spine + Phase 2 results cube / N_e context. (Phase 3 = GBF + the live app.)
+        # Phase 1 spine + Phase 2 results cube / N_e context + Phase 3 GBF indicators.
+        # (The live Streamlit app reads Phase 2/3 outputs; it is launched separately, not a DAG target.)
         PHASE1,
         PHASE2,
+        PHASE3,

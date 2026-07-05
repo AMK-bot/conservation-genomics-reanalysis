@@ -1,0 +1,4 @@
+population	lenient	standard	strict	stable
+Thailand	fail	indeterminate	indeterminate	False
+Vietnam	indeterminate	indeterminate	indeterminate	True
+Yunnan	fail	fail	indeterminate	False
