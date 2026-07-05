@@ -2,7 +2,7 @@
 
 Green peafowl N_e / GBF verdict under analyst choices. Two knobs:
     filtering stringency  x  structure (modeled per_population / ignored pooled)
--> live N_e + 90% CI + treaty pass / fail / indeterminate verdict (currentNe2).
+-> live N_e + 90% CI + conservation-risk reading (At risk / Uncertain / Likely secure).
 
 This app ONLY READS precomputed workflow outputs — the cube
 (results/cube/results_cube.parquet), the GBF indicator tables (results/tables/gbf_*.tsv),
@@ -25,9 +25,12 @@ TABLES = Path("results/tables")
 FIGURES = Path("results/figures")
 CONFIG = Path("config/config.yaml")
 
-STATE_BADGE = {"pass": "✅ PASS", "fail": "❌ FAIL", "indeterminate": "⚠️ INDETERMINATE"}
-STATE_EMOJI = {"pass": "✅", "fail": "❌", "indeterminate": "⚠️", "missing": "·"}
-STATE_BG = {"pass": "#1a7f37", "fail": "#b00020", "indeterminate": "#8a6d00"}
+# Verdict DISPLAY labels. Internal gbf_state keys stay pass/fail/indeterminate (the pipeline logic
+# is untouched); the app shows conservation-risk wording so a red badge doesn't read as a software
+# "fail": pass -> Likely secure, indeterminate -> Uncertain, fail -> At risk.
+STATE_LABEL = {"pass": "Likely secure", "fail": "At risk", "indeterminate": "Uncertain", "missing": "n/a"}
+STATE_DOT = {"pass": "🟢", "fail": "🔴", "indeterminate": "🟠", "missing": "·"}
+STATE_BADGE = {k: f"{STATE_DOT[k]} {STATE_LABEL[k]}" for k in ("pass", "fail", "indeterminate")}
 
 
 @st.cache_data
@@ -85,7 +88,7 @@ st.set_page_config(page_title="Fragility Explorer", page_icon="🦚", layout="wi
 st.title("🦚 Fragility Explorer")
 st.caption(
     "How fragile is the green peafowl's conservation verdict to analyst choices? "
-    "The pass/fail on the international N_e > 500 target moves as you change how the data is "
+    "The risk reading against the international N_e > 500 target flips as you change how the data is "
     "filtered and whether population structure is modeled. This claims **risk**, not demonstrated "
     "inbreeding depression — see the *About* tab."
 )
@@ -147,13 +150,14 @@ with tab_ne:
             st.caption(
                 "Pooling across structured populations inflates linkage disequilibrium, biasing "
                 "N_e **low** (Wahlund). This is the cautionary contrast for the per-population "
-                "estimates, never a GBF pass/fail input.")
+                "estimates, never a GBF verdict input.")
         else:
             st.markdown(f"#### {STATE_BADGE[state]}  — vs N_e = {NE_THRESHOLD} (GBF target)")
             st.caption(
-                "Verdict read off the point estimate; **indeterminate** when the 90% CI straddles "
-                f"{NE_THRESHOLD} or the estimator did not converge. That indeterminate band *is* "
-                "the fragility story, not a defect — at n = 7/10/5 the data cannot resolve it.")
+                "Read off the point estimate; **Uncertain** when the 90% CI straddles "
+                f"{NE_THRESHOLD} or the estimator did not converge. That uncertain band *is* "
+                "the fragility story, not a defect — at n = 7/10/5 the data cannot resolve it. "
+                "(These are conservation-risk readings, not a software pass/fail.)")
 
     st.divider()
 
@@ -164,13 +168,13 @@ with tab_ne:
         if not r.empty:
             r = r.iloc[0]
             i1, i2, i3 = st.columns(3)
-            i1.metric(f"Populations passing (at `{filt}`)", f"{int(r['n_pass'])}/{int(r['n_pops'])}")
-            i2.metric("Indeterminate", int(r["n_indeterminate"]))
-            i3.metric("Fail", int(r["n_fail"]))
+            i1.metric(f"🟢 Likely secure (at {filt})", f"{int(r['n_pass'])}/{int(r['n_pops'])}")
+            i2.metric("🟠 Uncertain", int(r["n_indeterminate"]))
+            i3.metric("🔴 At risk", int(r["n_fail"]))
             st.caption(
-                f"Fraction passing = **{r['fraction_pass']}**; optimistic ceiling if every "
-                f"indeterminate resolved to pass = {r['fraction_not_fail']}. The headline indicator "
-                "is the fraction passing — here **0 across every preset**.")
+                f"Fraction meeting N_e > {NE_THRESHOLD} = **{r['fraction_pass']}**; optimistic ceiling if "
+                f"every uncertain case resolved upward = {r['fraction_not_fail']}. The headline indicator "
+                "is that fraction — here **0 across every preset**.")
     else:
         st.info("`gbf_ne500.tsv` not built — run `snakemake phase3`.")
 
@@ -180,7 +184,7 @@ with tab_ne:
         presets = [c for c in ["lenient", "standard", "strict"] if c in robust.columns]
         disp = robust.set_index("population")[presets].copy()
         for p in presets:
-            disp[p] = disp[p].map(lambda s: f"{STATE_EMOJI.get(s, '·')} {s}")
+            disp[p] = disp[p].map(lambda s: f"{STATE_DOT.get(s, '·')} {STATE_LABEL.get(s, s)}")
 
         def _hl(_col):
             # highlight the currently-selected preset column
@@ -191,9 +195,9 @@ with tab_ne:
         n_changes = int((~robust["stable"]).sum())
         st.caption(
             f"**{n_changes}/{len(robust)} populations change verdict across presets.** The *headline* "
-            "(0/3 pass) is robust; the underlying point estimates and even convergence are "
-            "preset-fragile (e.g. Vietnam converges to a point estimate under lenient but fails to "
-            "converge under stricter filters, though its verdict stays indeterminate throughout). "
+            "(0 of 3 clearing N_e > 500) is robust; the underlying point estimates and even convergence "
+            "are preset-fragile (e.g. Vietnam converges to a point estimate under lenient but fails to "
+            "converge under stricter filters, though its reading stays Uncertain throughout). "
             "That fragility is the finding, honestly reported.")
     else:
         st.info("`gbf_robustness.tsv` not built — run `snakemake phase3`.")
@@ -285,7 +289,7 @@ with tab_about:
 - **Risk, not depression.** The N_e > {NE_THRESHOLD} indicator flags *loss-of-adaptive-potential
   risk*. It is **not** a measurement of realized inbreeding depression.
 - **Small n is a feature, not a bug.** At n = 7/10/5 per population the CIs are wide and many
-  cells are *indeterminate*. The point of the tool is to show how that uncertainty interacts with
+  cells are *Uncertain*. The point of the tool is to show how that uncertainty interacts with
   analyst choices — the fragility thesis — not to pin a single number.
 - **currentNe2 is the only automated estimator.** GONE2 is a recent-trajectory *context* panel
   (different time horizon, borrowed recombination rate). NeEstimator-LDNe is a **manual** GUI
