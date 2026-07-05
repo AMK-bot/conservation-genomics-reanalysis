@@ -88,6 +88,34 @@ rule validate_phase3:
         "python3 scripts/python/validate_phase3.py > {log} 2>&1 || (cat {log}; exit 1)"
 
 
+# ── Phase 4 outputs (wolf genetic load + ROH; the app's wolf tab reads these) ──────
+PHASE4 = [
+    "results/tables/wolf_load.parquet",   # per-individual realized/masked load x GERP threshold {2,3,4}
+    "results/tables/wolf_load.tsv",
+    "results/tables/wolf_roh.parquet",    # per-individual F_ROH x ROH-length cutoff
+    "results/tables/wolf_roh.tsv",
+    "results/PHASE4_VALIDATION.md",
+]
+
+
+rule phase4:
+    input: PHASE4
+
+
+rule validate_phase4:
+    """Wolf load reconciles with the deposit anchor + ROH well-formed (plan §7). Final Phase-4 gate."""
+    input:
+        load   = "results/tables/wolf_load.tsv",
+        roh    = "results/tables/wolf_roh.tsv",
+        anchor = config["paths"]["wolf"]["load_anchor"],
+    output:
+        md  = "results/PHASE4_VALIDATION.md",
+        tsv = "results/tables/validation_phase4.tsv",
+    log: "results/logs/validate_phase4.log"
+    shell:
+        "python3 scripts/python/validate_phase4.py > {log} 2>&1 || (cat {log}; exit 1)"
+
+
 rule validate_phase2:
     """Cube well-formed + N_e verdicts sane (plan §5). Final Phase-2 gate."""
     input:
@@ -123,8 +151,9 @@ rule validate:
 
 rule all:
     input:
-        # Phase 1 spine + Phase 2 results cube / N_e context + Phase 3 GBF indicators.
-        # (The live Streamlit app reads Phase 2/3 outputs; it is launched separately, not a DAG target.)
+        # Phase 1 spine + Phase 2 cube + Phase 3 GBF indicators + Phase 4 wolf load/ROH.
+        # (The live Streamlit app reads Phase 2/3/4 outputs; it is launched separately, not a DAG target.)
         PHASE1,
         PHASE2,
         PHASE3,
+        PHASE4,

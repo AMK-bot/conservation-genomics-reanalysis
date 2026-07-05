@@ -33,6 +33,8 @@ results/**/*.vcf
 results/**/*.vcf.gz
 results/**/*.bed
 results/**/*.bim
+# Phase-4 wolf per-chromosome intermediates (~180 MB, regenerable); keep only results/tables/wolf_*
+results/wolf/
 
 # Snakemake / logs
 .snakemake/

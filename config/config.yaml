@@ -34,6 +34,10 @@ paths:
     chrx:       "data/wolf/vcf/Pol.2out.mac2/74Females.chrX.vepfinal.wfm.vcf.gz"
     vep_dir:    "data/wolf/vep/Pol.2out.mac2"
     gerp_dir:   "data/wolf/gerp"
+    # GERP RS conservation score per SNP (col5), keyed by bed END == 1-based VCF POS
+    gerp_allsnps_bed: "data/wolf/gerp/100S95F14R.chr1-38.allSNPs.rates.unique.bed"
+    # deposit's precomputed per-individual load at GERP>4 — the Phase-4 validation anchor + IND/POP source
+    load_anchor:      "data/wolf/gerp/LoadPerInd.thres4.100S95F14R.chr1-38.allSNPs.wfm.txt"
 
 # ── Chapter 1: Green peafowl (Pavo muticus) ────────────────────────────────────
 peafowl:
@@ -135,9 +139,13 @@ cube:
 # ── Chapter 2: Scandinavian wolf (Canis lupus) ─────────────────────────────────
 # 12 GB deposit; CLI-streaming-first, per-chromosome — never load whole VCF into RAM.
 wolf:
+  n_autosomes: 38                   # chr 1-38 (contigs are integer-named); chrX handled separately
   roh:
     caller: bcftools_roh
     long_roh_threshold_mb: 1.5      # long (recent) vs short (ancient) ROH
+    gt_error_phred: 30              # bcftools roh -G (assumed genotype error when calling from GTs)
+    rec_rate_per_bp: 1.0e-8         # documented constant ~1 cM/Mb (wolf has no dense map) — bcftools roh --rec-rate
+    length_cutoffs_mb: [0.1, 0.5, 1.0, 1.5, 2.0]   # the ROH-length sensitivity knob (F_ROH per cutoff)
   load:
     impact_classes: [HIGH, MODERATE, LOW]   # VEP consequence classes
     gerp_threshold: 4.0                       # default = source value (Smeds & Ellegren 2022, GERP>4)

@@ -432,3 +432,48 @@ Deliverables: `results/tables/gbf_{ne500,robustness,populations_maintained,summa
 (`report/ne_crosscheck.md`) — the one genuinely manual step, off the DAG; (2) live IUCN/BirdLife per-country flag
 verification (India/Laos/N. Vietnam) before publication; (3) DEPLOY to Streamlit Community Cloud needs the user's account
 authorization — the app + `requirements.txt` are deploy-ready; (4) the wolf load tab lands in Phase 4.
+
+---
+
+deviations from phase 4:
+
+**Phase 4 status: COMPLETE (2026-07-05).** Wolf genetic load + ROH built and **validated to floating-point precision against
+the deposit's precomputed anchor.** `snakemake -s workflow/Snakefile phase4 --cores 4` (84-job DAG: 38 per-chr load + 38 per-chr
+ROH + merges + gate) runs clean; validation = **0 FAIL / 7 PASS / 3 WARN** (`results/PHASE4_VALIDATION.md`). Deliverables:
+`results/tables/wolf_load.{tsv,parquet}` (per-individual realized/masked load × GERP threshold) + `results/tables/wolf_roh.{tsv,parquet}`
+(per-individual F_ROH × ROH-length cutoff) + the app's **🐺 Wolf tab** (two knobs: GERP, ROH-length).
+
+*Method fidelity (the headline):*
+- **(P4-A) Faithful re-implementation of Smeds & Ellegren 2022's `gerp_load_polarized.py`** (fetched from `linneas/wolf-deleterious`),
+  extended to accumulate GERP thresholds {2,3,4} in ONE VCF pass (`scripts/python/wolf_gerp_load.py`). Load is **GERP-weighted,
+  ancestral-polarized**: derived = non-`INFO/AA` allele; REALIZED = Σ(2·gerp for hom-derived sites, GERP>t)/calls; MASKED =
+  Σ(gerp for het sites)/calls; RELATIVE = sum/tot_der. **At GERP>4 it reproduces the deposit's `LoadPerInd.thres4` EXACTLY** —
+  95th-pct relative error 1.3e-14 on realized/masked, raw count deltas (calls/del/homdel) = 0/0/0 over all 211 individuals. This
+  exact reconciliation IS the Phase-4 correctness proof (stronger than a code review — it's the authors' own numbers).
+- **(P4-B) 8 GB-safe by per-chromosome accumulation.** The 11 GB allSNPs VCF is streamed per chromosome via `bcftools query`
+  (`%CHROM %POS %REF %ALT %INFO/AA [%GT]`); each chr's GERP dict is ~130-260k entries; raw counts are summed across chromosomes by
+  `wolf_load_merge.py`. Measured peak RAM trivial. AA is read from the VCF INFO (the deposit added it from its ancestral list), so
+  no separate ancestral bed is needed.
+
+*ROH:*
+- **(P4-C) `bcftools roh` (GT-based HMM, `-G30 --AF-tag AF`)** per chromosome, with a **documented constant** `--rec-rate 1e-8`
+  (~1 cM/Mb; wolf has no dense map — the same "borrowed rate" honesty as the peafowl GONE2 panel). `wolf_roh_summarize.py` turns the
+  RG region records into per-individual F_ROH swept over a length cutoff {0.1..2.0 Mb} — the second wolf fragility knob; long ROH
+  (≥1.5 Mb) = recent inbreeding, separated from ancient background as the cutoff rises.
+
+*Bug caught + fixed during the run:*
+- **(P4-D) `wolf_contig_lengths` awk keyed on `ID` but the VCF field is `<ID`** (from `##contig=<ID=1,...`), so `autosome_lengths.tsv`
+  came out empty and failed `wolf_roh_summarize` ("autosome length is 0"). Replaced the awk with a `sed -E 's/.*ID=([^,>]+).*length=([0-9]+).*/\1\t\2/'`
+  extraction. The 76 heavy per-chromosome jobs were cached, so only the light merge/summarize/validate re-ran.
+
+**Phase-4 scientific findings (honest — correctly reproduced, not novel):**
+- **Masked → realized conversion under inbreeding.** At GERP>4 the inbred **Scandinavian** periods carry realized > masked load
+  (real ≈ 0.09-0.11 vs mask ≈ 0.05-0.08), while the outbred references (**Finland / Russia / Immigrants**) carry masked > realized
+  (real ≈ 0.085-0.089 vs mask ≈ 0.10) — exactly the paper's result: inbreeding exposes recessive load. Reported, not asserted.
+- **Both knobs move the magnitude, not the pattern.** Mean realized load 0.172 → 0.136 → 0.093 across GERP 2/3/4; mean F_ROH
+  0.226 → 0.167 across the 0.1 → 2.0 Mb cutoff. The realized-vs-masked *direction* is robust to the GERP knob — the wolf-side
+  fragility check (the magnitude is threshold-dependent; the biological signal is not).
+
+**Known follow-ups (deferred, not blockers):** (1) the SFS / `Pol.2out.mac1` chapter and the VEP/SIFT-category load (vs the GERP
+load) are out of the current scope; (2) chrX (74 females) load is not computed (autosomes only, matching the anchor); (3) the
+per-chromosome wolf intermediates (~180 MB) are git-ignored — only the final `results/tables/wolf_*` tables are tracked (deploy).

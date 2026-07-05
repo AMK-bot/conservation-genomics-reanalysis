@@ -53,5 +53,6 @@ tools/        currentNe2 / GONE2 (built from source) — see tools/README.md
 ```
 
 See **CGplan.md** for the full execution plan and **SETUP.md** for environment setup
-status. Project status: **Phases 0–3 complete** (peafowl QC → structure → diversity →
-N_e cube → GBF indicators + live explorer). Next: Phase 4 (wolf genetic load + ROH).
+status. Project status: **Phases 0–4 complete** (peafowl QC → structure → diversity →
+N_e cube → GBF indicators + live explorer; wolf genetic load + ROH, validated to the
+deposit's precomputed anchor). Next: Phase 5 (polish + paper-grade report).

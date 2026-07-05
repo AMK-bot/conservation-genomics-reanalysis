@@ -107,8 +107,8 @@ robust = load_tsv("gbf_robustness.tsv")
 pm = load_tsv("gbf_populations_maintained.tsv")
 summary = load_tsv("gbf_summary.tsv")
 
-tab_ne, tab_struct, tab_about = st.tabs(
-    ["N_e / GBF verdict", "Structure & diversity", "About / limitations"]
+tab_ne, tab_struct, tab_wolf, tab_about = st.tabs(
+    ["N_e / GBF verdict", "Structure & diversity", "🐺 Wolf: load & ROH", "About / limitations"]
 )
 
 # ══════════════════════════════════════════════════════════════════════════════════
@@ -280,7 +280,70 @@ with tab_struct:
                                               "He/AR essentially flat). A contrast direction, not a claim.")
 
 # ══════════════════════════════════════════════════════════════════════════════════
-# TAB 3 — about / limitations / reproducibility
+# TAB 3 — wolf genetic load + ROH (Phase 4): two knobs (GERP, ROH-length) move the readings
+# ══════════════════════════════════════════════════════════════════════════════════
+with tab_wolf:
+    st.subheader("🐺 Scandinavian wolf — genetic load & inbreeding")
+    st.caption(
+        "A population founded by a few individuals (~1983) and inbred since. Two analyst knobs move "
+        "the readings: the **GERP** conservation score that defines a site as 'deleterious', and the "
+        "**ROH length** that counts as inbreeding. *Realized* load = deleterious variants expressed in "
+        "homozygous state; *masked* load = the same load hidden in heterozygotes. Inbreeding converts "
+        "masked → realized — that conversion is the story.")
+    wolf_load = load_tsv("wolf_load.tsv")
+    wolf_roh = load_tsv("wolf_roh.tsv")
+    if wolf_load is None or wolf_roh is None:
+        st.info("Wolf tables not built yet — run `snakemake phase4` (streams the 11 GB VCF "
+                "per chromosome; ~30 min).")
+    else:
+        k1, k2 = st.columns(2)
+        with k1:
+            gvals = sorted(wolf_load["THRES"].unique())
+            gerp = st.select_slider("GERP threshold — deleterious if RS >", options=gvals,
+                                    value=4.0 if 4.0 in gvals else gvals[-1])
+        with k2:
+            rvals = sorted(wolf_roh["min_length_mb"].unique())
+            roh_cut = st.select_slider("ROH length cutoff (Mb) — counts as inbreeding",
+                                       options=rvals, value=1.5 if 1.5 in rvals else rvals[0])
+
+        st.markdown("#### Genetic load — realized vs masked, by time period")
+        ld = wolf_load[wolf_load["THRES"] == gerp]
+        by_pop = (ld.groupby("POP")[["REALIZED_LOAD", "MASKED_LOAD"]].mean().sort_index()
+                    .rename(columns={"REALIZED_LOAD": "realized", "MASKED_LOAD": "masked"}))
+        st.bar_chart(by_pop, stack=False, color=["#b0303a", "#c98a1a"])
+        lm = ld["MASKED_LOAD"].mean()
+        m1, m2, m3 = st.columns(3)
+        m1.metric("Mean realized load", f"{ld['REALIZED_LOAD'].mean():.3f}")
+        m2.metric("Mean masked load", f"{lm:.3f}")
+        m3.metric("Realized : masked", f"{ld['REALIZED_LOAD'].mean() / lm:.2f}" if lm else "—")
+        st.caption(
+            f"At GERP>{gerp:g}, GERP-weighted, ancestral-polarized deleterious load per individual. "
+            "Raising the GERP threshold keeps only the most-conserved sites — the absolute load shrinks, "
+            "but the realized-vs-masked *pattern* is the robust signal (the wolf-side fragility check).")
+
+        st.markdown("#### Inbreeding — F_ROH by time period")
+        rh = wolf_roh[wolf_roh["min_length_mb"] == roh_cut]
+        froh = rh.groupby("POP")["F_ROH"].mean().sort_index().rename("F_ROH").to_frame()
+        st.bar_chart(froh, color="#0d7d80")
+        r1, r2 = st.columns(2)
+        r1.metric(f"Mean F_ROH (ROH ≥ {roh_cut:g} Mb)", f"{rh['F_ROH'].mean():.3f}")
+        r2.metric("Recent-inbreeding F_ROH (≥ 1.5 Mb)", f"{rh['froh_long_recent'].mean():.3f}")
+        st.caption(
+            f"Fraction of the autosomes in runs of homozygosity ≥ {roh_cut:g} Mb. Long ROH (≥ 1.5 Mb) "
+            "are recent inbreeding; raising the cutoff separates that recent signal from ancient "
+            "background homozygosity. F_ROH climbs alongside realized load as the population inbreeds.")
+
+        with st.expander("Method & caveats (wolf chapter)"):
+            st.markdown(
+                "- Load faithfully re-implements Smeds & Ellegren 2022 (`gerp_load_polarized.py`); at "
+                "GERP>4 it reproduces the deposit's precomputed per-individual load (validated).\n"
+                "- Derived allele set by the ancestral allele (`INFO/AA`, polarized with two outgroups).\n"
+                "- ROH from `bcftools roh` (GT-based HMM) with a **documented constant** recombination "
+                "rate — the wolf has no dense genetic map.\n"
+                "- Claims **inbreeding-exposure risk**, not measured fitness or demonstrated depression.")
+
+# ══════════════════════════════════════════════════════════════════════════════════
+# TAB 4 — about / limitations / reproducibility
 # ══════════════════════════════════════════════════════════════════════════════════
 with tab_about:
     st.subheader("What this tool claims — and what it does not")
