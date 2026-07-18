@@ -193,6 +193,7 @@ rule phase5a:
 
 
 rule all:
+    default_target: True
     input:
         # Phases 1-4 plus the complete Phase-5A admissions/reproducibility gate.
         # (The live Streamlit app is launched separately, not a DAG target.)

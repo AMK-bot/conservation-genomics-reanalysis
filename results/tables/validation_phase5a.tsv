@@ -16,7 +16,7 @@ screenshot 02-structure-diversity.jpg is a valid JPEG	PASS	JPEG signature; 63,79
 screenshot 03-wolf-load-roh.jpg is a valid JPEG	PASS	JPEG signature; 66,565 bytes
 screenshot 04-about-limitations.jpg is a valid JPEG	PASS	JPEG signature; 137,770 bytes
 research brief HTML is complete	PASS	HTML signature; 197,404 bytes
-technical report HTML is complete	PASS	HTML signature; 1,958,631 bytes
+technical report HTML is complete	PASS	HTML signature; 1,958,635 bytes
 environment lock has no machine-specific prefix	PASS	no prefix key
 R profile does not activate renv	PASS	no active renv loader
 README has the complete 60-second overview	PASS	heading plus five required bullets

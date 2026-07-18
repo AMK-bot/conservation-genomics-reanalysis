@@ -34,7 +34,7 @@
 
 ## 1. Definition of done
 
-- **Repo (load-bearing):** one-command reproduction (`snakemake --cores N` inside the activated `congen` env), pinned `environment.lock.yml` (R packages included — R is conda-owned; no `renv.lock`), the Snakefile, config of all thresholds, the results cube (+ `wolf_load`/`wolf_roh` tables), all figures, and a paper-grade `report.qmd`.
+- **Repo (load-bearing):** one-command reproduction (`snakemake all --cores N` inside the activated `congen` env), pinned `environment.lock.yml` (R packages included — R is conda-owned; no `renv.lock`), the Snakefile, config of all thresholds, the results cube (+ `wolf_load`/`wolf_roh` tables), all figures, and a paper-grade `report.qmd`.
 - **Fragility explorer (load-bearing):** live public URL; **two knobs (filter × structure)** wiggle the peafowl N_e/GBF verdict in real time (currentNe2; verdict can read pass / fail / **indeterminate**) **+ a GONE2 recent-trajectory context panel**; a structure/diversity tab (PCA/ADMIXTURE + the static museum-vs-modern temporal-G figure); a wolf tab with two live sensitivity knobs (load×GERP, F_ROH×ROH-length).
 - **Preprint (stretch):** `report.qmd` rendered + posted to EcoEvoRxiv/bioRxiv with a DOI.
 
@@ -171,7 +171,7 @@ CLI-streaming-first throughout — the 12 GB VCF never enters RAM (verified: per
 
 - Polish the explorer (captions, a **limitations panel** surfacing the §8 caveats — claim *risk* not *depression*, CIs, ascertainment, small-n power).
 - Write `report.qmd`: intro → methods → results → **limitations** → reproducibility statement.
-- Finalize repo: `environment.lock.yml` (R included — no `renv.lock`), Snakefile, config, README one-command reproduction (`micromamba create -f environment.lock.yml` → activate → `snakemake --cores N`). **Re-run the whole DAG from scratch to prove reproducibility.**
+- Finalize repo: `environment.lock.yml` (R included — no `renv.lock`), Snakefile, config, README one-command reproduction (`micromamba create -f environment.lock.yml` → activate → `snakemake all --cores N`). **Re-run the whole DAG from scratch to prove reproducibility.**
 
 ### Phase 5A — Admissions-facing process completion *(additive, local-first, no external blockers)*
 

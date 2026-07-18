@@ -253,7 +253,7 @@ CONDA_SUBDIR=osx-64 micromamba create -n congen -f environment.lock.yml  # Apple
 micromamba activate congen && conda config --env --set subdir osx-64
 scripts/build_tools.sh                                 # currentNe2 + GONE2, pinned commits
 scripts/fetch_data.sh && scripts/extract_data.sh       # Dryad data
-snakemake --cores 4                                    # phases 1-4: cube + GBF tables + wolf load/ROH
+snakemake all --cores 4                                # phases 1-5A: analyses, artifacts, and final gates
 report/render_report.sh                                # schema-check values and render report/report.html
 streamlit run app/streamlit_app.py                     # the live fragility explorer
 ```

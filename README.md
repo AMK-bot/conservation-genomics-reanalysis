@@ -36,7 +36,7 @@ Admissions-ready path: [two-page illustrated brief](admissions/research_brief.ht
 
 ## Deliverables
 
-- **Reproducible repo** — one-command reproduction (`snakemake --cores N`), pinned
+- **Reproducible repo** — one-command reproduction (`snakemake all --cores N`), pinned
   `environment.lock.yml` (R packages included — R is conda-owned), the Snakefile, a
   config of all thresholds, the results cube, all figures, and a paper-grade `report/report.qmd`.
 - **Fragility explorer** (`app/streamlit_app.py`) — a live tool whose two knobs
@@ -54,7 +54,7 @@ CONDA_SUBDIR=osx-64 micromamba create -n congen -f environment.lock.yml
 micromamba activate congen
 scripts/build_tools.sh                   # compile currentNe2 + GONE2 (pinned commits)
 scripts/fetch_data.sh && scripts/extract_data.sh   # Dryad data (needs DRYAD_CLIENT_ID/SECRET)
-snakemake --cores 4                      # build + validate all Phase 1-5A outputs, report, and brief
+snakemake all --cores 4                  # build + validate all Phase 1-5A outputs, report, and brief
 streamlit run app/streamlit_app.py       # explore the verdict
 
 # Optional explicit checks (also run by the Phase-5A workflow gate):

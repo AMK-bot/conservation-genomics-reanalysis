@@ -61,7 +61,7 @@ normalizes generated HTML whitespace. Two independent forced GONE2 runs then mat
 |---|---|
 | `results/tables/gone2_trajectory.tsv` | `7cd8f5dc844281bc7b1519ac25f344acecfdf2d1fa73a00905d3cc1c6f182e5e` |
 | `results/figures/gone2_trajectory.png` | `eb731d5ae6f0dcfb8e7b5bff07b18374f75f00c0ad8b7c6730709462db877d5d` |
-| twice-rendered `report/report.html` | `c2e5b5ebca848ace6afe2edb0ed47679ff1d7fca3147b2bef4404acd262c101c` |
+| twice-rendered `report/report.html` | `4f313f37eb0027bfa191e2f0cce99d65082f4ee871e50462030c39efea9deaaa` |
 
 The canonical GONE2 context curve is approximately 3,577 at generation 417 to 176 recently. It is
 still labelled context-only and does not feed the contemporary-$N_e$ badge or GBF calculation.
@@ -90,6 +90,12 @@ and the aggregate `all` target). A dry-run using the brand-new source cache
 ```text
 Nothing to be done (all requested files are present and up to date).
 ```
+
+A final default-target audit found and corrected a documentation/workflow mismatch: bare Snakemake
+could otherwise select the first included rule. `rule all` is now marked `default_target: True`, and
+all reproduction instructions explicitly use `snakemake all`. The no-target DAG contains 159 nodes
+and includes `all`, `validate_phase5a`, and both peafowl and wolf branches, confirming that the default
+command resolves to the complete project rather than a single preprocessing rule.
 
 ## Completion claim
 
