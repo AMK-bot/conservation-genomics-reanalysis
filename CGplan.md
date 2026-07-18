@@ -241,6 +241,8 @@ mistake, the evidence that revealed it, the correction, and the biological conse
 
 - Add a root-level, dependency-free project website linking and explaining every public deliverable;
   reuse validated project figures and keep all links functional offline/static-hosted.
+- Package the complete site and its local link closure as one deterministic, integrity-checked ZIP
+  that can be emailed or uploaded without copying raw genomic datasets.
 
 - Create a self-contained package that remains useful if no reviewer opens a live URL:
   - a graphical abstract;

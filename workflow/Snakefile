@@ -184,6 +184,8 @@ PHASE5A = PHASE5A1 + WEBSITE_ASSETS + [
     "results/logs/app_smoke.log",
     "results/PHASE5A_REPRODUCIBILITY.md",
     "results/WEBSITE_VALIDATION.md",
+    "dist/conservation-genomics-portfolio.zip",
+    "results/WEBSITE_BUNDLE_VALIDATION.md",
     "results/tables/validation_phase5a.tsv",
     "results/PHASE5A_VALIDATION.md",
 ]

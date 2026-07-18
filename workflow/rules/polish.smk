@@ -4,6 +4,8 @@
 # do not invoke the heavy bioinformatics branches except through normal input
 # dependencies already represented by the Phase 1-4 targets.
 
+from pathlib import Path
+
 
 REPORT_TABLES = [
     "results/tables/qc_snp_counts.tsv",
@@ -82,6 +84,55 @@ WEBSITE_DELIVERABLES = [
     "PROJECT_STATUS.md",
 ]
 
+WEBSITE_BUNDLE_INPUTS = sorted(set(
+    WEBSITE_ASSETS
+    + WEBSITE_DELIVERABLES
+    + [
+        ".gitignore",
+        ".Rprofile",
+        "README.md",
+        "CGplan.md",
+        "SETUP.md",
+        "data/README.md",
+        "environment.yml",
+        "requirements.txt",
+        "renv/.gitignore",
+        "renv/activate.R",
+        "renv/settings.json",
+        "environment.lock.yml",
+        "results/APP_SMOKE.md",
+        "results/PHASE1_VALIDATION.md",
+        "results/PHASE2_VALIDATION.md",
+        "results/PHASE3_VALIDATION.md",
+        "results/PHASE4_VALIDATION.md",
+        "results/PHASE5A1_VALIDATION.md",
+        "results/WEBSITE_VALIDATION.md",
+        "workflow/Snakefile",
+        "scripts/R/README.md",
+        "scripts/python/README.md",
+        "scripts/python/validate_website.py",
+        "tests/test_streamlit_app.py",
+        "tools/README.md",
+    ]
+    + [
+        path.as_posix()
+        for directory in [
+            "admissions",
+            "app",
+            "config",
+            "report",
+            "results/cube",
+            "results/figures",
+            "results/tables",
+            "scripts",
+            "website",
+            "workflow",
+        ]
+        for path in Path(directory).rglob("*")
+        if path.is_file() and "__pycache__" not in path.parts
+    ]
+))
+
 
 rule render_report_html:
     """Render the dynamically sourced technical report to an embedded HTML file."""
@@ -143,6 +194,20 @@ rule validate_website:
     shell:
         "python {input.script} --root . --html index.html --out {output.md} "
         "> {log} 2>&1 || (cat {log}; exit 1)"
+
+
+rule package_website:
+    """Create and verify the single-file, offline-sendable project portfolio."""
+    input:
+        sources = WEBSITE_BUNDLE_INPUTS,
+        builder = "scripts/python/package_website.py",
+    output:
+        archive = "dist/conservation-genomics-portfolio.zip",
+        report  = "results/WEBSITE_BUNDLE_VALIDATION.md",
+    log: "results/logs/package_website.log"
+    shell:
+        "python {input.builder} --root . --html index.html --out {output.archive} "
+        "--report {output.report} > {log} 2>&1 || (cat {log}; exit 1)"
 
 
 rule validate_phase5a:

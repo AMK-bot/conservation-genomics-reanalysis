@@ -23,10 +23,10 @@ forced redownload, a different machine, or a public deployment.
 | Snakemake result | 162/162 jobs completed successfully; 0 failed |
 | run log | `.snakemake/log/2026-07-18T140655.661313.snakemake.log` inside the clone |
 
-Exact command, run from the clean-clone root:
+Portable equivalent of the command used, run from the clean-clone root:
 
 ```bash
-~/opt/anaconda3/bin/conda run -n congen --no-capture-output \
+conda run -n congen --no-capture-output \
   snakemake -s workflow/Snakefile \
   phase1 phase2 phase3 phase4 phase5a1 \
   render_report_html render_research_brief app_smoke \

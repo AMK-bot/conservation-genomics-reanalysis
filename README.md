@@ -17,6 +17,10 @@ Two chapters:
 searchable deliverable library, reproducibility record, and links to every public artifact. It is a
 dependency-free static site and works offline.
 
+**Sendable website bundle:** `dist/conservation-genomics-portfolio.zip` — one approximately 3 MB ZIP
+containing the complete website, all 83 local linked targets, a recipient guide, and a SHA-256
+integrity manifest. Extract the folder, then open `index.html`; no installation is required.
+
 ## Understand the project in 60 seconds
 
 ![Graphical abstract: two public genome datasets are stress-tested across defensible analyst choices to separate robust conclusions from sensitive magnitudes.](admissions/graphical_abstract.svg)
@@ -52,6 +56,9 @@ Admissions-ready path: [project website](index.html) · [two-page illustrated br
 - **Static project website** (`index.html`) — an offline-readable portfolio with the scientific
   summary, visual evidence, searchable deliverable explanations, complete artifact index, and
   reproduction instructions. Validate it with `python scripts/python/validate_website.py`.
+- **Sendable website bundle** (`dist/conservation-genomics-portfolio.zip`) — a deterministic,
+  self-contained ZIP of the site and every local dependency/deliverable. Rebuild and verify it with
+  `python scripts/python/package_website.py`.
 
 ## Reproduction
 
@@ -82,6 +89,7 @@ results/      cube/ (results_cube.parquet) + tables/ + figures/
 app/          streamlit_app.py — the fragility explorer (reads the cube)
 report/       report.qmd — paper-grade methods/results/limitations
 website/      static-site CSS, JavaScript, favicon, and preview notes (entry point: index.html)
+dist/         sendable, validated project-website ZIP
 data/         raw VCFs + intermediates (symlinked to internal SSD; see data/README.md)
 tools/        currentNe2 / GONE2 (built from source) — see tools/README.md
 ```

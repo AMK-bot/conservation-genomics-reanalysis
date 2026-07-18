@@ -25,3 +25,17 @@ closest preview of static hosting.
 
 Run `python scripts/python/validate_website.py` to check local links, required page landmarks,
 accessible image descriptions, and the absence of external runtime dependencies.
+
+## Sendable bundle
+
+Build the single-file portfolio package from the repository root:
+
+```bash
+python scripts/python/package_website.py
+```
+
+This creates `dist/conservation-genomics-portfolio.zip` and
+`results/WEBSITE_BUNDLE_VALIDATION.md`. The ZIP contains the complete site, all 83 linked local
+targets, `requirements.txt` for the optional explorer, a recipient-facing `README_FIRST.txt`, and
+an exact `MANIFEST.sha256`. Raw genomic datasets and regenerable intermediates are excluded because
+they are not needed to open or review the website.
