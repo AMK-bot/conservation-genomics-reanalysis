@@ -1,5 +1,8 @@
 # Phase 0 — Setup & Verification status
 
+> **Scope note (2026-07-18):** this file records the completed Phase-0 environment/data setup. It is
+> not the whole-project status page; current completion work is tracked in `CGplan.md` Phase 5/5A.
+
 Tracks the plan's §3 Phase 0 (CGplan.md). Updated 2026-06-19.
 
 ## Machine (verified 2026-06-18)
@@ -20,11 +23,11 @@ Tracks the plan's §3 Phase 0 (CGplan.md). Updated 2026-06-19.
 - [x] `environment.yml` authored (osx-64; conda-forge + bioconda + defaults).
 - [x] **`congen` env built** — ⚠️ classic conda 4.12 was **OOM-killed** (exit 137) solving on 8 GB; rebuilt with **micromamba** (libsolv, low-mem). All tools verified: bcftools 1.23, samtools 1.23, vcftools 0.1.17, plink 1.9/2.0, admixture 1.3, pixy, snakemake 9.23, R 4.4.3, quarto; R pkgs SNPRelate 1.40, dartR 2.9.9, hierfstat 0.5.11, adegenet 2.1.11, renv 1.2.3.
 - [x] `subdir: osx-64` pinned (env `.condarc`).
-- [x] Pinned `environment.lock.yml` exported (702 packages).
+- [x] Portable `environment.lock.yml` exported (694 pinned dependencies; no user-specific prefix).
 - [x] currentNe2 + GONE2 built from source (`scripts/build_tools.sh`; x86_64 + env libomp). currentNe2 needed a 1-line VLA-init patch for Apple clang. NeEstimator v2 = manual cross-check (not built).
 - [x] Repo skeleton created (config / workflow / scripts / results / app / report / data / tools).
 - [x] `git init` + commits.
-- [x] `renv::init(bare=TRUE)` — scaffolding created (`.Rprofile`, `renv/`). `renv.lock` populated via `renv::snapshot()` in Phase 1 (R pkgs currently sourced from conda).
+- [x] `renv::init(bare=TRUE)` was tried during setup; its scaffold is retained as history, but the `.Rprofile` autoloader is disabled and no `renv.lock` is used. R packages are pinned by conda in `environment.lock.yml`.
 - [x] `data/` → **internal-SSD** symlinks (`data/peafowl`, `data/wolf` → `~/Desktop/MMP/congen_data/...`). Was USB, but the USB corrupts large writes → moved to internal (see Storage).
 
 > **Solver note:** the build tool is `micromamba` (the OOM with classic conda is the

@@ -11,7 +11,7 @@ Snakemake DAG, never here (plan §2, §6). Rebuild inputs with `snakemake all`.
 
 Tabs: N_e / GBF verdict (the two-knob badge + both GBF Goal-A indicators + robustness +
 the GONE2 recent-trajectory context panel) · Structure & diversity (PCA / ADMIXTURE /
-temporal figures) · About (limitations + reproducibility). [Wolf load tab lands in Phase 4.]
+temporal figures) · Wolf load & ROH · About (limitations + reproducibility).
 """
 import math
 from pathlib import Path
@@ -106,6 +106,7 @@ ne500 = load_tsv("gbf_ne500.tsv")
 robust = load_tsv("gbf_robustness.tsv")
 pm = load_tsv("gbf_populations_maintained.tsv")
 summary = load_tsv("gbf_summary.tsv")
+scorecard = load_tsv("fragility_scorecard.tsv")
 
 tab_ne, tab_struct, tab_wolf, tab_about = st.tabs(
     ["N_e / GBF verdict", "Structure & diversity", "🐺 Wolf: load & ROH", "About / limitations"]
@@ -202,6 +203,34 @@ with tab_ne:
     else:
         st.info("`gbf_robustness.tsv` not built — run `snakemake phase3`.")
 
+    # ── Phase 5A synthesis: conclusion stability vs numerical sensitivity ─────────
+    st.subheader("Fragility scorecard — what survives the sensitivity tests?")
+    st.caption(
+        "The labels separate a stable biological conclusion from a sensitive numerical magnitude, "
+        "an evidence-limited answer, and a result that depends on method settings. The scorecard is "
+        "derived only from the validated summary tables; it introduces no new analysis claim."
+    )
+    if scorecard is not None:
+        score_cols = [
+            "classification",
+            "conclusion",
+            "settings_supporting",
+            "dominant_uncertainty",
+            "evidence_needed",
+        ]
+        st.dataframe(
+            scorecard[[column for column in score_cols if column in scorecard.columns]],
+            width="stretch",
+            hide_index=True,
+        )
+        with st.expander("Offline scorecard figure"):
+            show_figure(
+                "fragility_scorecard.png",
+                "Four conclusions classified by robustness, magnitude sensitivity, and evidence limits.",
+            )
+    else:
+        st.info("`fragility_scorecard.tsv` not built — run `snakemake phase5a1`.")
+
     st.divider()
 
     # ── Indicator 2: Populations Maintained (non-genomic, curated) ─────────────────
@@ -214,7 +243,8 @@ with tab_ne:
     p2.caption(
         f"PM = **{pm_head}** (band {pm_band}) — the fraction of historically-present range countries "
         "still extant. **Non-genomic**, curated from IUCN/BirdLife + literature (range unit = "
-        "country; a single reclassification of the India/Laos swing cases moves it by 0.10). "
+        "country). The current BirdLife country table leaves no unresolved swing flag, but this "
+        "country-scale tally remains too coarse to prove persistence within each country. "
         "The three sampled populations are *all* in the maintained set — yet none confidently "
         "passes N_e > 500. **Still present ≠ genetically viable** — that gap is the message.")
     if pm is not None:
@@ -222,9 +252,9 @@ with tab_ne:
             cols = [c for c in ["country", "subspecies", "current_status", "maintained_flag", "note"]
                     if c in pm.columns]
             st.dataframe(pm[cols], width="stretch", hide_index=True)
-            st.caption("Sourcing not field-verified — reconstructed from IUCN/BirdLife narrative + "
-                       "peer-reviewed literature + GBIF; verify India / Laos / N. Vietnam against the "
-                       "live IUCN table before publication.")
+            st.caption("BirdLife's live country distribution table was checked field by field on "
+                       "2026-07-18 (India: Extinct; Laos: Extant). Finer sub-country occurrence "
+                       "records are still needed for a publication-grade persistence assessment.")
 
     # ── Census / N_c contrast ──────────────────────────────────────────────────────
     st.subheader("Census (N_c) contrast")
@@ -363,6 +393,41 @@ with tab_about:
   (a country counted extant can have lost most of its range).
 """
     )
+    st.subheader("What evidence would change the conclusion?")
+    st.caption(
+        "This is a decision map for a future study, not a promise to collect new data as part of "
+        "this project. It identifies the most informative next observation for each uncertainty."
+    )
+    evidence_map = pd.DataFrame(
+        [
+            {
+                "Current conclusion or boundary": "Peafowl N_e verdicts remain uncertain at n=7/10/5",
+                "What remains unresolved": "Precision and convergence of population-level estimates",
+                "Most useful next evidence": "More independently sampled individuals per population",
+            },
+            {
+                "Current conclusion or boundary": "GONE2 is recent-trajectory context only",
+                "What remains unresolved": "Sensitivity to the borrowed generic-bird recombination rate",
+                "Most useful next evidence": "A green-peafowl-specific recombination map",
+            },
+            {
+                "Current conclusion or boundary": "The project shows risk, not inbreeding depression",
+                "What remains unresolved": "Whether genomic risk predicts realized biological harm",
+                "Most useful next evidence": "Measured reproductive or fitness outcomes",
+            },
+            {
+                "Current conclusion or boundary": "Populations Maintained is 0.70 at country scale",
+                "What remains unresolved": "Persistence and range loss within countries",
+                "Most useful next evidence": "Current, finer sub-country occurrence records",
+            },
+            {
+                "Current conclusion or boundary": "The workflow already samples thousands of SNPs",
+                "What remains unresolved": "Whether marker count or individual count limits N_e",
+                "Most useful next evidence": "Prioritize individuals: extra SNPs cannot replace independent genomes",
+            },
+        ]
+    )
+    st.dataframe(evidence_map, width="stretch", hide_index=True)
     st.subheader("Reproducibility")
     st.markdown(
         """

@@ -12,7 +12,8 @@ paths:
   results: results
   cube: results/cube/results_cube.parquet
   peafowl:
-    # Set A — neutral, LD-pruned -> structure / N_e   (22 samples, 790,705 SNPs)
+    # Deposited neutral, LD-pruned set -> frozen validation reference only (22 samples, 790,705 SNPs).
+    # The workflow re-derives unpruned per-preset Set A for N_e and pruned derivatives for structure.
     set_a_neutral: "data/peafowl/Modern_genomic_dataset_unlinked_neutral/Modern_genomic_dataset_unlinked&neutral.vcf"
     # Set B — all sites, lightly filtered -> diversity (22 samples, 1,139,469 SNPs)
     set_b_all:     "data/peafowl/Modern_genomic_dataset_all/Modern_genomic_dataset_all.vcf"
@@ -44,7 +45,7 @@ peafowl:
   populations: [Yunnan, Vietnam, Thailand]         # Cambodia n=1 dropped (plan §0)
 
   # QC / filtering → TWO callsets (plan §4):
-  #   Set A: neutral + LD-pruned   → structure / N_e
+  #   Set A: neutral, per preset   → unpruned for N_e; LD-pruned derivative for structure
   #   Set B: lightly filtered, no MAF → diversity (Ho/He, allelic richness)
   filtering:
     biallelic_snps_only: true

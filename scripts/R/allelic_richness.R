@@ -5,8 +5,8 @@
 # allelic.richness rarefies to the smallest population's sample size
 # (El Mousadik & Petit 1996) -> diversity comparable across unequal n.
 #
-# Run with `Rscript --vanilla` so the repo's inert renv .Rprofile does not
-# shadow the conda-owned R library (plan: renv dropped, R conda-owned).
+# Run with `Rscript --vanilla` for a reproducible startup that uses only the
+# conda-owned R library (plan: renv dropped, R conda-owned).
 suppressMessages(library(hierfstat))
 
 args <- commandArgs(trailingOnly = TRUE)

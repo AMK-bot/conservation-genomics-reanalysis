@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"
+     role="img" aria-labelledby="title description">
+  <title id="title">Can we trust a conservation-genomics verdict?</title>
+  <desc id="description">Graphical abstract showing public peafowl and wolf genome data passing
+  through defensible analyst choices. The peafowl headline is robust while estimates are fragile;
+  the wolf biological pattern is robust while magnitudes are threshold-sensitive.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#315C55"/>
+    </marker>
+    <style>
+      .title { font: 700 54px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #173B36; }
+      .subtitle { font: 400 24px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #49645F; }
+      .section { font: 700 25px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #173B36; letter-spacing: 1px; }
+      .label { font: 700 28px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #173B36; }
+      .body { font: 400 22px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #294A45; }
+      .small { font: 400 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #49645F; }
+      .metric { font: 700 38px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #173B36; }
+      .card { fill: #FFFFFF; stroke: #B8CBC6; stroke-width: 2; }
+      .choice { fill: #E7F0ED; stroke: #81A39B; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#F4F7F5"/>
+  <rect x="0" y="0" width="1600" height="14" fill="#315C55"/>
+
+  <text class="title" x="90" y="92">Can we trust a conservation-genomics verdict?</text>
+  <text class="subtitle" x="92" y="133">A reproducible stress test of biological conclusions under defensible analyst choices</text>
+
+  <text class="section" x="90" y="205">PUBLIC WHOLE-GENOME DATA</text>
+  <text class="section" x="590" y="205">ANALYST CHOICES</text>
+  <text class="section" x="1065" y="205">WHAT SURVIVES?</text>
+
+  <!-- Input cards -->
+  <rect class="card" x="85" y="235" rx="22" width="390" height="220"/>
+  <circle cx="140" cy="290" r="28" fill="#2E7567"/>
+  <text x="140" y="299" text-anchor="middle" style="font:700 24px sans-serif;fill:#fff">P</text>
+  <text class="label" x="185" y="300">Green peafowl</text>
+  <text class="body" x="120" y="350">22 modern birds · 3 populations</text>
+  <text class="body" x="120" y="388">n = 7 / 10 / 5</text>
+  <text class="small" x="120" y="425">GBF indicators · contemporary Nₑ</text>
+
+  <rect class="card" x="85" y="485" rx="22" width="390" height="220"/>
+  <circle cx="140" cy="540" r="28" fill="#A56A24"/>
+  <text x="140" y="549" text-anchor="middle" style="font:700 24px sans-serif;fill:#fff">W</text>
+  <text class="label" x="185" y="550">Scandinavian wolf</text>
+  <text class="body" x="120" y="600">211 individuals · temporal cohorts</text>
+  <text class="body" x="120" y="638">Polarized variants + GERP</text>
+  <text class="small" x="120" y="675">Genetic load · runs of homozygosity</text>
+
+  <!-- Arrows into choices -->
+  <path d="M475 345 C525 345, 530 345, 565 345" fill="none" stroke="#315C55" stroke-width="5" marker-end="url(#arrow)"/>
+  <path d="M475 595 C525 595, 530 595, 565 595" fill="none" stroke="#315C55" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <!-- Choice cards -->
+  <rect class="choice" x="590" y="235" rx="22" width="380" height="220"/>
+  <text class="label" x="625" y="290">Peafowl fragility cube</text>
+  <rect x="625" y="325" rx="18" width="130" height="50" fill="#315C55"/>
+  <text x="690" y="358" text-anchor="middle" style="font:700 20px sans-serif;fill:#fff">FILTER</text>
+  <text class="metric" x="778" y="361">×</text>
+  <rect x="815" y="325" rx="18" width="120" height="50" fill="#315C55"/>
+  <text x="875" y="358" text-anchor="middle" style="font:700 20px sans-serif;fill:#fff">STRUCTURE</text>
+  <text class="small" x="625" y="415">3 presets · modeled vs pooled</text>
+
+  <rect class="choice" x="590" y="485" rx="22" width="380" height="220"/>
+  <text class="label" x="625" y="540">Wolf sensitivity</text>
+  <rect x="625" y="575" rx="18" width="130" height="50" fill="#8E5A1F"/>
+  <text x="690" y="608" text-anchor="middle" style="font:700 20px sans-serif;fill:#fff">GERP</text>
+  <text class="metric" x="778" y="611">×</text>
+  <rect x="815" y="575" rx="18" width="120" height="50" fill="#8E5A1F"/>
+  <text x="875" y="608" text-anchor="middle" style="font:700 20px sans-serif;fill:#fff">ROH</text>
+  <text class="small" x="625" y="665">3 deleteriousness · 5 length cutoffs</text>
+
+  <!-- Arrows into conclusions -->
+  <path d="M970 345 C1010 345, 1015 345, 1045 345" fill="none" stroke="#315C55" stroke-width="5" marker-end="url(#arrow)"/>
+  <path d="M970 595 C1010 595, 1015 595, 1045 595" fill="none" stroke="#315C55" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <!-- Conclusion cards -->
+  <rect class="card" x="1070" y="235" rx="22" width="445" height="220"/>
+  <text class="metric" x="1105" y="300">0 / 3 confidently secure</text>
+  <line x1="1105" y1="325" x2="1475" y2="325" stroke="#B8CBC6" stroke-width="2"/>
+  <circle cx="1120" cy="365" r="8" fill="#2E7567"/>
+  <text class="body" x="1145" y="373">Headline: robust</text>
+  <circle cx="1120" cy="410" r="8" fill="#C9822B"/>
+  <text class="body" x="1145" y="418">Estimates/convergence: fragile</text>
+
+  <rect class="card" x="1070" y="485" rx="22" width="445" height="220"/>
+  <text class="metric" x="1105" y="550">Pattern survives</text>
+  <line x1="1105" y1="575" x2="1475" y2="575" stroke="#B8CBC6" stroke-width="2"/>
+  <circle cx="1120" cy="615" r="8" fill="#2E7567"/>
+  <text class="body" x="1145" y="623">Realized vs masked: robust</text>
+  <circle cx="1120" cy="660" r="8" fill="#C9822B"/>
+  <text class="body" x="1145" y="668">Load and F<tspan baseline-shift="sub" font-size="15">ROH</tspan>: magnitude-sensitive</text>
+
+  <!-- Bottom conclusion -->
+  <rect x="85" y="770" rx="24" width="1430" height="90" fill="#173B36"/>
+  <text x="800" y="815" text-anchor="middle" style="font:700 29px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#fff">
+    The result is not one number—it is which conclusions survive reasonable choices.
+  </text>
+  <text x="800" y="842" text-anchor="middle" style="font:400 18px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#DDEBE7">
+    Config-driven workflow · four validated phases · uncertainty reported, not hidden
+  </text>
+</svg>

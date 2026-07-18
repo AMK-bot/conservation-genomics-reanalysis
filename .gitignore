@@ -33,6 +33,10 @@ results/**/*.vcf
 results/**/*.vcf.gz
 results/**/*.bed
 results/**/*.bim
+# Phase-1/2 regenerable working directories. Final deploy/report artifacts live in
+# results/{cube,tables,figures}/ and remain tracked.
+results/qc/
+results/ne/
 # Phase-4 wolf per-chromosome intermediates (~180 MB, regenerable); keep only results/tables/wolf_*
 results/wolf/
 

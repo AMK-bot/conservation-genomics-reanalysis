@@ -3,7 +3,7 @@
 
 Asserts STRUCTURE (indicator tables complete, internally consistent, the N_e>500 counts match
 the cube they were derived from, the PM band brackets its headline) and REPORTS the scientific
-result (0/3 pass, PM=0.60, verdict fragility) without over-asserting it — the honest fragility
+result (0/3 pass, PM, verdict fragility) without over-asserting it — the honest fragility
 finding, not a defect.
 
 Writes results/PHASE3_VALIDATION.md + results/tables/validation_phase3.tsv. Exits 1 on FAIL.

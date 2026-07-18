@@ -2,8 +2,9 @@
 # The DAG that builds results/cube/results_cube.parquet.
 # Heavy bioinformatics runs HERE; the Streamlit app only READS the cube.
 #
-# Phase 1 (COMPLETE): QC -> structure -> diversity -> validation (plan §4).
-# Phase 2/3 will wire the N_e sweep into the results cube; Phase 4 the wolf tables.
+# Phases 1-4 are complete: QC/structure/diversity -> N_e cube -> GBF indicators ->
+# wolf load/ROH. Phase 5A adds lightweight synthesis outputs; the app only reads
+# tracked cube/table/figure products.
 
 configfile: "config/config.yaml"
 
@@ -13,6 +14,8 @@ include: "rules/diversity.smk"
 include: "rules/ne.smk"
 include: "rules/gbf.smk"
 include: "rules/load.smk"
+include: "rules/synthesis.smk"
+include: "rules/polish.smk"
 
 
 # ── Phase 1 outputs (tables + figures + validation) ───────────────────────────
@@ -149,11 +152,50 @@ rule validate:
         "python3 scripts/python/validate.py > {log} 2>&1 || (cat {log}; exit 1)"
 
 
+# ── Phase 5A.1 outputs (summary-table synthesis; no heavy bioinformatics) ───────
+PHASE5A1 = [
+    "results/tables/fragility_scorecard.tsv",
+    "results/figures/fragility_scorecard.png",
+    "results/tables/validation_fragility_scorecard.tsv",
+    "results/PHASE5A1_VALIDATION.md",
+]
+
+
+rule phase5a1:
+    input: PHASE5A1
+
+
+# ── Full Phase 5A outputs (admissions package + reproducibility gate) ──────────
+PHASE5A = PHASE5A1 + [
+    "RESEARCH_JOURNEY.md",
+    "INTERVIEW_NOTES.md",
+    "admissions/demo_script.md",
+    "admissions/graphical_abstract.svg",
+    "admissions/research_brief.md",
+    "admissions/research_brief.html",
+    "admissions/screenshots/01-ne-gbf-verdict.jpg",
+    "admissions/screenshots/02-structure-diversity.jpg",
+    "admissions/screenshots/03-wolf-load-roh.jpg",
+    "admissions/screenshots/04-about-limitations.jpg",
+    "report/report.html",
+    "results/APP_SMOKE.md",
+    "results/logs/app_smoke.log",
+    "results/PHASE5A_REPRODUCIBILITY.md",
+    "results/tables/validation_phase5a.tsv",
+    "results/PHASE5A_VALIDATION.md",
+]
+
+
+rule phase5a:
+    input: PHASE5A
+
+
 rule all:
     input:
-        # Phase 1 spine + Phase 2 cube + Phase 3 GBF indicators + Phase 4 wolf load/ROH.
-        # (The live Streamlit app reads Phase 2/3/4 outputs; it is launched separately, not a DAG target.)
+        # Phases 1-4 plus the complete Phase-5A admissions/reproducibility gate.
+        # (The live Streamlit app is launched separately, not a DAG target.)
         PHASE1,
         PHASE2,
         PHASE3,
         PHASE4,
+        PHASE5A,

@@ -9,7 +9,8 @@ The two GBF genetic indicators are meant to be reported TOGETHER:
      filter preset so the fragility (angle C) is visible.
   2. **Populations Maintained (PM)** — NON-genomic; from range/occurrence records
      (`config/populations_maintained.tsv`). Fraction of historically-present range units
-     still extant, with a sensitivity band driven by the uncertain *swing* cases.
+     still extant, with a sensitivity band only when the curated input contains uncertain
+     *swing* cases.
 
 Plus the census-proxy (N_c) contrast (config `gbf.census` + `ne_nc_ratio`) and the
 robustness table (angle C: how each population's verdict moves across presets).
@@ -160,10 +161,14 @@ def build_summary(ne500, robust, pm_sum, census):
     ))
     # Populations Maintained
     rows.append(("pm_headline", pm_sum["headline"],
-                 f"{pm_sum['n_maintained']}/{pm_sum['total']} range units maintained "
-                 f"(conservative; {pm_sum['n_swing']} swing case(s))"))
-    rows.append(("pm_band", f"{pm_sum['band_low']}-{pm_sum['band_high']}",
-                 "band spans the swing cases (India/Laos)"))
+                 f"{pm_sum['n_maintained']}/{pm_sum['total']} range units maintained; "
+                 f"{pm_sum['n_swing']} unresolved swing case(s)"))
+    band_detail = (
+        f"band spans {pm_sum['n_swing']} unresolved range-unit flag(s)"
+        if pm_sum["n_swing"]
+        else "no unresolved range-unit flags in the curated table"
+    )
+    rows.append(("pm_band", f"{pm_sum['band_low']}-{pm_sum['band_high']}", band_detail))
     # Census / N_c contrast
     rows.append(("census_nc_proxy_threshold", census["nc_proxy_threshold"],
                  f"N_e={census['ne_threshold']} <-> N_c={census['nc_proxy_threshold']} "

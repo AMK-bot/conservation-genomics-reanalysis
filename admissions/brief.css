@@ -1,0 +1,180 @@
+:root {
+  --ink: #173b36;
+  --muted: #536b66;
+  --rule: #b8cbc6;
+  --paper: #ffffff;
+  --soft: #eef4f2;
+  --accent: #2e7567;
+}
+
+@page {
+  size: A4;
+  margin: 13mm 15mm;
+}
+
+html {
+  background: #e9eeec;
+}
+
+body {
+  box-sizing: border-box;
+  max-width: 210mm;
+  margin: 24px auto;
+  padding: 16mm 18mm;
+  background: var(--paper);
+  color: #20332f;
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.48;
+  box-shadow: 0 12px 40px rgba(23, 59, 54, 0.12);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--ink);
+  line-height: 1.15;
+}
+
+h1 {
+  margin: 0 0 0.35em;
+  font-size: 2.25rem;
+}
+
+h2 {
+  margin-top: 1.25em;
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid var(--accent);
+  font-size: 1.35rem;
+}
+
+h3 {
+  margin: 1.1em 0 0.45em;
+  font-size: 1.12rem;
+}
+
+h4 {
+  margin: 0.9em 0 0.25em;
+  font-size: 1rem;
+}
+
+p,
+ul,
+table,
+blockquote {
+  margin-top: 0.45em;
+  margin-bottom: 0.7em;
+}
+
+a {
+  color: #17665a;
+}
+
+blockquote {
+  margin-left: 0;
+  padding: 0.7em 1em;
+  background: var(--soft);
+  border-left: 4px solid var(--accent);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88em;
+}
+
+th,
+td {
+  padding: 0.5em 0.6em;
+  vertical-align: top;
+  border: 1px solid var(--rule);
+}
+
+th {
+  color: var(--ink);
+  background: var(--soft);
+  text-align: left;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0.55em auto;
+}
+
+img[alt^="Graphical abstract"] {
+  max-height: 72mm;
+}
+
+td img {
+  max-height: 52mm;
+  object-fit: contain;
+}
+
+hr {
+  margin: 1.1em 0;
+  border: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.page-break {
+  break-before: page;
+  page-break-before: always;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff;
+  }
+
+  body {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    font-size: 9.3pt;
+    line-height: 1.32;
+    box-shadow: none;
+  }
+
+  h1 {
+    font-size: 21pt;
+  }
+
+  h2 {
+    margin-top: 0.75em;
+    font-size: 13pt;
+  }
+
+  h3 {
+    margin-top: 0.65em;
+    font-size: 10.8pt;
+  }
+
+  h4 {
+    font-size: 9.7pt;
+  }
+
+  p,
+  ul,
+  table,
+  blockquote {
+    margin-top: 0.25em;
+    margin-bottom: 0.42em;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img[alt^="Graphical abstract"] {
+    max-height: 56mm;
+  }
+
+  td img {
+    max-height: 42mm;
+  }
+}

@@ -12,9 +12,10 @@ real and stated below: a country counted "extant" can still have lost most of it
 
 ## Tally
 
-Historically present range countries: **10**. Still extant: **6**. PM = 6/10 = **0.60**
-(conservative). Sensitivity band **0.60–0.80**, driven entirely by the two uncertain swing
-cases (India, Laos).
+Historically present range countries: **10**. Still extant: **7**. PM = 7/10 = **0.70**.
+The live BirdLife DataZone country table was checked on **2026-07-18** and resolves the former
+country-level swing cases: India is listed **Extinct**, while Laos is listed **Extant**. The
+current country-unit sensitivity band is therefore **0.70–0.70**.
 
 | range country | subspecies | historically present | current status | note | key source |
 |---|---|---|---|---|---|
@@ -26,37 +27,35 @@ cases (India, Laos).
 | Indonesia (Java) | muticus | yes | **extant** | nominate ssp., Java only; W + E Java relicts | van Balen et al. 1995; IUCN/BirdLife 2018 |
 | Bangladesh | spicifer | yes | extirpated | Regionally Extinct (national Red List) | IUCN Bangladesh 2015; IUCN/BirdLife 2018 |
 | Malaysia (Peninsular) | muticus | yes | extirpated | "now considered extinct in Malaysia" | genomics review PMC10671381 (2023); IUCN 2018 |
-| India (NE) | spicifer | yes | uncertain* | records questioned as feral/escaped; Oryx-excluded; GBIF n=34 | Oryx 2018; BirdLife/IUCN 2018 |
-| Laos | imperator | yes | uncertain* | ~1 confirmed record (2002) despite ~30,000 km² habitat | McGowan et al. 1998/99; Oryx 2018 |
+| India (NE) | spicifer | yes | **extinct** | BirdLife lists India Extinct; its research table still requests status clarification | BirdLife DataZone, accessed 2026-07-18 |
+| Laos | imperator | yes | **extant** | BirdLife lists Laos Extant; persistence is still sparse and country-level | BirdLife DataZone, accessed 2026-07-18 |
 
-\* **Swing cases.** Both conservatively counted as *not* maintained → PM = 0.60. Counting Laos
-extant gives 0.70; counting both extant gives 0.80. A single reclassification moves the
-headline by 0.10.
+**Verification boundary.** These flags reproduce BirdLife's current country-level distribution
+table. They do not establish abundance, within-country range retention, or genetic viability.
 
 ## Reading it against the genomic indicator
 
-The three sampled populations (Yunnan, Vietnam, Thailand) are **all** in the "maintained" six —
+The three sampled populations (Yunnan, Vietnam, Thailand) are **all** in the maintained set —
 yet none confidently passes N_e>500 (0/3, mostly indeterminate). **Still present ≠ genetically
-viable.** PM=0.60 looks moderate; the N_e indicator says the populations that remain are already
+viable.** PM=0.70 looks moderate; the N_e indicator says the populations that remain are already
 genetically eroded. That gap is the conservation message.
 
 ## Caveats
 
 1. **Country masks within-country collapse.** China holds ~485–600 birds after losing ~60% of
    its counties and all of Tibet; Vietnam lost its entire north; Thailand survives as two
-   fragments. PM=0.60 therefore *overstates* persistence. A sub-country unit (subspecies n=3, or
+   fragments. PM=0.70 therefore *overstates* persistence. A sub-country unit (subspecies n=3, or
    biogeographic subpopulation) would be a more sensitive complementary metric.
-2. **Sourcing not field-verified.** The live IUCN species page (taxon 22679440) returned HTTP 403
-   and the BirdLife distribution table renders dynamically, so per-country presence flags were
-   reconstructed from IUCN/BirdLife narrative + peer-reviewed literature + GBIF facets, **not**
-   read field-by-field. Verify against the live IUCN/BirdLife table before publication —
-   especially India, Laos, and northern Vietnam.
+2. **Country flags verified; biological resolution remains coarse.** The live BirdLife DataZone
+   distribution table was read field-by-field on 2026-07-18. It lists India Extinct and Laos and
+   Vietnam Extant. A country-level Extant flag does not resolve northern-Vietnam loss or the size
+   and isolation of surviving populations.
 3. GBIF/eBird counts reflect observer effort and include captive/feral records (US n=74, a
    non-range country, excluded) — they corroborate presence/absence only, not population size.
 4. Reintroduced/feral populations (Peninsular Malaysia ~2005; Myanmar Hlawga) are not counted as
    wild persistence.
 
 <!-- Machine-readable source of this per-country tally = config/populations_maintained.tsv. The
-     Phase-3 rule `gbf_indicators` reads it, derives PM (0.60, band 0.60-0.80) into
+     Phase-3 rule `gbf_indicators` reads it, derives PM (0.70, band 0.70-0.70) into
      results/tables/gbf_*.tsv, and the Streamlit GBF tab reads those tables. Keep this narrative
      and that TSV in sync (this markdown is the human-readable mirror, the TSV is authoritative). -->

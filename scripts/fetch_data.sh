@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Fetch raw datasets from Dryad into data/ (symlinked to USB).
+# Fetch raw datasets from Dryad into data/ (symlinked to the internal SSD data root).
 #
 # Dryad requires an OAuth2 bearer token for file downloads. Create credentials at
 # https://datadryad.org/account  (My account), then:
 #   export DRYAD_CLIENT_ID=...
 #   export DRYAD_CLIENT_SECRET=...
-#   scripts/fetch_data.sh                  # -> <repo>/data  (symlinks to USB)
+#   scripts/fetch_data.sh                  # -> <repo>/data  (internal-SSD symlinks)
 #
 # Optional:
 #   DRYAD_SKIP_REGEX='vcf\.tar\.gz' scripts/fetch_data.sh
@@ -80,7 +80,7 @@ fetch peafowl "$PEAFOWL_DOI"
 fetch wolf "$WOLF_DOI"
 
 echo "[$(date +%H:%M:%S)] verifying gzip integrity ..."
-# -L follows the data/ -> USB symlinks (without it, find skips the real files).
+# -L follows the data/ -> internal-SSD symlinks (without it, find skips the real files).
 find -L "$DEST_ROOT" -name '*.gz' -print0 | while IFS= read -r -d '' f; do
   if gzip -t "$f" 2>/dev/null; then echo "ok:      $f"; else echo "CORRUPT: $f"; fi
 done

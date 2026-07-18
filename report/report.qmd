@@ -7,19 +7,35 @@ format:
     toc: true
     number-sections: true
     code-fold: true
-  pdf:
-    toc: true
-    number-sections: true
+    embed-resources: true
 bibliography: references.bib
 execute:
   echo: false
   warning: false
 ---
 
-<!-- Paper-grade draft (plan §0/§8). Reanalysis of two public deposits; every number below is
-     produced by the Snakemake DAG and read from results/tables — nothing is hand-entered.
-     Framing is deliberately non-triumphal: this is a robustness/fragility demonstration and a
-     faithful reanalysis, not a claim of novel discovery. -->
+<!-- Paper-grade draft (plan §0/§8). Reanalysis of two public deposits. Analytical results are
+     loaded and validated from workflow outputs at render time; parameters remain authoritative in
+     config/config.yaml. Framing is deliberately non-triumphal: this is a robustness/fragility
+     demonstration and a faithful reanalysis, not a claim of novel discovery. -->
+
+```{python}
+#| label: load-report-results
+#| include: false
+from pathlib import Path
+import sys
+
+working_dir = Path.cwd().resolve()
+report_dir = next(
+    candidate
+    for candidate in (working_dir / "report", working_dir, working_dir.parent / "report")
+    if (candidate / "report_values.py").is_file()
+)
+sys.path.insert(0, str(report_dir))
+from report_values import load_report_values
+
+R = load_report_values()
+```
 
 # Introduction
 
@@ -45,10 +61,11 @@ sensitivity.
 
 - **Green peafowl** — @dong2021, Dryad `10.5061/dryad.ffbg79ctc`. Modern resequencing across three
   regional populations plus six museum specimens. After a kinship screen (below) the analysis set is
-  **22 unrelated individuals** across **Yunnan (n = 7), Vietnam (n = 10), Thailand (n = 5)**;
+  **`{python} R.peafowl_n` unrelated individuals** across **`{python} R.population_n`**;
   Cambodia (n = 1) is dropped. A separate museum-versus-modern comparative callset supports the
-  temporal-erosion angle.
-- **Scandinavian wolf** — @smeds2022, Dryad `10.5061/dryad.7m0cfxpzj`. 211 individuals with
+  temporal-erosion angle (`{python} R.museum_n` museum and `{python} R.modern_temporal_n` modern
+  individuals after comparative-sample QC).
+- **Scandinavian wolf** — @smeds2022, Dryad `10.5061/dryad.7m0cfxpzj`. `{python} R.wolf_n` individuals with
   ancestral-allele-polarized SNPs (`INFO/AA`, two outgroups), VEP/SIFT coding annotation, and
   per-site GERP conservation scores. Individuals carry a time-period label (founding cohort ~1983
   through 2007–2014) plus outbred references (Finland, Russia, immigrants).
@@ -59,12 +76,13 @@ All analyses start from the deposited VCFs (no re-calling from reads); every thr
 ## QC and filtering (peafowl)
 
 Two callsets are derived from a shared normalized parent (`bcftools norm -m -any`, biallelic SNPs on
-the 32 autosomes): **Set A** (neutral, LD-pruned) for structure and $N_e$, and **Set B** (lightly
-filtered, no MAF/MAC/HWE/LD-prune) for diversity, preserving rare alleles. The *filtering-stringency*
+the 32 autosomes): **unpruned Set A** (neutral) feeds currentNe2, while an **LD-pruned derivative of
+Set A** feeds the structure analyses; **Set B** (lightly filtered, no MAF/MAC/HWE/LD-prune) feeds
+diversity and preserves rare alleles. The *filtering-stringency*
 knob re-derives Set A per preset — **lenient / standard / strict** (max-missing 0.7/0.8/0.9,
-min-GQ 15/20/30, min-DP 4/6/8, MAC 3) — yielding **1,046,916 / 420,826 / 30,143** post-MAC sites
-(a ~35× spread). Per-population HWE ($P < 10^{-6}$ in any population) is applied to avoid Wahlund
-false departures. A confirmatory KING kinship screen retains all 22 individuals.
+min-GQ 15/20/30, min-DP 4/6/8, MAC 3) — yielding **`{python} R.postmac_counts`** post-MAC sites
+(a ~`{python} R.filter_spread`× spread). Per-population HWE ($P < 10^{-6}$ in any population) is applied to avoid Wahlund
+false departures. A confirmatory KING kinship screen retains all `{python} R.peafowl_n` individuals.
 
 ## Contemporary $N_e$ and the fragility cube (peafowl)
 
@@ -104,66 +122,94 @@ long ROH ($\geq 1.5$ Mb) read as recent inbreeding [@bertorelle2022].
 
 ## Peafowl: diversity, structure, and temporal contrast
 
-PCA cleanly separates the three populations (centroid gap 91 versus within-population spread 38),
-though per-axis variance is low (PC1 ≈ 9%) and ADMIXTURE cross-validation is monotonic in $K$
-(favouring $K = 1$) — a small-$n$ artefact, so structure is read from PCA rather than a "best $K$".
-Thailand (n = 5) is least diverse (expected heterozygosity 0.395; rarefied allelic richness 1.93), and
-Yunnan shows a heterozygote deficit ($F_{IS} = 0.086$) consistent with elevated within-population
+PCA cleanly separates the three populations (minimum centroid gap `{python} f"{R.pca_gap:.1f}"`
+versus maximum within-population spread `{python} f"{R.pca_within:.1f}"`), though per-axis variance
+is low (PC1 ≈ `{python} f"{R.pc1_variance:.1f}"`%) and ADMIXTURE cross-validation favours
+$K$ = `{python} R.admixture_best_k` — a small-$n$ artefact, so structure is read from PCA rather than
+a "best $K$". Thailand is least diverse (expected heterozygosity
+`{python} f"{R.thailand_he:.3f}"`; rarefied allelic richness `{python} f"{R.thailand_ar:.2f}"`), and
+Yunnan shows a heterozygote deficit ($F_{IS}$ = `{python} f"{R.yunnan_fis:.3f}"`) consistent with elevated within-population
 relatedness. The museum-versus-modern temporal contrast (angle G) is **weak and metric-dependent**:
 median $\pi$ and $H_o$ are marginally higher in museum specimens (erosion-consistent), but $H_e$ and
 rarefied allelic richness are essentially flat. We report a direction, not an erosion claim, with
 aDNA-deamination and geographic-mismatch caveats.
 
+![Peafowl population structure on the first two PCA axes, computed from the LD-pruned derivative of
+Set A. Separation supports population-aware analysis, while low per-axis variance and small sample
+sizes limit how strongly the geometry should be interpreted.](../results/figures/pca.png){#fig-pca
+fig-alt="Scatterplot of peafowl samples on PCA axes one and two, coloured by population." width="90%"}
+
 ## Peafowl: contemporary $N_e$ and the fragility of the GBF verdict
 
-**No population confidently passes $N_e > 500$ under any filtering preset** (0/3 pass for lenient,
-standard, and strict). Verdicts are *fail* (point and 90% CI below 500) or *indeterminate*. Under the
-lenient preset the cross-chromosome estimates are Yunnan 55 [20–152], Thailand 76 [18–320], and
-Vietnam 2,293 [139–37,795] — the lone point above 500, but with a CI straddling it, hence
+**No population confidently passes $N_e > 500$ under any filtering preset** (`{python} R.ne_pass_by_preset`
+pass for lenient / standard / strict). Verdicts are *fail* (point and 90% CI below 500) or
+*indeterminate*. Under the lenient preset the cross-chromosome estimates are Yunnan
+`{python} R.ne_yunnan`, Thailand `{python} R.ne_thailand`, and Vietnam `{python} R.ne_vietnam` —
+the lone point above 500, but with a CI straddling it, hence
 *indeterminate*, not a pass. Under stricter presets several per-population estimates fail to converge
 (extreme heterozygote excess at small $n$), so convergence itself is preset-fragile (Table:
 `results/tables/gbf_robustness.tsv`). Pooling across populations (structure ignored) trends low and
-rises with stringency (52 → 89 → 108), below most per-population estimates — the predicted Wahlund
+rises with stringency (`{python} R.pooled_ne`), below most per-population estimates — the predicted Wahlund
 direction, muddied by small-$n$ noise.
 
-The result is therefore two-sided: the **headline is robust** (0/3 pass regardless of preset), while
-the **underlying estimates are fragile** (2/3 populations change verdict across presets; Vietnam is
+The result is therefore two-sided: the **headline is robust** (`{python} R.ne_headline` pass regardless of preset), while
+the **underlying estimates are fragile** (`{python} R.unstable_population_count`/`{python} R.population_count`
+populations change verdict across presets; Vietnam is
 estimable under lenient but not under stricter filters). The GONE2 context trajectory shows a recent
-decline ($N_T \approx 3{,}500 \to \approx 177$ over ~400 generations), consistent with an endangered
+decline (approximately `{python} f"{R.gone_old:,.0f}"` → `{python} f"{R.gone_recent:,.0f}"`
+over ~`{python} R.gone_generations` generations), consistent with an endangered
 species but presented as context only.
+
+![Contemporary peafowl effective-size estimates across filtering presets and population-structure
+treatments. The horizontal threshold marks $N_e=500$; wide intervals and non-converged cells show
+why the estimate magnitudes are fragile even though the no-confident-pass headline is stable. Only
+the per-population cells feed the GBF indicator.](../results/figures/ne_cube.png){#fig-ne-cube
+fig-alt="Point and interval plot of currentNe2 estimates across filters and structure treatments, with a threshold at 500." width="90%"}
 
 ## Peafowl: the two GBF indicators disagree
 
-The genomic indicator gives **0/3 populations $N_e$-secure**, whereas **Populations Maintained =
-0.60** (band 0.60–0.80, driven by the India/Laos swing cases). All three sampled populations lie
-within the "maintained" set — yet none is genetically secure. Range-wide census (~10,000–20,000
-mature, EN) nominally clears the $N_c \geq 5{,}000$ proxy, but that is the wrong denominator for a
+The genomic indicator gives **`{python} R.ne_headline` populations $N_e$-secure**, whereas **Populations Maintained =
+`{python} R.pm_detail`**. All three sampled populations lie
+within the "maintained" set — yet none is genetically secure. Range-wide census
+(~`{python} R.census_value` mature, EN) nominally clears the $N_c \geq `{python} f"{R.nc_proxy:,.0f}"`$
+proxy, but that is the wrong denominator for a
 *per-population* indicator: the species is fragmented into subpopulations far below it (e.g. Keo Seima
-~745). **Still present ≠ genetically viable** — the gap between the two Goal-A indicators is the
+~`{python} R.cambodia_count`). **Still present ≠ genetically viable** — the gap between the two Goal-A indicators is the
 communicable point, and a caution for reporters who might read occupancy-based indicators as
 sufficient.
 
 ## Wolf: exact reproduction, then the fragility axes
 
 At **GERP > 4 the per-individual realized and masked loads reproduce the deposit's precomputed
-`LoadPerInd.thres4` table exactly** — 95th-percentile relative error $1.3\times10^{-14}$ and raw
-count deltas of 0/0/0 across all 211 individuals — confirming the re-implementation is faithful before
+`LoadPerInd.thres4` table exactly** — 95th-percentile relative error
+`{python} f"{R.anchor_relative_error:.1e}"` and raw count deltas of `{python} R.anchor_deltas` across
+all `{python} R.anchor_n` individuals — confirming the re-implementation is faithful before
 any extension. The biological signal is recovered correctly: the inbred **Scandinavian** cohorts carry
-**realized > masked** load (≈ 0.09–0.11 vs 0.05–0.08), whereas outbred references (**Finland, Russia,
-immigrants**) carry **masked > realized** (≈ 0.085–0.089 vs ≈ 0.10) — the masked-to-realized
+**realized > masked** load (`{python} f"{R.scandinavian_realized_low:.3f}–{R.scandinavian_realized_high:.3f}"`
+realized versus `{python} f"{R.scandinavian_masked_low:.3f}–{R.scandinavian_masked_high:.3f}"` masked),
+whereas outbred references (**Finland, Russia, immigrants**) carry **masked > realized**
+(`{python} f"{R.outbred_masked_low:.3f}–{R.outbred_masked_high:.3f}"` masked versus
+`{python} f"{R.outbred_realized_low:.3f}–{R.outbred_realized_high:.3f}"` realized) — the masked-to-realized
 conversion expected when inbreeding exposes recessive load [@smeds2022; @bertorelle2022].
 
-Both knobs move magnitude but not the pattern. Mean realized load falls 0.172 → 0.136 → 0.093 across
-GERP 2/3/4 (a stricter conservation filter keeps fewer, higher-confidence sites), and mean $F_{ROH}$
-falls 0.226 → 0.167 as the ROH-length cutoff rises 0.1 → 2.0 Mb (separating recent long ROH from
+Both knobs move magnitude but not the pattern. Mean realized load falls `{python} R.load_means` across
+GERP `{python} R.load_thresholds` (a stricter conservation filter keeps fewer, higher-confidence
+sites), and mean $F_{ROH}$ falls `{python} f"{R.roh_mean_low:.3f}"` →
+`{python} f"{R.roh_mean_high:.3f}"` as the ROH-length cutoff rises
+`{python} f"{R.roh_low_cutoff:g}"` → `{python} f"{R.roh_high_cutoff:g}"` Mb (separating recent long ROH from
 ancient background). The realized-versus-masked *direction* is robust to the GERP threshold — the
 wolf-side counterpart to the peafowl fragility finding: the number depends on the choice, the signal
 does not.
 
+![Cross-chapter fragility scorecard computed from the existing peafowl cube, GBF tables, wolf-load
+table, and wolf-ROH table. Categories summarize stability under the settings tested here; they are
+not claims of universal robustness beyond these data and methods.](../results/figures/fragility_scorecard.png){#fig-fragility-scorecard
+fig-alt="Scorecard classifying project conclusions as robust, magnitude-sensitive, insufficient-evidence, or method-dependent." width="95%"}
+
 # Limitations
 
 We claim **risk, not demonstrated inbreeding depression**. For the peafowl, small per-population $n$
-(7/10/5) yields wide $N_e$ CIs and many *indeterminate* verdicts by construction; the estimates should
+(`{python} R.population_n_compact`) yields wide $N_e$ CIs and many *indeterminate* verdicts by construction; the estimates should
 not be cited as point values, and the temporal contrast is geographically narrow and aDNA-sensitive.
 Both chapters are **reanalyses of published data**, so the peafowl conclusion ("small, fragmented
 populations have small $N_e$") is expected rather than novel, and the wolf load reproduces a published
@@ -173,17 +219,42 @@ choices, with the two GBF indicators shown to disagree on the same species. GONE
 the ROH recombination rate (no dense wolf map) are documented approximations. The fragility cube
 quantifies, rather than hides, this uncertainty.
 
+# What evidence would change the conclusion?
+
+The limitations above are decision points, not promises to collect more data. This evidence map
+identifies the smallest defensible next observation for each unresolved inference; none is required
+to reproduce the present analysis.
+
+| Current conclusion | What remains unresolved | Most useful next evidence | How it would change the decision |
+|---|---|---|---|
+| No sampled peafowl population confidently clears $N_e>500$. | Wide confidence intervals and non-convergence at population sample sizes `{python} R.population_n_compact`. | More independently sampled individuals **per population**. | Narrower intervals could turn an indeterminate cell into pass or fail; until then, retain the three-state verdict. |
+| The GONE2 trajectory is consistent with recent decline but is context only. | Peafowl linkage distances are approximated with a borrowed avian recombination rate. | A species-specific recombination map. | It would test the trajectory's timing and scale; it would not replace currentNe2 as the contemporary GBF input. |
+| Genomic patterns indicate inbreeding risk, not demonstrated inbreeding depression. | The project has no direct measure of survival, fertility, or reproductive success. | Individual fitness and reproductive measurements linked to genomic inbreeding. | A genotype–fitness association could support a depression claim; load and ROH alone cannot. |
+| Populations Maintained is `{python} R.pm_detail` at country resolution. | Country-level presence can hide sub-country loss and fragmentation. | Verified, time-stamped sub-country occurrence or occupancy records. | Finer records would revise the PM denominator/numerator and show whether nominally extant units retain multiple populations. |
+| Adding loci alone is unlikely to resolve the peafowl uncertainty. | Millions of SNPs do not create more independent genomes; LD-based uncertainty is dominated by very small individual samples. | Prioritize additional individuals before additional SNP density. | If uncertainty shrinks with more individuals, sampling—not marker count—was limiting; otherwise estimator/model choice needs renewed scrutiny. |
+
 # Reproducibility statement
 
-All results are built by the Snakemake DAG from two public deposits; the Streamlit explorer reads the
+All analytical results are built by the Snakemake DAG from two public deposits; the Streamlit explorer reads the
 outputs only.
 
+The report performs a render-time schema check and reads its headline analytical values from the
+following workflow outputs. Missing files or columns stop the render rather than preserving stale
+prose.
+
+```{python}
+#| label: tbl-report-provenance
+#| tbl-cap: "Workflow outputs loaded by the report at render time."
+R.provenance
+```
+
 ```bash
-micromamba create -n congen -f environment.lock.yml   # 8 GB / Apple Silicon: micromamba, not classic conda (OOMs)
+CONDA_SUBDIR=osx-64 micromamba create -n congen -f environment.lock.yml  # Apple Silicon/Rosetta
 micromamba activate congen && conda config --env --set subdir osx-64
 scripts/build_tools.sh                                 # currentNe2 + GONE2, pinned commits
 scripts/fetch_data.sh && scripts/extract_data.sh       # Dryad data
 snakemake --cores 4                                    # phases 1-4: cube + GBF tables + wolf load/ROH
+report/render_report.sh                                # schema-check values and render report/report.html
 streamlit run app/streamlit_app.py                     # the live fragility explorer
 ```
 

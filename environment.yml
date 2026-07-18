@@ -1,10 +1,12 @@
 # congen — osx-64 toolchain (Apple Silicon via Rosetta).
-# Pin the env to x86_64 so every Bioconda tool resolves:
-#   CONDA_SUBDIR=osx-64 conda env create -f environment.yml
-#   conda activate congen
+# Use micromamba: classic conda exceeds the available memory on the 8 GB target laptop.
+# Pin the solve to x86_64 so every Bioconda tool resolves:
+#   CONDA_SUBDIR=osx-64 micromamba create -n congen -f environment.yml
+#   micromamba activate congen
 #   conda config --env --set subdir osx-64
-# After the first successful solve, re-export a fully pinned lock:
-#   conda env export --no-builds > environment.lock.yml
+# R and every R package are installed and pinned by conda/micromamba; renv is not used.
+# After the first successful solve, re-export a fully pinned, portable lock:
+#   micromamba env export -n congen --no-builds | sed '/^prefix:/d' > environment.lock.yml
 name: congen
 channels:
   - conda-forge
@@ -35,7 +37,6 @@ dependencies:
   # ── R stack (SNPRelate / dartR / hierfstat) ──
   - r-base
   - r-essentials
-  - r-renv            # renv::restore() for reproducible R packages
   - bioconductor-snprelate
   - r-adegenet
   - r-hierfstat

@@ -46,7 +46,7 @@
 congen-reanalysis/
 ├── README.md                  # one-command reproduction + the story
 ├── environment.yml            # loose spec; build with micromamba
-├── environment.lock.yml       # 702 pkgs pinned (R included — conda-owned; no renv.lock)
+├── environment.lock.yml       # 694 dependencies pinned (R included — conda-owned; no renv.lock)
 ├── config/
 │   └── config.yaml            # ALL filtering thresholds, N_e settings, paths
 ├── workflow/
@@ -125,11 +125,11 @@ Then: `git init`; `renv::init()`; export `environment.yml`; create the repo skel
 - **The two knobs → cube = filter × structure (currentNe2 only):**
   - **filter** = lenient/standard/strict (the Phase-1 knob, re-used: each preset's *un-pruned* Set A).
   - **structure** = **modeled** (`per_population`: currentNe2 run separately on each of the 3 pops → the three values feeding the GBF "fraction > 500") **vs ignored** (`pooled`: all 22 lumped, no correction → Wahlund-biased low — the cautionary "10–100× low" contrast). currentNe2's `-x` metapopulation correction is a **report cross-check, not a third knob position**.
-  - → 3 × 2 = **6 currentNe2 runs per preset-set** (3 per-pop + 1 pooled, per preset).
+  - → **4 currentNe2 rows per preset** (3 per-population + 1 pooled), hence **12 rows total** across the 3 presets.
 - **The cube — `results/cube/results_cube.parquet`, long/tidy, one row per estimate:** `preset · structure_mode · population · ne_method · ne_point · ci_low · ci_high · n_ind · n_snps · k`. `ne_method` is the constant `currentNe2` (the single automated estimator; the validator asserts it stays constant). **Pooled rows carry `population = ALL`.** The GBF fraction (Phase 3) reads **per_population rows only**; pooled rows are the structure-bias contrast, never a GBF input.
 - **GONE2 — recent-trajectory *context panel* (NOT a cube axis, NOT in the badge):** one curve, **all 22** birds, `-x` (metapopulation of equal-size subpops), standard-preset **un-pruned** Set A, `-g 0` (unphased diploids), and a **documented constant `-r ≈ 3 cM/Mb`** (generic-bird stand-in — peafowl has no map). One figure, "recent species-level trajectory — context only," with the caveats on it: thin n, borrowed rate, recent-past ≠ contemporary. GBF guidance excludes recent-trajectory from the contemporary indicator, so it never touches the verdict.
 - **NeEstimator-LDNe — manual field-standard cross-check (outside the DAG):** Java GUI → hand-run on the **standard-preset LD-pruned Set A** (NeEstimator *assumes unlinked* markers, so the pruned VCF is exactly its input — the one N_e use of Phase 1's pruned output), **3 pops × 3 PCrit** (0.05/0.02/0.01), pasted into **one report table** against currentNe2's per-pop numbers. Confirms the headline N_e isn't a currentNe2-specific artifact.
-- **New code:** `workflow/rules/ne.smk` (`currentne2` [one preset × structure cell], `gone2_context`, `assemble_cube`); thin `scripts/python/{currentne2_parse,assemble_cube}.py` (tool text → tidy rows); Snakefile `phase2` target + a `validate` extension (cube non-empty; 6 cells/preset present; badge states sane; ∞ handled). NeEstimator stays manual.
+- **New code:** `workflow/rules/ne.smk` (`currentne2` [one preset × structure cell], `gone2_context`, `assemble_cube`); thin `scripts/python/{currentne2_parse,assemble_cube}.py` (tool text → tidy rows); Snakefile `phase2` target + a `validate` extension (cube non-empty; 3 per-population + 1 pooled row per preset present; badge states sane; ∞ handled). NeEstimator stays manual.
 
 **Conceptual checkpoint:** *Why do LD-N_e estimates collapse when structure is unmodeled (Wahlund inflates LD → N_e biased low)? Why is currentNe2's "different-chromosome" estimate the cleaner one — and why does LD-pruning destroy the very signal it measures? What time horizon does each tool see: currentNe2 (now) vs GONE2 (recent past)?*
 **Reading:** Waples 2024 N_e review; "Idiot's Guide to N_e"; Santiago et al. 2024/2025 (currentNe + structure bias); Do et al. 2014 (NeEstimator); currentNe2/GONE2 docs.
@@ -138,10 +138,10 @@ Then: `git init`; `renv::init()`; export `environment.yml`; create the repo skel
 
 ## 6. Phase 3 — GBF indicators + robustness + fragility-explorer MVP  ← **MVP milestone**
 
-- Compute the **N_e > 500 indicator** (proportion of per-population N_e above threshold) **from the cube** — currently **0/3 pass** (mostly indeterminate at n = 7/10/5). The complementary **Populations Maintained** indicator is **literature-derived, not from the cube** (range/occurrence data): see `report/populations_maintained.md` — country-unit **PM = 0.60** (band 0.60–0.80; India/Laos are the swing cases). Contrast genomic N_e with the **census proxy** (`config.gbf.census`: IUCN/BirdLife 2018 ≈ 10k–20k mature; N_e:N_c = 0.1 → N_c ≥ 5,000).
+- Compute the **N_e > 500 indicator** (proportion of per-population N_e above threshold) **from the cube** — currently **0/3 pass** (mostly indeterminate at n = 7/10/5). The complementary **Populations Maintained** indicator is **literature-derived, not from the cube** (range/occurrence data): see `report/populations_maintained.md` — country-unit **PM = 0.70** (band 0.70–0.70 after the live BirdLife country table was checked on 2026-07-18). Contrast genomic N_e with the **census proxy** (`config.gbf.census`: IUCN/BirdLife 2018 ≈ 10k–20k mature; N_e:N_c = 0.1 → N_c ≥ 5,000).
 - **Robustness (angle C):** quantify how the pass/fail verdict moves across the cube.
 
-> **Resolved (2026-06-28):** PM curated (0.60, country-unit, sourced); census wired into `config.yaml`; slim `requirements.txt` added (Streamlit Cloud deploy). **Open (manual, off-DAG):** NeEstimator-LDNe GUI run; live IUCN/BirdLife flag verification (India/Laos/N. Vietnam). **Still to build:** the indicator-computation code + the full multi-tab Streamlit explorer (current `app/streamlit_app.py` is the N_e/GBF skeleton only).
+> **Resolved (2026-06-28):** PM curated (initially 0.60, country-unit, sourced); census wired into `config.yaml`; slim `requirements.txt` added (Streamlit Cloud deploy). **Status update (2026-07-18):** the live BirdLife country table was checked field by field, resolving India as Extinct and Laos as Extant and updating PM to **0.70 (band 0.70–0.70)**; the indicator computation, full four-tab explorer, GONE2 panel, structure/diversity tab, and wolf tab are built and locally tested. **Open (manual/off-DAG):** NeEstimator-LDNe GUI run; public deployment/live URL.
 - **Build the Streamlit fragility explorer** reading the cube: **two knobs (filter × structure) → verdict flips live** (currentNe2 badge: pass / fail / **indeterminate**). A **separate GONE2 trajectory panel** shows the recent-N_e curve with a time-horizon + borrowed-rate note (context only, not wired to the verdict). Tabs: **N_e/GBF** (main) + **structure/diversity** (PCA/ADMIXTURE + the static museum-vs-modern temporal-G figure). [Wolf tab added in Phase 4.] Deploy to **Streamlit Community Cloud / HF Spaces** → live URL.
 
 **Conceptual checkpoint:** *What does N_e > 500 actually mean? Why was the indicator designed to be computable without DNA?*
@@ -168,6 +168,121 @@ CLI-streaming-first throughout — the 12 GB VCF never enters RAM (verified: per
 - Polish the explorer (captions, a **limitations panel** surfacing the §8 caveats — claim *risk* not *depression*, CIs, ascertainment, small-n power).
 - Write `report.qmd`: intro → methods → results → **limitations** → reproducibility statement.
 - Finalize repo: `environment.lock.yml` (R included — no `renv.lock`), Snakefile, config, README one-command reproduction (`micromamba create -f environment.lock.yml` → activate → `snakemake --cores N`). **Re-run the whole DAG from scratch to prove reproducibility.**
+
+### Phase 5A — Admissions-facing process completion *(additive, local-first, no external blockers)*
+
+This track strengthens the completed science as evidence of university-level biological reasoning. It
+**does not remove or replace any existing phase or deliverable.** It adds a controlled finish path whose
+required work must run on the existing Apple M1 / 8 GB laptop and must not depend on wet-lab equipment,
+HPC/GPU access, journal review, formal publication, or new restricted data. Optional public-facing steps
+remain in the plan, but they do not block completion.
+
+#### 5A.1 Fragility Scorecard — one lightweight synthesis, no new heavy genomics
+
+- Build a machine-readable `results/tables/fragility_scorecard.tsv` and one corresponding figure from
+  the **existing** peafowl cube, GBF tables, wolf-load table, and wolf-ROH table; do not re-call variants
+  or add another species/dataset.
+- For each biological conclusion, report: settings supporting it / settings tested, whether the
+  **conclusion** is robust, whether only the **magnitude** is sensitive, the dominant uncertainty source,
+  and the evidence that would be needed to resolve it.
+- Minimum rows:
+  1. no sampled peafowl population confidently clears $N_e>500$ across presets;
+  2. population-level peafowl estimates/convergence are filter-fragile;
+  3. the wolf realized-vs-masked direction is stable across GERP thresholds;
+  4. wolf load and $F_{ROH}$ magnitudes depend on GERP/ROH thresholds.
+- Add a compact explorer panel separating **robust conclusion / fragile magnitude / insufficient
+  evidence / method-dependent result**. All computation must be lightweight pandas/plotting over
+  tracked summary tables and finish locally in minutes, not hours.
+
+**Acceptance:** the scorecard reconciles exactly with the Phase-2/3/4 validation tables, is built by
+Snakemake, is visible without launching heavy bioinformatics, and does not introduce a new scientific
+claim beyond the existing results.
+
+#### 5A.2 “What evidence would change the conclusion?”
+
+- Add a decision-oriented section to the explorer and report that connects every major uncertainty to
+  the next defensible evidence source:
+  - more **individuals per population** to narrow contemporary-$N_e$ uncertainty;
+  - a species-specific recombination map to strengthen the GONE2 context interpretation;
+  - measured fitness/reproductive data before claiming inbreeding depression rather than risk;
+  - better sub-country occurrence records to improve Populations Maintained;
+  - explain why simply adding more SNPs may not solve uncertainty caused by n = 7/10/5.
+- This is a study-design/evidence map, not a promise to collect the data. No new sequencing, large
+  simulation campaign, or long outside process is required.
+
+**Acceptance:** a reader can identify what is known, what remains unresolved, and the single most useful
+next observation for each conclusion without mistaking a caveat for a failed analysis.
+
+#### 5A.3 Research journey and ownership record
+
+- Create `RESEARCH_JOURNEY.md`, written in the student's own voice, covering:
+  1. why these biological questions and public datasets were chosen;
+  2. the LD-pruning/currentNe2 correction and what exposed it;
+  3. why GONE2 moved from method axis to context panel;
+  4. why temporal $N_e$ became a diversity contrast;
+  5. what exact reconciliation of the wolf anchor establishes;
+  6. what was learned about uncertainty, reproducibility, and responsible claims;
+  7. what would be designed differently in a future study.
+- Distinguish student decisions from source-paper methods and agent/tool assistance; never imply that
+  automation or publication occurred when it did not.
+
+**Acceptance:** the document demonstrates a traceable change in reasoning, including at least one
+mistake, the evidence that revealed it, the correction, and the biological consequence.
+
+#### 5A.4 Offline admissions package
+
+- Create a self-contained package that remains useful if no reviewer opens a live URL:
+  - a graphical abstract;
+  - a two-page illustrated research brief;
+  - one representative screenshot per explorer tab;
+  - a concise README block titled **“Understand the project in 60 seconds”**;
+  - a 2–3 minute narrated demonstration script/recording plan;
+  - a rendered HTML technical report (PDF desirable, but not required if it adds a heavyweight or
+    unreliable toolchain).
+- The brief must communicate three results: the peafowl headline is robust; its underlying estimates
+  are fragile/uncertain; the wolf magnitude is threshold-sensitive while the biological direction is
+  stable.
+
+**Acceptance:** a biosciences admissions reader can understand the question, methods, results,
+limitations, and student contribution in five minutes using only tracked local artifacts.
+
+#### 5A.5 Local reproducibility proof
+
+- Repair the local report-rendering route and make `environment.lock.yml` portable (no user-specific
+  absolute prefix); keep R conda-owned and the source-built tools pinned.
+- Clean repository state: ignore regenerable QC/$N_e$ intermediates, remove the tracked session-lock
+  artifact, and align README/SETUP/HANDOFF/plan status text with the implementation.
+- Rebuild or revalidate the full existing DAG on the current laptop using already-verified local raw
+  archives/data; a forced redownload is not required for this admissions completion gate.
+- Add a lightweight automated Streamlit smoke test and publish a compact validation summary showing
+  the four phase gates and their fail counts.
+
+**Acceptance:** a clean-clone/local-data run produces the tracked cube, tables, figures, scorecard, and
+report; all phase validators report zero failures; the app smoke test covers all main filter × structure
+states; the exact commands and run outcome are recorded.
+
+#### 5A.6 Interview/data-interpretation preparation
+
+- Create `INTERVIEW_NOTES.md` with concise, student-authored answers to:
+  - $N_e$ vs census size;
+  - why structure biases LD-based $N_e$;
+  - why LD-pruning is wrong for currentNe2 but useful for structure/NeEstimator;
+  - why an indeterminate result is scientifically informative;
+  - what the exact wolf-anchor reproduction validates;
+  - which result was surprising and what evidence should come next.
+- Include one figure-reading exercise based on the project and a 60–90 second spoken project summary.
+
+**Acceptance:** the project can be explained without reading from the report, one methodological choice
+can be defended, one limitation can be turned into a next-study design, and one unfamiliar result figure
+can be interpreted aloud.
+
+#### Phase-5A completion gate
+
+Phase 5A is complete when all six sections above pass their acceptance checks on the existing laptop.
+The following **remain in the overall plan but are not blockers for this gate**: formal preprint/journal
+publication, a permanent DOI, NeEstimator GUI work if it becomes slow or unreliable, new
+species/datasets, raw-read variant calling, and HPC/GPU analyses.
+None should delay the admissions-ready local artifact.
 
 ---
 
@@ -230,9 +345,9 @@ Implementation = `workflow/rules/{qc,structure,diversity}.smk` + `scripts/python
   locked env. Rather than mutate `environment.lock.yml`, `to_hierfstat.py` (scikit-allel) writes the hierfstat
   genotype table and `allelic_richness.R` does only the stats. Rarefaction reaches the true smallest-pop n=5 via
   `--complete-only` (complete-case loci) + a seeded thin (`peafowl.diversity.ar_max_sites: 50000`) for 8 GB safety.
-- **(G) R invoked as `Rscript --vanilla`.** The repo's inert renv `.Rprofile` (`source("renv/activate.R")`) shadows
-  the conda R library (plan already dropped renv) → without `--vanilla`, R sees an empty library. Every R rule uses
-  it. *Recommend the user eventually neuter `.Rprofile` so interactive R in this dir also works.*
+- **(G) R invoked as `Rscript --vanilla`.** The earlier renv `.Rprofile` autoloader shadowed the conda R library
+  (the plan had already dropped renv), so every R rule uses `--vanilla`. **Resolved 2026-07-18:** `.Rprofile` no
+  longer activates renv, so interactive R in this directory also sees the conda-owned library.
 - **(H) plink `--double-id` everywhere.** Sample IDs contain `_` (PE125_220, s_9_1, g_1); plink's default FID/IID
   split errors otherwise.
 - **(J) ADMIXTURE bed uses integer chromosomes** — `.bim` chr column stripped of the `chromosome_` prefix (portable
@@ -322,9 +437,9 @@ Every currentNe2 output is kept raw under `results/ne/raw/` for audit.
   branch) only fires when the input spans >1 chromosome — the un-pruned per-preset Set A does; a single-chromosome slice
   silently degrades to whole-genome. Unbounded / ≥1e7 upper bounds → `inf` (none occurred — actual CIs are wide-but-finite,
   e.g. Vietnam-lenient upper = 37,795; the plan's expectation of literal ∞ didn't materialise at these n).
-- **(P2-E) Cube = 12 rows (4 per preset) — clarifies the plan's "6 cells/preset".** Concrete enumeration: 3 presets ×
-  (3 `per_population` pops + 1 `pooled`=ALL) = **12 rows**. The plan's "3×2 = 6 … 6 cells/preset" double-counts (it conflates
-  the 6 preset×structure_mode *combinations* with per-cell rows); the operative count is 3 per-pop + 1 pooled = 4 rows/preset.
+- **(P2-E) Cube = 12 rows (4 per preset) — resolves an earlier plan miscount.** Concrete enumeration: 3 presets ×
+  (3 `per_population` pops + 1 `pooled`=ALL) = **12 rows**. The earlier "3×2 = 6 … 6 cells/preset" wording conflated
+  preset×structure-mode combinations with materialized population rows; §5 now states the operative 4 rows/preset.
   `validate_phase2.py` asserts exactly this shape.
 - **(P2-F) Cube schema + minimal app touch.** Columns: `filter_preset, structure_mode, population, ne_method, ne_point,
   ci_low, ci_high, n_ind, n_snps, k` (plan §5) **plus two provenance columns**: `ne_basis` (cross_chromosome|whole_genome) and
@@ -407,8 +522,9 @@ Deliverables: `results/tables/gbf_{ne500,robustness,populations_maintained,summa
   every preset. Also emits `fraction_not_fail` (the optimistic ceiling if every indeterminate resolved to pass) so the
   fragility span is explicit. pooled/ALL rows are excluded (Wahlund contrast, never a GBF input).
 - **(P3-B) Populations Maintained (PM) — curated, non-genomic.** Machine-readable source = `config/populations_maintained.tsv`
-  (per-country table; `maintained` ∈ {yes,no,swing}). `gbf_indicators.py` DERIVES the headline (yes/total = 6/10 = 0.60) and
-  the band (swing cases toggled → 0.60–0.80) from it — the band is computed, not hardcoded. Resolves the report's ponytail
+  (per-country table; `maintained` ∈ {yes,no,swing}). `gbf_indicators.py` DERIVES the headline and band rather than hardcoding
+  them. The 2026-07-18 live BirdLife country-table check resolved the former India/Laos swing flags to 7/10 = **0.70** and
+  a **0.70–0.70** band. Resolves the report's ponytail
   "no machine-readable TSV yet" note; the report md stays the human narrative and points at the TSV as the source.
 - **(P3-C) Robustness (angle C) = population × preset verdict matrix + a `stable` flag** (`gbf_robustness.tsv`). Finding: the
   *headline* (0/3 pass) is robust across presets, but **2/3 populations (Thailand, Yunnan) change verdict** and convergence
@@ -429,9 +545,9 @@ Deliverables: `results/tables/gbf_{ne500,robustness,populations_maintained,summa
   git-tracked outputs (cube + `gbf_*.tsv` + png), so the read-only deploy resolves on Streamlit Community Cloud.
 
 **Known follow-ups (deferred, not blockers):** (1) the NeEstimator-LDNe GUI cross-check + comparison table
-(`report/ne_crosscheck.md`) — the one genuinely manual step, off the DAG; (2) live IUCN/BirdLife per-country flag
-verification (India/Laos/N. Vietnam) before publication; (3) DEPLOY to Streamlit Community Cloud needs the user's account
-authorization — the app + `requirements.txt` are deploy-ready; (4) the wolf load tab lands in Phase 4.
+(`report/ne_crosscheck.md`) — the one genuinely manual step, off the DAG; (2) finer sub-country occurrence evidence would
+improve PM beyond its current coarse country units; (3) DEPLOY to Streamlit Community Cloud needs the user's account
+authorization — the app + `requirements.txt` are deploy-ready; (4) the wolf load tab landed in Phase 4.
 
 ---
 

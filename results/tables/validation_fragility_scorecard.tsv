@@ -1,0 +1,11 @@
+check	status	detail
+scorecard schema is exact	PASS	got ['conclusion_id', 'taxon', 'conclusion', 'classification', 'settings_supporting', 'settings_tested', 'support_fraction', 'conclusion_robust', 'only_magnitude_sensitive', 'observed_result', 'dominant_uncertainty', 'evidence_needed', 'source_tables', 'validation_evidence']
+four pre-specified conclusions present once	PASS	rows=4, ids=['peafowl_filter_dependence', 'peafowl_ne500_confidence', 'wolf_load_direction', 'wolf_threshold_magnitude']
+all four interpretation classes represented	PASS	classes=['fragile magnitude', 'insufficient evidence', 'method-dependent result', 'robust conclusion']
+scorecard exactly reconciles with source tables	PASS	cell-for-cell rebuild matches cube, GBF, wolf, and validation tables
+peafowl confidence headline reconciles with GBF counts	PASS	3/3 presets have zero confident population passes
+peafowl filter dependence reconciles with cube and robustness table	PASS	2/3 verdicts change; 5/9 cells non-converged
+wolf load direction reconciles across every GERP threshold	PASS	8/8 groups retain direction across 3 thresholds
+wolf magnitude ranges reconcile with load and ROH tables	PASS	mean realized load 0.093-0.172; mean F_ROH 0.167-0.226
+every conclusion records settings, uncertainty, and next evidence	PASS	required explanatory fields are non-empty for all rows
+offline figure is a non-empty PNG	PASS	signature=PNG, bytes=294846

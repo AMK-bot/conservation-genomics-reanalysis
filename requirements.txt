@@ -1,6 +1,6 @@
 # Slim deploy deps for the Streamlit fragility-explorer (Streamlit Community Cloud).
 # NOT the analysis stack — that's environment.yml (heavy conda bioinformatics env).
-# The app reads ONE prebuilt file (results/cube/results_cube.parquet) + config/config.yaml.
+# The app reads the prebuilt cube plus tracked GBF, scorecard, wolf, and figure outputs + config.
 # pyarrow is required even though nothing imports it: pd.read_parquet needs an engine.
 # streamlit floor 1.49 = first release with the unified `width="stretch"` element API the app
 # uses (the old use_container_width= is deprecated and removed after 2025-12-31); <2 caps the
