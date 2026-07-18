@@ -165,11 +165,19 @@ CLI-streaming-first throughout — the 12 GB VCF never enters RAM (verified: per
 
 ## 8. Phase 5 — Polish: tool + paper-grade report  ← **"two deliverables done" milestone**
 
+> **Status update (2026-07-18): COMPLETE locally.** Explorer polish, the limitations/evidence map,
+> paper-grade self-contained report, portable environment/repo hardening, and the recorded
+> clean-clone reproduction are complete. Public hosting remains optional and user-authorized.
+
 - Polish the explorer (captions, a **limitations panel** surfacing the §8 caveats — claim *risk* not *depression*, CIs, ascertainment, small-n power).
 - Write `report.qmd`: intro → methods → results → **limitations** → reproducibility statement.
 - Finalize repo: `environment.lock.yml` (R included — no `renv.lock`), Snakefile, config, README one-command reproduction (`micromamba create -f environment.lock.yml` → activate → `snakemake --cores N`). **Re-run the whole DAG from scratch to prove reproducibility.**
 
 ### Phase 5A — Admissions-facing process completion *(additive, local-first, no external blockers)*
+
+> **Status update (2026-07-18): COMPLETE — 24 PASS, 0 FAIL.** All six subphases pass the local
+> completion gate; `results/PHASE5A_VALIDATION.md` and `results/PHASE5A_REPRODUCIBILITY.md` record
+> the strict checks and the 162/162 clean-clone run. Phase 6 is ready to begin.
 
 This track strengthens the completed science as evidence of university-level biological reasoning. It
 **does not remove or replace any existing phase or deliverable.** It adds a controlled finish path whose
@@ -283,6 +291,10 @@ The following **remain in the overall plan but are not blockers for this gate**:
 publication, a permanent DOI, NeEstimator GUI work if it becomes slow or unreliable, new
 species/datasets, raw-read variant calling, and HPC/GPU analyses.
 None should delay the admissions-ready local artifact.
+
+**Gate result (2026-07-18): PASS.** The final validator reports **24 PASS / 0 FAIL**. Student-owned
+voice review and spoken rehearsal are still recommended before submission, while the public URL,
+NeEstimator GUI table, and formal preprint remain optional rather than missing subphases.
 
 ---
 

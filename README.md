@@ -78,9 +78,10 @@ data/         raw VCFs + intermediates (symlinked to internal SSD; see data/READ
 tools/        currentNe2 / GONE2 (built from source) — see tools/README.md
 ```
 
-See **CGplan.md** for the full execution plan and **SETUP.md** for environment setup
-status. Project status: **Phases 0–4 complete** (peafowl QC → structure → diversity →
+See **PROJECT_STATUS.md** for the current phase table, **CGplan.md** for the full execution plan,
+and **SETUP.md** for environment setup status. Project status: **Phases 0–5A complete locally**
+(peafowl QC → structure → diversity →
 $N_e$ cube → GBF indicators + local explorer; wolf genetic load + ROH, validated to the
-deposit's precomputed anchor). **Phase 5/5A is active:** report/reproducibility hardening plus the
-admissions-facing scorecard, evidence map, and offline communication package. Phase 6 remains the
-optional preprint stage.
+deposit's precomputed anchor; report/reproducibility hardening plus the admissions-facing scorecard,
+evidence map, and offline communication package). The strict Phase-5A gate is **24 PASS / 0 FAIL**,
+so Phase 6 is ready but remains an optional preprint stage.
