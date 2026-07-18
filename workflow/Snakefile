@@ -168,7 +168,7 @@ rule phase5a1:
 
 
 # ── Full Phase 5A outputs (admissions package + reproducibility gate) ──────────
-PHASE5A = PHASE5A1 + [
+PHASE5A = PHASE5A1 + WEBSITE_ASSETS + [
     "RESEARCH_JOURNEY.md",
     "INTERVIEW_NOTES.md",
     "admissions/demo_script.md",
@@ -183,6 +183,7 @@ PHASE5A = PHASE5A1 + [
     "results/APP_SMOKE.md",
     "results/logs/app_smoke.log",
     "results/PHASE5A_REPRODUCIBILITY.md",
+    "results/WEBSITE_VALIDATION.md",
     "results/tables/validation_phase5a.tsv",
     "results/PHASE5A_VALIDATION.md",
 ]

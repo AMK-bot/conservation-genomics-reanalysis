@@ -239,6 +239,9 @@ mistake, the evidence that revealed it, the correction, and the biological conse
 
 #### 5A.4 Offline admissions package
 
+- Add a root-level, dependency-free project website linking and explaining every public deliverable;
+  reuse validated project figures and keep all links functional offline/static-hosted.
+
 - Create a self-contained package that remains useful if no reviewer opens a live URL:
   - a graphical abstract;
   - a two-page illustrated research brief;

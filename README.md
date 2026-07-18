@@ -13,6 +13,10 @@ Two chapters:
 2. **Scandinavian wolf** (*Canis lupus*) — genetic load (realized vs masked) and ROH
    inbreeding history. Dryad `10.5061/dryad.7m0cfxpzj`.
 
+**[Open the complete project website](index.html)** — the admissions-facing summary, evidence gallery,
+searchable deliverable library, reproducibility record, and links to every public artifact. It is a
+dependency-free static site and works offline.
+
 ## Understand the project in 60 seconds
 
 ![Graphical abstract: two public genome datasets are stress-tested across defensible analyst choices to separate robust conclusions from sensitive magnitudes.](admissions/graphical_abstract.svg)
@@ -30,7 +34,7 @@ Two chapters:
 - **Boundary:** this demonstrates conservation risk and analytical sensitivity, not measured
   inbreeding depression or a new field estimate.
 
-Admissions-ready path: [two-page illustrated brief](admissions/research_brief.html) ·
+Admissions-ready path: [project website](index.html) · [two-page illustrated brief](admissions/research_brief.html) ·
 [research journey](RESEARCH_JOURNEY.md) · [interview notes](INTERVIEW_NOTES.md) ·
 [2–3 minute demo script](admissions/demo_script.md) · [offline technical report](report/report.html)
 
@@ -45,6 +49,9 @@ Admissions-ready path: [two-page illustrated brief](admissions/research_brief.ht
   matrix, and a GONE2 recent-trajectory context panel. (The N_e-method knob was dropped
   in Phase 2 — GONE2 measures a different time horizon, so it is context, not an axis.)
   A wolf tab separately exposes GERP and ROH-length sensitivity.
+- **Static project website** (`index.html`) — an offline-readable portfolio with the scientific
+  summary, visual evidence, searchable deliverable explanations, complete artifact index, and
+  reproduction instructions. Validate it with `python scripts/python/validate_website.py`.
 
 ## Reproduction
 
@@ -74,6 +81,7 @@ scripts/     python/ + R/ analysis scripts called by the rules
 results/      cube/ (results_cube.parquet) + tables/ + figures/
 app/          streamlit_app.py — the fragility explorer (reads the cube)
 report/       report.qmd — paper-grade methods/results/limitations
+website/      static-site CSS, JavaScript, favicon, and preview notes (entry point: index.html)
 data/         raw VCFs + intermediates (symlinked to internal SSD; see data/README.md)
 tools/        currentNe2 / GONE2 (built from source) — see tools/README.md
 ```
@@ -84,4 +92,5 @@ and **SETUP.md** for environment setup status. Project status: **Phases 0–5A c
 $N_e$ cube → GBF indicators + local explorer; wolf genetic load + ROH, validated to the
 deposit's precomputed anchor; report/reproducibility hardening plus the admissions-facing scorecard,
 evidence map, and offline communication package). The strict Phase-5A gate is **24 PASS / 0 FAIL**,
-so Phase 6 is ready but remains an optional preprint stage.
+and the separate static-website gate is **10 PASS / 0 FAIL**, so Phase 6 is ready but remains an
+optional preprint stage.

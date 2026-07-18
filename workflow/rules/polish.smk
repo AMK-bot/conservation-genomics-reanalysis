@@ -58,6 +58,30 @@ APP_ARTIFACTS = [
     "results/figures/temporal_diversity.png",
 ]
 
+WEBSITE_ASSETS = [
+    "index.html",
+    ".nojekyll",
+    "website/site.css",
+    "website/site.js",
+    "website/favicon.svg",
+    "website/README.md",
+]
+
+WEBSITE_DELIVERABLES = [
+    "admissions/research_brief.html",
+    "admissions/graphical_abstract.svg",
+    "report/report.html",
+    "RESEARCH_JOURNEY.md",
+    "INTERVIEW_NOTES.md",
+    "admissions/demo_script.md",
+    "app/streamlit_app.py",
+    "results/cube/results_cube.csv",
+    "results/tables/fragility_scorecard.tsv",
+    "results/PHASE5A_VALIDATION.md",
+    "results/PHASE5A_REPRODUCIBILITY.md",
+    "PROJECT_STATUS.md",
+]
+
 
 rule render_report_html:
     """Render the dynamically sourced technical report to an embedded HTML file."""
@@ -105,6 +129,20 @@ rule app_smoke:
         log = "results/logs/app_smoke.log",
     shell:
         "python {input.runner} --test {input.test} --out-md {output.md} --log {output.log}"
+
+
+rule validate_website:
+    """Check the static portal's structure, accessibility affordances, and every local link."""
+    input:
+        site         = WEBSITE_ASSETS,
+        deliverables = WEBSITE_DELIVERABLES,
+        script       = "scripts/python/validate_website.py",
+    output:
+        md = "results/WEBSITE_VALIDATION.md",
+    log: "results/logs/validate_website.log"
+    shell:
+        "python {input.script} --root . --html index.html --out {output.md} "
+        "> {log} 2>&1 || (cat {log}; exit 1)"
 
 
 rule validate_phase5a:
