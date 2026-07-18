@@ -5,6 +5,8 @@
 # Phases 1-4 are complete: QC/structure/diversity -> N_e cube -> GBF indicators ->
 # wolf load/ROH. Phase 5A adds lightweight synthesis outputs; the app only reads
 # tracked cube/table/figure products.
+# Rules invoke `python` from the activated environment: some macOS launchers place a
+# Framework `python3` ahead of conda on PATH even when the environment is active.
 
 configfile: "config/config.yaml"
 
@@ -88,7 +90,7 @@ rule validate_phase3:
         tsv = "results/tables/validation_phase3.tsv",
     log: "results/logs/validate_phase3.log"
     shell:
-        "python3 scripts/python/validate_phase3.py > {log} 2>&1 || (cat {log}; exit 1)"
+        "python scripts/python/validate_phase3.py > {log} 2>&1 || (cat {log}; exit 1)"
 
 
 # ── Phase 4 outputs (wolf genetic load + ROH; the app's wolf tab reads these) ──────
@@ -116,7 +118,7 @@ rule validate_phase4:
         tsv = "results/tables/validation_phase4.tsv",
     log: "results/logs/validate_phase4.log"
     shell:
-        "python3 scripts/python/validate_phase4.py > {log} 2>&1 || (cat {log}; exit 1)"
+        "python scripts/python/validate_phase4.py > {log} 2>&1 || (cat {log}; exit 1)"
 
 
 rule validate_phase2:
@@ -130,7 +132,7 @@ rule validate_phase2:
         tsv = "results/tables/validation_phase2.tsv",
     log: "results/logs/validate_phase2.log"
     shell:
-        "python3 scripts/python/validate_phase2.py > {log} 2>&1 || (cat {log}; exit 1)"
+        "python scripts/python/validate_phase2.py > {log} 2>&1 || (cat {log}; exit 1)"
 
 
 rule validate:
@@ -149,7 +151,7 @@ rule validate:
         tsv = "results/tables/validation_report.tsv",
     log: "results/logs/validate.log"
     shell:
-        "python3 scripts/python/validate.py > {log} 2>&1 || (cat {log}; exit 1)"
+        "python scripts/python/validate.py > {log} 2>&1 || (cat {log}; exit 1)"
 
 
 # ── Phase 5A.1 outputs (summary-table synthesis; no heavy bioinformatics) ───────

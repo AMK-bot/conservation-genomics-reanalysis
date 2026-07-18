@@ -21,7 +21,7 @@ rule fragility_scorecard:
         figure = "results/figures/fragility_scorecard.png",
     log: "results/logs/fragility_scorecard.log"
     shell:
-        "python3 {input.script} --cube {input.cube} --ne500 {input.ne500} "
+        "python {input.script} --cube {input.cube} --ne500 {input.ne500} "
         "--robustness {input.robust} --wolf-load {input.load} --wolf-roh {input.roh} "
         "--validation-phase2 {input.val2} --validation-phase3 {input.val3} "
         "--validation-phase4 {input.val4} --out-table {output.table} "
@@ -47,7 +47,7 @@ rule validate_fragility_scorecard:
         md  = "results/PHASE5A1_VALIDATION.md",
     log: "results/logs/validate_fragility_scorecard.log"
     shell:
-        "python3 {input.script} --cube {input.cube} --ne500 {input.ne500} "
+        "python {input.script} --cube {input.cube} --ne500 {input.ne500} "
         "--robustness {input.robust} --wolf-load {input.load} --wolf-roh {input.roh} "
         "--validation-phase2 {input.val2} --validation-phase3 {input.val3} "
         "--validation-phase4 {input.val4} --scorecard {input.scorecard} "

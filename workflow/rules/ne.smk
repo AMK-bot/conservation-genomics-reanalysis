@@ -72,7 +72,7 @@ rule currentne2_cell:
         # currentNe2 reads plain .vcf only; reduced-array build (8 GB-safe); cross-chrom needs the Morgans arg.
         {input.binary} -t {threads} -s {params.cap} -o {output.raw} $tmp/cell.vcf {params.genome} >> {log} 2>&1
         # n_ind is read from the raw output (what currentNe2 actually analyzed), not the keep-list count.
-        python3 scripts/python/currentne2_parse.py --output {output.raw} \
+        python scripts/python/currentne2_parse.py --output {output.raw} \
           --preset {wildcards.preset} --structure-mode {wildcards.mode} --population {wildcards.grp} \
           --ne-threshold {params.thresh} --out {output.tsv} >> {log} 2>&1
         rm -rf $tmp
@@ -89,7 +89,7 @@ rule assemble_cube:
     log: "results/logs/assemble_cube.log"
     shell:
         r"""
-        python3 scripts/python/assemble_cube.py --cells {input.cells} \
+        python scripts/python/assemble_cube.py --cells {input.cells} \
           --out-parquet {output.parquet} --out-csv {output.csv} > {log} 2>&1
         cat {log}
         """
@@ -105,7 +105,7 @@ rule cube_figure:
         thresh = _NE_THRESH,
     log: "results/logs/ne_cube_figure.log"
     shell:
-        "python3 scripts/python/plots.py cube --cube {input.cube} --threshold {params.thresh} "
+        "python scripts/python/plots.py cube --cube {input.cube} --threshold {params.thresh} "
         "--out {output.fig} > {log} 2>&1"
 
 
@@ -142,7 +142,7 @@ rule xcheck_table:
         tsv = "results/tables/ne_metapop_xcheck.tsv",
     log: "results/logs/ne_xcheck_collate.log"
     shell:
-        "python3 scripts/python/ne_xcheck_collate.py --out {output.tsv} {input.raws} > {log} 2>&1"
+        "python scripts/python/ne_xcheck_collate.py --out {output.tsv} {input.raws} > {log} 2>&1"
 
 
 rule neestimator_input:
@@ -162,7 +162,7 @@ rule neestimator_input:
     shell:
         r"""
         mkdir -p results/ne/neestimator
-        python3 scripts/python/vcf_to_genepop.py --vcf {input.vcf} --popmap {input.popmap} \
+        python scripts/python/vcf_to_genepop.py --vcf {input.vcf} --popmap {input.popmap} \
           --out {output.genepop} > {log} 2>&1
         """
 
@@ -202,8 +202,8 @@ rule gone2_context:
           -S {params.seed} -t {threads} -o $tmp/gone2 $tmp/g.vcf >> {log} 2>&1
         # -x writes _GONE2_Ne_mix (metapopulation), plain run writes _GONE2_Ne -> normalize either.
         if [ -f $tmp/gone2_GONE2_Ne_mix ]; then traj=$tmp/gone2_GONE2_Ne_mix; else traj=$tmp/gone2_GONE2_Ne; fi
-        python3 scripts/python/gone2_parse.py --infile $traj --out {output.ne} >> {log} 2>&1
+        python scripts/python/gone2_parse.py --infile $traj --out {output.ne} >> {log} 2>&1
         cp $tmp/gone2_GONE2_STATS {output.stats}
-        python3 scripts/python/plots.py gone2 --ne {output.ne} --out {output.fig} >> {log} 2>&1
+        python scripts/python/plots.py gone2 --ne {output.ne} --out {output.fig} >> {log} 2>&1
         rm -rf $tmp
         """

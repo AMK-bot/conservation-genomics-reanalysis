@@ -65,7 +65,7 @@ rule wolf_load_chrom:
     shell:
         r"""set -euo pipefail
         bcftools query -r {wildcards.c} -f '%CHROM\t%POS\t%REF\t%ALT\t%INFO/AA[\t%GT]\n' {input.vcf} \
-          | python3 {input.script} --gerp-bed {input.gerp} --samples {input.samples} \
+          | python {input.script} --gerp-bed {input.gerp} --samples {input.samples} \
               --popmap {input.popmap} --thresholds {params.thres} --out {output} > {log} 2>&1"""
 
 
@@ -79,7 +79,7 @@ rule wolf_load_merge:
         parquet = "results/tables/wolf_load.parquet",
     log: "results/logs/wolf_load_merge.log"
     shell:
-        "python3 {input.script} --inputs {input.chroms} --out-tsv {output.tsv} "
+        "python {input.script} --inputs {input.chroms} --out-tsv {output.tsv} "
         "--out-parquet {output.parquet} > {log} 2>&1"
 
 
@@ -112,6 +112,6 @@ rule wolf_roh_summarize:
         longcut = WCFG["roh"]["long_roh_threshold_mb"],
     log: "results/logs/wolf_roh_summarize.log"
     shell:
-        "python3 {input.script} --rg {input.rg} --lengths {input.lengths} --popmap {input.popmap} "
+        "python {input.script} --rg {input.rg} --lengths {input.lengths} --popmap {input.popmap} "
         "--cutoffs-mb {params.cutoffs} --long-cutoff-mb {params.longcut} "
         "--out-tsv {output.tsv} --out-parquet {output.parquet} > {log} 2>&1"

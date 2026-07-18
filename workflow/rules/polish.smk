@@ -104,7 +104,7 @@ rule app_smoke:
         md  = "results/APP_SMOKE.md",
         log = "results/logs/app_smoke.log",
     shell:
-        "python3 {input.runner} --test {input.test} --out-md {output.md} --log {output.log}"
+        "python {input.runner} --test {input.test} --out-md {output.md} --log {output.log}"
 
 
 rule validate_phase5a:
@@ -139,5 +139,5 @@ rule validate_phase5a:
         md  = "results/PHASE5A_VALIDATION.md",
     log: "results/logs/validate_phase5a.log"
     shell:
-        "python3 {input.script} --root . --out-tsv {output.tsv} --out-md {output.md} "
+        "python {input.script} --root . --out-tsv {output.tsv} --out-md {output.md} "
         "> {log} 2>&1 || (cat {log}; exit 1)"

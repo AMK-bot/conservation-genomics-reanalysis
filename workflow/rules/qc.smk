@@ -180,6 +180,6 @@ rule kin_screen:
         r"""
         plink2 --vcf {input.vcf} --allow-extra-chr --double-id --make-king-table --out results/qc/kinship > {log} 2>&1
         cp results/qc/kinship.kin0 {output.kin}
-        python3 scripts/python/plots.py kinship --kin0 {output.kin} \
+        python scripts/python/plots.py kinship --kin0 {output.kin} \
           --cutoff {params.cutoff} --popmap {input.popmap} --out {output.fig} >> {log} 2>&1
         """

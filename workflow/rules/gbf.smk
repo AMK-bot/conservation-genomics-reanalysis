@@ -20,4 +20,4 @@ rule gbf_indicators:
         summary  = "results/tables/gbf_summary.tsv",
     log: "results/logs/gbf_indicators.log"
     shell:
-        "python3 {input.script} > {log} 2>&1 || (cat {log}; exit 1)"
+        "python {input.script} > {log} 2>&1 || (cat {log}; exit 1)"

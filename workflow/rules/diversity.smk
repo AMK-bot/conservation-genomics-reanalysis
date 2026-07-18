@@ -25,7 +25,7 @@ rule diversity_perpop:
     log: "results/logs/diversity_perpop.log"
     shell:
         r"""
-        python3 scripts/python/diversity.py --vcf {input.vcf} --popmap {input.popmap} \
+        python scripts/python/diversity.py --vcf {input.vcf} --popmap {input.popmap} \
           --out-pop {output.perpop} --out-ind {output.ind} > {log} 2>&1
         """
 
@@ -43,7 +43,7 @@ rule allelic_richness_modern:
     log: "results/logs/allelic_richness_modern.log"
     shell:
         r"""
-        python3 scripts/python/to_hierfstat.py --vcf {input.vcf} --popmap {input.popmap} \
+        python scripts/python/to_hierfstat.py --vcf {input.vcf} --popmap {input.popmap} \
           --max-sites {params.maxsites} --complete-only --seed {_SEED} --out {output.hf} > {log} 2>&1
         Rscript --vanilla scripts/R/allelic_richness.R {output.hf} {output.ar} {output.bs} >> {log} 2>&1
         """
@@ -59,7 +59,7 @@ rule diversity_figure:
     log: "results/logs/diversity_figure.log"
     shell:
         r"""
-        python3 scripts/python/plots.py diversity --pop {input.perpop} --ind {input.ind} \
+        python scripts/python/plots.py diversity --pop {input.perpop} --ind {input.ind} \
           --ar {input.ar} --out {output.fig} > {log} 2>&1
         """
 
@@ -128,7 +128,7 @@ rule temporal_pi:
             --window-pi {params.win} --window-pi-step {params.step} \
             --out {params.pfx}_$grp > /dev/null 2>> {log}
         done
-        python3 -c "
+        python -c "
 import pandas as pd
 rows=[]
 for g in ['museum','modern']:
@@ -156,9 +156,9 @@ rule temporal_diversity:
     log: "results/logs/temporal_diversity.log"
     shell:
         r"""
-        python3 scripts/python/diversity.py --vcf {input.vcf} --popmap {input.popmap} \
+        python scripts/python/diversity.py --vcf {input.vcf} --popmap {input.popmap} \
           --out-pop {output.perpop} --out-ind {output.ind} > {log} 2>&1
-        python3 scripts/python/to_hierfstat.py --vcf {input.vcf} --popmap {input.popmap} \
+        python scripts/python/to_hierfstat.py --vcf {input.vcf} --popmap {input.popmap} \
           --max-sites {params.maxsites} --complete-only --seed {_SEED} --out {output.hf} >> {log} 2>&1
         Rscript --vanilla scripts/R/allelic_richness.R {output.hf} {output.ar} {output.bs} >> {log} 2>&1
         """
@@ -175,7 +175,7 @@ rule temporal_figure:
     log: "results/logs/temporal_figure.log"
     shell:
         r"""
-        python3 scripts/python/plots.py temporal --pi-museum {input.museum} \
+        python scripts/python/plots.py temporal --pi-museum {input.museum} \
           --pi-modern {input.modern} --div {input.div} --ar {input.ar} \
           --out {output.fig} > {log} 2>&1
         """

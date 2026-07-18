@@ -22,9 +22,9 @@ rule pca:
     log: "results/logs/pca.log"
     shell:
         r"""
-        python3 scripts/python/pca.py --vcf {input.vcf} --popmap {input.popmap} \
+        python scripts/python/pca.py --vcf {input.vcf} --popmap {input.popmap} \
           --n-components {_NPC} --out-coords {output.coords} --out-var {output.var} > {log} 2>&1
-        python3 scripts/python/plots.py pca --coords {output.coords} --var {output.var} \
+        python scripts/python/plots.py pca --coords {output.coords} --var {output.var} \
           --out {output.fig} >> {log} 2>&1
         """
 
@@ -67,7 +67,7 @@ rule admixture_collate:
     log: "results/logs/admixture_collate.log"
     shell:
         r"""
-        python3 scripts/python/plots.py admixture \
+        python scripts/python/plots.py admixture \
           --qdir results/qc/admixture --fam {input.fam} --popmap {input.popmap} \
           --Ks "{_KS}" --seeds "{_SEEDS}" \
           --out-cv {output.cvtsv} --out {output.fig} > {log} 2>&1
