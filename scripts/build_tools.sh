@@ -47,6 +47,14 @@ if [ ! -d "$TOOLS/GONE2" ]; then
   git -C "$TOOLS/GONE2" checkout 5896504c8f0f870debf274c1499ee4e491a4116e
 fi
 cd "$TOOLS/GONE2"
+# Upstream's -S option seeds the optimizer RNG, but the earlier SNP/locus shuffle is
+# initialized independently from std::random_device. Re-seed that mt19937 after
+# HandleInput has parsed -S so a recorded GONE2 command reproduces the same trajectory.
+# The guard keeps this source patch idempotent when build_tools.sh is run again.
+if ! grep -q 'deterministic -S locus shuffle' gone2.cpp; then
+  perl -0pi -e 's/  HandleInput\(argc, argv, &params\);/  HandleInput(argc, argv, \&params);\n\n  g.seed(static_cast<std::mt19937::result_type>(params.semilla));  \/\/ deterministic -S locus shuffle/' gone2.cpp
+fi
+grep -q 'deterministic -S locus shuffle' gone2.cpp || { echo "ERROR: GONE2 RNG-seed patch did not apply"; exit 1; }
 make macos CC='clang++ -arch x86_64' MAC_FLAGS="-w $OMP -std=c++11"
 echo "  -> $TOOLS/GONE2/gone2"
 

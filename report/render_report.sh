@@ -30,4 +30,9 @@ mkdir -p "${REPORT_RUNTIME_DIR}"
 export JUPYTER_RUNTIME_DIR="${REPORT_RUNTIME_DIR}"
 
 cd "${PROJECT_ROOT}"
-exec "${QUARTO_BIN}" render report/report.qmd --to html "$@"
+"${QUARTO_BIN}" render report/report.qmd --to html "$@"
+
+# Quarto's generated HTML contains version-dependent trailing spaces in embedded
+# scripts. Normalizing line endings keeps the tracked artifact diff-clean without
+# changing markup or rendered content.
+perl -pi -e 's/[ \t]+$//' "${PROJECT_ROOT}/report/report.html"
