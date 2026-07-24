@@ -1,0 +1,84 @@
+{
+  "analysis": "wolf_individual_froh_load_robustness_surface",
+  "claim_boundary": "Associations and rankings among genomic risk proxies; not fitness, causal inbreeding depression, or measured biological harm.",
+  "counts": {
+    "association_rows": 60,
+    "cell_pairs": 105,
+    "cohorts": 8,
+    "grid_cells": 15,
+    "individual_score_rows": 3165,
+    "individuals": 211,
+    "rank_stability_rows": 420
+  },
+  "findings": {
+    "partial_expected_direction_cells": 21,
+    "partial_masked_ci_negative_cells": 0,
+    "partial_realized_ci_positive_cells": 15,
+    "primary_expected_direction_cells": 30,
+    "roh_localization_gate_pass": true,
+    "roh_localization_reopen_min_cells": 12
+  },
+  "inputs": {
+    "config/config.yaml": "e51b79fdef037285e0efc383f06ffbc96b20f35d0bcfc3e6c14721c1ca7642f2",
+    "results/tables/wolf_load.tsv": "61826829ed830368c0f269a25d6b4a5fabf6093ecfe35177e7dfdbc177c77872",
+    "results/tables/wolf_roh.tsv": "e68854cf66d722daa689bb0295b2a6420c74c1d861fc15a453859c8023d1c0f1",
+    "scripts/python/wolf_froh_load_robustness.py": "9ac35fbfcb93aaf6e4522699ec16424ad713c02464372f880af96728245741b0"
+  },
+  "methods": {
+    "bootstrap": "Cohort-stratified resampling with replacement at original cohort sizes.",
+    "composite_risk_proxy": "Mean of within-POP F_ROH rank, realized-load rank, and inverse masked-load rank.",
+    "partial": "Partial correlation of within-POP ranks controlling the within-POP rank of GERP-covered generic homozygosity.",
+    "permutation": "F_ROH rank permuted independently within each cohort; two-sided Monte Carlo p-value.",
+    "primary": "Pearson association of within-POP fractional ranks.",
+    "top_overlap": "Exactly ceil(percentile * 211) individuals; deterministic IND tie-break."
+  },
+  "output_sha256": {
+    "results/figures/wolf_froh_load_forest.png": "ce8d770b4b4ab394bc7db9720ea4889fd6cebeda43a89254b33ab2d6a7ad0eae",
+    "results/figures/wolf_froh_load_surface.png": "1700c427201f61bd690df554a180721364baca1d37c7009ada74c1b00d8888dd",
+    "results/tables/wolf_froh_load_associations.tsv": "1b79eec3e30891291af9fa2893650b4a9b7c128f096b250167daf1dd3c5d9cf5",
+    "results/tables/wolf_froh_load_figure_values.tsv": "fffbfffac8f5afd749d54b6c8a02459731cb21688c840753a8521ff708c8c23b",
+    "results/tables/wolf_froh_load_individual_scores.tsv": "a115968d6977cc8022ab44ca51e0dfcdeec8d0cc4e5d3e6fb2cae5ec851ad993",
+    "results/tables/wolf_froh_load_rank_stability.tsv": "b43960fd24f615b48c282fb23c8c45569669b0ce61f7ad50a68e135c3dd62f3c"
+  },
+  "schema_version": "1.0",
+  "scientific_hash": "0d179e62439cd33b99a9562a71b4ac7116e7f33a051c2c6eea99522208c0eecb",
+  "scientific_hash_algorithm": "sha256 over labelled deterministic TSV bytes",
+  "scientific_hash_files": [
+    "results/tables/wolf_froh_load_associations.tsv",
+    "results/tables/wolf_froh_load_rank_stability.tsv",
+    "results/tables/wolf_froh_load_individual_scores.tsv",
+    "results/tables/wolf_froh_load_figure_values.tsv"
+  ],
+  "settings": {
+    "bootstrap_reps": 999,
+    "ci_pct": 95.0,
+    "gerp_thresholds": [
+      2.0,
+      3.0,
+      4.0
+    ],
+    "negative_control": "gerp_covered_genomewide_homozygosity",
+    "permutation_reps": 1999,
+    "roh_cutoffs_mb": [
+      0.1,
+      0.5,
+      1.0,
+      1.5,
+      2.0
+    ],
+    "seed": 1301,
+    "top_risk_percentiles": [
+      5.0,
+      10.0,
+      20.0,
+      25.0
+    ]
+  },
+  "software": {
+    "matplotlib": "3.11.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.3",
+    "python": "3.11.15",
+    "scipy": "1.17.1"
+  }
+}

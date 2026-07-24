@@ -1,0 +1,64 @@
+{
+  "analysis": "Phase 5B core communication contract",
+  "boundary": "Communication integration only; optional Sections 13.4/13.5 are not evaluated here.",
+  "inputs": {
+    "app": {
+      "path": "app/streamlit_app.py",
+      "sha256": "ad93b09dfda3314dc04a43adcd87a1c57557bff4ada8ba90674a3356caf08e56"
+    },
+    "config": {
+      "path": "config/config.yaml",
+      "sha256": "e51b79fdef037285e0efc383f06ffbc96b20f35d0bcfc3e6c14721c1ca7642f2"
+    },
+    "css": {
+      "path": "website/site.css",
+      "sha256": "841bb605aeae600039c8f234e6cea2e72fe5073d73d3410fcfb784b531999059"
+    },
+    "damage": {
+      "path": "results/tables/peafowl_damage_effects.tsv",
+      "sha256": "a938aeb0d0b1a7b21716ee89bae98b744b1360534cca5ae99c602d8a4a759bd5"
+    },
+    "damage_validation": {
+      "path": "results/tables/validation_peafowl_damage.tsv",
+      "sha256": "be950867a042e2112ad864a2b2605560280f1813973392b1723f1de29b1f9b3a"
+    },
+    "html": {
+      "path": "index.html",
+      "sha256": "4e8bfcf4144fa8528c5b8c81934cb2bd41a68f50ec371608031781796e005076"
+    },
+    "js": {
+      "path": "website/site.js",
+      "sha256": "cfe6c17193cbc88a7496af84056f7e338d80201a457143708a0b1aa37b9b148b"
+    },
+    "ne": {
+      "path": "results/tables/peafowl_ne_design_summary.tsv",
+      "sha256": "5a4e2e3cb055f91d92414a2d799ad4666539ec82a3ed9d9f936b4afdba89c58b"
+    },
+    "ne_validation": {
+      "path": "results/tables/validation_peafowl_ne_design.tsv",
+      "sha256": "a0ff0134995366b382227960f7075622a3f02ee6a686f99fcdef0cf7eb7071cf"
+    },
+    "report": {
+      "path": "report/report.qmd",
+      "sha256": "82c402bfadf69c4b25d8c69f88a85e458d1a8a84a4a24e92d2d25186fd2c13c3"
+    },
+    "wolf": {
+      "path": "results/tables/wolf_froh_load_associations.tsv",
+      "sha256": "1b79eec3e30891291af9fa2893650b4a9b7c128f096b250167daf1dd3c5d9cf5"
+    },
+    "wolf_validation": {
+      "path": "results/tables/validation_wolf_robustness.tsv",
+      "sha256": "110340425c42690ca861f91d4bbb39cbfaeeb5fdada4af2feaca0a61482e0186"
+    }
+  },
+  "order": [
+    "13.1",
+    "13.3",
+    "13.2",
+    "13.6"
+  ],
+  "output": {
+    "path": "results/tables/phase5b_core_claim_contract.tsv",
+    "sha256": "1d5e2cc81ae73610c06302a88a3012748a26c893c28a193a987344ace47cc178"
+  }
+}

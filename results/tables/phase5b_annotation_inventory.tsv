@@ -1,0 +1,11 @@
+definition	scope	annotation_class	n_unique_sites	duplicate_site_keys	source_file
+VEP	autosomes_plus_X	missense	24813	0	data/wolf/vep/Pol.2out.mac2/veptypes.chr1-X.txt
+VEP	autosomes_plus_X	nonsense	1040	0	data/wolf/vep/Pol.2out.mac2/veptypes.chr1-X.txt
+VEP	autosomes_plus_X	synonymous	34359	0	data/wolf/vep/Pol.2out.mac2/veptypes.chr1-X.txt
+VEP	autosomes_1_38	missense	24405	0	data/wolf/vep/Pol.2out.mac2/veptypes.chr1-X.txt
+VEP	autosomes_1_38	nonsense	1023	0	data/wolf/vep/Pol.2out.mac2/veptypes.chr1-X.txt
+VEP	autosomes_1_38	synonymous	33895	0	data/wolf/vep/Pol.2out.mac2/veptypes.chr1-X.txt
+SIFT	autosomes_plus_X	deleterious	4882	0	data/wolf/vep/Pol.2out.mac2/sifttypes.chr1-X.txt
+SIFT	autosomes_plus_X	tolerated	13213	0	data/wolf/vep/Pol.2out.mac2/sifttypes.chr1-X.txt
+SIFT	autosomes_1_38	deleterious	4809	0	data/wolf/vep/Pol.2out.mac2/sifttypes.chr1-X.txt
+SIFT	autosomes_1_38	tolerated	12981	0	data/wolf/vep/Pol.2out.mac2/sifttypes.chr1-X.txt

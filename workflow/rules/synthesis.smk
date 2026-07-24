@@ -20,6 +20,9 @@ rule fragility_scorecard:
         table  = "results/tables/fragility_scorecard.tsv",
         figure = "results/figures/fragility_scorecard.png",
     log: "results/logs/fragility_scorecard.log"
+    threads: 1
+    resources:
+        mem_mb = 1024
     shell:
         "python {input.script} --cube {input.cube} --ne500 {input.ne500} "
         "--robustness {input.robust} --wolf-load {input.load} --wolf-roh {input.roh} "
@@ -46,6 +49,9 @@ rule validate_fragility_scorecard:
         tsv = "results/tables/validation_fragility_scorecard.tsv",
         md  = "results/PHASE5A1_VALIDATION.md",
     log: "results/logs/validate_fragility_scorecard.log"
+    threads: 1
+    resources:
+        mem_mb = 1024
     shell:
         "python {input.script} --cube {input.cube} --ne500 {input.ne500} "
         "--robustness {input.robust} --wolf-load {input.load} --wolf-roh {input.roh} "

@@ -12,8 +12,10 @@ i.e. fields:  CHROM  POS  REF  ALT  AA  GT_1 ... GT_n   (n = 211 samples, VCF or
 plus the GERP bed slice for this chromosome (RS conservation score in column 5,
 keyed by the bed END coordinate == 1-based VCF POS, exactly as upstream).
 
-Derived allele = the non-ancestral allele (AA vs REF/ALT). A site is 'deleterious'
-at threshold t only if its GERP RS > t. Per individual we accumulate, in ONE pass:
+Derived allele = the non-ancestral allele (AA vs REF/ALT). A site enters the
+GERP-defined predicted-impact class at threshold t only if its GERP RS > t; this
+label is a conservation-score proxy, not evidence of individual harm. Per individual
+we accumulate, in ONE pass:
   threshold-independent : tot_der, hom_der, calls, miss
   per threshold t       : n_del, n_hom_del, and the GERP-weighted
                           sum / hom_del_sum / het_del_sum

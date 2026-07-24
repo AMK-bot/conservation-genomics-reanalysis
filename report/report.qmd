@@ -1,13 +1,14 @@
 ---
 title: "Genetic status across the conservation-genomics toolkit: GBF indicators, contemporary N_e, and genetic load — and how fragile each verdict is to analyst choices"
 author: "andakprapakorn"
-date: "2026-07-18"
+date: "2026-07-19"
 format:
   html:
     toc: true
     number-sections: true
     code-fold: true
     embed-resources: true
+    html-math-method: mathml
 bibliography: references.bib
 execute:
   echo: false
@@ -44,8 +45,8 @@ new Global Biodiversity Framework (GBF) genetic-diversity indicators applied to 
 peafowl (*Pavo muticus*), and (2) realized-versus-masked genetic load in the inbred Scandinavian wolf
 (*Canis lupus*). The cross-cutting question is not "what is the number?" but **"how fragile is the
 verdict to defensible analyst choices?"** — filtering stringency, whether population structure is
-modelled, the GERP threshold that defines a deleterious site, and the run-of-homozygosity length that
-counts as inbreeding. Where a headline moves under choices a competent analyst could each justify, we
+modelled, the GERP threshold that defines an operational predicted-impact site class, and the
+run-of-homozygosity length used as an autozygosity proxy. Where a headline moves under choices a competent analyst could each justify, we
 report the movement itself as the result.
 
 The GBF adopted a genetic-diversity target — the proportion of populations with effective size
@@ -55,6 +56,15 @@ The wolf chapter provides a contrasting, data-rich case where the source study [
 per-individual load table we can reproduce exactly, letting us separate genuine signal from analyst
 sensitivity.
 
+**Phase 5B status: COMPLETE.** This Quarto source does not
+recompute the Phase-5B analyses: `load_report_values()` validates and reads the generated workflow tables
+and six-row claim trace, and the render stops if a required output or column is absent. The frozen outcomes
+are **15/15**, **1/4**, **0/15**, **IMPLEMENT**, **24/24**, and
+**DEFER_DUPLICATES_SOURCE_STUDY**; the sections below preserve the uncertainty and scientific boundary
+attached to each value. Two isolated clean-science builds, final-source reconciliation, bounded-memory
+evidence, matching hashes/manifests, and no-op verification are recorded in the
+[Phase-5B reproducibility record](../results/PHASE5B_REPRODUCIBILITY.md).
+
 # Methods
 
 ## Data
@@ -62,15 +72,18 @@ sensitivity.
 - **Green peafowl** — @dong2021, Dryad `10.5061/dryad.ffbg79ctc`. Modern resequencing across three
   regional populations plus six museum specimens. After a kinship screen (below) the analysis set is
   **`{python} R.peafowl_n` unrelated individuals** across **`{python} R.population_n`**;
-  Cambodia (n = 1) is dropped. A separate museum-versus-modern comparative callset supports the
-  temporal-erosion angle (`{python} R.museum_n` museum and `{python} R.modern_temporal_n` modern
-  individuals after comparative-sample QC).
+  Cambodia (n = 1) is dropped. A separate, geographically mismatched museum-versus-modern comparative
+  callset supports a period-labelled sample contrast (`{python} R.museum_n` museum and
+  `{python} R.modern_temporal_n` modern individuals after comparative-sample QC), not an estimate of
+  temporal genetic erosion because period and geography are not separated by design.
 - **Scandinavian wolf** — @smeds2022, Dryad `10.5061/dryad.7m0cfxpzj`. `{python} R.wolf_n` individuals with
   ancestral-allele-polarized SNPs (`INFO/AA`, two outgroups), VEP/SIFT coding annotation, and
   per-site GERP conservation scores. Individuals carry a time-period label (founding cohort ~1983
   through 2007–2014) plus outbred references (Finland, Russia, immigrants).
 
-All analyses start from the deposited VCFs (no re-calling from reads); every threshold lives in
+All empirical genomic analyses start from the deposited VCFs (no re-calling from reads). The
+country-level Populations Maintained indicator starts from a versioned curated table, and the design
+calibration adds transparent bounded neutral simulations. Every threshold lives in
 `config/config.yaml`, and the fragility axes *are* that config made executable.
 
 ## QC and filtering (peafowl)
@@ -93,7 +106,7 @@ invoking currentNe2's cross-chromosome ("no genetic map needed") mode [@santiago
 would destroy the very signal being measured. The *structure* knob contrasts **modelled**
 (`per_population`, the three values feeding the GBF fraction) with **ignored** (`pooled`, all 22
 lumped — a Wahlund-biased cautionary contrast). NeEstimator-LDNe is a manual field-standard
-cross-check outside the DAG; **GONE2** provides a recent-trajectory *context* panel only (a borrowed
+comparison planned outside the DAG but **not run**; **GONE2** provides a recent-trajectory *context* panel only (a borrowed
 avian recombination rate, macrochromosomes only), never the contemporary indicator [@waples2024].
 
 ## GBF indicators (peafowl)
@@ -108,15 +121,64 @@ $N_e{:}N_c = 0.1$ [@frankham]. The three-state verdict — pass / fail / **indet
 ## Genetic load and ROH (wolf)
 
 Per-individual load faithfully re-implements @smeds2022's `gerp_load_polarized.py`. For each SNP the
-derived allele is the non-ancestral allele (`INFO/AA`); a site is **deleterious** at threshold $t$ if
-its GERP RS score $> t$. Per individual we accumulate, in a single per-chromosome VCF stream,
-GERP-weighted **realized** load ($\sum 2g$ over homozygous-derived deleterious sites $/$ calls) and
-**masked** load ($\sum g$ over heterozygous deleterious sites $/$ calls), summing raw counts across
+derived allele is the non-ancestral allele (`INFO/AA`); a site enters the operational
+**GERP-defined predicted-impact class** at threshold $t$ if its GERP RS score $> t$. Per individual
+we accumulate, in a single per-chromosome VCF stream, GERP-weighted **realized** load ($\sum 2g$
+over homozygous-derived sites in that class $/$ calls) and **masked** load ($\sum g$ over
+heterozygous sites in that class $/$ calls), summing raw counts across
 chromosomes. We extend the source method by sweeping the GERP threshold over **{2, 3, 4}** in one pass
 — the wolf-side fragility knob — while GERP > 4 reproduces the deposit's precomputed table exactly
 (Results). Runs of homozygosity are called with `bcftools roh` (GT-based HMM, a documented constant
 recombination rate) and summarized as per-individual $F_{ROH}$ swept over a ROH-length cutoff, with
-long ROH ($\geq 1.5$ Mb) read as recent inbreeding [@bertorelle2022].
+long ROH ($\geq 1.5$ Mb) used as a proxy for more recent autozygosity [@bertorelle2022].
+
+## Phase-5B falsification and decision analyses
+
+The extension was executed in a fixed order, with each independent validator acting as the next
+analysis gate. For the museum–modern comparison, all-SNP estimates were paired with
+**transversion-only** estimates; all $\binom{11}{5}=462$ museum-label allocations were evaluated;
+six equal-$n$ modern omissions and all 11 leave-one-individual cases were retained; and uncertainty
+came from 999 seeded 5-Mb chromosome-block resamples. Raw-comparative genomic opportunity remains
+the denominator for $\pi$, while normalized complete-call autosomal SNPs remain the basis for
+$H_o$, $H_e$, and analytically rarefied allelic richness. These checks can reduce a damage concern;
+they cannot separate collection period from the deposited groups' geographic mismatch.
+
+For the $N_e$ design analysis, neutral monoecious diploid ideal Wright–Fisher scenarios used a
+shared-parent pedigree. Each offspring gamete selected one parent genome-wide; Mendelian inheritance
+with Haldane recombination then operated along 32 one-Morgan chromosomes for 15 generations. Loci
+were initialized in Hardy–Weinberg equilibrium, retained only when polymorphic in the smallest
+nested sample ($n=5$), and reused in nested individual panels of 5/10/15/20/30 and balanced nested
+marker panels of 250/500/1,000 for known $N_e=100/250/500/1{,}000$. Free assortment makes
+cross-chromosome disequilibrium approach its drift equilibrium rapidly, which is why the
+cross-chromosome currentNe2 estimate is the prespecified headline; 15 generations do not guarantee
+within-chromosome drift–recombination equilibrium. Every attempt—including timeout, parse failure,
+or non-convergence—passed through the same currentNe2 binary, 90% interval parser, and decision rule
+as the empirical cube. The seeded pilot was repeated identically before bounded expansion.
+
+Empirical individual/marker downsampling stayed within each real population's observed sample size
+and has **unknown truth**; it is never scored correct or incorrect. Scenario Wilson intervals
+quantify Monte-Carlo uncertainty across simulated replicates. At the observed empirical $n$,
+repetitions necessarily reuse the single available individual subset, and lower-$n$ subsets overlap;
+empirical Wilson bands therefore summarize seeded subset/marker-panel sensitivity, not independent
+biological-sampling uncertainty. The scenarios calibrate this estimator/decision pipeline, not
+peafowl history or a promise that an exact real sample size will resolve the indicator.
+
+For wolves, all 211 load/ROH records were joined across the frozen 3 GERP $\times$ 5 ROH grid.
+Within-cohort fractional ranks were associated with realized and masked load; cohort-stratified
+bootstrap intervals and within-cohort permutations preserve the grouping structure. A partial model
+controls the within-cohort rank of generic GERP-covered genotype homozygosity, providing a
+predeclared mathematical-coupling check. Individual risk-proxy ranking uses the mean of $F_{ROH}$
+rank, realized-load rank, and inverse masked-load rank. These remain associations among genomic
+proxies, not genotype–fitness or causal inbreeding-depression estimates.
+
+After the predeclared negative-control gate opened, ROH localization streamed the indexed wolf VCF
+one chromosome at a time. For every individual and frozen GERP/ROH cell, homozygous-derived
+GERP-weighted burden was partitioned inside versus outside the individual's ROH intervals and divided
+by eligible polarized GERP-threshold SNP genotype calls. The partitions reconcile to Phase 4, and ROH interval unions
+reconcile to $F_{ROH}$. Each of 199 seeded null replicates circularly shifts an individual's complete
+set of intervals within the same chromosome, preserving chromosome and interval lengths while
+sampling the fixed eligible-SNP-genotype and burden landscapes. Cohort enrichment is compared with that
+position null. This tests genomic co-localization, not organismal harm or causation.
 
 # Results
 
@@ -130,14 +192,40 @@ a "best $K$". Thailand is least diverse (expected heterozygosity
 `{python} f"{R.thailand_he:.3f}"`; rarefied allelic richness `{python} f"{R.thailand_ar:.2f}"`), and
 Yunnan shows a heterozygote deficit ($F_{IS}$ = `{python} f"{R.yunnan_fis:.3f}"`) consistent with elevated within-population
 relatedness. The museum-versus-modern temporal contrast (angle G) is **weak and metric-dependent**:
-median $\pi$ and $H_o$ are marginally higher in museum specimens (erosion-consistent), but $H_e$ and
-rarefied allelic richness are essentially flat. We report a direction, not an erosion claim, with
+median $\pi$ and $H_o$ are marginally higher in museum specimens, but $H_e$ and
+rarefied allelic richness are essentially flat. We report a geography-confounded sample contrast, not an erosion claim, with
 aDNA-deamination and geographic-mismatch caveats.
 
 ![Peafowl population structure on the first two PCA axes, computed from the LD-pruned derivative of
 Set A. Separation supports population-aware analysis, while low per-axis variance and small sample
 sizes limit how strongly the geometry should be interpreted.](../results/figures/pca.png){#fig-pca
 fig-alt="Scatterplot of peafowl samples on PCA axes one and two, coloured by population." width="90%"}
+
+## Peafowl: damage-aware falsification {#damage-aware-falsification}
+
+The weak temporal contrast does **not** become a temporal-erosion claim. Only
+`{python} R.damage_concordant_metrics`/4 metrics retain a museum-higher direction through every
+predeclared damage and individual-influence check, and exact-label p-values span
+`{python} f"{R.damage_exact_p_low:.3f}–{R.damage_exact_p_high:.3f}"`. Transversion filtering retains
+the sign of each metric, but $H_e$ and allelic richness are modern-higher; $H_o$ is also
+single-individual-sensitive. The 5-Mb block intervals show the effect sizes rather than reducing the
+result to significance labels. Most importantly, the source groups still differ in geography as
+well as collection period. The defensible conclusion remains a **sample contrast with mixed metric
+directions**, not temporal genetic erosion.
+
+```{python}
+#| label: tbl-damage-effects
+#| tbl-cap: "Museum-minus-modern effects under all-SNP and transversion-only definitions."
+R.damage_effects[[
+    "variant_set", "metric", "effect_museum_minus_modern", "ci_low", "ci_high",
+    "exact_permutation_p_two_sided", "direction",
+]]
+```
+
+![Damage-aware museum–modern effect intervals and individual-influence diagnostics. All effects are
+shown, including modern-higher and individually fragile results; the geographic mismatch remains a
+design limit under every row.](../results/figures/peafowl_damage_falsification.png){#fig-damage-aware
+fig-alt="Forest plot of four museum-minus-modern diversity effects for all SNPs and transversions, plus leave-one-individual influence points." width="95%"}
 
 ## Peafowl: contemporary $N_e$ and the fragility of the GBF verdict
 
@@ -166,17 +254,35 @@ why the estimate magnitudes are fragile even though the no-confident-pass headli
 the per-population cells feed the GBF indicator.](../results/figures/ne_cube.png){#fig-ne-cube
 fig-alt="Point and interval plot of currentNe2 estimates across filters and structure treatments, with a threshold at 500." width="90%"}
 
-## Peafowl: the two GBF indicators disagree
+## Peafowl: $N_e$ sample-design calibration {#ne-sample-design-calibration}
 
-The genomic indicator gives **`{python} R.ne_headline` populations $N_e$-secure**, whereas **Populations Maintained =
+`{python} R.ne_design_claim` The frozen result is **0/15** simulated sample-size/marker designs resolving
+both predeclared resolution truths ($N_e=250$ and $N_e=1{,}000$) under the predeclared two-sided rule; the corresponding compact design reading is
+**`{python} R.ne_design_estimate`**. Correct-confident, incorrect-confident, indeterminate, and
+execution-failure rates remain separate, with 95% Wilson intervals shown in the machine table.
+True $N_e=500$ is treated as a boundary and is never scored as correct or incorrect. The empirical
+panel is deliberately labelled sensitivity rather than validation because the true $N_e$ of those
+downsampled birds is unknown, the observed-$n$ repetitions reuse individuals, and lower-$n$ subsets
+overlap. No tested configuration therefore supports an exact sample-size prescription: the neutral
+scenarios calibrate this estimator/decision pipeline and are not a guarantee for a future real peafowl
+collection.
+
+![Known-truth neutral scenario resolution by sampled individuals and marker density (top), separated
+from observed-range empirical convergence (bottom). The empirical panel has no correctness score.
+](../results/figures/peafowl_ne_design.png){#fig-ne-design
+fig-alt="Heatmaps of scenario decision resolution and empirical estimator convergence across sample size and marker density." width="95%"}
+
+## Peafowl: the two GBF indicators give contrasting, non-equivalent readings
+
+The genomic indicator gives **`{python} R.ne_headline` sampled populations confidently classified above $N_e>500$**, whereas **Populations Maintained =
 `{python} R.pm_detail`**. All three sampled populations lie
-within the "maintained" set — yet none is genetically secure. Range-wide census
+within the "maintained" set — yet none is confidently classified above the threshold. Range-wide census
 (~`{python} R.census_value` mature, EN) nominally clears the $N_c \geq `{python} f"{R.nc_proxy:,.0f}"`$
 proxy, but that is the wrong denominator for a
-*per-population* indicator: the species is fragmented into subpopulations far below it (e.g. Keo Seima
-~`{python} R.cambodia_count`). **Still present ≠ genetically viable** — the gap between the two Goal-A indicators is the
-communicable point, and a caution for reporters who might read occupancy-based indicators as
-sufficient.
+*per-population* indicator: no matched population-level census denominator is available for the
+three sampled cells, and fragmentation prevents translating a range-wide total into one. **Still
+present ≠ confidence that a genomic proxy clears its threshold** — the two Goal-A indicators answer
+different questions and must be reported together.
 
 ## Wolf: exact reproduction, then the fragility axes
 
@@ -190,16 +296,88 @@ realized versus `{python} f"{R.scandinavian_masked_low:.3f}–{R.scandinavian_ma
 whereas outbred references (**Finland, Russia, immigrants**) carry **masked > realized**
 (`{python} f"{R.outbred_masked_low:.3f}–{R.outbred_masked_high:.3f}"` masked versus
 `{python} f"{R.outbred_realized_low:.3f}–{R.outbred_realized_high:.3f}"` realized) — the masked-to-realized
-conversion expected when inbreeding exposes recessive load [@smeds2022; @bertorelle2022].
+group pattern reported by the source study and consistent with recessive-load exposure
+[@smeds2022; @bertorelle2022]. This reanalysis does not by itself identify a causal conversion.
 
 Both knobs move magnitude but not the pattern. Mean realized load falls `{python} R.load_means` across
 GERP `{python} R.load_thresholds` (a stricter conservation filter keeps fewer, higher-confidence
 sites), and mean $F_{ROH}$ falls `{python} f"{R.roh_mean_low:.3f}"` →
 `{python} f"{R.roh_mean_high:.3f}"` as the ROH-length cutoff rises
-`{python} f"{R.roh_low_cutoff:g}"` → `{python} f"{R.roh_high_cutoff:g}"` Mb (separating recent long ROH from
-ancient background). The realized-versus-masked *direction* is robust to the GERP threshold — the
+`{python} f"{R.roh_low_cutoff:g}"` → `{python} f"{R.roh_high_cutoff:g}"` Mb (shifting the long-ROH
+autozygosity proxy away from shorter background homozygosity). The realized-versus-masked *direction* is robust to the GERP threshold — the
 wolf-side counterpart to the peafowl fragility finding: the number depends on the choice, the signal
 does not.
+
+## Wolf: individual-level association and negative control {#wolf-individual-association}
+
+The frozen claim-trace outcome is **15/15 primary and 15/15 partial realized-load intervals above
+zero**. The primary within-cohort rank association between $F_{ROH}$ and realized load is
+`{python} f"{R.wolf_primary_realized_low:.3f}–{R.wolf_primary_realized_high:.3f}"` across the 15 cells.
+After controlling generic GERP-covered homozygosity it remains
+`{python} f"{R.wolf_partial_realized_low:.3f}–{R.wolf_partial_realized_high:.3f}"`, with
+`{python} R.wolf_partial_realized_ci_positive`/15 cohort-bootstrap intervals entirely above zero.
+The analogous partial masked-load association has `{python} R.wolf_partial_masked_ci_excluding_zero`/15
+intervals excluding zero. Risk-proxy rankings are stable across the grid (Spearman
+`{python} f"{R.wolf_rank_spearman_low:.3f}–{R.wolf_rank_spearman_high:.3f}"`; minimum tested top-set
+overlap `{python} f"{100 * R.wolf_rank_overlap_low:.1f}"`%). The negative control therefore supports
+proceeding to the predeclared ROH-localization test, but it does not turn proxy covariation into a
+fitness or causal claim.
+
+![Within-cohort F_ROH–load associations across every GERP and ROH cutoff, before and after the
+generic-homozygosity control.](../results/figures/wolf_froh_load_surface.png){#fig-wolf-association
+fig-alt="Four heatmaps showing realized and masked load rank associations before and after controlling generic homozygosity." width="95%"}
+
+## Wolf: ROH-localized realized burden {#wolf-roh-localization}
+
+`{python} R.roh_localization_claim` The frozen long-ROH result is **24/24** population-by-GERP cells
+beyond the null (**GERP > 2: 8/8; GERP > 3: 8/8; GERP > 4: 8/8**). At the predeclared 1.5-Mb
+long-ROH cutoff, observed log2
+inside/outside burden-per-eligible-genotype-call ratios span
+`{python} f"{R.roh_localization_log2_low:.3f}–{R.roh_localization_log2_high:.3f}"`; the exact
+cell-wise support count is `{python} R.roh_localization_support_cells`/24
+(`{python} R.roh_localization_support_by_threshold`). A cell is beyond-null only when its observed
+enrichment exceeds the 97.5th percentile of 199 within-chromosome circular ROH shifts **and** its
+plus-one two-sided permutation p-value is at most 0.05. Every population, GERP threshold, and ROH
+cutoff remains in the machine tables regardless of direction or p-value.
+
+Inside plus outside burden, derived copies, and eligible genotype-call opportunity reconcile to the
+validated Phase-4 genome-wide totals; independently rebuilt ROH unions reconcile to $F_{ROH}$. One
+denominator unit is a nonmissing diploid genotype at a variant-only allSNPs record with an exact GERP
+key, valid ancestral-allele polarization, and score strictly above the selected threshold. It is an
+assayed-SNP opportunity denominator, not callable genomic bases; circular shifts preserve the
+observed SNP/GERP landscape but cannot remove every ascertainment effect. This is localization of one
+genomic risk proxy within another and therefore mechanistic support only—not measured individual
+harm, fitness, causal inbreeding depression, or a management-unit result.
+
+```{python}
+#| label: tbl-wolf-roh-localization
+#| tbl-cap: "Cohort ROH-localization results at the predeclared 1.5-Mb cutoff."
+R.roh_localization_primary[[
+    "POP", "gerp_threshold", "n_ind", "inside_eligible_genotype_calls",
+    "outside_eligible_genotype_calls", "log2_enrichment", "null_ci_low", "null_ci_high",
+    "permutation_p_two_sided", "beyond_null",
+]]
+```
+
+![Observed ROH-localized burden at 1.5 Mb, with circular-shift null medians and intervals for every
+cohort and GERP threshold.](../results/figures/wolf_roh_localization_forest.png){#fig-wolf-roh-localization
+fig-alt="Forest panels comparing observed inside-versus-outside ROH burden enrichment with within-chromosome circular-shift null intervals." width="95%"}
+
+![ROH-localized burden across the complete frozen three-GERP by five-ROH-cutoff grid; ribbons are
+circular-shift null intervals, not fitness-effect intervals.](../results/figures/wolf_roh_localization_ribbon.png){#fig-wolf-roh-localization-grid
+fig-alt="Three panels of cohort burden enrichment across five ROH cutoffs with circular-shift null ribbons." width="95%"}
+
+## Optional-study decisions {#optional-study-decisions}
+
+Section 13.4 is **`{python} R.section134_decision`**—the validated **IMPLEMENT** decision:
+`{python} R.section134_evidence`. Section 13.5 is **`{python} R.section135_decision`**—the validated
+**DEFER_DUPLICATES_SOURCE_STUDY** decision: `{python} R.section135_evidence`. The latter records
+**0/1 independent annotation definitions** and **211/211 common samples**, avoiding presentation of the
+source study's own VEP/SIFT/GERP comparison as independent triangulation. It reopens only with at least
+one annotation definition independent of the deposited source classes, at least 0.95 common-sample
+coverage, and at least 0.90 auditable callable-denominator coverage. Predicted-impact classes remain risk
+proxies, not proven harmful variants. Both decisions and their numeric reopening conditions are
+machine-readable and independently validated in `results/tables/phase5b_optional_decisions.tsv`.
 
 ![Cross-chapter fragility scorecard computed from the existing peafowl cube, GBF tables, wolf-load
 table, and wolf-ROH table. Categories summarize stability under the settings tested here; they are
@@ -211,32 +389,52 @@ fig-alt="Scorecard classifying project conclusions as robust, magnitude-sensitiv
 We claim **risk, not demonstrated inbreeding depression**. For the peafowl, small per-population $n$
 (`{python} R.population_n_compact`) yields wide $N_e$ CIs and many *indeterminate* verdicts by construction; the estimates should
 not be cited as point values, and the temporal contrast is geographically narrow and aDNA-sensitive.
-Both chapters are **reanalyses of published data**, so the peafowl conclusion ("small, fragmented
-populations have small $N_e$") is expected rather than novel, and the wolf load reproduces a published
+Both empirical chapters are **reanalyses of published data**, so the peafowl conclusion (none of the
+three sampled populations is confidently classified above $N_e>500$ under the tested cells) is a
+bounded indicator result rather than proof of genetic erosion, and the wolf load reproduces a published
 result. The genuine contribution is methodological: a quantified demonstration that a live policy
 indicator (the GBF $N_e > 500$ verdict) and a load estimate are sensitive to defensible analyst
-choices, with the two GBF indicators shown to disagree on the same species. GONE2 (borrowed rate) and
+choices, with the two non-equivalent GBF indicators shown to give contrasting readings for the same
+species. GONE2 (borrowed rate) and
 the ROH recombination rate (no dense wolf map) are documented approximations. The fragility cube
 quantifies, rather than hides, this uncertainty.
+
+Phase 5B does not remove the source designs' boundaries. Transversion filtering reduces one ancient-
+DNA concern but cannot remove all museum-specific technical bias or the time–geography confounding.
+The neutral $N_e$ scenarios use an idealized 32-chromosome pedigree with explicit linkage and
+recombination, but simplify chromosome lengths, recombination architecture, and population history
+and omit mutation, selection, migration, population structure, and demographic change; their
+known-truth rates calibrate the implemented decision rule only. The wolf partial analysis
+controls one generic-homozygosity proxy, not every possible shared denominator or cohort process.
+The ROH-localization null preserves each interval's chromosome and length through circular shifts,
+but it is still a genomic position null rather than an experiment or genotype–fitness design. All
+Monte-Carlo failures and indeterminate outcomes remain in their denominators.
 
 # What evidence would change the conclusion?
 
 The limitations above are decision points, not promises to collect more data. This evidence map
-identifies the smallest defensible next observation for each unresolved inference; none is required
+identifies the next evidence or predeclared decision rule for each unresolved inference; none is required
 to reproduce the present analysis.
 
-| Current conclusion | What remains unresolved | Most useful next evidence | How it would change the decision |
+| Current conclusion | What remains unresolved | Next evidence or decision rule | How it would change the decision |
 |---|---|---|---|
-| No sampled peafowl population confidently clears $N_e>500$. | Wide confidence intervals and non-convergence at population sample sizes `{python} R.population_n_compact`. | More independently sampled individuals **per population**. | Narrower intervals could turn an indeterminate cell into pass or fail; until then, retain the three-state verdict. |
+| No sampled peafowl population confidently clears $N_e>500$. | Wide confidence intervals and non-convergence at population sample sizes `{python} R.population_n_compact`. | A prospectively calibrated design testing more individuals per population before relying on higher marker density; the tested landscape yielded 0/15 qualifying designs and no exact sample-size prescription. | A newly validated design could turn an indeterminate cell into pass or fail; until then, retain the three-state verdict. |
 | The GONE2 trajectory is consistent with recent decline but is context only. | Peafowl linkage distances are approximated with a borrowed avian recombination rate. | A species-specific recombination map. | It would test the trajectory's timing and scale; it would not replace currentNe2 as the contemporary GBF input. |
 | Genomic patterns indicate inbreeding risk, not demonstrated inbreeding depression. | The project has no direct measure of survival, fertility, or reproductive success. | Individual fitness and reproductive measurements linked to genomic inbreeding. | A genotype–fitness association could support a depression claim; load and ROH alone cannot. |
 | Populations Maintained is `{python} R.pm_detail` at country resolution. | Country-level presence can hide sub-country loss and fragmentation. | Verified, time-stamped sub-country occurrence or occupancy records. | Finer records would revise the PM denominator/numerator and show whether nominally extant units retain multiple populations. |
-| Adding loci alone is unlikely to resolve the peafowl uncertainty. | Millions of SNPs do not create more independent genomes; LD-based uncertainty is dominated by very small individual samples. | Prioritize additional individuals before additional SNP density. | If uncertainty shrinks with more individuals, sampling—not marker count—was limiting; otherwise estimator/model choice needs renewed scrutiny. |
+| The $N_e$ landscape is scenario calibration, not a real-sample guarantee. | Simplified neutral truth does not reproduce peafowl history or ascertainment; empirical subsets overlap and have unknown truth. | A design resolves both simulated $N_e=250/1{,}000$ only when correct-confident Wilson lower $\geq0.70$ and incorrect-confident upper $\leq0.25$. | The observed 0/15 leaves every tested design unresolved; any real study still requires prospective empirical validation rather than importing a simulated sample-size prescription. |
+| Wolf $F_{ROH}$ and realized load remain associated after the declared negative control. | Generic homozygosity is only one coupling control. | At least 12/15 partial realized-load CIs entirely above zero. | The observed `{python} R.wolf_partial_realized_ci_positive`/15 met this predeclared gate, reopening the localized-burden test; fewer than 12 would have stopped it. |
+| ROH-localized burden is a genomic-proxy localization result. | Circular interval shifts do not measure survival, reproduction, or experimental causation. | Per cell, observed log2 enrichment must exceed the circular-shift 97.5th percentile and two-sided p must be $\leq0.05$; direct fitness data are required for a depression claim. | The observed `{python} R.roh_localization_support_cells`/24 long-ROH cells meet the genomic beyond-null rule. Regardless of that count, only linked fitness measurements could change the causal boundary. |
+| The museum–modern result remains a contrast, not temporal erosion. | Only `{python} R.damage_concordant_metrics`/4 metrics are fully concordant and geography is confounded with period. | 4/4 metrics must retain museum-higher direction through every numerical check **and** a design must separate time from geography. | Either failure keeps the claim at contrast-only, regardless of a small p-value in one metric. |
+| Wolf annotation triangulation is deferred. | The local VEP/SIFT classes duplicate the source study rather than provide independence. | At least one independent annotation definition, $\geq0.95$ common-sample coverage, and $\geq0.90$ callable-denominator coverage. | Only that numeric independence/coverage gate would justify reopening Section 13.5. |
 
 # Reproducibility statement
 
-All analytical results are built by the Snakemake DAG from two public deposits; the Streamlit explorer reads the
-outputs only.
+All analytical results are built by the Snakemake DAG from tracked inputs: two public deposits, the
+versioned curated Populations Maintained table, and transparent bounded neutral simulations. The
+Streamlit explorer reads the outputs only. The [clean verification record](../results/PHASE5B_REPRODUCIBILITY.md) preserves two
+isolated clean-science builds and their resource measurements, six matching science hashes, two exact
+input-manifest aggregates, final-source reconciliation, and final-topology no-op results.
 
 The report performs a render-time schema check and reads its headline analytical values from the
 following workflow outputs. Missing files or columns stop the render rather than preserving stale
@@ -253,15 +451,15 @@ CONDA_SUBDIR=osx-64 micromamba create -n congen -f environment.lock.yml  # Apple
 micromamba activate congen && conda config --env --set subdir osx-64
 scripts/build_tools.sh                                 # currentNe2 + GONE2, pinned commits
 scripts/fetch_data.sh && scripts/extract_data.sh       # Dryad data
-snakemake all --cores 4                                # phases 1-5A: analyses, artifacts, and final gates
+snakemake --snakefile workflow/Snakefile phase5b --cores 4 --resources mem_mb=7000  # phases 1-5B
 report/render_report.sh                                # schema-check values and render report/report.html
 streamlit run app/streamlit_app.py                     # the live fragility explorer
 ```
 
-Every threshold and parameter lives in `config/config.yaml`; per-phase gates
-(`validate_phase{1..4}`) assert the outputs are well-formed and, for the wolf load, reconcile against
-the deposit's own numbers. R packages ship with the conda environment (R is conda-owned; no
-`renv.lock`).
+Every threshold and parameter lives in `config/config.yaml`; per-phase and Phase-5B analysis gates
+assert the outputs are well-formed, preserve failures/null outcomes, and reconcile figure bridges
+and provenance hashes. For wolf load, the Phase-4 gate also reconciles against the deposit's own
+numbers. R packages ship with the conda environment (R is conda-owned; no `renv.lock`).
 
 # References
 

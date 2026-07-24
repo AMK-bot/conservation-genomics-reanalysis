@@ -1,0 +1,157 @@
+{
+  "analysis": "Phase 5B decision and offline traceability synthesis",
+  "boundary": "Synthesis only; it does not recompute, select, or upgrade core scientific results.",
+  "browser_payload_counts": {
+    "claims": 6,
+    "damageEffects": 8,
+    "neDesign": 90,
+    "optionalDecisions": 2,
+    "wolfAssociations": 60,
+    "wolfLocalization": 120
+  },
+  "claim_count": 6,
+  "data_dictionary_rows": 567,
+  "inputs": {
+    "config": {
+      "path": "config/config.yaml",
+      "sha256": "e51b79fdef037285e0efc383f06ffbc96b20f35d0bcfc3e6c14721c1ca7642f2"
+    },
+    "damage_blocks": {
+      "path": "results/tables/peafowl_damage_blocks.tsv",
+      "sha256": "ca2d3cdee47d40a6e07e27b8752e3d42b8926bcfaaf0e16169fce4cb6871a217"
+    },
+    "damage_classification": {
+      "path": "results/tables/peafowl_damage_classification.tsv",
+      "sha256": "bc864c01d41cb0359855a0063174357e79c8797209eb7363a755e7de5ceae7ff"
+    },
+    "damage_effects": {
+      "path": "results/tables/peafowl_damage_effects.tsv",
+      "sha256": "a938aeb0d0b1a7b21716ee89bae98b744b1360534cca5ae99c602d8a4a759bd5"
+    },
+    "damage_figure_values": {
+      "path": "results/tables/peafowl_damage_figure_values.tsv",
+      "sha256": "527ee726446e4a0e4bc7187d7179f61c6829343f5530318dbc961d7448080538"
+    },
+    "damage_influence": {
+      "path": "results/tables/peafowl_damage_influence.tsv",
+      "sha256": "a09c33b80dba1521a796f20e6788972c855499b47750ae9427c2dc42e14c29f7"
+    },
+    "damage_permutations": {
+      "path": "results/tables/peafowl_damage_permutations.tsv",
+      "sha256": "96794cb3fc22d6da6c805e99b8a73f4ee83ab362a32986236ca1404afc36eed8"
+    },
+    "damage_provenance": {
+      "path": "results/provenance/peafowl_damage.json",
+      "sha256": "c9b72876fb4be4352e01e9ba9519da1ae19ff902fe3df1814851b2ccfbd572c7"
+    },
+    "damage_validation": {
+      "path": "results/tables/validation_peafowl_damage.tsv",
+      "sha256": "be950867a042e2112ad864a2b2605560280f1813973392b1723f1de29b1f9b3a"
+    },
+    "decisions": {
+      "path": "results/tables/phase5b_optional_decisions.tsv",
+      "sha256": "c734844ab3121217d64051dc2cb0b7dfacd4b7a76710a3640b8988f8a408c281"
+    },
+    "decisions_provenance": {
+      "path": "results/provenance/phase5b_optional_decisions.json",
+      "sha256": "895284e07c4acbb5138c86a11540bd187dc7633f09f0353aa0417e88d230a99d"
+    },
+    "decisions_validation": {
+      "path": "results/tables/validation_phase5b_decisions.tsv",
+      "sha256": "4a6e20661ddd58e906d22f29ee9e7469c1f39d071672e730dcaa385872728876"
+    },
+    "inventory": {
+      "path": "results/tables/phase5b_annotation_inventory.tsv",
+      "sha256": "4142bcb1153b23ae11ab29d04429d51f287b419b6d7f21cb01f2d37af1d0c435"
+    },
+    "localization_cohort": {
+      "path": "results/tables/wolf_roh_localization_cohort.tsv",
+      "sha256": "69ed762d1fff4138b43e8883571aa9f863d8e9ea31dd181155e8ed76630f3cf9"
+    },
+    "localization_figure_values": {
+      "path": "results/tables/wolf_roh_localization_figure_values.tsv",
+      "sha256": "c7669da201139632c086ae46ea1f2ea9f7b9f3813a26c09d48999cc8eed192f7"
+    },
+    "localization_individual": {
+      "path": "results/tables/wolf_roh_localization_individual.tsv",
+      "sha256": "1f38853c4e7cca00d7ffe687c6e99ae05037a0d5668fee8eef7a8ba9e15c3b0b"
+    },
+    "localization_null": {
+      "path": "results/tables/wolf_roh_localization_null.tsv",
+      "sha256": "c5e53036599c9c81c31a99c861b38e53873a6ac046aaeccea42b47599568cb0f"
+    },
+    "localization_provenance": {
+      "path": "results/provenance/wolf_roh_localization.json",
+      "sha256": "429aaeef7e069df3f45cd5c931629654dfad880dd92f1445c98c92b254c4a670"
+    },
+    "localization_qc": {
+      "path": "results/tables/wolf_roh_localization_qc.tsv",
+      "sha256": "5f88b1ff06cc6af0e36f677075e2ef4eccf767188bbfa154f69b20d05cbf246a"
+    },
+    "localization_validation": {
+      "path": "results/tables/validation_wolf_roh_localization.tsv",
+      "sha256": "0e3ca36ef0f42bf1392bcf81be078a3d4b318a2293be05111d53824fd7ad537b"
+    },
+    "ne_empirical": {
+      "path": "results/tables/peafowl_ne_design_empirical.tsv",
+      "sha256": "cedd6a17508c8827908b743f5469f75c7f0a0303d1bc71ffccc65ae2a0474f11"
+    },
+    "ne_figure_values": {
+      "path": "results/tables/peafowl_ne_design_figure_values.tsv",
+      "sha256": "db23d6879433a2e7aea7e81fc3b42c8e85ef0bcee50873688acab7ca7a91df03"
+    },
+    "ne_pilot": {
+      "path": "results/tables/peafowl_ne_design_pilot.tsv",
+      "sha256": "a1cf690d060b14918c134bebf8847d5a1cda3a13e3c42c3d19b6d8e41b4068c8"
+    },
+    "ne_provenance": {
+      "path": "results/provenance/peafowl_ne_design.json",
+      "sha256": "f05b13c8e134930f34512ae4935617317c3c709ac42c68a6b0789e3e805a61d0"
+    },
+    "ne_replicates": {
+      "path": "results/tables/peafowl_ne_design_replicates.tsv",
+      "sha256": "9d4e1c83235193c44d1f6f883a408d860ef5044371f8a11fd5455b5b171347a8"
+    },
+    "ne_summary": {
+      "path": "results/tables/peafowl_ne_design_summary.tsv",
+      "sha256": "5a4e2e3cb055f91d92414a2d799ad4666539ec82a3ed9d9f936b4afdba89c58b"
+    },
+    "ne_validation": {
+      "path": "results/tables/validation_peafowl_ne_design.tsv",
+      "sha256": "a0ff0134995366b382227960f7075622a3f02ee6a686f99fcdef0cf7eb7071cf"
+    },
+    "wolf_associations": {
+      "path": "results/tables/wolf_froh_load_associations.tsv",
+      "sha256": "1b79eec3e30891291af9fa2893650b4a9b7c128f096b250167daf1dd3c5d9cf5"
+    },
+    "wolf_figure_values": {
+      "path": "results/tables/wolf_froh_load_figure_values.tsv",
+      "sha256": "fffbfffac8f5afd749d54b6c8a02459731cb21688c840753a8521ff708c8c23b"
+    },
+    "wolf_provenance": {
+      "path": "results/provenance/wolf_froh_load.json",
+      "sha256": "54bffc2464c882913926db2dd0ce50476c21212e948c5e4e83601be38a4e42a2"
+    },
+    "wolf_rank": {
+      "path": "results/tables/wolf_froh_load_rank_stability.tsv",
+      "sha256": "b43960fd24f615b48c282fb23c8c45569669b0ce61f7ad50a68e135c3dd62f3c"
+    },
+    "wolf_scores": {
+      "path": "results/tables/wolf_froh_load_individual_scores.tsv",
+      "sha256": "a115968d6977cc8022ab44ca51e0dfcdeec8d0cc4e5d3e6fb2cae5ec851ad993"
+    },
+    "wolf_validation": {
+      "path": "results/tables/validation_wolf_robustness.tsv",
+      "sha256": "110340425c42690ca861f91d4bbb39cbfaeeb5fdada4af2feaca0a61482e0186"
+    }
+  },
+  "outputs": {
+    "results/PHASE5B_DATA_DICTIONARY.md": "1db6c4fdb569d72e00caabb7155dd5317493c97ff88bd060d0f76559cd6eb0ec",
+    "results/tables/phase5b_claim_trace.tsv": "cb202673a0f85ad7162b164f87edd20cd940c3e673e2164ba82b983cdacb4c33",
+    "results/tables/phase5b_data_dictionary.tsv": "b0d25a405b9b792fe634f605837c04efa6eb66929c277fbf05cb2ec8d0904f3f",
+    "results/tables/phase5b_fragility_scorecard.tsv": "668baffa459ac697f1f8c123c07ddab38246dbee5340826e7c434810865a96cf",
+    "website/phase5b-data.js": "cf1b1609d5f5c2ab04c1225c570b42884defe0c26bcec8d69d0559fe3ad7876d"
+  },
+  "schema_version": "phase5b-synthesis-v1",
+  "scorecard_rows": 4
+}

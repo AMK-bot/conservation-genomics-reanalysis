@@ -1,0 +1,17 @@
+basis	input_path	variant_class	n_records	n_complete_11	n_incomplete_11	used_all_snp_records	used_transversion_records	n_samples	n_contigs_in_header	genomic_opportunity_bp
+raw_comparative	data/peafowl/raw/Comparative_genomic_dataset_F.vcf.gz	transition	781237	641552	139685	641552	0	11	190	1061885041
+raw_comparative	data/peafowl/raw/Comparative_genomic_dataset_F.vcf.gz	transversion	292965	238548	54417	238548	238548	11	190	1061885041
+raw_comparative	data/peafowl/raw/Comparative_genomic_dataset_F.vcf.gz	mnv	0	0	0	0	0	11	190	1061885041
+raw_comparative	data/peafowl/raw/Comparative_genomic_dataset_F.vcf.gz	indel	0	0	0	0	0	11	190	1061885041
+raw_comparative	data/peafowl/raw/Comparative_genomic_dataset_F.vcf.gz	multiallelic	2056	1170	886	0	0	11	190	1061885041
+raw_comparative	data/peafowl/raw/Comparative_genomic_dataset_F.vcf.gz	other	0	0	0	0	0	11	190	1061885041
+raw_comparative	data/peafowl/raw/Comparative_genomic_dataset_F.vcf.gz	other_all	2056	1170	886	0	0	11	190	1061885041
+raw_comparative	data/peafowl/raw/Comparative_genomic_dataset_F.vcf.gz	total	1076258	881270	194988	880100	238548	11	190	1061885041
+normalized_comparative	results/qc/comparative.norm.vcf.gz	transition	780305	189082	591223	189082	0	11	190	1061885041
+normalized_comparative	results/qc/comparative.norm.vcf.gz	transversion	293705	70949	222756	70949	70949	11	190	1061885041
+normalized_comparative	results/qc/comparative.norm.vcf.gz	mnv	12	1	11	0	0	11	190	1061885041
+normalized_comparative	results/qc/comparative.norm.vcf.gz	indel	0	0	0	0	0	11	190	1061885041
+normalized_comparative	results/qc/comparative.norm.vcf.gz	multiallelic	0	0	0	0	0	11	190	1061885041
+normalized_comparative	results/qc/comparative.norm.vcf.gz	other	0	0	0	0	0	11	190	1061885041
+normalized_comparative	results/qc/comparative.norm.vcf.gz	other_all	12	1	11	0	0	11	190	1061885041
+normalized_comparative	results/qc/comparative.norm.vcf.gz	total	1074022	260032	813990	260031	70949	11	190	1061885041

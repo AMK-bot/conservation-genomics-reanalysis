@@ -1,0 +1,21 @@
+check	status	detail
+complete Phase-5B artifact set exists	PASS	all 49 required scientific, synthesis, provenance, and interface artifacts exist
+Section 13.1 wolf robustness validator is clear	PASS	rows=24; statuses={'PASS': 24}
+Section 13.3 peafowl damage validator is clear	PASS	rows=30; statuses={'PASS': 30}
+Section 13.2 peafowl Ne design validator is clear	PASS	rows=36; statuses={'PASS': 36}
+core Section 13.6 integration validator is clear	PASS	rows=14; statuses={'PASS': 14}
+Sections 13.4/13.5 optional decisions validator is clear	PASS	rows=7; statuses={'PASS': 7}
+Section 13.4 wolf ROH localization validator is clear	PASS	rows=38; statuses={'PASS': 38}
+claim trace has the exact six claims and schema	PASS	six exact claims in locked 13.1 -> 13.3 -> 13.2 -> 13.4 -> 13.5 order
+all claim trace targets and anchors resolve locally	PASS	resolved 46 local files, source anchors, workflow rules, and source targets
+claim observed values and falsifiers independently reconcile	PASS	wolf=15/15 (gate 12); damage=1/4 (gate 4); Ne=0/15; localization=24/24; annotation=0/1
+1.5-Mb wolf localization support count independently reconciles	PASS	1.5-Mb beyond-null rule independently gives 24/24 (GERP>2: 8/8, GERP>3: 8/8, GERP>4: 8/8)
+13.5 annotation deferral inventory independently reconciles	PASS	autosomal VEP/SIFT inventory exactly matches five deposited classes; source paper and deposit traced
+claim-level scientific boundaries remain explicit	PASS	all claims distinguish genomic proxies, design limits, unknown truth, and absent fitness/causal evidence
+Phase-5B fragility scorecard has four reconciled rows	PASS	four scorecard rows exactly reconcile to wolf, damage, Ne, and localization results
+Phase-5B data dictionary covers every delivered table column	PASS	29 tables and 567 columns have exact order, type, completeness, and definitions
+offline Phase-5B JavaScript payload exactly matches source tables	PASS	exact source values: wolf=60, localization=120, damage=8, Ne=90, claims=6, decisions=2
+synthesis provenance input and output SHA256 values reconcile	PASS	all 33 inputs and 5 outputs have exact declared paths and SHA256 hashes
+technical report integrates Phase-5B results and boundaries	PASS	technical source contains all Phase-5B tables, dynamic values, anchors, and causal limits
+Streamlit explorer integrates read-only Phase-5B results	PASS	read-only explorer loads all six trace/result tables and exposes four panels plus scientific boundaries
+static portal integrates offline Phase-5B evidence	PASS	offline site has four native result controls, exact reasoning path, missing-data fallbacks, responsive CSS, and no fetch

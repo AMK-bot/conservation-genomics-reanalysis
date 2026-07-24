@@ -1,7 +1,8 @@
 # Phase 0 — Setup & Verification status
 
-> **Scope note (2026-07-18):** this file records the completed Phase-0 environment/data setup. It is
-> not the whole-project status page; current completion work is tracked in `CGplan.md` Phase 5/5A.
+> **Scope note (2026-07-19):** this file records the completed Phase-0 environment/data setup. It is
+> not the whole-project status page; current completion evidence is tracked in `PROJECT_STATUS.md`
+> and `CGplan.md` §13.
 
 Tracks the plan's §3 Phase 0 (CGplan.md). Updated 2026-06-19.
 
@@ -24,7 +25,7 @@ Tracks the plan's §3 Phase 0 (CGplan.md). Updated 2026-06-19.
 - [x] **`congen` env built** — ⚠️ classic conda 4.12 was **OOM-killed** (exit 137) solving on 8 GB; rebuilt with **micromamba** (libsolv, low-mem). All tools verified: bcftools 1.23, samtools 1.23, vcftools 0.1.17, plink 1.9/2.0, admixture 1.3, pixy, snakemake 9.23, R 4.4.3, quarto; R pkgs SNPRelate 1.40, dartR 2.9.9, hierfstat 0.5.11, adegenet 2.1.11, renv 1.2.3.
 - [x] `subdir: osx-64` pinned (env `.condarc`).
 - [x] Portable `environment.lock.yml` exported (694 pinned dependencies; no user-specific prefix).
-- [x] currentNe2 + GONE2 built from source (`scripts/build_tools.sh`; x86_64 + env libomp). currentNe2 needed a 1-line VLA-init patch for Apple clang. NeEstimator v2 = manual cross-check (not built).
+- [x] currentNe2 + GONE2 built from source (`scripts/build_tools.sh`; x86_64 + env libomp). currentNe2 needed a 1-line VLA-init patch for Apple clang. NeEstimator v2 = optional manual comparison (not built or run).
 - [x] Repo skeleton created (config / workflow / scripts / results / app / report / data / tools).
 - [x] `git init` + commits.
 - [x] `renv::init(bare=TRUE)` was tried during setup; its scaffold is retained as history, but the `.Rprofile` autoloader is disabled and no `renv.lock` is used. R packages are pinned by conda in `environment.lock.yml`.
@@ -69,12 +70,12 @@ A prior audit (`HANDOFF.md`) listed Phase-0 gaps; the agent-actionable ones are 
 - Real callset paths wired into `config.yaml`; `scripts/extract_data.sh` added (reproducible, idempotent extraction + wolf VCF indexing).
 - Repro recipe fixed (README + report): **micromamba** (classic conda OOMs on 8 GB), dropped the unwired `--use-conda`, noted R ships with the env.
 - currentNe2/GONE2 **pinned to commits** (`4ee170d` / `5896504`) in `build_tools.sh` + `tools/README.md`.
-- config: GERP threshold → **4.0** (source value; a sensitivity knob); **NeEstimator removed from the automated cube axis** (Java GUI → manual cross-check).
+- config: GERP threshold → **4.0** (source value; a sensitivity knob); **NeEstimator removed from the automated cube axis** (Java GUI → optional manual comparison, not run).
 - git hygiene: `.claude/` gitignored + untracked. *(Stray empty `data dryad api/` folder at repo root — left for the user to delete.)*
 
 ## Phase-1 decisions — RESOLVED 2026-06-19 (user)
 
-1. **Angle-G scope → diversity/heterozygosity erosion.** Comparative set is n≈5 museum (`kiz*`) + 6 modern — too few for credible LD-based contemporary N_e (CIs uninformative). Measure Ho/He + allelic richness (rarefied to equal n) museum-vs-modern, with a museum-DNA damage caveat (deamination can inflate apparent diversity). Mirrors the deposit's own modern-vs-historical π. *(Scope reduction from the plan's "temporal N_e erosion" — flagged openly; coverage ≥9× is fine, n is the limiter.)*
+1. **Angle-G scope → geography-confounded diversity/heterozygosity contrast.** Comparative set is n≈5 museum (`kiz*`) + 6 modern — too few for credible LD-based contemporary N_e (CIs uninformative), and period is confounded with geography. Measure Ho/He + allelic richness (rarefied to equal n) museum-vs-modern, with a museum-DNA damage caveat (deamination can inflate apparent diversity). Mirrors the deposit's own modern-vs-historical π without supporting a temporal-erosion claim. *(Scope reduction from the original "temporal N_e erosion" plan — flagged openly; coverage ≥9× is fine, n and design are the limiters.)*
 2. **Filter-axis headroom → confirmed (the knob bites).** Biallelic-SNP counts on `Modern_all` (1,139,469 total): lenient (mm0.7/dp4/gq15/mac3) **1,044,447** → standard (mm0.8/dp6/gq20) **419,616** → strict (mm0.9/dp8/gq30) **29,851** — a ~35× spread. So Set A is re-derived **per preset** from `Modern_all` (carries `GT:AD:DP:FT:GQ:PL`); the authors' pre-pruned `set_a_neutral` (790,705 SNPs, frozen) is a **validation reference only**, never the cube input. (Verdict-moves-across-500 check completes once currentNe2 runs in Phase 1/2.)
 3. **R ownership → conda-owned.** R + packages ship from the `congen` env; `renv::restore()` dropped from the repro recipe (README updated). renv scaffolding left inert.
 4. **GERP threshold → exposed as sensitivity knob.** `wolf.load.gerp_sensitivity: [2.0, 3.0, 4.0]`, default 4.0 (source value). The wolf-load tab sweeps it (fits the fragility thesis).

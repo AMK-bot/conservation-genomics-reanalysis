@@ -1,0 +1,199 @@
+{
+  "analysis_id": "peafowl_ne_sample_design_calibration",
+  "cache": {
+    "checkpoint_directory": "results/ne/design/checkpoints",
+    "exact_execution_directory": "results/ne/design/.exact_cache",
+    "manifest": "results/ne/design/CACHE_MANIFEST.json",
+    "schema": "phase5b-ne-design-cache-manifest-v2",
+    "written_atomically_last": true
+  },
+  "currentne2": {
+    "binary": "tools/currentNe2/currentne2",
+    "decision_function": "currentne2_parse.gbf_state with 90% CI and N_e>500",
+    "genome_size_morgans": 32.0,
+    "parser": "scripts/python/currentne2_parse.py cross-chromosome headline + whole-genome fallback",
+    "sha256": "5c2fe385d78edae2d54dc80ccf129d42864c210b51336949ee130e4157a69c66",
+    "threads": 1,
+    "timeout_seconds": 90.0
+  },
+  "empirical": {
+    "population_observed_n": {
+      "Thailand": 5,
+      "Vietnam": 10,
+      "Yunnan": 7
+    },
+    "replicates": 6,
+    "reservoir_capacity": 25000,
+    "reservoir_marker_sha256": "ee1259389c670436f7d95e1aba58177b366e4b7217599bd08f4e1c45a9b6e9f1",
+    "reservoir_seed": 2507488068045930714,
+    "scope": "standard Set-A populations, n=5 through observed n only",
+    "source_variant_count": 420826,
+    "truth": "unknown; empirical rows are never scored correct/incorrect",
+    "uncertainty_caveat": "At observed n the only individual subset repeats across six marker panels; other subsets overlap. Empirical Wilson intervals describe seeded subset/marker-panel sensitivity, not independent biological-sampling uncertainty.",
+    "vcf_samples": 22
+  },
+  "generated_at_utc": "2026-07-19T10:23:39.408321+00:00",
+  "inputs": {
+    "config": "config/config.yaml",
+    "config_sha256": "e51b79fdef037285e0efc383f06ffbc96b20f35d0bcfc3e6c14721c1ca7642f2",
+    "empirical_vcf": "results/qc/setA.standard.vcf.gz",
+    "empirical_vcf_sha256": "286afd38a2dcd534f03b32cfc5d4e541b47ea41f978060944daea7798f5ccd0f",
+    "popmap": "config/peafowl_popmap.tsv",
+    "popmap_sha256": "a700bf9547271d4849344321355135f666ce18446d46fd6fa8ffa2f713d4cd6d"
+  },
+  "interpretation": "Scenario-based study-design calibration plus bounded empirical sensitivity; not a guarantee that an exact real peafowl sample size resolves N_e>500.",
+  "outcomes": {
+    "empirical_outcome_counts": {
+      "empirical_fail": 32,
+      "empirical_indeterminate": 148
+    },
+    "empirical_rows": 180,
+    "scenario_outcome_counts": {
+      "boundary_confident_fail": 12,
+      "boundary_confident_pass": 3,
+      "correct_confident": 197,
+      "incorrect_confident": 3,
+      "indeterminate": 505
+    },
+    "scenario_rows": 720
+  },
+  "outputs": {
+    "empirical": {
+      "path": "results/tables/peafowl_ne_design_empirical.tsv",
+      "sha256": "cedd6a17508c8827908b743f5469f75c7f0a0303d1bc71ffccc65ae2a0474f11"
+    },
+    "figure": {
+      "path": "results/figures/peafowl_ne_design.png",
+      "sha256": "3d992a6f6d3c091517427df05c07d4590cd45c74d77c4a0535f5eb726e83c8c3"
+    },
+    "figure_values": {
+      "path": "results/tables/peafowl_ne_design_figure_values.tsv",
+      "sha256": "db23d6879433a2e7aea7e81fc3b42c8e85ef0bcee50873688acab7ca7a91df03"
+    },
+    "pilot": {
+      "path": "results/tables/peafowl_ne_design_pilot.tsv",
+      "sha256": "a1cf690d060b14918c134bebf8847d5a1cda3a13e3c42c3d19b6d8e41b4068c8"
+    },
+    "replicates": {
+      "path": "results/tables/peafowl_ne_design_replicates.tsv",
+      "sha256": "9d4e1c83235193c44d1f6f883a408d860ef5044371f8a11fd5455b5b171347a8"
+    },
+    "summary": {
+      "path": "results/tables/peafowl_ne_design_summary.tsv",
+      "sha256": "5a4e2e3cb055f91d92414a2d799ad4666539ec82a3ed9d9f936b4afdba89c58b"
+    }
+  },
+  "pilot": {
+    "attainable_correct_confident_ci_low": 0.7575059933447593,
+    "attainable_incorrect_confident_ci_high": 0.2424940066552408,
+    "configured_expansion_max_seconds": 3600.0,
+    "expansion_reason": "outcome-blind pilot gates passed: repeat hash, integrity, runtime, Wilson attainability",
+    "expansion_status": "expanded",
+    "final_max_wilson_halfwidth": 0.2823053349335656,
+    "gate_is_outcome_blind": true,
+    "integrity_gate_pass": true,
+    "monte_carlo_ci_pct": 95.0,
+    "pilot_max_wilson_halfwidth": 0.6576197724933468,
+    "primary_currentne2_seconds": 95.87840667204,
+    "primary_projectable_seconds": 102.43715079710819,
+    "primary_scientific_sha256": "0a29b81c0cc33b0fb3b13bbef2987e6ccb6731efa33cf2d48399b8d3ade3689b",
+    "primary_simulation_seconds": 6.558744125068188,
+    "primary_wall_seconds": 7.878804165869951,
+    "projected_full_seconds": 614.6229047826491,
+    "repeat_scientific_sha256": "0a29b81c0cc33b0fb3b13bbef2987e6ccb6731efa33cf2d48399b8d3ade3689b",
+    "repeat_wall_seconds": 7.755719291046262,
+    "repeatability_match": true,
+    "runtime_gate_pass": true,
+    "runtime_projection_metric": "(sum of preserved primary currentNe2 row runtimes + sum of preserved per-row amortized pedigree-simulation runtimes) * final_reps/pilot_reps; simulation wall time is divided by the configured sample-size x marker-density cells so each true-Ne x replicate panel is counted exactly once; cache-invariant",
+    "scientific_hash_excludes": [
+      "runtime_seconds",
+      "simulation_runtime_seconds",
+      "command/path fields",
+      "raw/log hashes containing runtime telemetry"
+    ],
+    "wilson_attainability_gate_pass": true
+  },
+  "raw_outputs": {
+    "canonical_currentne2_files": 1020,
+    "directory": "results/ne/design",
+    "exact_cache_currentne2_files": 1020,
+    "exact_cache_scope": "ignored local execution audit; public raw/log copies are path-sanitized"
+  },
+  "runtime": {
+    "empirical_wall_seconds": 9.366648999974132,
+    "expanded_batch_wall_seconds": 38.72678270796314,
+    "total_wall_seconds": 66.15378937497735
+  },
+  "schema_version": "phase5b-ne-design-v2-pedigree-haldane",
+  "scientific_hashes": {
+    "empirical_runtime_excluded_sha256": "d19c0b9b1caf0b4c2884ca8066c3dd93e1c45f035a08be76d87347ffc8cb0950",
+    "scenario_runtime_excluded_sha256": "c512a5bdde92fa4e719620d80eaaff7e4988e578f2774067b7bc699c24279f39"
+  },
+  "settings": {
+    "ci_pct": 90.0,
+    "currentne2_threads": 1,
+    "empirical_reps": 6,
+    "final_reps": 12,
+    "genome_size_morgans": 32.0,
+    "initial_maf_high": 0.5,
+    "initial_maf_low": 0.1,
+    "marker_densities": [
+      250,
+      500,
+      1000
+    ],
+    "pilot_expansion_max_seconds": 3600.0,
+    "pilot_reps": 2,
+    "resolution_max_incorrect_confident_ci_high": 0.25,
+    "resolution_min_correct_confident_ci_low": 0.7,
+    "resolution_truths": [
+      250,
+      1000
+    ],
+    "run_timeout_seconds": 90.0,
+    "sample_sizes": [
+      5,
+      10,
+      15,
+      20,
+      30
+    ],
+    "seed": 1302,
+    "simulation_generations": 15,
+    "true_ne": [
+      100,
+      250,
+      500,
+      1000
+    ]
+  },
+  "simulation": {
+    "ascertainment": "candidate neutral loci retained when polymorphic in the smallest nested sample, so configured marker density equals currentNe2 analyzed density",
+    "cross_chromosome_initial_ld_residual": "2^-15",
+    "generations": 15,
+    "initial_maf": [
+      0.1,
+      0.5
+    ],
+    "limitations": [
+      "no mutation, selection, migration, population structure, or demographic change",
+      "one-Morgan evenly spaced chromosome maps are transparent calibration assumptions, not a peafowl map",
+      "whole-genome fallback depends on the simplified within-chromosome map; ne_basis is retained per row",
+      "pedigree scenarios calibrate this estimator/decision pipeline, not peafowl history"
+    ],
+    "map": "candidate loci evenly centred on each 1-M chromosome; adjacent recombination fraction r=(1-exp(-2d))/2; selected loci retain original chromosome/map coordinate",
+    "model": "explicit neutral diploid Wright-Fisher H[N,2,L] pedigree; each gamete chooses one parental individual genome-wide, with Mendelian Haldane recombination on 32 one-Morgan chromosomes and independent chromosome assortment",
+    "nested_design": "individual samples and marker panels are nested within true-Ne x replicate"
+  },
+  "software": {
+    "matplotlib": "3.11.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.3",
+    "python": "3.11.15"
+  },
+  "threshold": {
+    "boundary_handling": "true_Ne=500 is boundary; confident pass/fail are reported separately and never scored correct/incorrect",
+    "operator": ">",
+    "value": 500.0
+  }
+}

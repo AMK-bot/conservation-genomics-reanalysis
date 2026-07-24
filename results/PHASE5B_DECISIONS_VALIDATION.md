@@ -1,0 +1,19 @@
+# Phase 5B optional wolf studies — decision validation
+
+Sections 13.4 and 13.5 are resolved by their scientific gates. A negative or deferred decision is a valid outcome when its evidence and numeric reopening rule reconcile.
+
+**Summary: 7 PASS, 0 FAIL**
+
+| check | status | evidence |
+|---|---|---|
+| both optional studies have one explicit decision | **PASS** | sections=['13.4', '13.5'] |
+| decision schema includes numeric gates and scientific boundaries | **PASS** | numeric observed/required values, source trace, reopening rule, and boundary present |
+| 13.4 decision exactly follows the predeclared negative-control gate | **PASS** | 15/15 CI-positive and 15/15 point-positive; decision=IMPLEMENT |
+| deposited autosomal VEP and SIFT classes match the source inventory | **PASS** | SIFT deleterious=4809; SIFT tolerated=12981; VEP missense=24405; VEP nonsense=1023; VEP synonymous=33895 |
+| 13.5 deferral is supported by exact source-study overlap | **PASS** | 0 independent definitions; 211/211 common samples; source already compared VEP/SIFT, GERP, and intersection |
+| deferral has a numeric independence and coverage reopening rule | **PASS** | At least 1 annotation definition independent of the deposited source classes, with >=0.95 common-sample coverage and >=0.90 auditable callable-denominator coverage. |
+| primary paper and Dryad deposit are source-traced | **PASS** | https://doi.org/10.1111/mec.16802; https://doi.org/10.5061/dryad.7m0cfxpzj; data/wolf/vep/Pol.2out.mac2/veptypes.chr1-X.txt; data/wolf/vep/Pol.2out.mac2/sifttypes.chr1-X.txt |
+
+A Section-13.4 no-go means the generic-homozygosity control did not support a GERP-weighted proxy-localization study. It is not evidence that ROH or load lack biological relevance.
+
+The Section-13.5 deferral avoids presenting a same-data, same-annotation reproduction as independent triangulation.

@@ -1,0 +1,25 @@
+check	status	detail
+all wolf-robustness artifacts exist	PASS	11 files
+strict 211/211 load-ROH join	PASS	load=211, ROH=211, load_only=0, roh_only=0, duplicate keys=0/0
+load-ROH cohort mapping reconciles	PASS	211 shared IDs; cohort mismatches=0
+association table schema and 60-row shape	PASS	rows=60, unique analysis IDs=60, columns=24
+all frozen 15 cells x outcomes x models reported	PASS	cells=15, combinations=60, models=['partial_generic_homozygosity_control', 'primary']
+association coefficients, intervals, and p-values finite and bounded	PASS	coefficient=[-0.759,0.928], CI=[-0.812,0.944]
+bootstrap/permutation contract and failures recorded	PASS	bootstrap=999, permutation=1999, failed ranges=0-0/0-0
+generic-homozygosity partial model explicit	PASS	partial rows=30; control=gerp_covered_genomewide_homozygosity
+direction flags independently reconcile	PASS	expected-direction rows=51/60
+individual score table is 211 x 15 with unique keys	PASS	rows=3165, cells=15, per-cell IDs=211-211
+individual risk-proxy components finite, bounded, and composite exact	PASS	score range=[0.000,1.000]
+generic homozygosity formula independently reconciles	PASS	range=[0.711814,0.909328]
+individual raw values reconcile to Phase-4 inputs	PASS	3165 source joins; missing=0
+rank stability has all 105 pairs x configured percentiles	PASS	rows=420, pairs=105, percentiles=[np.int64(5), np.int64(10), np.int64(20), np.int64(25)]
+rank and top-overlap statistics finite and bounded	PASS	Spearman=[0.992,0.999], overlap=[0.909,1.000]
+all rank/overlap values independently recompute	PASS	checked 105 pairs x 4 percentiles; first mismatch=none
+figure-values table has every plotted record	PASS	rows=528, record counts={'scatter_individual': 422, 'heatmap_cell': 60, 'forest_cell': 30, 'cohort_centroid': 16}
+surface/forest values exactly reconcile to association table	PASS	heatmap joins=60, unmatched=0
+cohort-aware scatter uses the frozen default cell	PASS	GERP>4, ROH>=1.5 Mb; scatter rows=422
+surface and forest figures are valid PNG artifacts	PASS	wolf_froh_load_surface.png=198,296 bytes; wolf_froh_load_forest.png=284,667 bytes
+provenance records exact settings and input/output hashes	PASS	settings=True, inputs=True, outputs=True
+provenance scientific hash independently reconciles	PASS	computed=0d179e62439cd33b99a9562a71b4ac7116e7f33a051c2c6eea99522208c0eecb
+ROH-localization go/no-go count is traceable	PASS	partial realized CI-positive cells=15/15; reopen threshold=12; gate=PASS
+deterministic independent rerun	PASS	four TSVs byte-identical=True; scientific hash identical=True; mismatches=[]

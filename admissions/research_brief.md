@@ -1,139 +1,229 @@
-# Can we trust a conservation-genomics verdict?
+::::: {.brief-page data-page="1" aria-label="Page 1 of 4 — I began with a decision question, not a number"}
 
-## A two-page research brief
+<div class="page-kicker">PROJECT-WIDE RESEARCH JOURNEY · PAGE 1 OF 4</div>
 
-**Project type:** Reproducible computational reanalysis of two public whole-genome datasets
+# From public genomes to defensible conservation decisions
 
-**Species:** Green peafowl (*Pavo muticus*) and Scandinavian wolf (*Canis lupus*)
+## I began with a decision question, not a number
 
-**Central finding:** The peafowl's categorical result is stable even when its estimates are fragile;
-the wolf's load magnitude changes with thresholds while the realized-versus-masked pattern remains
-stable.
+<div class="brief-meta"><strong>Applicant research brief</strong> · endangered green peafowl × inbred Scandinavian wolf · public genomic deposits · Phases 0–5B complete</div>
 
-![Graphical abstract: public peafowl and wolf genome data are stress-tested across defensible analyst choices, separating conclusions that survive from magnitudes that move.](graphical_abstract.svg)
+::: {.hero-statement}
+I began by asking whether a conservation-genomics conclusion stays stable when an analyst makes
+different defensible choices. The project became a test of **reasoning under uncertainty**: choose the
+model, expose its assumptions, preserve every outcome, and stop the claim where the evidence stops.
+:::
 
----
+:::: {.question-grid}
+::: {.question-card}
+### Green peafowl
 
-## Page 1 of 2 — Question, design, and results
+Do 22 deposited genomes reveal regional structure, diversity differences, and sampled populations
+that confidently clear the Global Biodiversity Framework (GBF) Goal-A threshold $N_e>500$?
+:::
 
-### The biological question
+::: {.question-card}
+### Museum comparison
 
-Conservation indicators compress complex genomic evidence into a decision. This project asks:
+Could five museum and six modern birds support a temporal genetic claim—or only a narrower diversity
+contrast?
+:::
 
-> Does the decision remain the same when an analyst changes reasonable filtering, population-structure,
-> deleterious-site, or run-of-homozygosity choices?
+::: {.question-card}
+### Scandinavian wolf
 
-The goal is not to find the single most dramatic number. It is to separate **robust conclusions** from
-**fragile magnitudes** and **insufficient evidence**.
+Can the deposited GERP-weighted load result be reproduced exactly, and does its direction survive
+different predicted-impact and ROH definitions?
+:::
+::::
 
-### Study design
+![Project chronology from public peafowl and wolf deposits through model-specific routing, new questions, and bounded evidence states.](brief_project_route.svg){.model-diagram}
 
-| Chapter | Public input | Project analysis | Main sensitivity axis |
-|---|---|---|---|
-| Green peafowl | Deposited modern VCF; 22 birds from Yunnan ($n=7$), Vietnam ($n=10$), and Thailand ($n=5$) | QC, PCA/ADMIXTURE, diversity, contemporary $N_e$, and two GBF indicators | Lenient/standard/strict filtering × population structure modelled/ignored |
-| Scandinavian wolf | Deposited ancestral-polarized VCF, GERP scores, and load anchor; 211 wolves | Reproduced GERP-weighted load, then extended it with load and ROH sensitivity sweeps | GERP threshold 2/3/4 and ROH cutoff 0.1–2.0 Mb |
+### The first correction changed the whole project
 
-The workflow starts from deposited VCFs and records thresholds in
-[`config/config.yaml`](../config/config.yaml). Snakemake performs the heavy analysis; the Streamlit
-explorer reads precomputed outputs.
+I initially expected one carefully filtered peafowl callset to serve every model. Testing the actual
+transformations showed why that was wrong. PCA and ADMIXTURE need LD-pruned markers so linked blocks do
+not dominate structure; currentNe2 estimates $N_e$ *from* LD, so pruning would erase part of its signal.
+The source VCF also used `.` for every variant ID, causing a pruning extract to silently retain the
+full callset. Unique chromosome–position–allele IDs reduced the standard set from **420,826 post-MAC
+SNPs to 19,611 LD-pruned SNPs**.
 
-### Three results to remember
+That correction established my working rule: **a command finishing is not proof that it performed the
+intended biological transformation**. Inputs must be routed by model assumptions, and every reported
+result must reconcile to a machine table and an independent check.
 
-#### 1. A robust peafowl headline
+::: {.ownership-note}
+**Ownership boundary.** The source studies produced the samples, sequencing, deposited variants, and
+base annotations (peafowl Dryad `10.5061/dryad.ffbg79ctc`; wolf Dryad
+`10.5061/dryad.7m0cfxpzj`). My project contribution is the cross-analysis question, model routing,
+sensitivity design, new falsification and calibration analyses, workflow, validators, and
+evidence-bounded interpretation.
+:::
 
-Across all three filter presets, **0 of 3 sampled populations confidently pass $N_e>500$**. Vietnam's
-lenient point estimate is above 500, but its 90% interval (139–37,795) crosses the threshold, so the
-result is indeterminate rather than a pass. [Phase 2 evidence](../results/PHASE2_VALIDATION.md)
+<div class="page-footer">Start with the question → route by model → let the result generate the next test</div>
 
-#### 2. Fragile estimates beneath that headline
+:::::
 
-Two of three populations change between `fail` and `indeterminate` as filtering changes, and several
-stricter-filter estimates do not converge. The correct conclusion is therefore not “all three $N_e$
-values are known to be below 500.” It is “none confidently clears 500 with these data and tested
-choices.” [Phase 3 evidence](../results/PHASE3_VALIDATION.md)
+::::: {.brief-page data-page="2" aria-label="Page 2 of 4 — Peafowl, a stable headline built from fragile estimates"}
 
-#### 3. A stable wolf pattern with threshold-sensitive magnitude
+<div class="page-kicker">PEAFOWL · STRUCTURE, DIVERSITY &amp; N<sub>e</sub> · PAGE 2 OF 4</div>
 
-At GERP $>4$, the workflow reproduces the deposit's realized and masked loads across all 211 wolves to
-floating-point precision, with zero raw-count differences. Mean realized load changes from 0.172 to
-0.136 to 0.093 as the threshold rises from 2 to 4, and mean $F_{ROH}$ changes from 0.226 to 0.167 as the
-ROH cutoff rises from 0.1 to 2.0 Mb. The absolute values move, while the inbred-Scandinavian
-realized-versus-masked direction remains stable. [Phase 4 evidence](../results/PHASE4_VALIDATION.md)
+## A stable headline emerged from fragile estimates
 
-| Peafowl verdict explorer | Wolf load-and-ROH sensitivity explorer |
-|---|---|
-| ![Peafowl filtering and structure controls with the GBF verdict](screenshots/01-ne-gbf-verdict.jpg) | ![Wolf GERP and ROH controls with realized and masked load](screenshots/03-wolf-load-roh.jpg) |
+I used complementary models because no single statistic describes population status. LD-pruned PCA
+showed separation among the three sampled groups, while ADMIXTURE cross-validation favoured $K=1$ in
+this small dataset. I treated that disagreement as a reason to avoid a management-unit or current-
+migration claim. Heterozygosity, allelic richness, and nucleotide diversity described variation;
+they did not measure fitness. Thailand was least diverse, while Yunnan showed a heterozygote deficit.
+In the five-museum-versus-six-modern comparison, $H_o$ and $\pi$ were marginally museum-higher, while
+$H_e$ and allelic richness were essentially flat; because period was confounded with geography, this
+remained a diversity contrast.
 
----
+![Peafowl variants routed to LD-pruned structure models, complete-call diversity summaries, and unpruned cross-chromosome currentNe2, followed by a three-state threshold decision.](brief_peafowl_models.svg){.model-diagram}
 
-<div class="page-break"></div>
+### The decision model mattered more than the point estimate
 
-## Page 2 of 2 — Meaning, limitations, and contribution
+For each filter preset and population, currentNe2 produced a point estimate and 90% interval. The
+three-state rule was fixed before interpretation: **pass** only when the interval lies above 500,
+**fail** only when it lies below 500, and **indeterminate** when it crosses 500 or the estimator does
+not converge. The headline was stable—**0/3 sampled populations confidently passed under every
+preset**—but **2/3 populations moved between fail and indeterminate**. Vietnam illustrates why:
+$N_e=2{,}292.8$, yet its 90% interval was 139.09–37,794.98, so it was indeterminate, not a pass.
 
-### Why the result matters
+The separate Populations Maintained indicator was **7/10 range units**. It uses a different denominator
+and answers a different question; presence in a range unit is not evidence that a sampled population
+clears $N_e>500$. GONE2 likewise moved from a competing verdict model to a recent-trajectory context
+panel because its time horizon and borrowed recombination assumption are not interchangeable with
+currentNe2.
 
-The project demonstrates two forms of scientific maturity:
+### The baseline generated two new questions
 
-- A stable category does not make every underlying estimate precise.
-- An uncertain or non-converged estimate is information about the limits of the data, not an invitation
-  to report the point estimate alone.
+:::: {.next-question-grid}
+::: {.next-question}
+**Damage hypothesis.** The museum–modern direction was weak and geography was confounded with period.
+Would it survive transversion filtering, equal-size comparisons, individual influence, exact labels,
+and block uncertainty?
+:::
 
-The project's country-scale Populations Maintained calculation is 0.70, with a 0.70–0.70 band after
-the live BirdLife country table was checked on 18 July 2026. All three sampled countries are counted
-among the maintained cases, while none of their sampled populations confidently clears $N_e>500$.
-This illustrates the difference between continued occurrence and demonstrated long-term genetic
-security. The occurrence table remains coarse at country scale and needs finer occurrence evidence
-for publication-level use. [GBF evidence](../results/tables/gbf_summary.tsv)
+::: {.next-question}
+**Study-design hypothesis.** If the current data cannot resolve the threshold, which combinations of
+sample size and marker density resolve known values below and above 500 when passed through the same
+estimator and decision rule?
+:::
+::::
 
-### What is known, and what would change it?
+The comparative dataset was therefore narrowed from an underpowered temporal-$N_e$ idea to a diversity
+contrast, and both questions were carried forward as explicit Phase-5B tests.
 
-| Current conclusion | Dominant limitation | Most useful next evidence |
-|---|---|---|
-| No sampled peafowl population confidently clears $N_e>500$ | Only 5–10 individuals per population | More independently sampled individuals within each population |
-| GONE2 suggests a recent decline, as context only | Borrowed recombination rate and macrochromosomes only | A peafowl-specific recombination map |
-| Wolf threshold sweep supports stable realized-versus-masked direction | GERP threshold changes magnitude | Functional and fitness evidence before interpreting load as measured harm |
-| Country-scale Populations Maintained is 0.70 | Coarse country-level occurrence categories | Current, finer sub-country occurrence records |
-| Museum–modern diversity contrast is weak and metric-dependent | Geographic mismatch and ancient-DNA sensitivity | Matched locations/time points and damage-aware analysis |
+<div class="page-footer">Headline robust: 0/3 confident passes · estimates and convergence fragile</div>
 
-Simply adding SNPs is not the first remedy for the peafowl result: currentNe2 already samples up to
-25,000 SNPs per cell, while the number of individuals remains $7/10/5$.
+:::::
 
-### Claim boundary
+::::: {.brief-page data-page="3" aria-label="Page 3 of 4 — Wolf, reproduce first and extend only through a gate"}
 
-This reanalysis identifies **conservation risk and analytical sensitivity**, not demonstrated
-inbreeding depression. The temporal peafowl comparison is a weak contrast, not an erosion claim. GONE2
-is context rather than part of the contemporary verdict. The wolf anchor proves computational fidelity
-to the deposited calculation, not that every deleteriousness score predicts fitness.
+<div class="page-kicker">WOLF · REPRODUCTION &amp; SENSITIVITY · PAGE 3 OF 4</div>
 
-### Reproducibility evidence
+## I reproduced first, then allowed the evidence to open an extension
 
-The four tracked phase validators report **32 PASS, 12 reported-not-asserted WARN, and 0 FAIL**. Warnings
-surface scientific sensitivity rather than hiding it:
+The wolf deposit offered a stronger computational anchor. I reconstructed ancestral-allele-
+polarized, GERP-weighted realized and masked load at the source threshold, GERP $>4$. Across all
+**211/211 wolves**, raw count differences were zero and the 95th-percentile relative error was
+$1.29\times10^{-14}$. This validated allele polarization, formulas, and aggregation before I changed
+any threshold; it did not turn a reproduction into a novel biological result.
 
-- [Phase 1](../results/PHASE1_VALIDATION.md) — QC, structure, diversity, and temporal contrast.
-- [Phase 2](../results/PHASE2_VALIDATION.md) — currentNe2 cube, convergence, and context panels.
-- [Phase 3](../results/PHASE3_VALIDATION.md) — GBF tables reconciled to the cube.
-- [Phase 4](../results/PHASE4_VALIDATION.md) — exact wolf anchor and threshold sweeps.
+![Wolf polarized variants joined to GERP scores, realized and masked load definitions, exact source reproduction, a three-by-five load and ROH sensitivity surface, and the three secondary hypotheses it generated.](brief_wolf_models.svg){.model-diagram}
 
-### Contribution and assistance boundary
+### The sensitivity surface separated direction from magnitude
 
-The source studies supplied the biological samples, deposited variants, annotations, and original
-methods. The student project contributes the cross-cutting fragility question, the filter-by-structure
-cube, the three-state verdict, the separation of contemporary and trajectory estimates, the wolf
-sensitivity extensions, and the synthesis of what is robust versus unresolved. Existing bioinformatics
-software performs the calculations. AI coding assistance supported planning, implementation, debugging,
-review, and drafting; the student remains responsible for the chosen decisions, validation checks, and
-scientific claims.
+I expanded the source anchor to GERP thresholds 2, 3, and 4, and summarized $F_{ROH}$ across five
+minimum ROH lengths from 0.1 to 2 Mb. Stricter thresholds changed the numerical magnitudes, but all
+**8/8 cohorts** preserved their realized-versus-masked group direction across the tested GERP
+settings: five remained realized $>$ masked and three remained realized $\leq$ masked. This supported
+robustness of direction, not a fitness conclusion: GERP, load, and ROH remain genomic risk proxies.
 
-### Continue exploring
+The baseline then generated three secondary hypotheses:
 
-- [Research journey](../RESEARCH_JOURNEY.md) — how mistakes and evidence changed the design.
-- [Interview notes](../INTERVIEW_NOTES.md) — definitions, figure reading, and spoken summary.
-- [Rendered technical report](../report/report.html) — full methods, results, and limitations, usable offline.
-- Explorer screenshot gallery: [peafowl verdict](screenshots/01-ne-gbf-verdict.jpg),
-  [structure and diversity](screenshots/02-structure-diversity.jpg),
-  [wolf load and ROH](screenshots/03-wolf-load-roh.jpg), and
-  [limitations/evidence map](screenshots/04-about-limitations.jpg).
-- [Human-readable results cube](../results/cube/results_cube.csv) — all peafowl verdict cells.
+1. **Individual association:** within cohorts, does greater $F_{ROH}$ track greater realized load
+   across the full 3×5 grid, and does that remain after controlling generic GERP-covered
+   homozygosity?
+2. **Spatial localization:** if that negative control passes a predeclared gate, is realized burden
+   enriched inside long ROH beyond a within-chromosome spatial null?
+3. **Annotation triangulation:** can at least one predicted-impact definition independent of the
+   source study provide genuinely new evidence?
 
-This brief is an admissions portfolio artifact, not a publication.
+I froze the association grid, bootstrap and permutation counts, the **12/15 localization opening
+gate**, the 1.5-Mb primary localization cutoff, and the annotation independence rule before seeing the
+new outcomes. That ordering prevented an interesting result from deciding which analysis counted.
+
+::: {.boundary-note}
+**Claim boundary.** Exact reproduction establishes computational fidelity. A stable load direction or
+$F_{ROH}$ association still does not measure harm, survival, reproduction, fitness, causal inbreeding
+depression, or a management unit.
+:::
+
+<div class="page-footer">Reproduce → vary defensible definitions → test a negative control → open or stop</div>
+
+:::::
+
+::::: {.brief-page data-page="4" aria-label="Page 4 of 4 — Final verdict, scientific addition, and technical evidence"}
+
+<div class="page-kicker">SECONDARY TESTS &amp; SYNTHESIS · PAGE 4 OF 4</div>
+
+## Every new claim had to earn its boundary
+
+![Phase-5B decision tree showing the controlled wolf association, peafowl damage falsification, known-truth Ne design calibration, localization gate and circular-shift null, and evidence-backed annotation deferral.](brief_phase5b_tests.svg){.model-diagram .model-diagram--final}
+
+**Phase 5B: COMPLETE.** Partial realized-load bootstrap intervals were above zero in **15/15** tested
+GERP × ROH cells; damage-aware peafowl checks retained **1/4** fully robust metrics; **0/15** tested
+sample-size × marker-density scenarios met both prespecified truth-resolution rules; the gate decision
+was **IMPLEMENT**; localization placed **24/24** cohort × GERP cells beyond the circular-shift null at
+1.5 Mb; and annotation triangulation was
+**`DEFER_DUPLICATES_SOURCE_STUDY`** because there were 0/1 independent definitions with 211/211 source
+sample overlap.
+
+:::: {.synthesis-grid}
+::: {.synthesis-card}
+### Where the science landed
+
+A headline can be stable while its estimates and convergence are fragile. Support, correction,
+indeterminacy, and deferral are all results when the rule is frozen first. The wolf results support
+association and spatial colocalization among genomic proxies. The peafowl results support a cautious
+sample-status reading—not temporal erosion, a guaranteed sampling prescription, or a fitness claim.
+:::
+
+::: {.synthesis-card}
+### What this project adds
+
+This reanalysis adds a damage-aware falsification with exact-label randomization, a known-truth $N_e$
+design calibration, a controlled 15-cell wolf association surface, a 199-replicate circular-shift
+localization null, and a machine-traced decision framework. These are project contributions, not an
+unsupported “first in the literature” claim.
+:::
+::::
+
+### Conclusions remain reversible
+
+- Wolf proxy-specific support is reconsidered below **12/15** controlled CI-positive cells; a
+  localization cell changes if it no longer exceeds the null upper bound or $p>0.05$.
+- A temporal peafowl upgrade requires **4/4** metrics *and* sampling that separates geography from
+  period. A resolving design must meet the frozen Wilson bounds for true $N_e=250$ and 1,000.
+- Annotation work reopens with ≥1 independent definition, ≥95% common-sample coverage, and ≥90%
+  auditable denominator coverage.
+
+::: {.evidence-chain}
+**Technical evidence chain:** frozen config and seeds → Snakemake rules → VCF/QC and statistical
+models → machine tables with uncertainty → independent validators → report and explorers → local,
+offline ZIP. The workflow spans bcftools/VCFtools, PLINK, ADMIXTURE, currentNe2, GONE2, Python, R,
+Quarto, Streamlit, deterministic packaging, and laptop-bounded execution.
+:::
+
+Every headline resolves through the
+[`phase5b_claim_trace.tsv`](../results/tables/phase5b_claim_trace.tsv) to a result table, provenance,
+validator, report anchor, explorer, workflow rule, and numeric falsifier. Reproduce with
+`snakemake --snakefile workflow/Snakefile phase5b --cores 4 --resources mem_mb=7000`; then continue to
+the [technical report](../report/report.html), [offline explorer](../index.html), or
+[research journey](../RESEARCH_JOURNEY.md).
+
+<div class="page-footer">Final verdict: uncertainty is not beside the result—it is part of the result.</div>
+
+:::::

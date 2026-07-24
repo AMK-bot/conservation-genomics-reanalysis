@@ -1,0 +1,453 @@
+{
+  "analysis": "wolf_roh_localized_realized_burden",
+  "chromosome_source_sha256": {
+    "1": {
+      "gerp_bed": "6bf2f006ce3f0067cda51c872cce60bd3e8685a2cc5af324485dc2b72433f670",
+      "phase4_chrom_load": "eb5028408fb9ab069f9b11e42b815b1807ba27341a1122ea4bd152637c9cb182",
+      "rg": "8d8c7ae50a1b3efc1cce38b6425bcc3655b3efae25a2bd4b364d22bf789f2b80"
+    },
+    "10": {
+      "gerp_bed": "36e58abe76bc3ccc6e926ed4869b587da3e0a0332affd10e328fb694a4184a8c",
+      "phase4_chrom_load": "8560c3df614d6a7981e1db33b888a9268c7fbc527d580462ac4718e962c2b565",
+      "rg": "b630d494bb39cd20c7a2b6c58e62ae1de226db1e90e2fcace849d0e65bf5ac90"
+    },
+    "11": {
+      "gerp_bed": "6da77f9ad922d74b7cd382bd3fcd2ff67ebefadb792e4414715b182e239c09e3",
+      "phase4_chrom_load": "8a87e5492fbe56bf332cbb405e6ba49e42d2953f7b78c9a5c835de55faa3da46",
+      "rg": "39ec8a1cd124f8d1dcb4446d551c8f6cffbed74fc1cb5d1db5770c852d835bc5"
+    },
+    "12": {
+      "gerp_bed": "9f2eed7676e4ba1a3c9727e843cf5f087e67c06461f6a29e853635b9203dfcf6",
+      "phase4_chrom_load": "b6f09322f7d92aa66ca772e41405c019fa56dcc505c4548f77ae79e8bc64386a",
+      "rg": "ea80434bcabde8aaa9050ff6a943faa9e683420bdc93782e58c59b571137c1ce"
+    },
+    "13": {
+      "gerp_bed": "aa50c7ebd27501afdac47cc515d4e76c6b686fe39245f8067035e4cf734352dc",
+      "phase4_chrom_load": "fe493702173879e54314bd0d5c3ece72269b5c5f29fab9d2d52eff6c6c596822",
+      "rg": "31a8d2876f2f81371c88e7b3c5231385acb43f6cd91ae0a89157658ea924a499"
+    },
+    "14": {
+      "gerp_bed": "7093468bcd5adc1f19860e8eb704fd8012b7ae9f2cadd60cfdffa903a648929b",
+      "phase4_chrom_load": "38c5f37385da0b510128acd7e814cd3829d3022db609b717ab0468e52bc19a5a",
+      "rg": "ca1a4b9abdfaee364be0de22bec2205527d690bd8d2eb8f31c1f508fda0e8272"
+    },
+    "15": {
+      "gerp_bed": "2bd66b14ca1b1b83437646e7c1909471ea7c10b4e8f0f8e4e452dc2ce01dc113",
+      "phase4_chrom_load": "3d268934040b65a05d31dc687463e7fb76e86256e9da4687016184e5661be279",
+      "rg": "435b091d7f1851dfc751c9629c6fe47a8c3cbeefe58267bbecd339c340e157cf"
+    },
+    "16": {
+      "gerp_bed": "0a5c44af17f2b66f8ab15c0725dcf725692d0e77d7e50b96be26fa5794a9261e",
+      "phase4_chrom_load": "9aeaeff220f2a49f04eb2fc2801a1ae868c855e7f0f0b3712430a19d183ded61",
+      "rg": "4ee19536af1af9f9abade896021cd02f49bbb22bc77f7f28ddadfd2c99bf6c2e"
+    },
+    "17": {
+      "gerp_bed": "c6bc7ff019cccc3f5af74f2402628fa69f44a31468d48b09467f315e9a822579",
+      "phase4_chrom_load": "3eb2b731d3a31a899dacf329a03d52b18e7f6642e1f141d59ef00fabc9933cd4",
+      "rg": "0d39b8fb4d57bfe3429e0e606ee3fc70641fe45cb0fdd9ae97874c0903c3328b"
+    },
+    "18": {
+      "gerp_bed": "6d339e3c16b1176acb0706ff47d88a760526c3043301b2a71e87c5540910dcde",
+      "phase4_chrom_load": "2703eb6de7f13b1bc4abb7d462fc6e1b3a5fe2d637d101ef2c25107f50c797b8",
+      "rg": "ae0b686fd0c5332f242b270644ead7eba850a747e6e209ab13fe065bacd86d85"
+    },
+    "19": {
+      "gerp_bed": "faa04f4640a24185830104ba0027dc8c7471916ee1b08cdf128e152da160b4ba",
+      "phase4_chrom_load": "4eb9b378a267cd392b5bc21f45d7511df933b07eeff8b32b3239fc78b9ac2b00",
+      "rg": "8c2cf061fbbdb66df4fd49fc91483bac2a306615adb006e95611d9f2c2719f25"
+    },
+    "2": {
+      "gerp_bed": "dfec03419a7cd25173700a0389ddac6113178d64b1074160dfcd635099fb6f65",
+      "phase4_chrom_load": "2fceb24efcb49122567a1ca4c280b3cdd60a22b6fe4fba434f606423b749fe6c",
+      "rg": "f04e12328dbb1fb30a6757eb8d217219af801bb1fedd1e0752b48f74bc662542"
+    },
+    "20": {
+      "gerp_bed": "be858f5c730e89b1984d62696a01c93f7a28e30ae61262b9822b04ce00e4d038",
+      "phase4_chrom_load": "9dbd155e2e88c14d8178b6cf9d1d9e666412c2840966ee8d172983caff7f014f",
+      "rg": "99e7bfc6288412d3f5ee0f21ba242c4cea40364dd9258f6db65f34d5e696c9cb"
+    },
+    "21": {
+      "gerp_bed": "fe04505d462dbd7a453a0a3535ea16c7a65a955f3490385e09911911ee5a1b19",
+      "phase4_chrom_load": "223ed814f56c2191b666516ba65b791cd17ea898f2c7415826403701c79d80d8",
+      "rg": "375d28dca746fcd31b45b0c4e3e8a00c1b86cfac162267d03874249bce387869"
+    },
+    "22": {
+      "gerp_bed": "3777ac02505446f1697d49122caab9591ed2c9bca22da8f2a806df8b4e3637a1",
+      "phase4_chrom_load": "7cbc55d5018b2695a7a5585b2d09369cda3f04c473659b2af3f03404eb34c4f9",
+      "rg": "4efd13d1fdd7d7979db30f46b2250c94d2f8db7233bfbc1eefac33e39bd74a2a"
+    },
+    "23": {
+      "gerp_bed": "f02ef14ef0793b59586711e64e1ebca2dca292318283217c7b6a12b110c12ef5",
+      "phase4_chrom_load": "339c678dbc28b8db3e79791f34465b60bb13d772751f58dee72fc24cecf9237f",
+      "rg": "49a7bff5c576ea8b116eb207f023362b30ac4459667a77973e4c5eccf7e7371f"
+    },
+    "24": {
+      "gerp_bed": "fde84085dced0cedf53ecc77eb79a8ff0699656cd82b1d941dbdb0ea7c5fffa9",
+      "phase4_chrom_load": "779fb31cb72a077671610f5473627d32bf663efeaee6a46988a0ae484d810a8b",
+      "rg": "f8a065b95bc8ab9d1b59fc94eed315ce34a78ab6927cf804b4e870f26a2db71b"
+    },
+    "25": {
+      "gerp_bed": "fa00c9a6f4d4d1f3ef4725e7bf5682eb49ef974776c651401031c199ebcedf5e",
+      "phase4_chrom_load": "933b8d18d25cb020edb33a7ad5f6a66e62b3d71f786a66381b2da76c5d2460fd",
+      "rg": "9121f78f9d4041c94446eb998df3f8eaf7b979c6aa3a4470e282b9ec080c5ae1"
+    },
+    "26": {
+      "gerp_bed": "cb3d141f11c771e235c1afb8f3c6f889c3dda27cb507cb5ae4f43da476e5065f",
+      "phase4_chrom_load": "772f5b6dc27c202a35b6a549307aff43d36878fb830a0188493096f219d48966",
+      "rg": "0b7db7a70bd0f5c69cb46485dace38d35d6e67d2573f08ddd2fc36247f81a991"
+    },
+    "27": {
+      "gerp_bed": "43cf137397f8b138edc67cca4c1269f8eeda5b6e2ff668dcbc6188af3b0d5a42",
+      "phase4_chrom_load": "a9c13acd3bf924d79095830d8ccd2677a8134ce15290d17de1252c00e4589f39",
+      "rg": "827d18d1553c0777f23a99dd6faaa2f795f30d25c3434d355d8974c29396cb58"
+    },
+    "28": {
+      "gerp_bed": "cdb456995025c2cbfe44f843838624465d38138028dd59fe6decafae8e4256ea",
+      "phase4_chrom_load": "430574109c8b70e61ed43b2091a69f44fba6598260ce074e4161deba18f88873",
+      "rg": "266beef953cee0ee9c69fe1eb3c2f7e25c57afc18854f8eedb5ec729ea530679"
+    },
+    "29": {
+      "gerp_bed": "c9375b53384f026f5f12e28487e91885ce0be0cbaac6b12ade86a63baf00d5df",
+      "phase4_chrom_load": "0bb8a73dab0b0604f861093f8b79a9321352e4070b77b5f7bec9ae57a9d59cf4",
+      "rg": "c025a86044636391befe15d90b5e4b64b631907a75253ec4bfe7db68cc8d0e3a"
+    },
+    "3": {
+      "gerp_bed": "b5c09129803de8465de5346aa7d86494436352752507fd4a4fdcfde15b0afe2a",
+      "phase4_chrom_load": "ff9242b87886b4d70396b136959bf71678db285aa8f37fbf7d58ba1a19112de5",
+      "rg": "0f37820698440d64c5b7be0215dc650821e34589de2129f4f1d2436769e35b86"
+    },
+    "30": {
+      "gerp_bed": "ee97f25e63d4c4156f34de9ca77f26cfbf81c9996654d2999651cd67df778065",
+      "phase4_chrom_load": "3c02f9981768d6d33022be85aad0e893c9b6c7646bd492062e974ea1fd4609fa",
+      "rg": "380e82cab1ab291767b11c805670f9883deba03639cbb205cb841d5eaafdc40e"
+    },
+    "31": {
+      "gerp_bed": "3b86d38d6a27783d244846e4c1cd36e6bfeda85d664f0948a6464d9c5747a1ff",
+      "phase4_chrom_load": "eafb4fa1d973eec3e9fa7c9622f993480b5224ae7818a64585c4ea20ff8d94ea",
+      "rg": "b6e3b5ffe72af4e33c9360ea176d971a36ec816b568c4de492ba75c1d58561a7"
+    },
+    "32": {
+      "gerp_bed": "15b9fb497a914308b79d568cdc997a127ab9cca048c2ae76215ddc1e89f3472c",
+      "phase4_chrom_load": "49582a772bdff4c92a4a3c08576d6a8e487f6a05f5d80465a27316065cc81b26",
+      "rg": "6a6b77f958b14f1e3efd0122ce2a4f605597aee73f7dec68cd1419f93a724ed3"
+    },
+    "33": {
+      "gerp_bed": "721e9ed03c9901895ae2225482d3423903f2ad30a79a8bff8ee40c0bb4e6d2b1",
+      "phase4_chrom_load": "ca60005853daff9733ec61e6a48aebed7c814cb49b62e82ffb46c693106d5f1c",
+      "rg": "9fd9de86da00c329696c5208d88c6068f958a4acce7857f5a2fdfcc1abc6cefc"
+    },
+    "34": {
+      "gerp_bed": "bfedfce52554af687e8d3a9050cacdc6ad774287604fb35f0d682ecbe48e94af",
+      "phase4_chrom_load": "13d9d9d2ba736584ef4eb933467ca931eed774755420b7772cd630030e717b4a",
+      "rg": "b769be910030e2397548bc454b7e57654d3829a33b1601c4d40377473b9e4dbb"
+    },
+    "35": {
+      "gerp_bed": "299f2f03ca590785babf731a9ad2d31dab3083eea174000f001531fe8177564a",
+      "phase4_chrom_load": "670350631d787e800c1bf47d7cc9457dec6fe85c0de7c9b80448ae7b9d872b12",
+      "rg": "33690dedea3f47e546629215ccb10ef91a8b3baa1830b31f27c6bcc6c9f3e0c2"
+    },
+    "36": {
+      "gerp_bed": "afe788161cf565eaf69e8adf06e6121513a7e73597f3db4087eac785e08f015a",
+      "phase4_chrom_load": "c4880c3fbe1a4c4399ab2e98c75fc0645b684216cca7b59dda90a595c6fd7b50",
+      "rg": "e46b9a422c7b99f0119cd970b9b2395ab39f6b0e56dc3d47c44c63303abaac01"
+    },
+    "37": {
+      "gerp_bed": "110eb0a9246887265efa5c02869ecb2f1a0663de650f76554334cf2829ae7f82",
+      "phase4_chrom_load": "562324030448f8db32290de9e71eaeff566a40c01e9ebba519b7e3fc50090527",
+      "rg": "deb2a0f431963a86b8957220321b478b13e24bb0aa24d58cc5428896519c70d0"
+    },
+    "38": {
+      "gerp_bed": "1ac622c24602ea5ab91b34567e9f36050eea87a95f1c59c5ac7dc7e8efd6a969",
+      "phase4_chrom_load": "d9c62a5ac6fdcbd5eca2745334011a4e63e986d0b91faad65d6b8882694737fe",
+      "rg": "7dc11aaf981d5725500407b35d5d8c69a6b203cd3652884fe991afe4918f33c4"
+    },
+    "4": {
+      "gerp_bed": "682b60d7507895a00b976281d7d63eebd063f3325cc24da31152e7f2def57a41",
+      "phase4_chrom_load": "be2b6162b23201fccddde8b5fc8a0f956604c04f055e1477e95d5c8ffdb47cf9",
+      "rg": "e7b7d63e5d33d5d9bc6fb212ad6ae3a2f1f94a79ebb2e38dce007c20361ed3cb"
+    },
+    "5": {
+      "gerp_bed": "3609714f5163004c2239a63f1b6cd582a3377b511e2c195e098ee4be9e0dbbcc",
+      "phase4_chrom_load": "23b2bce2f83823e35ee740ebf6099a6f3bcbd21c78736c3ddc91316562e42fc0",
+      "rg": "f1c4a5566a2c69b0b054e4efffa3858d873f1e324fd0b73f3ca0fb1e178afbf0"
+    },
+    "6": {
+      "gerp_bed": "44aa7b9bdf58fd15e549ae5c5a8b35bcbc904c3cf0725af201998b2315503025",
+      "phase4_chrom_load": "2dd41fd4c22db1defd43ed209bb47001e8c30b8e2cc5fcbeae441602996c17b3",
+      "rg": "7e01975e8714df7c3e9358bb524e0666098ee6eb1ec426d473a948168d4a6259"
+    },
+    "7": {
+      "gerp_bed": "0300cb32aad383124e59a640ea82bac97b43803a03119e4e7088a030bb6a2961",
+      "phase4_chrom_load": "352facfdf4428872ee310e2fccd32c587c12e89e5ec2565a963972952c3242c4",
+      "rg": "4fdd16f0eea84aedab280ed612d74a69c7cd0f2250818362ce7de3b7675b1939"
+    },
+    "8": {
+      "gerp_bed": "de1a09000d3161c6ee0fbe133308115692b8a2aee678a9acfd3b9206472a0894",
+      "phase4_chrom_load": "16dba422d027580cf324bd0340018f7413b4e41ec43ac9e9bbb4c13087af1054",
+      "rg": "241a3289e96556bd53237e7e5f198250c629d8164a258980db8747a4c626475f"
+    },
+    "9": {
+      "gerp_bed": "513776181f2ec03da08a6cb8a4e6ee789969d896f9989ce6d72bec266fda1267",
+      "phase4_chrom_load": "b22b99ffa15be16a571d391e1c4f6be60c4a29b1589b7fe5a45e354715d8b6b7",
+      "rg": "1330b5245483667e2421ac368d204a088b864582926a936955a12a1d777fb41e"
+    }
+  },
+  "claim_boundary": "ROH localization of genomic burden proxies; not fitness, harm, or causation.",
+  "coordinate_semantics": {
+    "GERP": "BED column 3 END is used as the 1-based VCF POS key",
+    "RG": "bcftools roh START/END are 1-based inclusive; reported length is END-START+1",
+    "internal": "zero-based half-open interval unions"
+  },
+  "counts": {
+    "chromosomes": 38,
+    "cohort_failed_rows": 0,
+    "cohort_rows": 120,
+    "individual_rows": 3165,
+    "null_failed_rows": 0,
+    "null_rows": 23880
+  },
+  "implementation_gate": {
+    "decision": "IMPLEMENT",
+    "decision_table_sha256": "c734844ab3121217d64051dc2cb0b7dfacd4b7a76710a3640b8988f8a408c281",
+    "decision_validation_sha256": "4a6e20661ddd58e906d22f29ee9e7469c1f39d071672e730dcaa385872728876",
+    "denominator": 15,
+    "observed_value": 15.0,
+    "required_operator": ">=",
+    "required_value": 12.0
+  },
+  "inputs": {
+    "config/config.yaml": "e51b79fdef037285e0efc383f06ffbc96b20f35d0bcfc3e6c14721c1ca7642f2",
+    "data/wolf/gerp/100S95F14R.chr1-38.allSNPs.rates.unique.bed": "f7dc52376bb13fe1cd06fd892fe9299989cd05fa30d2a090756b42e14c9d728f",
+    "data/wolf/vcf/Pol.2out.mac2/100S95F14R.chr1-38.allSNPs.wfm.vcf.gz": "126880efc5a4e71874cd4d04548a51ca9a964b31d281853cc8aa4ceb7a3b0d2d",
+    "data/wolf/vcf/Pol.2out.mac2/100S95F14R.chr1-38.allSNPs.wfm.vcf.gz.csi": "db9255d9c80af0d85be4a293417d5b87612474e453cbbf677ef07f4163f59a0d",
+    "results/tables/phase5b_optional_decisions.tsv": "c734844ab3121217d64051dc2cb0b7dfacd4b7a76710a3640b8988f8a408c281",
+    "results/tables/validation_phase5b_decisions.tsv": "4a6e20661ddd58e906d22f29ee9e7469c1f39d071672e730dcaa385872728876",
+    "results/tables/wolf_load.tsv": "61826829ed830368c0f269a25d6b4a5fabf6093ecfe35177e7dfdbc177c77872",
+    "results/tables/wolf_roh.tsv": "e68854cf66d722daa689bb0295b2a6420c74c1d861fc15a453859c8023d1c0f1",
+    "results/wolf/autosome_lengths.tsv": "b2af5cbb429762912e49b0ed09c36690afabf1eb7244e616d5331d7fa6b3cf43",
+    "results/wolf/localization/chr1.null.tsv": "cca891aa98e86ae3d9d0ff716ee56aef7bb454ae98b9b057e49dd08f0288d90b",
+    "results/wolf/localization/chr1.observed.tsv": "9397a0576ea31b33c3b10a7d8b4861ede1e612f18ea8aa4b2a28e686f835d560",
+    "results/wolf/localization/chr1.qc.tsv": "3faba9145de55bcc003112f0b3a91c612e243a55ebe484371d93f429d8d6ca4b",
+    "results/wolf/localization/chr10.null.tsv": "8712b6bd71dbab31f44d8e8983f7e0b7991fdbab6716aaa48f96dbc48a01beff",
+    "results/wolf/localization/chr10.observed.tsv": "d35b84c3e04a321fb6e39b9c795fa4ddbe00f15d59167cc6ac03ff24c9939787",
+    "results/wolf/localization/chr10.qc.tsv": "ce2268533431cc14d0720b1a149c7e72db262f6cd73a0e975b6104205593b8db",
+    "results/wolf/localization/chr11.null.tsv": "90888a5cc026cf19f69a3fb2fe20497481dc8d89cc28620dab8ca6249aa33e2c",
+    "results/wolf/localization/chr11.observed.tsv": "be71ed9ed234b6b94e7da5ea8ce4c87010e2ba10c57661844d236de95692794b",
+    "results/wolf/localization/chr11.qc.tsv": "8c7076b3d45d8647cd39df366f9b8cb7acabce2dd10fdb9d73f6361b03c9c670",
+    "results/wolf/localization/chr12.null.tsv": "e852f6b17856359f22b0b76d3fad056b5826ed65bcfe4cd216469fbf743c2aa7",
+    "results/wolf/localization/chr12.observed.tsv": "2c3bfee312d6e2a66941c71f19332dafdf5c246573582b7c10c228c891bd5cd4",
+    "results/wolf/localization/chr12.qc.tsv": "c732c3e3d684f6c0addcd23b3b096bbab445f4925301e24b898d5b9ad01c8b9c",
+    "results/wolf/localization/chr13.null.tsv": "7ea03ee0e78f8ffe51b32ec8d03b0ef463bdd47fff075d0a90ea207900396640",
+    "results/wolf/localization/chr13.observed.tsv": "1df653c49fc5439cb2b7a0bbc3072b5d36d996c4e0afd571d0fbf4a361709754",
+    "results/wolf/localization/chr13.qc.tsv": "9d9e695026aaad0df74488527d5e58ac26a2e5a26f37f3646022883a1e906b9c",
+    "results/wolf/localization/chr14.null.tsv": "abff4fe1b01e004c2e2e352846bbae81af7f3637125b640619b0f1ecabbc17ae",
+    "results/wolf/localization/chr14.observed.tsv": "94bc3f30f662aa845d0efc453460f9b35dfc2c250df729fe82ea08f4af668ffb",
+    "results/wolf/localization/chr14.qc.tsv": "d121e89ef22116fd672a219bfc6034ca4bea5441ed02353e3db47af86b010629",
+    "results/wolf/localization/chr15.null.tsv": "92ba3fb396cc0ccece2b59898f6f526044646147628e4ed30d00919710c47011",
+    "results/wolf/localization/chr15.observed.tsv": "ade0baa7b6b95e7b3b526ee45b76d933c6d1e12d632b1247f21b6e8ba1e3b96f",
+    "results/wolf/localization/chr15.qc.tsv": "32e6b48d7bc3d5002608f0a2ccc1be14303ddb9c12955c18f59b2e34821cb569",
+    "results/wolf/localization/chr16.null.tsv": "1d8c9d476172f99986ed26bbcb563e0a8734c4edc9afd9985f97d9348961e113",
+    "results/wolf/localization/chr16.observed.tsv": "2f28001d2c6c4f7c625fe0cb8a497ef06a356e502514c6c25a30b58c922130a0",
+    "results/wolf/localization/chr16.qc.tsv": "f5fd82ad313f8d6042bac2c8de43271d8e9e03fcf270b6f20fee2371271481d3",
+    "results/wolf/localization/chr17.null.tsv": "8ea7cf646ea2338cd405e8f272a5a2a47dfb88f02b03ff4b27686f85f60ee5b3",
+    "results/wolf/localization/chr17.observed.tsv": "be3aee4b7e3af0c65c11208b1bd54d509fa2ad017280bd40178cf9cb1129d586",
+    "results/wolf/localization/chr17.qc.tsv": "ace43b9c3b207cff781086d4ae4477b736f6c6fd3c3d1e5de9555abc7c783274",
+    "results/wolf/localization/chr18.null.tsv": "1925b2d23171a7e2277a8b05860d447ae2d156ff37e5e4297c3c78149e680ea2",
+    "results/wolf/localization/chr18.observed.tsv": "cfc95fa36b69ab41339d162ff5b7737e94c2988341bbf68f9f31442c1f72dbc5",
+    "results/wolf/localization/chr18.qc.tsv": "31f3834650af306379c06c5714360d088f8ee8c565d04c943d0074e1ae790741",
+    "results/wolf/localization/chr19.null.tsv": "327868316e3bd9ba8f2406dae969b90c85802afba023c2447796468dae2a5927",
+    "results/wolf/localization/chr19.observed.tsv": "c2356686fb1bd1b63aad741c05bba19b5de3abbf1a54a7e8a6d42ab92d84c897",
+    "results/wolf/localization/chr19.qc.tsv": "90cc3de2c1ffccbf27af1121055d5be7fbbc1f510225b28b1092f70bd1baeb2f",
+    "results/wolf/localization/chr2.null.tsv": "8468dfb10be49083a35530ff64134e23991ab2d57c21f593b801a1b36ddf354e",
+    "results/wolf/localization/chr2.observed.tsv": "e6423c2853a776bfbff807b4693a4caec03ccf289a06d51b272f24bbcc86d9a9",
+    "results/wolf/localization/chr2.qc.tsv": "325316abdf34ca1d116166f4bfeeef40fd84522f96ac00207dfa0c0a106421c8",
+    "results/wolf/localization/chr20.null.tsv": "a1bed83aff020193177b82aefbdc274ded9823351dfb84f4e78fbeeaaec639d9",
+    "results/wolf/localization/chr20.observed.tsv": "8f17fa73a8f0bb134a69f2bdf600a2ae4c4411a3f31180c49dd5f56cc2636a3a",
+    "results/wolf/localization/chr20.qc.tsv": "e1d5c179314663104f5c13ce6ae00b0f84ccd1b7ef6de6cb63735c7cc6e6ecbb",
+    "results/wolf/localization/chr21.null.tsv": "ec7e6f5f4291a440f88fc66a81f58f076418fcf967faa30f2013929b9a48e95d",
+    "results/wolf/localization/chr21.observed.tsv": "6b18131d7bf47826083802297a313a3000f5eac4bc1a42ee57f9151038bd213c",
+    "results/wolf/localization/chr21.qc.tsv": "7a7c229ff2b1a1d26d7ccbb4bdfbfb3a1357fa0822119ca038d526068f06f4a4",
+    "results/wolf/localization/chr22.null.tsv": "328763eedeeb27d6a7003b56bec440a882fb594d881b5ee82dc2c170d6252909",
+    "results/wolf/localization/chr22.observed.tsv": "cbf35f9df3e0fc45180a4c99bb1445fb26fea8be0cb8be583a247c48c91a4f09",
+    "results/wolf/localization/chr22.qc.tsv": "c96f89db970417dfcd50c0619a265585fa8a3f59b8d098af423801bd44bed1e4",
+    "results/wolf/localization/chr23.null.tsv": "08f9f9099284222de9965bde8ced4befbaca3e1aab2c96276e6546e0ed02cf9a",
+    "results/wolf/localization/chr23.observed.tsv": "47d423ac22620b05637e626410621e894f45f9ccb31150e80af5938d9f8fcce8",
+    "results/wolf/localization/chr23.qc.tsv": "cc1f8345482beba62b65c93834ec6093bb33097f1dd622d2743929f03a54814c",
+    "results/wolf/localization/chr24.null.tsv": "5f358402f2c64304b2d2faa74ea87ee1f3b1488b18036de2e0facc59810ecf88",
+    "results/wolf/localization/chr24.observed.tsv": "fba0c7043bf8a2eafe6eb4842203032edda770c0aaad22f57db0cba9ee162bbb",
+    "results/wolf/localization/chr24.qc.tsv": "3e3a11c0fb535bf5d6942836464ef287084805fa3e6d5a295768d1ac915ed017",
+    "results/wolf/localization/chr25.null.tsv": "a98a59c60b728dbb51321e5e2293786f10747b502a4dc9538e50bf148c4dd824",
+    "results/wolf/localization/chr25.observed.tsv": "0d0dd109851545e5e1278890e1024e26b49f77825865c50e8eac057afb2c564c",
+    "results/wolf/localization/chr25.qc.tsv": "9db5a82e9cba36c89b2c14e19a77a75571809ea3579d907d6a5c0e0d3e675097",
+    "results/wolf/localization/chr26.null.tsv": "e11dc92bac84a0e19f59fb152a73b9c2754f94f41262e901acdea88044a0bc40",
+    "results/wolf/localization/chr26.observed.tsv": "afa578996bfe3299e06b377a03843890ce0da97553147e155281a0943d9cdf73",
+    "results/wolf/localization/chr26.qc.tsv": "316917cb53e28223443f0b9beb3fa628873329d992dd793d031bd9eea9e1cc00",
+    "results/wolf/localization/chr27.null.tsv": "98511ef53a708685c1fc3b1ac21f37d06b188bbffd5ef1a4653a1a4a472ac55a",
+    "results/wolf/localization/chr27.observed.tsv": "46ef959682e66e3f38c9e67a3c135f77c58ff526f99c093fb0b755c44dfb5a96",
+    "results/wolf/localization/chr27.qc.tsv": "0183db77aeb6889b5d5ec6f93885b333211fb98febbe3e89fc1bd6ff167b1923",
+    "results/wolf/localization/chr28.null.tsv": "29a6d8e40ad78a63e6132bd6e6ea8dc60a59f9c73f487750866ace89be821ece",
+    "results/wolf/localization/chr28.observed.tsv": "124cbf64e58ec633202111d682cc63394e0c2adf8582f6ab4a0e1ad13e1c5e01",
+    "results/wolf/localization/chr28.qc.tsv": "73ce64b0ea6b6f55e0050605945c74f37f9aed90f3d5cf0ebbedf4a36797d9ae",
+    "results/wolf/localization/chr29.null.tsv": "96a736d42851591b30f62d1afd0d65b1e13af1d6e55b2ab1651f8e768e5d7e5e",
+    "results/wolf/localization/chr29.observed.tsv": "1a681646409564dac155aac7f7c43ca1458895d30397698dfad3cfc268bd8794",
+    "results/wolf/localization/chr29.qc.tsv": "592ab8076d492b643ea0706e492f93676057efa5c610330f4688d0d2b13679e6",
+    "results/wolf/localization/chr3.null.tsv": "ee74df9d455f17c310f9a57ebca787dbabac12b76572c2c12395b8f53dca7eb9",
+    "results/wolf/localization/chr3.observed.tsv": "ed9414ccab92ff8b8089d83632ec380ed4160a4309a9a59815b0ba64dfd92b51",
+    "results/wolf/localization/chr3.qc.tsv": "b972b1c97cd21b02c59a0059556427889e61ff5017c9371bfd2ac762cf38ab27",
+    "results/wolf/localization/chr30.null.tsv": "ab07dca0b7f30f69dcd20edcceb6d62f68493b5dc76341459b9eef29dea75fd7",
+    "results/wolf/localization/chr30.observed.tsv": "d66b329aaacad41af831cc59ab5aeccc2737422ce4f595a18509c73119d1185b",
+    "results/wolf/localization/chr30.qc.tsv": "5caeb0fa50f0b6fbf5fd32a44630a7a5a12920b9a3df25cae053031b9e81300e",
+    "results/wolf/localization/chr31.null.tsv": "af8e3af2c95fd028f7783a75a9b5aaa002784011f20fff9cf77dfb411171c550",
+    "results/wolf/localization/chr31.observed.tsv": "2d0a0c7c23f5b2f6381e546791258902faf59bbcaf752d24028218830398b28d",
+    "results/wolf/localization/chr31.qc.tsv": "51cb0ec1a439a87d5ee64313faeb2e79d6381a3499fafbfb1b04ba1913369b78",
+    "results/wolf/localization/chr32.null.tsv": "bc49c806bd486c9716b87ee3bfb53f45024809a32adbbeb736250d8ef6b993ed",
+    "results/wolf/localization/chr32.observed.tsv": "e090b12d7a72a0cd7d969aa508402b7493554506493d3fe2e81ea3817025b9ae",
+    "results/wolf/localization/chr32.qc.tsv": "ed7f41e0d8a9b670301acec868f941b2b92bc52c34e56ea1dadd96b80585db78",
+    "results/wolf/localization/chr33.null.tsv": "e4704375a51522c1a35b7fcac325a8fbc8a7b5b6e7f01fe1e5dc97ed25efe4aa",
+    "results/wolf/localization/chr33.observed.tsv": "7409398308a13da589479c2d315876bfe376c16468b000753802d92a9323762d",
+    "results/wolf/localization/chr33.qc.tsv": "04b083ec96a16e9fb317a94b9b9d3efb5be9cbfe6a0fab495a5e5c35fdd7830f",
+    "results/wolf/localization/chr34.null.tsv": "3e094465efe49ee51263ac42281ba8b93d29e8b3c1c1cb3dd729e6affc0aadbd",
+    "results/wolf/localization/chr34.observed.tsv": "da38c61df309acb5d810bb0f2c2f8c64ed4f3503ae70ba33e5452ca575715d86",
+    "results/wolf/localization/chr34.qc.tsv": "d61a9de2fa7daf0afdbdc3e723b863dc12e6d5f30ff76389b450c7031a2e296c",
+    "results/wolf/localization/chr35.null.tsv": "da19287cee008d8d079cf7363ab058c53045d30945135662fff1b18030014099",
+    "results/wolf/localization/chr35.observed.tsv": "58a46c1faad649624dbe62ed893f99e898deae4e71471ba31c71023ad68e396c",
+    "results/wolf/localization/chr35.qc.tsv": "c8bd1c296c854314b0b00323317da13ab08022467ba56a8ac40929c9655847ff",
+    "results/wolf/localization/chr36.null.tsv": "476c46d3f3c5acdeda391e09872884bb2d9ae3a6e16e1926f0587fc87979572d",
+    "results/wolf/localization/chr36.observed.tsv": "21007a5357a95ccd70825abd65f441c5c86937b8a53a930864c1502feeb8d575",
+    "results/wolf/localization/chr36.qc.tsv": "5928eb18b32986341be627d176630bf1e9fecdd94614a0dcdfbc527e550b3854",
+    "results/wolf/localization/chr37.null.tsv": "fa7b0f0dca8c9566596f872777decb1252ab8f9afcf09aa6e8e61f468333961f",
+    "results/wolf/localization/chr37.observed.tsv": "ae7ba9764e37f6d362a4eccd5533c883a8b0776d24d24228e2e65acfd2ebf575",
+    "results/wolf/localization/chr37.qc.tsv": "1da71699740a67e5c383daae7cdb7681f34ac65fa13cf69929ea883e5e9b6878",
+    "results/wolf/localization/chr38.null.tsv": "dfbd95b9c782637d03a848bb6233a4139316473caf774e6d0f6329f180590696",
+    "results/wolf/localization/chr38.observed.tsv": "1e26f356b62183b5cbe7f20495250304a9baee999679a49f62ac86b7f5e28c08",
+    "results/wolf/localization/chr38.qc.tsv": "e9f69d704fc204ad34e85e73e179ac29a6f9e8e6b9d3b744ba649c89c9df987e",
+    "results/wolf/localization/chr4.null.tsv": "c8715d697516a4cadc79beb8bf83e77aa9a35ec5f029bbf22da49c87aab29d86",
+    "results/wolf/localization/chr4.observed.tsv": "3d2be3f44ad23d34814f956b99398f7a033447d5b8e1951b8107cc894128a320",
+    "results/wolf/localization/chr4.qc.tsv": "4a25edac876368dcc4692d1f8edad1b06d6d339053cee1c1b9d2fead68bcd252",
+    "results/wolf/localization/chr5.null.tsv": "7c6417607eeff263db10f534cd8525956b2047506faa3f109384fe90ad3b1812",
+    "results/wolf/localization/chr5.observed.tsv": "9574b9c018d2c5edeef4a24e9523ae61a73ddb4427cad2971cfad61163e89ec5",
+    "results/wolf/localization/chr5.qc.tsv": "fbc216b349a282c46eb6caef150876b083dc69a3bfd5cb304912705db6e9f400",
+    "results/wolf/localization/chr6.null.tsv": "28f1758f00ed3c488560ae5288f55c92a8cc3b1ac9c1766fc68a6bcb64bf177c",
+    "results/wolf/localization/chr6.observed.tsv": "d06d38fe47a6f55c068fcb48b96d6976b41e022ed183f7089e6f6f01e61bfcfa",
+    "results/wolf/localization/chr6.qc.tsv": "8063f1b1098ba3edaef55d3321b52e20db48e616f2d46ade4458964cf1e229c6",
+    "results/wolf/localization/chr7.null.tsv": "3acc618201e93bc8cac6ea13d6f18610fec8f2f1cb675a67fb3751738054c7fe",
+    "results/wolf/localization/chr7.observed.tsv": "e0c4533fc49939c3ab67ea0bad0b3a757e703a13936cc24502140e3ebee506de",
+    "results/wolf/localization/chr7.qc.tsv": "6c533590b9d9712ee0710ec870fa340f9dd8f3f11cd29cbbb55e9135a6d19247",
+    "results/wolf/localization/chr8.null.tsv": "bee5b7c53690f5a82f4619e3ff557c794e35c6d8f815c834fd13bebb8478cc7d",
+    "results/wolf/localization/chr8.observed.tsv": "f941bcb25ee428f64a19242f35bcebd138216eec1d21ea47a3b31558f8bd961f",
+    "results/wolf/localization/chr8.qc.tsv": "03bfe064ed17f95972ce5f0d42111db42a83898cbd5094c7f379d79a354c45a7",
+    "results/wolf/localization/chr9.null.tsv": "302b9434be4440eb11b2e108b839f8fb9c9036441868266bb64636f89b045bf9",
+    "results/wolf/localization/chr9.observed.tsv": "3a6c37996f5d9cb37e1cb5916c299eea3b745a64da2f2aa6a76a300087afbda6",
+    "results/wolf/localization/chr9.qc.tsv": "cab6791d46ffd3dc5ca94957e38ad6f3351d6a516d29b23b392f0a7cb2b8181b",
+    "results/wolf/popmap.tsv": "e6fd9edd429e8c29204b6fb5015208c045bb9b21ab8b77e536a6693e88a2097e",
+    "results/wolf/samples.txt": "089f04ac2980380a675bcd67ca34f21f1b862ec6d35ae2c09cad80b4d96e9a07",
+    "scripts/python/wolf_roh_localization.py": "7a0fefebc1d91d2eff0dca66a24537ca786e2e7600aee39010afceb4357bf7a2"
+  },
+  "opportunity_denominator": {
+    "ascertainment_caveat": "The denominator is restricted to assayed SNP records; circular shifts preserve the observed SNP/GERP landscape but do not eliminate every ascertainment effect.",
+    "canonical_name": "eligible_polarized_gerp_threshold_snp_genotype_calls",
+    "eligibility": "variant-only allSNPs VCF record with exact GERP key, valid AA polarization, diploid 0/1 genotype, and GERP score strictly above threshold",
+    "not_callable_genome_bases": true,
+    "unit": "individual-by-SNP genotype calls"
+  },
+  "output_sha256": {
+    "results/figures/wolf_roh_localization_forest.png": "8ee3d399d615db0bea9cccf71ae2d894313722f7299b3ed1b0a08e879cba22ba",
+    "results/figures/wolf_roh_localization_ribbon.png": "0ad6632a93e769dac9b9bc3faa5d8ba3cd9ea2fed73c062b042e667fe6ec31e4",
+    "results/tables/wolf_roh_localization_cohort.tsv": "69ed762d1fff4138b43e8883571aa9f863d8e9ea31dd181155e8ed76630f3cf9",
+    "results/tables/wolf_roh_localization_figure_values.tsv": "c7669da201139632c086ae46ea1f2ea9f7b9f3813a26c09d48999cc8eed192f7",
+    "results/tables/wolf_roh_localization_individual.tsv": "1f38853c4e7cca00d7ffe687c6e99ae05037a0d5668fee8eef7a8ba9e15c3b0b",
+    "results/tables/wolf_roh_localization_null.tsv": "c5e53036599c9c81c31a99c861b38e53873a6ac046aaeccea42b47599568cb0f",
+    "results/tables/wolf_roh_localization_qc.tsv": "5f88b1ff06cc6af0e36f677075e2ef4eccf767188bbfa154f69b20d05cbf246a"
+  },
+  "reconciliation": {
+    "max_abs_froh_delta": 9.71445146547012e-17,
+    "max_abs_phase4_burden_delta": 2.3283064365386963e-10,
+    "max_abs_phase4_copy_delta": 0,
+    "max_abs_phase4_genotype_call_delta": 0,
+    "max_roh_overlap_bp": 0
+  },
+  "schema_version": "1.0",
+  "scientific_hash": "5822727e0cc5a6f91f9eeeb836bd1bb5a0b195315d0dbca590ba1695fb15ea05",
+  "scientific_hash_algorithm": "sha256 over labelled deterministic TSV bytes",
+  "scientific_hash_files": [
+    "results/tables/wolf_roh_localization_individual.tsv",
+    "results/tables/wolf_roh_localization_cohort.tsv",
+    "results/tables/wolf_roh_localization_null.tsv",
+    "results/tables/wolf_roh_localization_qc.tsv",
+    "results/tables/wolf_roh_localization_figure_values.tsv"
+  ],
+  "seeds": {
+    "base_seed": 1304,
+    "chromosome_seeds": {
+      "1": 1993580310764013762,
+      "10": 1849027357349288343,
+      "11": 4385955534732993297,
+      "12": 1909038406097706194,
+      "13": 4869294000940562476,
+      "14": 8014190336301429981,
+      "15": 2786497481665229303,
+      "16": 3525134273777696391,
+      "17": 1650902708536959751,
+      "18": 3113488944340128311,
+      "19": 4553023646880969181,
+      "2": 4046562584953866962,
+      "20": 4380175336954672905,
+      "21": 6370696477738036568,
+      "22": 8336317895989832112,
+      "23": 4598715920162504902,
+      "24": 2692614327494067822,
+      "25": 1575858756967180181,
+      "26": 4679147112132555003,
+      "27": 7318739872183261059,
+      "28": 1015557036142256066,
+      "29": 1351601183682266189,
+      "3": 3839150732337157524,
+      "30": 1002475526611014233,
+      "31": 8074464142143701721,
+      "32": 7699254775287394662,
+      "33": 1476959777921755604,
+      "34": 4168471744280323824,
+      "35": 8742218354814719901,
+      "36": 2797262043586931795,
+      "37": 955274963601366898,
+      "38": 3008851606976413475,
+      "4": 6708866155575137596,
+      "5": 5277716452687366000,
+      "6": 2007151589349191226,
+      "7": 8760241181978814624,
+      "8": 1664987673641889086,
+      "9": 3526463190574284019
+    },
+    "derivation": "sha256(base_seed|chromosome|CHROM) first 8 bytes modulo 2^63-1"
+  },
+  "settings": {
+    "ci_pct": 95.0,
+    "denominator": "eligible_polarized_gerp_threshold_snp_genotype_calls",
+    "gerp_thresholds": [
+      2.0,
+      3.0,
+      4.0
+    ],
+    "max_array_bytes": 4000000000,
+    "null_model": "within_chromosome_circular_roh_shift",
+    "permutation_reps": 199,
+    "roh_cutoffs_mb": [
+      0.1,
+      0.5,
+      1.0,
+      1.5,
+      2.0
+    ],
+    "seed": 1304
+  },
+  "software": {
+    "matplotlib": "3.11.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.3",
+    "python": "3.11.15",
+    "scikit_allel": "1.3.13",
+    "scipy": "1.17.1",
+    "tabix_executable": "tabix",
+    "tabix_executable_sha256": "d47a8b9644b8ba3f1ae2fe2bdff3cb105c465bd959f5f1009148c660d2065975"
+  }
+}

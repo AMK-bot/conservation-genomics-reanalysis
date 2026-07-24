@@ -1,0 +1,8 @@
+path	file_sha256
+data/peafowl/raw/Comparative_genomic_dataset_F.vcf.gz	3c6ed0ac1d8a2c6025b403982053627ca2063dce4ce7dce1d9d0912357630ff7
+data/wolf/gerp/100S95F14R.chr1-38.allSNPs.rates.unique.bed	f7dc52376bb13fe1cd06fd892fe9299989cd05fa30d2a090756b42e14c9d728f
+data/wolf/vcf/Pol.2out.mac2/100S95F14R.chr1-38.allSNPs.wfm.vcf.gz	126880efc5a4e71874cd4d04548a51ca9a964b31d281853cc8aa4ceb7a3b0d2d
+data/wolf/vcf/Pol.2out.mac2/100S95F14R.chr1-38.allSNPs.wfm.vcf.gz.csi	db9255d9c80af0d85be4a293417d5b87612474e453cbbf677ef07f4163f59a0d
+data/wolf/vcf/Pol.2out.mac2/100S95F14R.chr1-38.vepfinal.wfm.vcf.gz	162bfc9cbd8eed896e0d88db630561c07ec1c3cac5d9adbdc62c43334ad7ad6b
+data/wolf/vep/Pol.2out.mac2/sifttypes.chr1-X.txt	5c3b723ef5fe3c8945ff4437a8193f1cfc4bf307dd4f3d3b5fe59926a13623ee
+data/wolf/vep/Pol.2out.mac2/veptypes.chr1-X.txt	678be7ae39e80ed0fbd69f7fa8af8dd06af8a553eb7bf707e21de196bb9e4f1a

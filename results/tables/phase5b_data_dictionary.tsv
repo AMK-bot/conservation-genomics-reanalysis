@@ -1,0 +1,568 @@
+table	table_label	column_position	column	storage_dtype	non_missing_rows	total_rows	description
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	1	analysis_id	str	60	60	Stable identifier for one analysis result.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	2	cell_id	str	60	60	Stable identifier for a frozen parameter-grid cell.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	3	gerp_threshold	int64	60	60	GERP RS cutoff defining the wolf load subset.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	4	roh_cutoff_mb	float64	60	60	Minimum ROH length in megabases.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	5	outcome	str	60	60	Outcome or decision category evaluated in the row.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	6	model	str	60	60	Predeclared association model.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	7	n_ind	int64	60	60	N ind.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	8	n_pop	int64	60	60	N pop.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	9	coefficient	float64	60	60	Within-cohort rank association coefficient.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	10	ci_low	float64	60	60	Lower bound of the stated confidence interval.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	11	ci_high	float64	60	60	Upper bound of the stated confidence interval.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	12	ci_pct	int64	60	60	Confidence level in percent.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	13	permutation_p_two_sided	float64	60	60	Two-sided permutation p-value with plus-one correction.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	14	expected_direction	int64	60	60	Expected direction.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	15	direction_matches_expected	bool	60	60	Direction matches expected.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	16	bootstrap_reps	int64	60	60	Number of requested bootstrap replicates.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	17	bootstrap_valid	int64	60	60	Bootstrap valid.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	18	bootstrap_failed	int64	60	60	Bootstrap failed.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	19	permutation_reps	int64	60	60	Number of requested permutation replicates.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	20	permutation_valid	int64	60	60	Permutation valid.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	21	permutation_failed	int64	60	60	Permutation failed.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	22	bootstrap_seed	int64	60	60	Bootstrap seed.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	23	permutation_seed	int64	60	60	Permutation seed.
+results/tables/wolf_froh_load_associations.tsv	Wolf association surface	24	negative_control	str	60	60	Negative control.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	1	pair_id	str	420	420	Pair id.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	2	cell_a_id	str	420	420	Cell a id.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	3	cell_b_id	str	420	420	Cell b id.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	4	gerp_a	int64	420	420	Gerp a.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	5	roh_a_mb	float64	420	420	Roh a mb.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	6	gerp_b	int64	420	420	Gerp b.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	7	roh_b_mb	float64	420	420	Roh b mb.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	8	n_ind	int64	420	420	N ind.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	9	spearman_rho	float64	420	420	Spearman rho.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	10	spearman_p	float64	420	420	Spearman p.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	11	kendall_tau	float64	420	420	Kendall tau.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	12	kendall_p	float64	420	420	Kendall p.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	13	top_percentile	int64	420	420	Top percentile.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	14	top_n	int64	420	420	Top n.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	15	top_overlap_n	int64	420	420	Top overlap n.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	16	top_overlap_fraction	float64	420	420	Top overlap fraction.
+results/tables/wolf_froh_load_rank_stability.tsv	Wolf rank stability	17	top_jaccard	float64	420	420	Top jaccard.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	1	cell_id	str	3165	3165	Stable identifier for a frozen parameter-grid cell.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	2	gerp_threshold	int64	3165	3165	GERP RS cutoff defining the wolf load subset.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	3	roh_cutoff_mb	float64	3165	3165	Minimum ROH length in megabases.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	4	IND	str	3165	3165	IND.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	5	POP	str	3165	3165	POP.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	6	F_ROH	float64	3165	3165	F ROH.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	7	REALIZED_LOAD	float64	3165	3165	REALIZED LOAD.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	8	MASKED_LOAD	float64	3165	3165	MASKED LOAD.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	9	generic_homozygosity	float64	3165	3165	Generic homozygosity.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	10	froh_within_pop_rank	float64	3165	3165	Froh within pop rank.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	11	realized_within_pop_rank	float64	3165	3165	Realized within pop rank.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	12	masked_within_pop_rank	float64	3165	3165	Masked within pop rank.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	13	inverse_masked_within_pop_rank	float64	3165	3165	Inverse masked within pop rank.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	14	generic_homozygosity_within_pop_rank	float64	3165	3165	Generic homozygosity within pop rank.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	15	composite_risk_proxy_score	float64	3165	3165	Composite risk proxy score.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	16	composite_global_rank	float64	3165	3165	Composite global rank.
+results/tables/wolf_froh_load_individual_scores.tsv	Wolf individual risk-proxy scores	17	composite_risk_percentile	float64	3165	3165	Composite risk percentile.
+results/tables/wolf_froh_load_figure_values.tsv	Wolf figure bridge	1	figure	str	528	528	Figure.
+results/tables/wolf_froh_load_figure_values.tsv	Wolf figure bridge	2	panel	str	528	528	Panel.
+results/tables/wolf_froh_load_figure_values.tsv	Wolf figure bridge	3	record_type	str	528	528	Record type.
+results/tables/wolf_froh_load_figure_values.tsv	Wolf figure bridge	4	cell_id	str	528	528	Stable identifier for a frozen parameter-grid cell.
+results/tables/wolf_froh_load_figure_values.tsv	Wolf figure bridge	5	gerp_threshold	int64	528	528	GERP RS cutoff defining the wolf load subset.
+results/tables/wolf_froh_load_figure_values.tsv	Wolf figure bridge	6	roh_cutoff_mb	float64	528	528	Minimum ROH length in megabases.
+results/tables/wolf_froh_load_figure_values.tsv	Wolf figure bridge	7	outcome	str	528	528	Outcome or decision category evaluated in the row.
+results/tables/wolf_froh_load_figure_values.tsv	Wolf figure bridge	8	model	str	528	528	Predeclared association model.
+results/tables/wolf_froh_load_figure_values.tsv	Wolf figure bridge	9	IND	str	422	528	IND.
+results/tables/wolf_froh_load_figure_values.tsv	Wolf figure bridge	10	POP	str	438	528	POP.
+results/tables/wolf_froh_load_figure_values.tsv	Wolf figure bridge	11	x_value	float64	438	528	X value.
+results/tables/wolf_froh_load_figure_values.tsv	Wolf figure bridge	12	y_value	float64	438	528	Y value.
+results/tables/wolf_froh_load_figure_values.tsv	Wolf figure bridge	13	estimate	float64	90	528	Estimate.
+results/tables/wolf_froh_load_figure_values.tsv	Wolf figure bridge	14	ci_low	float64	90	528	Lower bound of the stated confidence interval.
+results/tables/wolf_froh_load_figure_values.tsv	Wolf figure bridge	15	ci_high	float64	90	528	Upper bound of the stated confidence interval.
+results/tables/wolf_froh_load_figure_values.tsv	Wolf figure bridge	16	n	int64	528	528	Number of observations represented by the figure-value row: one for an individual point and the relevant sample size for an aggregate.
+results/tables/validation_wolf_robustness.tsv	Wolf robustness validation	1	check	str	24	24	Human-readable validation assertion.
+results/tables/validation_wolf_robustness.tsv	Wolf robustness validation	2	status	str	24	24	PASS, WARN, or FAIL validator status.
+results/tables/validation_wolf_robustness.tsv	Wolf robustness validation	3	detail	str	24	24	Machine-derived validation evidence.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	1	IND	str	3165	3165	IND.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	2	POP	str	3165	3165	POP.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	3	gerp_threshold	int64	3165	3165	GERP RS cutoff defining the wolf load subset.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	4	roh_cutoff_mb	float64	3165	3165	Minimum ROH length in megabases.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	5	n_roh	int64	3165	3165	N roh.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	6	roh_raw_span_bp	int64	3165	3165	Roh raw span bp.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	7	roh_union_bp	int64	3165	3165	Roh union bp.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	8	roh_overlap_bp	int64	3165	3165	Roh overlap bp.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	9	froh_recomputed	float64	3165	3165	Froh recomputed.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	10	F_ROH_phase4	float64	3165	3165	F ROH phase4.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	11	froh_delta	float64	3165	3165	Froh delta.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	12	inside_eligible_genotype_calls	int64	3165	3165	Eligible polarized GERP-threshold SNP genotype calls inside the selected ROH intervals.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	13	outside_eligible_genotype_calls	int64	3165	3165	Eligible polarized GERP-threshold SNP genotype calls outside the selected ROH intervals.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	14	total_eligible_genotype_calls	int64	3165	3165	Inside plus outside eligible polarized GERP-threshold SNP genotype calls; an assayed-variant opportunity count, not callable genomic bases.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	15	inside_hom_derived_copies	int64	3165	3165	Inside hom derived copies.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	16	outside_hom_derived_copies	int64	3165	3165	Outside hom derived copies.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	17	total_hom_derived_copies	int64	3165	3165	Total hom derived copies.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	18	inside_hom_del_sum	float64	3165	3165	GERP-weighted homozygous-derived burden inside the selected ROH intervals.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	19	outside_hom_del_sum	float64	3165	3165	GERP-weighted homozygous-derived burden outside the selected ROH intervals.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	20	total_hom_del_sum	float64	3165	3165	Total hom del sum.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	21	all_polarized_gerp_genotype_calls	int64	3165	3165	Nonmissing diploid genotype calls at exact GERP-matched, validly polarized allSNPs records before applying a GERP threshold.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	22	inside_burden_rate	float64	3165	3165	Inside-ROH homozygous-derived burden per eligible polarized GERP-threshold SNP genotype call.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	23	outside_burden_rate	float64	3165	3165	Outside-ROH homozygous-derived burden per eligible polarized GERP-threshold SNP genotype call.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	24	rate_ratio	float64	3165	3165	Inside-ROH burden rate divided by the outside-ROH burden rate.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	25	log2_enrichment	float64	3165	3165	Base-2 logarithm of the inside/outside burden-per-eligible-genotype-call ratio.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	26	phase4_burden_delta	float64	3165	3165	Phase4 burden delta.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	27	phase4_copy_delta	int64	3165	3165	Phase4 copy delta.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	28	phase4_genotype_call_delta	int64	3165	3165	Difference between the threshold-independent polarized GERP genotype-call count and the validated Phase-4 call total.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	29	status	str	3165	3165	PASS, WARN, or FAIL validator status.
+results/tables/wolf_roh_localization_individual.tsv	Wolf ROH-localization individual results	30	failure_reason	float64	0	3165	Failure reason.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	1	POP	str	120	120	POP.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	2	gerp_threshold	int64	120	120	GERP RS cutoff defining the wolf load subset.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	3	roh_cutoff_mb	float64	120	120	Minimum ROH length in megabases.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	4	n_ind	int64	120	120	N ind.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	5	inside_eligible_genotype_calls	int64	120	120	Eligible polarized GERP-threshold SNP genotype calls inside the selected ROH intervals.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	6	outside_eligible_genotype_calls	int64	120	120	Eligible polarized GERP-threshold SNP genotype calls outside the selected ROH intervals.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	7	inside_hom_derived_copies	int64	120	120	Inside hom derived copies.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	8	outside_hom_derived_copies	int64	120	120	Outside hom derived copies.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	9	inside_hom_del_sum	float64	120	120	GERP-weighted homozygous-derived burden inside the selected ROH intervals.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	10	outside_hom_del_sum	float64	120	120	GERP-weighted homozygous-derived burden outside the selected ROH intervals.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	11	inside_burden_rate	float64	120	120	Inside-ROH homozygous-derived burden per eligible polarized GERP-threshold SNP genotype call.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	12	outside_burden_rate	float64	120	120	Outside-ROH homozygous-derived burden per eligible polarized GERP-threshold SNP genotype call.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	13	rate_ratio	float64	120	120	Inside-ROH burden rate divided by the outside-ROH burden rate.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	14	log2_enrichment	float64	120	120	Base-2 logarithm of the inside/outside burden-per-eligible-genotype-call ratio.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	15	null_valid_reps	int64	120	120	Number of finite circular-shift null replicates in the cell.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	16	null_failed_reps	int64	120	120	Number of requested circular-shift null replicates that failed in the cell.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	17	null_median_log2_enrichment	float64	120	120	Median log2 enrichment under within-chromosome circular ROH shifts.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	18	null_ci_low	float64	120	120	Lower percentile bound of the circular-shift null distribution.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	19	null_ci_high	float64	120	120	Upper percentile bound of the circular-shift null distribution.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	20	observed_minus_null_median	float64	120	120	Observed log2 enrichment minus the circular-shift null median.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	21	permutation_p_two_sided	float64	120	120	Two-sided permutation p-value with plus-one correction.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	22	direction	str	120	120	Sign classification of the reported effect.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	23	status	str	120	120	PASS, WARN, or FAIL validator status.
+results/tables/wolf_roh_localization_cohort.tsv	Wolf ROH-localization cohort results	24	failure_reason	float64	0	120	Failure reason.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	1	POP	str	23880	23880	POP.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	2	replicate	int64	23880	23880	Replicate.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	3	base_seed	int64	23880	23880	Base seed.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	4	gerp_threshold	int64	23880	23880	GERP RS cutoff defining the wolf load subset.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	5	roh_cutoff_mb	float64	23880	23880	Minimum ROH length in megabases.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	6	inside_eligible_genotype_calls	int64	23880	23880	Eligible polarized GERP-threshold SNP genotype calls inside the selected ROH intervals.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	7	outside_eligible_genotype_calls	int64	23880	23880	Eligible polarized GERP-threshold SNP genotype calls outside the selected ROH intervals.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	8	total_eligible_genotype_calls	int64	23880	23880	Inside plus outside eligible polarized GERP-threshold SNP genotype calls; an assayed-variant opportunity count, not callable genomic bases.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	9	inside_hom_derived_copies	int64	23880	23880	Inside hom derived copies.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	10	outside_hom_derived_copies	int64	23880	23880	Outside hom derived copies.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	11	total_hom_derived_copies	int64	23880	23880	Total hom derived copies.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	12	inside_hom_del_sum	float64	23880	23880	GERP-weighted homozygous-derived burden inside the selected ROH intervals.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	13	outside_hom_del_sum	float64	23880	23880	GERP-weighted homozygous-derived burden outside the selected ROH intervals.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	14	total_hom_del_sum	float64	23880	23880	Total hom del sum.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	15	inside_burden_rate	float64	23880	23880	Inside-ROH homozygous-derived burden per eligible polarized GERP-threshold SNP genotype call.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	16	outside_burden_rate	float64	23880	23880	Outside-ROH homozygous-derived burden per eligible polarized GERP-threshold SNP genotype call.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	17	rate_ratio	float64	23880	23880	Inside-ROH burden rate divided by the outside-ROH burden rate.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	18	log2_enrichment	float64	23880	23880	Base-2 logarithm of the inside/outside burden-per-eligible-genotype-call ratio.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	19	status	str	23880	23880	PASS, WARN, or FAIL validator status.
+results/tables/wolf_roh_localization_null.tsv	Wolf ROH-localization circular-shift null	20	failure_reason	float64	0	23880	Failure reason.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	1	chrom	int64	38	38	Chrom.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	2	coordinate_semantics	str	38	38	Coordinate semantics.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	3	gerp_bed_records	int64	38	38	Gerp bed records.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	4	gerp_wrong_chromosome_rows	int64	38	38	Gerp wrong chromosome rows.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	5	gerp_duplicate_positions	int64	38	38	Gerp duplicate positions.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	6	gerp_bounds_failures	int64	38	38	Gerp bounds failures.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	7	rg_records	int64	38	38	Rg records.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	8	rg_wrong_chromosome_rows	int64	38	38	Rg wrong chromosome rows.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	9	rg_unknown_samples	int64	38	38	Rg unknown samples.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	10	rg_length_mismatches	int64	38	38	Rg length mismatches.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	11	rg_bounds_failures	int64	38	38	Rg bounds failures.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	12	rg_overlap_pairs	int64	38	38	Rg overlap pairs.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	13	rg_adjacent_pairs	int64	38	38	Rg adjacent pairs.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	14	rg_overlap_bp	int64	38	38	Rg overlap bp.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	15	vcf_variants	int64	38	38	Vcf variants.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	16	gerp_positions_matched	int64	38	38	Gerp positions matched.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	17	valid_gerp_ancestral_sites	int64	38	38	Valid gerp ancestral sites.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	18	invalid_ancestral_sites	int64	38	38	Invalid ancestral sites.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	19	estimated_array_bytes	int64	38	38	Estimated array bytes.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	20	n_samples	int64	38	38	N samples.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	21	n_cohorts	int64	38	38	N cohorts.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	22	permutation_reps	int64	38	38	Number of requested permutation replicates.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	23	base_seed	int64	38	38	Base seed.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	24	chrom_seed	int64	38	38	Chrom seed.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	25	gate_decision	str	38	38	Gate decision.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	26	gate_observed_value	int64	38	38	Gate observed value.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	27	gate_required_operator	str	38	38	Gate required operator.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	28	gate_required_value	int64	38	38	Gate required value.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	29	gate_denominator	int64	38	38	Gate denominator.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	30	gate_decision_table_sha256	str	38	38	Gate decision table sha256.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	31	gate_decision_validation_sha256	str	38	38	Gate decision validation sha256.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	32	input_gerp_bed_sha256	str	38	38	Input gerp bed sha256.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	33	input_rg_sha256	str	38	38	Input rg sha256.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	34	input_phase4_chrom_load_sha256	str	38	38	Input phase4 chrom load sha256.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	35	input_samples_sha256	str	38	38	Input samples sha256.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	36	input_popmap_sha256	str	38	38	Input popmap sha256.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	37	input_lengths_sha256	str	38	38	Input lengths sha256.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	38	input_config_sha256	str	38	38	Input config sha256.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	39	phase4_join_rows	int64	38	38	Phase4 join rows.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	40	phase4_unmatched_rows	int64	38	38	Phase4 unmatched rows.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	41	phase4_max_abs_burden_delta	float64	38	38	Phase4 max abs burden delta.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	42	phase4_max_abs_copy_delta	int64	38	38	Phase4 max abs copy delta.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	43	phase4_max_abs_genotype_call_delta	int64	38	38	Phase4 max abs genotype call delta.
+results/tables/wolf_roh_localization_qc.tsv	Wolf ROH-localization chromosome QC	44	status	str	38	38	PASS, WARN, or FAIL validator status.
+results/tables/wolf_roh_localization_figure_values.tsv	Wolf ROH-localization figure bridge	1	figure	str	144	144	Figure.
+results/tables/wolf_roh_localization_figure_values.tsv	Wolf ROH-localization figure bridge	2	record_type	str	144	144	Record type.
+results/tables/wolf_roh_localization_figure_values.tsv	Wolf ROH-localization figure bridge	3	panel	str	144	144	Panel.
+results/tables/wolf_roh_localization_figure_values.tsv	Wolf ROH-localization figure bridge	4	POP	str	144	144	POP.
+results/tables/wolf_roh_localization_figure_values.tsv	Wolf ROH-localization figure bridge	5	gerp_threshold	int64	144	144	GERP RS cutoff defining the wolf load subset.
+results/tables/wolf_roh_localization_figure_values.tsv	Wolf ROH-localization figure bridge	6	roh_cutoff_mb	float64	144	144	Minimum ROH length in megabases.
+results/tables/wolf_roh_localization_figure_values.tsv	Wolf ROH-localization figure bridge	7	estimate	float64	144	144	Estimate.
+results/tables/wolf_roh_localization_figure_values.tsv	Wolf ROH-localization figure bridge	8	null_median	float64	144	144	Null median.
+results/tables/wolf_roh_localization_figure_values.tsv	Wolf ROH-localization figure bridge	9	ci_low	float64	144	144	Lower bound of the stated confidence interval.
+results/tables/wolf_roh_localization_figure_values.tsv	Wolf ROH-localization figure bridge	10	ci_high	float64	144	144	Upper bound of the stated confidence interval.
+results/tables/wolf_roh_localization_figure_values.tsv	Wolf ROH-localization figure bridge	11	permutation_p_two_sided	float64	144	144	Two-sided permutation p-value with plus-one correction.
+results/tables/wolf_roh_localization_figure_values.tsv	Wolf ROH-localization figure bridge	12	n_ind	int64	144	144	N ind.
+results/tables/validation_wolf_roh_localization.tsv	Wolf ROH-localization validation	1	check	str	38	38	Human-readable validation assertion.
+results/tables/validation_wolf_roh_localization.tsv	Wolf ROH-localization validation	2	status	str	38	38	PASS, WARN, or FAIL validator status.
+results/tables/validation_wolf_roh_localization.tsv	Wolf ROH-localization validation	3	detail	str	38	38	Machine-derived validation evidence.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	1	analysis_id	str	8	8	Stable identifier for one analysis result.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	2	variant_set	str	8	8	All-SNP or damage-reduced transversion-only variant set.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	3	metric	str	8	8	Diversity, estimator, or decision metric.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	4	basis	str	8	8	Basis.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	5	museum_n	int64	8	8	Museum n.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	6	modern_n	int64	8	8	Modern n.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	7	rarefy_n	int64	8	8	Rarefy n.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	8	n_sites	int64	8	8	N sites.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	9	opportunity_bp	int64	8	8	Opportunity bp.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	10	museum_value	float64	8	8	Museum value.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	11	modern_value	float64	8	8	Modern value.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	12	effect_museum_minus_modern	float64	8	8	Museum value minus modern value on the metric scale.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	13	ci_pct	int64	8	8	Confidence level in percent.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	14	ci_low	float64	8	8	Lower bound of the stated confidence interval.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	15	ci_high	float64	8	8	Upper bound of the stated confidence interval.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	16	bootstrap_reps	int64	8	8	Number of requested bootstrap replicates.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	17	bootstrap_seed	int64	8	8	Bootstrap seed.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	18	direction	str	8	8	Sign classification of the reported effect.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	19	exact_permutation_p_two_sided	float64	8	8	Two-sided p-value from all 462 label allocations.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	20	exact_permutation_percentile	float64	8	8	Exact permutation percentile.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	21	n_exact_allocations	int64	8	8	N exact allocations.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	22	equal_n_same_direction_n	int64	8	8	Equal n same direction n.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	23	equal_n_cases_n	int64	8	8	Equal n cases n.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	24	leave_one_same_direction_n	int64	8	8	Leave one same direction n.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	25	leave_one_cases_n	int64	8	8	Leave one cases n.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	26	equal_n_effect_min	float64	8	8	Equal n effect min.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	27	equal_n_effect_max	float64	8	8	Equal n effect max.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	28	leave_one_effect_min	float64	8	8	Leave one effect min.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	29	leave_one_effect_max	float64	8	8	Leave one effect max.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	30	geographic_mismatch_caveat	bool	8	8	Whether geography remains confounded with collection period.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	31	same_direction_all_snp_vs_transversion	bool	8	8	Same direction all snp vs transversion.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	32	museum_higher_concordant_metrics_n	int64	8	8	Museum higher concordant metrics n.
+results/tables/peafowl_damage_effects.tsv	Peafowl damage-aware effects	33	supports_temporal_erosion_upgrade	bool	8	8	Global design-aware claim-upgrade decision.
+results/tables/peafowl_damage_permutations.tsv	Peafowl exact label permutations	1	allocation_id	str	3696	3696	Allocation id.
+results/tables/peafowl_damage_permutations.tsv	Peafowl exact label permutations	2	museum_samples	str	3696	3696	Museum samples.
+results/tables/peafowl_damage_permutations.tsv	Peafowl exact label permutations	3	modern_samples	str	3696	3696	Modern samples.
+results/tables/peafowl_damage_permutations.tsv	Peafowl exact label permutations	4	is_observed_allocation	bool	3696	3696	Is observed allocation.
+results/tables/peafowl_damage_permutations.tsv	Peafowl exact label permutations	5	variant_set	str	3696	3696	All-SNP or damage-reduced transversion-only variant set.
+results/tables/peafowl_damage_permutations.tsv	Peafowl exact label permutations	6	metric	str	3696	3696	Diversity, estimator, or decision metric.
+results/tables/peafowl_damage_permutations.tsv	Peafowl exact label permutations	7	basis	str	3696	3696	Basis.
+results/tables/peafowl_damage_permutations.tsv	Peafowl exact label permutations	8	museum_n	int64	3696	3696	Museum n.
+results/tables/peafowl_damage_permutations.tsv	Peafowl exact label permutations	9	modern_n	int64	3696	3696	Modern n.
+results/tables/peafowl_damage_permutations.tsv	Peafowl exact label permutations	10	rarefy_n	int64	3696	3696	Rarefy n.
+results/tables/peafowl_damage_permutations.tsv	Peafowl exact label permutations	11	n_sites	int64	3696	3696	N sites.
+results/tables/peafowl_damage_permutations.tsv	Peafowl exact label permutations	12	museum_value	float64	3696	3696	Museum value.
+results/tables/peafowl_damage_permutations.tsv	Peafowl exact label permutations	13	modern_value	float64	3696	3696	Modern value.
+results/tables/peafowl_damage_permutations.tsv	Peafowl exact label permutations	14	effect_museum_minus_modern	float64	3696	3696	Museum value minus modern value on the metric scale.
+results/tables/peafowl_damage_permutations.tsv	Peafowl exact label permutations	15	direction	str	3696	3696	Sign classification of the reported effect.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	1	case_id	str	136	136	Case id.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	2	case_type	str	136	136	Case type.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	3	left_out_sample	str	136	136	Left out sample.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	4	left_out_group	str	136	136	Left out group.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	5	museum_samples	str	136	136	Museum samples.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	6	modern_samples	str	136	136	Modern samples.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	7	museum_n	int64	136	136	Museum n.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	8	modern_n	int64	136	136	Modern n.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	9	rarefy_n	int64	136	136	Rarefy n.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	10	variant_set	str	136	136	All-SNP or damage-reduced transversion-only variant set.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	11	metric	str	136	136	Diversity, estimator, or decision metric.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	12	basis	str	136	136	Basis.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	13	n_sites	int64	136	136	N sites.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	14	museum_value	float64	136	136	Museum value.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	15	modern_value	float64	136	136	Modern value.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	16	effect_museum_minus_modern	float64	136	136	Museum value minus modern value on the metric scale.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	17	direction	str	136	136	Sign classification of the reported effect.
+results/tables/peafowl_damage_influence.tsv	Peafowl individual influence	18	same_direction_as_baseline	bool	136	136	Same direction as baseline.
+results/tables/peafowl_damage_blocks.tsv	Peafowl chromosome blocks	1	basis	str	2076	2076	Basis.
+results/tables/peafowl_damage_blocks.tsv	Peafowl chromosome blocks	2	variant_set	str	2076	2076	All-SNP or damage-reduced transversion-only variant set.
+results/tables/peafowl_damage_blocks.tsv	Peafowl chromosome blocks	3	metric	str	2076	2076	Diversity, estimator, or decision metric.
+results/tables/peafowl_damage_blocks.tsv	Peafowl chromosome blocks	4	chrom	str	2076	2076	Chrom.
+results/tables/peafowl_damage_blocks.tsv	Peafowl chromosome blocks	5	block_index	int64	2076	2076	Block index.
+results/tables/peafowl_damage_blocks.tsv	Peafowl chromosome blocks	6	block_start_bp	int64	2076	2076	Block start bp.
+results/tables/peafowl_damage_blocks.tsv	Peafowl chromosome blocks	7	block_end_bp	int64	2076	2076	Block end bp.
+results/tables/peafowl_damage_blocks.tsv	Peafowl chromosome blocks	8	opportunity_bp	int64	2076	2076	Opportunity bp.
+results/tables/peafowl_damage_blocks.tsv	Peafowl chromosome blocks	9	n_sites	int64	2076	2076	N sites.
+results/tables/peafowl_damage_blocks.tsv	Peafowl chromosome blocks	10	museum_sum	float64	2076	2076	Museum sum.
+results/tables/peafowl_damage_blocks.tsv	Peafowl chromosome blocks	11	modern_sum	float64	2076	2076	Modern sum.
+results/tables/peafowl_damage_blocks.tsv	Peafowl chromosome blocks	12	museum_n	int64	2076	2076	Museum n.
+results/tables/peafowl_damage_blocks.tsv	Peafowl chromosome blocks	13	modern_n	int64	2076	2076	Modern n.
+results/tables/peafowl_damage_blocks.tsv	Peafowl chromosome blocks	14	rarefy_n	int64	2076	2076	Rarefy n.
+results/tables/peafowl_damage_blocks.tsv	Peafowl chromosome blocks	15	denominator	str	2076	2076	Denominator.
+results/tables/peafowl_damage_classification.tsv	Peafowl variant classification	1	basis	str	16	16	Basis.
+results/tables/peafowl_damage_classification.tsv	Peafowl variant classification	2	input_path	str	16	16	Input path.
+results/tables/peafowl_damage_classification.tsv	Peafowl variant classification	3	variant_class	str	16	16	Variant class.
+results/tables/peafowl_damage_classification.tsv	Peafowl variant classification	4	n_records	int64	16	16	N records.
+results/tables/peafowl_damage_classification.tsv	Peafowl variant classification	5	n_complete_11	int64	16	16	N complete 11.
+results/tables/peafowl_damage_classification.tsv	Peafowl variant classification	6	n_incomplete_11	int64	16	16	N incomplete 11.
+results/tables/peafowl_damage_classification.tsv	Peafowl variant classification	7	used_all_snp_records	int64	16	16	Used all snp records.
+results/tables/peafowl_damage_classification.tsv	Peafowl variant classification	8	used_transversion_records	int64	16	16	Used transversion records.
+results/tables/peafowl_damage_classification.tsv	Peafowl variant classification	9	n_samples	int64	16	16	N samples.
+results/tables/peafowl_damage_classification.tsv	Peafowl variant classification	10	n_contigs_in_header	int64	16	16	N contigs in header.
+results/tables/peafowl_damage_classification.tsv	Peafowl variant classification	11	genomic_opportunity_bp	int64	16	16	Genomic opportunity bp.
+results/tables/peafowl_damage_figure_values.tsv	Peafowl damage figure bridge	1	panel	str	144	144	Panel.
+results/tables/peafowl_damage_figure_values.tsv	Peafowl damage figure bridge	2	series_id	str	144	144	Series id.
+results/tables/peafowl_damage_figure_values.tsv	Peafowl damage figure bridge	3	case_id	str	144	144	Case id.
+results/tables/peafowl_damage_figure_values.tsv	Peafowl damage figure bridge	4	case_type	str	144	144	Case type.
+results/tables/peafowl_damage_figure_values.tsv	Peafowl damage figure bridge	5	variant_set	str	144	144	All-SNP or damage-reduced transversion-only variant set.
+results/tables/peafowl_damage_figure_values.tsv	Peafowl damage figure bridge	6	metric	str	144	144	Diversity, estimator, or decision metric.
+results/tables/peafowl_damage_figure_values.tsv	Peafowl damage figure bridge	7	x_order	float64	144	144	X order.
+results/tables/peafowl_damage_figure_values.tsv	Peafowl damage figure bridge	8	label	str	144	144	Label.
+results/tables/peafowl_damage_figure_values.tsv	Peafowl damage figure bridge	9	estimate	float64	144	144	Estimate.
+results/tables/peafowl_damage_figure_values.tsv	Peafowl damage figure bridge	10	ci_low	float64	8	144	Lower bound of the stated confidence interval.
+results/tables/peafowl_damage_figure_values.tsv	Peafowl damage figure bridge	11	ci_high	float64	8	144	Upper bound of the stated confidence interval.
+results/tables/peafowl_damage_figure_values.tsv	Peafowl damage figure bridge	12	display_effect_pct_of_modern	float64	144	144	Display effect pct of modern.
+results/tables/peafowl_damage_figure_values.tsv	Peafowl damage figure bridge	13	display_ci_low_pct_of_modern	float64	8	144	Display ci low pct of modern.
+results/tables/peafowl_damage_figure_values.tsv	Peafowl damage figure bridge	14	display_ci_high_pct_of_modern	float64	8	144	Display ci high pct of modern.
+results/tables/validation_peafowl_damage.tsv	Peafowl damage validation	1	check	str	30	30	Human-readable validation assertion.
+results/tables/validation_peafowl_damage.tsv	Peafowl damage validation	2	status	str	30	30	PASS, WARN, or FAIL validator status.
+results/tables/validation_peafowl_damage.tsv	Peafowl damage validation	3	detail	str	30	30	Machine-derived validation evidence.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	1	analysis_type	str	720	720	Analysis type.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	2	scenario_id	str	720	720	Scenario id.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	3	replicate	int64	720	720	Replicate.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	4	true_ne	int64	720	720	Known simulated effective population size; absent for empirical rows.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	5	truth_class	str	720	720	Known side of the Ne=500 boundary; unknown for empirical rows.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	6	sample_size	int64	720	720	Number of sampled diploid individuals.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	7	marker_density	int64	720	720	Number of input SNP markers requested from currentNe2.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	8	seed	int64	720	720	Seed.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	9	simulation_attempt	int64	720	720	Simulation attempt.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	10	candidate_loci	int64	720	720	Candidate loci.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	11	panel_seed	int64	720	720	Panel seed.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	12	simulation_runtime_seconds	float64	720	720	Simulation runtime seconds.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	13	simulation_generations	int64	720	720	Simulation generations.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	14	initial_maf_low	float64	720	720	Initial maf low.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	15	initial_maf_high	float64	720	720	Initial maf high.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	16	input_vcf_sha256	str	720	720	Input vcf sha256.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	17	marker_ids_sha256	str	720	720	Marker ids sha256.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	18	sample_ids_sha256	str	720	720	Sample ids sha256.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	19	command	str	720	720	Command.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	20	exit_code	int64	720	720	Exit code.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	21	timed_out	bool	720	720	Timed out.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	22	runtime_seconds	float64	720	720	Runtime seconds.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	23	raw_output_path	str	720	720	Raw output path.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	24	raw_output_sha256	str	720	720	Raw output sha256.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	25	log_path	str	720	720	Log path.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	26	log_sha256	str	720	720	Log sha256.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	27	parse_error	float64	0	720	Parse error.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	28	execution_failure_reason	float64	0	720	Execution failure reason.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	29	ne_point	float64	593	720	Ne point.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	30	ci_low	float64	593	720	Lower bound of the stated confidence interval.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	31	ci_high	float64	593	720	Upper bound of the stated confidence interval.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	32	ci_width	float64	593	720	Ci width.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	33	interval_covers_true	object	593	720	Interval covers true.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	34	n_ind	int64	720	720	N ind.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	35	n_snps	int64	720	720	N snps.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	36	k	float64	593	720	Estimated number of full-sibling counterparts for a randomly selected individual, as reported by currentNe2 for the chosen estimation basis.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	37	ne_basis	str	720	720	Ne basis.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	38	converged	bool	720	720	Converged.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	39	gbf_state	str	720	720	Gbf state.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	40	outcome_class	str	720	720	Outcome class.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	41	pilot_member	bool	720	720	Pilot member.
+results/tables/peafowl_ne_design_replicates.tsv	Peafowl Ne scenario replicates	42	expansion_status	str	720	720	Expansion status.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	1	analysis_type	str	240	240	Analysis type.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	2	scenario_id	str	240	240	Scenario id.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	3	replicate	int64	240	240	Replicate.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	4	true_ne	int64	240	240	Known simulated effective population size; absent for empirical rows.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	5	truth_class	str	240	240	Known side of the Ne=500 boundary; unknown for empirical rows.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	6	sample_size	int64	240	240	Number of sampled diploid individuals.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	7	marker_density	int64	240	240	Number of input SNP markers requested from currentNe2.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	8	seed	int64	240	240	Seed.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	9	simulation_attempt	int64	240	240	Simulation attempt.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	10	candidate_loci	int64	240	240	Candidate loci.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	11	panel_seed	int64	240	240	Panel seed.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	12	simulation_runtime_seconds	float64	240	240	Simulation runtime seconds.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	13	simulation_generations	int64	240	240	Simulation generations.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	14	initial_maf_low	float64	240	240	Initial maf low.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	15	initial_maf_high	float64	240	240	Initial maf high.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	16	input_vcf_sha256	str	240	240	Input vcf sha256.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	17	marker_ids_sha256	str	240	240	Marker ids sha256.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	18	sample_ids_sha256	str	240	240	Sample ids sha256.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	19	command	str	240	240	Command.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	20	exit_code	int64	240	240	Exit code.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	21	timed_out	bool	240	240	Timed out.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	22	runtime_seconds	float64	240	240	Runtime seconds.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	23	raw_output_path	str	240	240	Raw output path.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	24	raw_output_sha256	str	240	240	Raw output sha256.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	25	log_path	str	240	240	Log path.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	26	log_sha256	str	240	240	Log sha256.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	27	parse_error	float64	0	240	Parse error.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	28	execution_failure_reason	float64	0	240	Execution failure reason.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	29	ne_point	float64	198	240	Ne point.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	30	ci_low	float64	198	240	Lower bound of the stated confidence interval.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	31	ci_high	float64	198	240	Upper bound of the stated confidence interval.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	32	ci_width	float64	198	240	Ci width.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	33	interval_covers_true	object	198	240	Interval covers true.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	34	n_ind	int64	240	240	N ind.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	35	n_snps	int64	240	240	N snps.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	36	k	float64	198	240	Estimated number of full-sibling counterparts for a randomly selected individual, as reported by currentNe2 for the chosen estimation basis.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	37	ne_basis	str	240	240	Ne basis.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	38	converged	bool	240	240	Converged.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	39	gbf_state	str	240	240	Gbf state.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	40	outcome_class	str	240	240	Outcome class.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	41	pilot_member	bool	240	240	Pilot member.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	42	expansion_status	str	240	240	Expansion status.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	43	pilot_run	str	240	240	Pilot run.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	44	pilot_batch_hash	str	240	240	Pilot batch hash.
+results/tables/peafowl_ne_design_pilot.tsv	Peafowl Ne repeated pilot	45	repeatability_match	bool	240	240	Repeatability match.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	1	analysis_type	str	90	90	Analysis type.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	2	population	str	30	90	Population.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	3	true_ne	float64	60	90	Known simulated effective population size; absent for empirical rows.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	4	truth_class	str	90	90	Known side of the Ne=500 boundary; unknown for empirical rows.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	5	sample_size	int64	90	90	Number of sampled diploid individuals.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	6	marker_density	int64	90	90	Number of input SNP markers requested from currentNe2.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	7	reps_planned	int64	90	90	Reps planned.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	8	n_attempted	int64	90	90	N attempted.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	9	n_executed	int64	90	90	N executed.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	10	n_execution_failure	int64	90	90	N execution failure.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	11	execution_failure_rate	int64	90	90	Fraction of attempts with an execution or parsing failure.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	12	execution_failure_ci_low	int64	90	90	Execution failure ci low.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	13	execution_failure_ci_high	float64	90	90	Execution failure ci high.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	14	n_converged	int64	90	90	N converged.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	15	convergence_rate	float64	90	90	Fraction of all attempts yielding a converged estimator result.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	16	convergence_ci_low	float64	90	90	Convergence ci low.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	17	convergence_ci_high	float64	90	90	Convergence ci high.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	18	n_correct_confident	int64	90	90	N correct confident.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	19	correct_confident_rate	float64	90	90	Fraction of attempts confidently on the correct side of Ne=500.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	20	correct_confident_ci_low	float64	90	90	Correct confident ci low.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	21	correct_confident_ci_high	float64	90	90	Correct confident ci high.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	22	n_incorrect_confident	int64	90	90	N incorrect confident.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	23	incorrect_confident_rate	float64	90	90	Fraction of attempts confidently on the wrong side of Ne=500.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	24	incorrect_confident_ci_low	float64	90	90	Incorrect confident ci low.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	25	incorrect_confident_ci_high	float64	90	90	Incorrect confident ci high.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	26	n_indeterminate	int64	90	90	N indeterminate.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	27	indeterminate_rate	float64	90	90	Fraction of attempts whose interval cannot resolve the Ne=500 decision.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	28	indeterminate_ci_low	float64	90	90	Indeterminate ci low.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	29	indeterminate_ci_high	float64	90	90	Indeterminate ci high.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	30	n_boundary_confident_pass	int64	90	90	N boundary confident pass.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	31	boundary_confident_pass_rate	float64	90	90	For true Ne=500 only, fraction of attempts with a confident GBF pass; never scored correct or incorrect.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	32	boundary_confident_pass_ci_low	float64	90	90	Boundary confident pass ci low.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	33	boundary_confident_pass_ci_high	float64	90	90	Boundary confident pass ci high.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	34	n_boundary_confident_fail	int64	90	90	N boundary confident fail.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	35	boundary_confident_fail_rate	float64	90	90	For true Ne=500 only, fraction of attempts with a confident GBF fail; never scored correct or incorrect.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	36	boundary_confident_fail_ci_low	float64	90	90	Boundary confident fail ci low.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	37	boundary_confident_fail_ci_high	float64	90	90	Boundary confident fail ci high.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	38	n_pass	int64	90	90	N pass.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	39	pass_rate	float64	90	90	Pass rate.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	40	pass_ci_low	float64	90	90	Pass ci low.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	41	pass_ci_high	float64	90	90	Pass ci high.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	42	n_fail	int64	90	90	N fail.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	43	fail_rate	float64	90	90	Fail rate.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	44	fail_ci_low	float64	90	90	Fail ci low.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	45	fail_ci_high	float64	90	90	Fail ci high.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	46	n_intervals	int64	90	90	N intervals.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	47	n_interval_covers_true	int64	90	90	N interval covers true.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	48	coverage_rate	float64	60	90	Fraction of reported estimator intervals covering the known simulated truth, including unbounded intervals; n_unbounded_ci reports those intervals separately.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	49	coverage_ci_low	float64	60	90	Coverage ci low.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	50	coverage_ci_high	float64	60	90	Coverage ci high.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	51	n_unbounded_ci	int64	90	90	N unbounded ci.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	52	mean_ci_width	float64	81	90	Mean ci width.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	53	median_ci_width	float64	81	90	Median ci width.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	54	median_ne_point	float64	81	90	Median ne point.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	55	mean_runtime_seconds	float64	90	90	Mean runtime seconds.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	56	total_runtime_seconds	float64	90	90	Total runtime seconds.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	57	monte_carlo_ci_pct	int64	90	90	Monte carlo ci pct.
+results/tables/peafowl_ne_design_summary.tsv	Peafowl Ne design summary	58	expansion_status	str	90	90	Expansion status.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	1	analysis_type	str	180	180	Analysis type.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	2	empirical_id	str	180	180	Empirical id.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	3	population	str	180	180	Population.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	4	observed_n	int64	180	180	Observed n.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	5	sample_size	int64	180	180	Number of sampled diploid individuals.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	6	marker_density	int64	180	180	Number of input SNP markers requested from currentNe2.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	7	replicate	int64	180	180	Replicate.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	8	seed	int64	180	180	Seed.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	9	subset_seed	int64	180	180	Subset seed.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	10	subset_reused	bool	180	180	Subset reused.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	11	sample_ids	str	180	180	Sample ids.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	12	sample_ids_sha256	str	180	180	Sample ids sha256.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	13	input_vcf_sha256	str	180	180	Input vcf sha256.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	14	marker_ids_sha256	str	180	180	Marker ids sha256.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	15	command	str	180	180	Command.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	16	exit_code	int64	180	180	Exit code.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	17	timed_out	bool	180	180	Timed out.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	18	runtime_seconds	float64	180	180	Runtime seconds.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	19	raw_output_path	str	180	180	Raw output path.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	20	raw_output_sha256	str	180	180	Raw output sha256.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	21	log_path	str	180	180	Log path.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	22	log_sha256	str	180	180	Log sha256.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	23	parse_error	float64	0	180	Parse error.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	24	execution_failure_reason	float64	0	180	Execution failure reason.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	25	ne_point	float64	73	180	Ne point.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	26	ci_low	float64	73	180	Lower bound of the stated confidence interval.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	27	ci_high	float64	73	180	Upper bound of the stated confidence interval.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	28	ci_width	float64	73	180	Ci width.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	29	n_ind	int64	180	180	N ind.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	30	n_snps	int64	180	180	N snps.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	31	k	float64	49	180	Estimated number of full-sibling counterparts for a randomly selected individual, as reported by currentNe2 for the chosen estimation basis.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	32	ne_basis	str	180	180	Ne basis.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	33	converged	bool	180	180	Converged.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	34	gbf_state	str	180	180	Gbf state.
+results/tables/peafowl_ne_design_empirical.tsv	Peafowl Ne empirical sensitivity	35	outcome_class	str	180	180	Outcome class.
+results/tables/peafowl_ne_design_figure_values.tsv	Peafowl Ne figure bridge	1	panel	str	390	390	Panel.
+results/tables/peafowl_ne_design_figure_values.tsv	Peafowl Ne figure bridge	2	analysis_type	str	390	390	Analysis type.
+results/tables/peafowl_ne_design_figure_values.tsv	Peafowl Ne figure bridge	3	population	str	150	390	Population.
+results/tables/peafowl_ne_design_figure_values.tsv	Peafowl Ne figure bridge	4	true_ne	float64	240	390	Known simulated effective population size; absent for empirical rows.
+results/tables/peafowl_ne_design_figure_values.tsv	Peafowl Ne figure bridge	5	truth_class	str	390	390	Known side of the Ne=500 boundary; unknown for empirical rows.
+results/tables/peafowl_ne_design_figure_values.tsv	Peafowl Ne figure bridge	6	sample_size	int64	390	390	Number of sampled diploid individuals.
+results/tables/peafowl_ne_design_figure_values.tsv	Peafowl Ne figure bridge	7	marker_density	int64	390	390	Number of input SNP markers requested from currentNe2.
+results/tables/peafowl_ne_design_figure_values.tsv	Peafowl Ne figure bridge	8	metric	str	390	390	Diversity, estimator, or decision metric.
+results/tables/peafowl_ne_design_figure_values.tsv	Peafowl Ne figure bridge	9	value	float64	390	390	Value.
+results/tables/peafowl_ne_design_figure_values.tsv	Peafowl Ne figure bridge	10	ci_low	float64	390	390	Lower bound of the stated confidence interval.
+results/tables/peafowl_ne_design_figure_values.tsv	Peafowl Ne figure bridge	11	ci_high	float64	390	390	Upper bound of the stated confidence interval.
+results/tables/peafowl_ne_design_figure_values.tsv	Peafowl Ne figure bridge	12	n_attempted	int64	390	390	N attempted.
+results/tables/peafowl_ne_design_figure_values.tsv	Peafowl Ne figure bridge	13	target_outcome	str	390	390	Target outcome.
+results/tables/validation_peafowl_ne_design.tsv	Peafowl Ne design validation	1	check_id	str	36	36	Check id.
+results/tables/validation_peafowl_ne_design.tsv	Peafowl Ne design validation	2	status	str	36	36	PASS, WARN, or FAIL validator status.
+results/tables/validation_peafowl_ne_design.tsv	Peafowl Ne design validation	3	details	str	36	36	Details.
+results/tables/phase5b_optional_decisions.tsv	Optional-study decisions	1	section	float64	2	2	CGplan section governed by the row.
+results/tables/phase5b_optional_decisions.tsv	Optional-study decisions	2	study	str	2	2	Study.
+results/tables/phase5b_optional_decisions.tsv	Optional-study decisions	3	decision	str	2	2	Gate outcome; negative and deferred outcomes are valid scientific results.
+results/tables/phase5b_optional_decisions.tsv	Optional-study decisions	4	gate_metric	str	2	2	Gate metric.
+results/tables/phase5b_optional_decisions.tsv	Optional-study decisions	5	observed_value	int64	2	2	Observed numeric gate value.
+results/tables/phase5b_optional_decisions.tsv	Optional-study decisions	6	secondary_observed_value	float64	2	2	Secondary observed value.
+results/tables/phase5b_optional_decisions.tsv	Optional-study decisions	7	required_operator	str	2	2	Comparison operator in the predeclared gate.
+results/tables/phase5b_optional_decisions.tsv	Optional-study decisions	8	required_value	int64	2	2	Predeclared numeric threshold.
+results/tables/phase5b_optional_decisions.tsv	Optional-study decisions	9	denominator	int64	2	2	Denominator.
+results/tables/phase5b_optional_decisions.tsv	Optional-study decisions	10	unit	str	2	2	Unit.
+results/tables/phase5b_optional_decisions.tsv	Optional-study decisions	11	evidence	str	2	2	Evidence.
+results/tables/phase5b_optional_decisions.tsv	Optional-study decisions	12	source_trace	str	2	2	Source trace.
+results/tables/phase5b_optional_decisions.tsv	Optional-study decisions	13	reopen_condition	str	2	2	Exact evidence condition that would reopen or change the decision.
+results/tables/phase5b_optional_decisions.tsv	Optional-study decisions	14	scientific_boundary	str	2	2	Scientific boundary.
+results/tables/phase5b_annotation_inventory.tsv	Wolf annotation inventory	1	definition	str	10	10	Definition.
+results/tables/phase5b_annotation_inventory.tsv	Wolf annotation inventory	2	scope	str	10	10	Scope.
+results/tables/phase5b_annotation_inventory.tsv	Wolf annotation inventory	3	annotation_class	str	10	10	Annotation class.
+results/tables/phase5b_annotation_inventory.tsv	Wolf annotation inventory	4	n_unique_sites	int64	10	10	N unique sites.
+results/tables/phase5b_annotation_inventory.tsv	Wolf annotation inventory	5	duplicate_site_keys	int64	10	10	Duplicate site keys.
+results/tables/phase5b_annotation_inventory.tsv	Wolf annotation inventory	6	source_file	str	10	10	Source file.
+results/tables/validation_phase5b_decisions.tsv	Optional-study validation	1	check	str	7	7	Human-readable validation assertion.
+results/tables/validation_phase5b_decisions.tsv	Optional-study validation	2	status	str	7	7	PASS, WARN, or FAIL validator status.
+results/tables/validation_phase5b_decisions.tsv	Optional-study validation	3	detail	str	7	7	Machine-derived validation evidence.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	1	claim_id	str	6	6	Claim id.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	2	section	str	6	6	CGplan section governed by the row.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	3	headline	str	6	6	Headline.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	4	claim_status	str	6	6	Claim status.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	5	estimate	str	6	6	Estimate.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	6	uncertainty	str	6	6	Uncertainty.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	7	result_table	str	6	6	Result table.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	8	result_filter	str	6	6	Result filter.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	9	provenance	str	6	6	Provenance.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	10	validator	str	6	6	Validator.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	11	report_anchor	str	6	6	Report anchor.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	12	explorer_anchor	str	6	6	Explorer anchor.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	13	workflow_rule	str	6	6	Workflow rule.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	14	source_trace	str	6	6	Source trace.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	15	change_operator	str	6	6	Change operator.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	16	change_threshold	object	6	6	Change threshold.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	17	observed_value	int64	6	6	Observed numeric gate value.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	18	unit	str	6	6	Unit.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	19	what_changes_mind	str	6	6	What changes mind.
+results/tables/phase5b_claim_trace.tsv	Phase 5B claim trace	20	scientific_boundary	str	6	6	Scientific boundary.
+results/tables/phase5b_fragility_scorecard.tsv	Phase 5B fragility scorecard	1	conclusion_id	str	4	4	Conclusion id.
+results/tables/phase5b_fragility_scorecard.tsv	Phase 5B fragility scorecard	2	section	str	4	4	CGplan section governed by the row.
+results/tables/phase5b_fragility_scorecard.tsv	Phase 5B fragility scorecard	3	classification	str	4	4	Classification.
+results/tables/phase5b_fragility_scorecard.tsv	Phase 5B fragility scorecard	4	conclusion	str	4	4	Conclusion.
+results/tables/phase5b_fragility_scorecard.tsv	Phase 5B fragility scorecard	5	settings_supporting	int64	4	4	Settings supporting.
+results/tables/phase5b_fragility_scorecard.tsv	Phase 5B fragility scorecard	6	settings_tested	int64	4	4	Settings tested.
+results/tables/phase5b_fragility_scorecard.tsv	Phase 5B fragility scorecard	7	dominant_uncertainty	str	4	4	Dominant uncertainty.
+results/tables/phase5b_fragility_scorecard.tsv	Phase 5B fragility scorecard	8	evidence_needed	str	4	4	Evidence needed.
+results/tables/phase5b_fragility_scorecard.tsv	Phase 5B fragility scorecard	9	machine_result	str	4	4	Machine result.

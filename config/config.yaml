@@ -17,7 +17,7 @@ paths:
     set_a_neutral: "data/peafowl/Modern_genomic_dataset_unlinked_neutral/Modern_genomic_dataset_unlinked&neutral.vcf"
     # Set B — all sites, lightly filtered -> diversity (22 samples, 1,139,469 SNPs)
     set_b_all:     "data/peafowl/Modern_genomic_dataset_all/Modern_genomic_dataset_all.vcf"
-    # museum <-> modern comparative -> temporal erosion (angle G)
+    # museum <-> modern comparative -> geography-confounded diversity contrast (angle G)
     comparative:   "data/peafowl/raw/Comparative_genomic_dataset_F.vcf.gz"
     reference:     "data/peafowl/pseudochromosomes.no_blank_shortIDname.fasta"
     gff:           "data/peafowl/green_peafowl_genome.all.gff"
@@ -68,7 +68,7 @@ peafowl:
     ar_max_sites: 50000                              # random (seeded) thin for hierfstat allelic.richness
                                                      # — memory-bounded on 8 GB; AR is a per-locus mean so a thin is stable
 
-  # Angle G — temporal diversity erosion: museum (kiz*) vs modern, rarefied to equal n.
+  # Angle G — geography-confounded museum-vs-modern diversity contrast, rarefied to equal n.
   # Mirrors Dong et al. 2021's windowed-pi (Nucleotide_diversity_.sh); see deviations re s_9_2->PE125_220.
   temporal:
     museum:  [kiz14594, kiz4651, kiz4652, kiz4653, kiz8252]
@@ -89,8 +89,8 @@ peafowl:
     admixture_cv_folds: 10
 
   ne:
-    methods: [currentNe2]                            # automated. NeEstimator-LDNe = manual GUI cross-check; GONE2 = trajectory context
-    ldne_pcrit: [0.05, 0.02, 0.01]                   # for the manual NeEstimator-LDNe cross-check
+    methods: [currentNe2]                            # automated. NeEstimator-LDNe = planned/unrun manual comparison; GONE2 = trajectory context
+    ldne_pcrit: [0.05, 0.02, 0.01]                   # reserved for the optional NeEstimator-LDNe comparison
     structure_modes: [per_population, pooled]        # unmodeled structure biases N_e low
     # currentNe2 (the badge): cross-chromosome estimate. UN-pruned Set A is the input (LD-Ne
     # reads N_e *from* LD; pruning destroys the signal — plan §5). Genome size in Morgans = the
@@ -121,9 +121,9 @@ gbf:
   nc_proxy_threshold: 5000     # census-size proxy (N_c) contrast = ne_threshold / ne_nc_ratio
   ne_nc_ratio: 0.1             # conservative vertebrate N_e:N_c (Frankham) -> N_e=500 <-> N_c=5000
   # Documented census for the N_c contrast (plan §6). Range-wide N_c nominally exceeds 5000, BUT
-  # that is the WRONG denominator for a PER-population indicator: the species is fragmented into
-  # subpopulations far below it (e.g. Keo Seima, Cambodia ~745) -> expected per-pop N_e << 500,
-  # and the measured genomic N_e is lower still. The N_e:N_c gap is the conservation signal.
+  # that is the WRONG denominator for a PER-population indicator. No matched population-level
+  # census denominator exists for the sampled cells, and N_e:N_c is not a fixed conversion; this
+  # contrast demonstrates denominator sensitivity, not an inferred population-specific gap.
   census:
     peafowl:
       n_mature_low:  10000     # mature individuals, range-wide
@@ -134,7 +134,7 @@ gbf:
 # ── The fragility cube: filter × Ne-method × structure (plan §5) ───────────────
 cube:
   filter_presets: [lenient, standard, strict]
-  ne_methods: [currentNe2]   # only automated axis (the app reads cube["ne_method"].unique()); NeEstimator = manual cross-check
+  ne_methods: [currentNe2]   # only automated axis (the app reads cube["ne_method"].unique()); NeEstimator comparison is unrun
   structure_modes: [per_population, pooled]
 
 # ── Chapter 2: Scandinavian wolf (Canis lupus) ─────────────────────────────────
@@ -143,7 +143,7 @@ wolf:
   n_autosomes: 38                   # chr 1-38 (contigs are integer-named); chrX handled separately
   roh:
     caller: bcftools_roh
-    long_roh_threshold_mb: 1.5      # long (recent) vs short (ancient) ROH
+    long_roh_threshold_mb: 1.5      # length-threshold autozygosity proxy; not a categorical age assignment
     gt_error_phred: 30              # bcftools roh -G (assumed genotype error when calling from GTs)
     rec_rate_per_bp: 1.0e-8         # documented constant ~1 cM/Mb (wolf has no dense map) — bcftools roh --rec-rate
     length_cutoffs_mb: [0.1, 0.5, 1.0, 1.5, 2.0]   # the ROH-length sensitivity knob (F_ROH per cutoff)
@@ -152,4 +152,70 @@ wolf:
     gerp_threshold: 4.0                       # default = source value (Smeds & Ellegren 2022, GERP>4)
     gerp_sensitivity: [2.0, 3.0, 4.0]         # wolf-load GERP sensitivity axis (decision O4); default 4.0
     polarize_with_outgroup: true
-    generations: 5                            # ~5 inbreeding generations tracked
+
+# ── Phase 5B: mechanism, falsification, and study-design calibration ─────────
+# These settings were frozen before Phase-5B results were computed.  Seeds are
+# analysis-specific so that extending one analysis cannot perturb another.
+phase5b:
+  # Frozen release metadata keeps regenerated browser assets byte-deterministic.
+  release_date: '2026-07-19'
+
+  wolf_robustness:
+    seed: 1301
+    bootstrap_reps: 999
+    permutation_reps: 1999
+    ci_pct: 95
+    top_risk_percentiles: [5, 10, 20, 25]
+    # The negative control is the fraction of GERP-covered callable genotypes
+    # that are homozygous, irrespective of allele or deleteriousness:
+    # 1 - (tot_der - hom_der) / calls.
+    negative_control: gerp_covered_genomewide_homozygosity
+    roh_localization_reopen_min_cells: 12       # of the frozen 15-cell grid
+
+  roh_localization:
+    seed: 1304
+    permutation_reps: 199
+    ci_pct: 95
+    # Each null replicate circularly relocates that individual's observed ROH
+    # intervals within the same chromosome. Interval lengths and chromosome are
+    # preserved while eligible-genotype and realized-burden landscapes stay fixed.
+    null_model: within_chromosome_circular_roh_shift
+    # Variant-opportunity denominator, not callable genomic bases: one unit is
+    # a nonmissing diploid 0/1 genotype at an allSNPs VCF record with an exact
+    # GERP key, valid AA polarization, and GERP score strictly above threshold.
+    denominator: eligible_polarized_gerp_threshold_snp_genotype_calls
+
+  damage_falsification:
+    seed: 1303
+    bootstrap_reps: 999
+    ci_pct: 95
+    block_size_bp: 5000000
+    rarefy_n: 5
+    transition_pairs: ["C>T", "T>C", "G>A", "A>G"]
+    # A temporal-erosion upgrade requires the museum-minus-modern effect to
+    # retain one direction in all four metrics after every predeclared stress test.
+    upgrade_min_concordant_metrics: 4
+
+  ne_design:
+    seed: 1302
+    true_ne: [100, 250, 500, 1000]
+    sample_sizes: [5, 10, 15, 20, 30]
+    marker_densities: [250, 500, 1000]
+    pilot_reps: 2
+    final_reps: 12
+    empirical_reps: 6
+    simulation_generations: 15
+    initial_maf_low: 0.10
+    initial_maf_high: 0.50
+    currentne2_threads: 1
+    run_timeout_seconds: 90
+    pilot_expansion_max_seconds: 3600
+    genome_size_morgans: 32
+    ci_pct: 90
+    # A design is labelled decision-resolving only when both sides of the
+    # threshold (true N_e 250 and 1,000) meet these Monte-Carlo uncertainty
+    # bounds.  With 12 final replicates, 12/12 correct and 0/12 incorrect meet
+    # the Wilson limits; weaker evidence remains a landscape, not a guarantee.
+    resolution_truths: [250, 1000]
+    resolution_min_correct_confident_ci_low: 0.70
+    resolution_max_incorrect_confident_ci_high: 0.25

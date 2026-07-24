@@ -3,8 +3,9 @@
 # Heavy bioinformatics runs HERE; the Streamlit app only READS the cube.
 #
 # Phases 1-4 are complete: QC/structure/diversity -> N_e cube -> GBF indicators ->
-# wolf load/ROH. Phase 5A adds lightweight synthesis outputs; the app only reads
-# tracked cube/table/figure products.
+# wolf load/ROH. Phase 5A adds lightweight synthesis outputs. Phase 5B adds
+# validator-gated mechanism, falsification, and study-design analyses; the app
+# only reads tracked cube/table/figure products.
 # Rules invoke `python` from the activated environment: some macOS launchers place a
 # Framework `python3` ahead of conda on PATH even when the environment is active.
 
@@ -17,6 +18,7 @@ include: "rules/ne.smk"
 include: "rules/gbf.smk"
 include: "rules/load.smk"
 include: "rules/synthesis.smk"
+include: "rules/phase5b.smk"
 include: "rules/polish.smk"
 
 
@@ -89,6 +91,9 @@ rule validate_phase3:
         md  = "results/PHASE3_VALIDATION.md",
         tsv = "results/tables/validation_phase3.tsv",
     log: "results/logs/validate_phase3.log"
+    threads: 1
+    resources:
+        mem_mb = 512
     shell:
         "python scripts/python/validate_phase3.py > {log} 2>&1 || (cat {log}; exit 1)"
 
@@ -168,7 +173,10 @@ rule phase5a1:
 
 
 # ── Full Phase 5A outputs (admissions package + reproducibility gate) ──────────
-PHASE5A = PHASE5A1 + WEBSITE_ASSETS + [
+# Keep the historical Phase-5A asset list distinct from the generated Phase-5B
+# browser payload. Current report/app/package rules still render the latest
+# integrated project when explicitly requested.
+PHASE5A = PHASE5A1 + WEBSITE_BASE_ASSETS + [
     "RESEARCH_JOURNEY.md",
     "INTERVIEW_NOTES.md",
     "admissions/demo_script.md",
@@ -198,10 +206,12 @@ rule phase5a:
 rule all:
     default_target: True
     input:
-        # Phases 1-4 plus the complete Phase-5A admissions/reproducibility gate.
+        # Phases 1-4 plus the Phase-5A admissions/reproducibility gate and the
+        # dependency-ordered Phase-5B scientific-impact extension.
         # (The live Streamlit app is launched separately, not a DAG target.)
         PHASE1,
         PHASE2,
         PHASE3,
         PHASE4,
         PHASE5A,
+        PHASE5B_COMPLETE,

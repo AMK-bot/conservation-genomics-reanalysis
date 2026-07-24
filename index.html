@@ -8,6 +8,9 @@
   <title>Conservation Genomics — A Fragility-First Reanalysis</title>
   <link rel="icon" href="website/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="website/site.css">
+  <script defer src="website/phase5b-data.js"></script>
+  <script defer src="website/content-overrides.js"></script>
+  <script defer src="website/apply-content.js"></script>
   <script defer src="website/site.js"></script>
 </head>
 <body>
@@ -49,39 +52,39 @@
       <div class="hero-orbit hero-orbit--two" aria-hidden="true"></div>
       <div class="shell hero-grid">
         <div class="hero-copy" data-reveal>
-          <p class="eyebrow"><span></span> Admissions portfolio · Computational conservation genomics</p>
-          <h1>Can we trust a conservation-genomics verdict?</h1>
-          <p class="hero-lede">A reproducible reanalysis of public whole-genome data asks whether conservation conclusions survive reasonable analyst choices—or move when filtering, structure, deleteriousness, and ROH definitions move.</p>
+          <p class="eyebrow"><span></span> <span data-edit-key="hero.eyebrow">Admissions portfolio · Computational conservation genomics</span></p>
+          <h1 data-edit-key="hero.title">Can we trust a conservation-genomics verdict?</h1>
+          <p class="hero-lede" data-edit-key="hero.summary">A reproducible reanalysis of public whole-genome data asks whether conservation conclusions survive reasonable analyst choices—or move when filtering, structure, GERP-defined predicted-impact classes, and ROH definitions move.</p>
           <div class="hero-actions">
             <a class="button button--solid" href="admissions/research_brief.html">Read the illustrated brief <span aria-hidden="true">↗</span></a>
             <a class="button button--ghost" href="#deliverables">Explore every deliverable <span aria-hidden="true">↓</span></a>
           </div>
-          <p class="hero-note">Two species · four sensitivity axes · one config-driven workflow</p>
+          <p class="hero-note"><strong>Phase 5B status: COMPLETE</strong> · clean offline release verified · two species · one config-driven workflow · <a href="results/PHASE5B_REPRODUCIBILITY.md">audit record</a></p>
         </div>
 
-        <aside class="status-panel" aria-label="Project readiness" data-reveal>
+        <aside class="status-panel causal-panel" aria-label="Causal boundary of the project" data-reveal>
           <div class="status-panel__top">
             <span class="status-dot" aria-hidden="true"></span>
-            <span>Admissions-ready</span>
-            <span class="status-date">18 Jul 2026</span>
+            <span>Causal boundary</span>
+            <span class="status-date">Phase 5B</span>
           </div>
-          <div class="status-panel__number"><strong>24</strong><span>/ 24 Phase-5A checks pass</span></div>
-          <div class="status-panel__bar" aria-hidden="true"><span></span></div>
-          <dl class="status-panel__facts">
-            <div><dt>Core clean clone</dt><dd>162 / 162 jobs</dd></div>
-            <div><dt>Science gates</dt><dd>0 failures</dd></div>
-            <div><dt>Website gate</dt><dd>10 / 10 pass</dd></div>
-            <div><dt>Current stage</dt><dd>Phase 6-ready</dd></div>
-          </dl>
-          <a href="PROJECT_STATUS.md">View the completion record <span aria-hidden="true">→</span></a>
+          <h2>What the data can—and cannot—connect</h2>
+          <ol class="causal-chain">
+            <li><span>01</span><strong>Demographic history</strong><small>founding, fragmentation, sampling period</small></li>
+            <li><span>02</span><strong>Analysis choices</strong><small>filters, GERP, ROH, marker and sample design</small></li>
+            <li><span>03</span><strong>Measured proxies</strong><small>N<sub>e</sub>, F<sub>ROH</sub>, load, diversity</small></li>
+            <li><span>04</span><strong>Estimator decisions</strong><small>pass · fail · indeterminate</small></li>
+          </ol>
+          <p class="causal-stop"><strong>Not observed:</strong> survival, fertility, reproductive success, or causal fitness effects.</p>
+          <a href="#decision-boundaries">Trace the decision boundary <span aria-hidden="true">→</span></a>
         </aside>
       </div>
 
       <div class="shell abstract-wrap" data-reveal>
         <figure class="abstract-card">
-          <div class="abstract-card__label">The project in one picture</div>
+          <div class="abstract-card__label" data-edit-key="hero.diagram_label">The project in one picture</div>
           <img src="admissions/graphical_abstract.svg" alt="Two public genome datasets—from green peafowl and wolf cohorts plus reference groups—flow through sensitivity tests that separate robust conclusions from fragile magnitudes." width="1600" height="900">
-          <figcaption>Public datasets → defensible analyst choices → conclusions classified by how well they survive.</figcaption>
+          <figcaption data-edit-key="hero.diagram_caption">Public datasets → defensible analyst choices → conclusions classified by how well they survive.</figcaption>
         </figure>
       </div>
     </section>
@@ -90,11 +93,21 @@
       <div class="shell">
         <div class="section-heading section-heading--split" data-reveal>
           <div>
-            <p class="eyebrow"><span></span> The project in 90 seconds</p>
-            <h2>A stable headline can sit above fragile estimates.</h2>
+            <p class="eyebrow"><span></span> <span data-edit-key="question.eyebrow">The project in 90 seconds</span></p>
+            <h2 data-edit-key="question.title">A stable headline can sit above fragile estimates.</h2>
           </div>
-          <p>Conservation indicators compress complex genomic evidence into decisions. This project refuses to select one convenient parameter setting. It asks what stays true across reasonable choices—and treats uncertainty as a result rather than a nuisance.</p>
+          <p data-edit-key="question.summary">Conservation indicators compress complex genomic evidence into decisions. This project refuses to select one convenient parameter setting. It asks what stays true across reasonable choices—and treats uncertainty as a result rather than a nuisance.</p>
         </div>
+
+        <ol class="science-path" aria-label="Scientific reasoning path" data-reveal>
+          <li><span>Question</span><p>Does a conservation conclusion survive defensible analysis choices?</p></li>
+          <li><span>Prediction</span><p>If the signal is specific, its direction should survive the predeclared controls.</p></li>
+          <li><span>Stress test</span><p>Move thresholds, remove damage-prone changes, relabel samples, and simulate known truth.</p></li>
+          <li><span>Result</span><p>Keep every null, unexpected, failed, and indeterminate outcome in the evidence.</p></li>
+          <li><span>Correction</span><p>Narrow the wording when a method, individual, or negative control changes the interpretation.</p></li>
+          <li><span>Falsifier</span><p>State the numeric observation that would reverse or reopen each decision.</p></li>
+          <li><span>Conservation consequence</span><p>Translate uncertainty into the next informative measurement—not a causal claim.</p></li>
+        </ol>
 
         <div class="metric-grid" data-reveal>
           <article class="metric-card">
@@ -113,9 +126,9 @@
             <p>No sampled population confidently clears N<sub>e</sub> &gt; 500.</p>
           </article>
           <article class="metric-card">
-            <span class="metric-card__value">8 / 8</span>
-            <h3>Wolf groups retain direction</h3>
-            <p>Realized-versus-masked direction holds across tested GERP thresholds.</p>
+            <span class="metric-card__value">15 / 15</span>
+            <h3>Wolf partial intervals positive</h3>
+            <p>F<sub>ROH</sub>–realized-load association remains after the declared generic-homozygosity control.</p>
           </article>
         </div>
 
@@ -123,7 +136,7 @@
           <div class="thesis__index">01</div>
           <div>
             <p class="label">Central contribution</p>
-            <p class="thesis__statement">The original contribution is not a new genome dataset. It is a <strong>fragility-first design</strong>: a filter-by-structure cube, a three-state verdict, wolf threshold extensions, and a map of what evidence would actually change each conclusion.</p>
+            <p class="thesis__statement"><span data-edit-key="contribution.prefix">The original contribution is a</span> <strong data-edit-key="contribution.title">causal-safe evidence system</strong>: <span data-edit-key="contribution.body">predeclared sensitivity surfaces, falsification and negative controls, known-truth study-design calibration, and numeric rules for what evidence would change each conclusion.</span></p>
           </div>
           <a href="RESEARCH_JOURNEY.md">Follow the reasoning <span aria-hidden="true">→</span></a>
         </div>
@@ -133,9 +146,9 @@
     <section class="section section--ink" id="findings">
       <div class="shell">
         <div class="section-heading section-heading--light" data-reveal>
-          <p class="eyebrow"><span></span> Two study chapters</p>
-          <h2>What survived the stress test?</h2>
-          <p>The headline and the magnitude are evaluated separately. Teal marks evidence that held; amber marks sensitivity that must stay visible.</p>
+          <p class="eyebrow"><span></span> <span data-edit-key="findings.eyebrow">Two study chapters</span></p>
+          <h2 data-edit-key="findings.title">What survived the stress test?</h2>
+          <p data-edit-key="findings.summary">The headline and the magnitude are evaluated separately. Teal marks evidence that held; amber marks sensitivity that must stay visible.</p>
         </div>
 
         <div class="chapter-grid">
@@ -147,15 +160,16 @@
               </div>
               <span class="chapter__tag">Stable aggregate headline · fragile population verdicts</span>
             </div>
-            <p class="chapter__lead">Across three filter presets, no sampled population confidently clears N<sub>e</sub> &gt; 500. That does <strong>not</strong> prove every true value is below 500: wide intervals and non-convergence expose the limits of samples of 5–10 birds.</p>
+            <p class="chapter__lead">Across three filter presets, no sampled population confidently clears N<sub>e</sub> &gt; 500. Damage-aware checks leave 1/4 metrics fully museum-higher across every numerical stress test; two of four point estimates are museum-higher, with exact-label p-values from 0.331 to 0.831.</p>
             <dl class="result-list">
               <div><dt>Stable</dt><dd>0 of 3 confident passes under every tested preset</dd></div>
-              <div><dt>Moves</dt><dd>Two populations switch between fail and indeterminate</dd></div>
-              <div><dt>Boundary</dt><dd>Museum–modern contrast is weak and metric-dependent</dd></div>
+              <div><dt>Stress test</dt><dd>All 462 temporal label allocations plus transversions and 17 influence cases retained</dd></div>
+              <div><dt>Boundary</dt><dd>Only 1 of 4 is fully direction-concordant; geography remains confounded with period, and diversity is not fitness</dd></div>
             </dl>
             <div class="chapter__links">
               <a href="results/PHASE2_VALIDATION.md">N<sub>e</sub> evidence <span aria-hidden="true">→</span></a>
               <a href="results/PHASE3_VALIDATION.md">GBF evidence <span aria-hidden="true">→</span></a>
+              <a href="results/PEAFOWL_DAMAGE_VALIDATION.md">Damage-aware evidence <span aria-hidden="true">→</span></a>
               <a href="results/cube/results_cube.csv" download>Download cube <span aria-hidden="true">↓</span></a>
             </div>
           </article>
@@ -168,14 +182,16 @@
               </div>
               <span class="chapter__tag">Stable direction · sensitive magnitude</span>
             </div>
-            <p class="chapter__lead">At GERP &gt; 4, deposited raw counts reproduce exactly across all 211 wolves and load values agree to floating-point precision. GERP thresholds move the values, while the realized-versus-masked direction holds in all eight groups.</p>
+            <p class="chapter__lead">At GERP &gt; 4, deposited raw counts reproduce exactly across all 211 wolves. Across the full 3 × 5 grid, individual F<sub>ROH</sub>–realized-load association remains positive after controlling generic homozygosity.</p>
             <dl class="result-list">
-              <div><dt>Stable</dt><dd>8 of 8 groups retain their direction across all three GERP thresholds</dd></div>
-              <div><dt>Moves</dt><dd>Mean realized load shifts 0.172 → 0.136 → 0.093 as GERP rises 2 → 3 → 4</dd></div>
+              <div><dt>Stable</dt><dd>15 of 15 partial realized-load intervals lie entirely above zero</dd></div>
+              <div><dt>Ranking</dt><dd>Spearman 0.992–0.999; minimum tested top-set overlap 90.9%</dd></div>
               <div><dt>Boundary</dt><dd>Genetic load is a risk proxy, not measured fitness harm</dd></div>
             </dl>
             <div class="chapter__links">
               <a href="results/PHASE4_VALIDATION.md">Wolf evidence <span aria-hidden="true">→</span></a>
+              <a href="results/WOLF_ROBUSTNESS_VALIDATION.md">Association evidence <span aria-hidden="true">→</span></a>
+              <a href="results/WOLF_ROH_LOCALIZATION_VALIDATION.md">Localization evidence <span aria-hidden="true">→</span></a>
               <a href="results/tables/wolf_load.tsv" download>Load table <span aria-hidden="true">↓</span></a>
               <a href="results/tables/wolf_roh.tsv" download>ROH table <span aria-hidden="true">↓</span></a>
             </div>
@@ -191,14 +207,131 @@
       </div>
     </section>
 
+    <section class="section section--paper" id="decision-boundaries">
+      <div class="shell">
+        <div class="section-heading section-heading--split" data-reveal>
+          <div>
+            <p class="eyebrow"><span></span> <span data-edit-key="decision_boundaries.eyebrow">Corrections and falsifiers</span></p>
+            <h2 data-edit-key="decision_boundaries.title">Every headline has a numeric exit.</h2>
+          </div>
+          <p data-edit-key="decision_boundaries.summary">These are decision rules, not decorative caveats. The observed value, threshold, uncertainty source, and evidence that would change the wording are delivered as a machine-readable claim trace.</p>
+        </div>
+
+        <div class="mind-grid" data-reveal>
+          <article class="mind-card">
+            <p class="label">Wolf association · §13.1</p>
+            <strong>15 / 15</strong><span>partial realized-load CIs above zero</span>
+            <p><b>Would stop localization:</b> fewer than 12 of 15 predeclared cells.</p>
+          </article>
+          <article class="mind-card">
+            <p class="label">Temporal contrast · §13.3</p>
+            <strong>1 / 4</strong><span>fully museum-higher metrics</span>
+            <p><b>Would upgrade:</b> 4 of 4 through every numerical check, plus a design separating time from geography.</p>
+          </article>
+          <article class="mind-card" data-phase5b-ne-card>
+            <p class="label">N<sub>e</sub> design · §13.2</p>
+            <strong data-ne-resolving>0 / 15</strong><span>tested designs resolve both predeclared resolution truths (N<sub>e</sub>=250 and 1,000)</span>
+            <p><b>Resolution rule:</b> correct Wilson lower ≥0.70 and incorrect Wilson upper ≤0.25 for true N<sub>e</sub> 250 and 1,000. This supplies no empirical sample-size prescription.</p>
+          </article>
+          <article class="mind-card" data-phase5b-localization-card>
+            <p class="label">ROH localization · §13.4</p>
+            <strong data-localization-support>24 / 24</strong><span>long-ROH population × GERP cells beyond null</span>
+            <p><b>Decision: IMPLEMENT.</b> A cell would change classification if observed enrichment no longer exceeds the circular-shift 97.5th percentile or two-sided p exceeds 0.05.</p>
+          </article>
+          <article class="mind-card">
+            <p class="label">Annotation independence · §13.5</p>
+            <strong>0 / 1</strong><span>independent definitions available</span>
+            <p><b>Decision: DEFER_DUPLICATES_SOURCE_STUDY.</b> The source-class overlap is 211/211. Reopen with ≥1 independent definition, ≥0.95 common-sample coverage, and ≥0.90 auditable callable-denominator coverage; predicted classes are not proven harm.</p>
+          </article>
+        </div>
+
+        <div class="section-heading journey-heading" data-reveal>
+          <p class="eyebrow"><span></span> <span data-edit-key="corrections.eyebrow">Research corrections</span></p>
+          <h2 data-edit-key="corrections.title">I thought → check → correction → consequence</h2>
+        </div>
+        <div class="correction-grid" data-reveal>
+          <article><span>I thought</span><h3>One pruned SNP set could serve every method.</h3><p><b>Check:</b> LD-based N<sub>e</sub> reads signal from LD.</p><p><b>Correction:</b> retain unpruned Set A for currentNe2; use its pruned derivative for structure.</p><p><b>Consequence:</b> pruning no longer erases the estimator's biological signal.</p></article>
+          <article><span>I thought</span><h3>GONE2 could be another verdict axis.</h3><p><b>Check:</b> it estimates a different time horizon and needs a borrowed recombination rate.</p><p><b>Correction:</b> keep it as trajectory context only.</p><p><b>Consequence:</b> unlike quantities no longer compete for one badge.</p></article>
+          <article><span>I thought</span><h3>A museum-higher direction might imply temporal erosion.</h3><p><b>Check:</b> transversions, all 462 labels, equal-n and leave-one cases.</p><p><b>Correction:</b> only 1/4 metrics remains museum-higher through every check, and geography remains confounded.</p><p><b>Consequence:</b> report a mixed sample contrast, not erosion.</p></article>
+          <article><span>I thought</span><h3>F<sub>ROH</sub>–load correlation alone was mechanistic support.</h3><p><b>Check:</b> control generic GERP-covered homozygosity.</p><p><b>Correction:</b> realized association survives; masked association disappears.</p><p><b>Consequence:</b> localization is reopened, while fitness causation remains outside the data.</p></article>
+        </div>
+
+        <div class="trace-panel" data-reveal>
+          <div><p class="label">Trace this claim</p><h3>Result → uncertainty → provenance → validator → report → workflow</h3></div>
+          <div class="static-claim-summary" data-claim-trace-list aria-live="polite">
+            <article><h4>§13.1 · 15/15 primary and 15/15 partial realized-load intervals above zero</h4><p>Genomic-proxy association only; no fitness, depression, or causal effect measured.</p></article>
+            <article><h4>§13.3 · 1/4 fully direction-concordant metrics</h4><p>Geography blocks a temporal-erosion claim; diversity is not fitness.</p></article>
+            <article><h4>§13.2 · 0/15 qualifying simulated designs</h4><p>Neutral scenario calibration is separate from unknown-truth, dependent empirical downsampling and gives no exact real-sample guarantee.</p></article>
+            <article><h4>§13.4 · IMPLEMENT</h4><p>The 15/15 association gate opened the localization analysis.</p></article>
+            <article><h4>§13.4 · 24/24 long-ROH cells beyond null</h4><p>Eligible calls at assayed SNP records are the denominator; localization is not fitness, harm, or causation.</p></article>
+            <article><h4>§13.5 · DEFER_DUPLICATES_SOURCE_STUDY</h4><p>0/1 independent definitions; 211/211 source-class overlap. Reopen only at the declared independence and coverage thresholds.</p></article>
+          </div>
+          <noscript><p>JavaScript is optional: the six frozen outcomes are shown above. Open <a href="results/tables/phase5b_claim_trace.tsv">the machine-readable claim trace</a> directly for provenance and exact boundaries.</p></noscript>
+        </div>
+      </div>
+    </section>
+
     <section class="section section--sage" id="explorer">
       <div class="shell">
         <div class="section-heading section-heading--split" data-reveal>
           <div>
-            <p class="eyebrow"><span></span> Fragility Explorer</p>
-            <h2>Move the assumptions. Watch the evidence respond.</h2>
+            <p class="eyebrow"><span></span> <span data-edit-key="explorer.eyebrow">Fragility Explorer</span></p>
+            <h2 data-edit-key="explorer.title">Move the assumptions. Watch the evidence respond.</h2>
           </div>
-          <p>The Streamlit explorer is deliberately read-only: heavy analysis happens in the reproducible workflow, while the interface exposes precomputed sensitivity results without changing the evidence.</p>
+          <p data-edit-key="explorer.summary">The Streamlit explorer is deliberately read-only: heavy analysis happens in the reproducible workflow, while the interface exposes precomputed sensitivity results without changing the evidence.</p>
+        </div>
+
+        <div class="phase5b-lab" data-phase5b-lab data-reveal>
+          <div class="lab-heading">
+            <div><p class="label">No-install scientific decision lab</p><h3>Precomputed Phase-5B evidence, available offline</h3></div>
+            <p data-phase5b-status role="status">Phase 5B scientific analyses complete · static exact outcomes shown while local rows load</p>
+          </div>
+
+          <article class="lab-panel" id="wolf-robustness">
+            <div class="lab-panel__heading"><span>01</span><div><h3>Wolf 3 × 5 association surface</h3><p>Within-cohort ranks; choose the declared outcome and negative-control model.</p></div></div>
+            <p class="lab-result"><strong>15/15 primary · 15/15 partial</strong> realized-load intervals lie above zero across the frozen surface.</p>
+            <div class="lab-controls">
+              <label>GERP threshold<select data-wolf-gerp><option>2</option><option>3</option><option selected>4</option></select></label>
+              <label>ROH cutoff (Mb)<select data-wolf-roh><option>0.1</option><option>0.5</option><option>1</option><option selected>1.5</option><option>2</option></select></label>
+              <label>Outcome<select data-wolf-outcome><option value="realized_load">Realized load</option><option value="masked_load">Masked load</option></select></label>
+              <label>Model<select data-wolf-model><option value="primary">Primary</option><option value="partial_generic_homozygosity_control" selected>Generic-homozygosity control</option></select></label>
+            </div>
+            <dl class="lab-readout"><div><dt>Association</dt><dd data-wolf-estimate>—</dd></div><div><dt>95% interval</dt><dd data-wolf-ci>—</dd></div><div><dt>Permutation p</dt><dd data-wolf-p>—</dd></div></dl>
+            <p class="lab-boundary">Association among genomic proxies; not measured fitness or causal inbreeding depression.</p>
+          </article>
+
+          <article class="lab-panel" id="damage-falsification">
+            <div class="lab-panel__heading"><span>02</span><div><h3>Damage-aware museum–modern effects</h3><p>Every metric remains visible, including directions that oppose erosion.</p></div></div>
+            <p class="lab-result"><strong>1/4 fully direction-concordant</strong> after every declared damage and influence check.</p>
+            <div class="lab-controls lab-controls--short"><label>Variant set<select data-damage-variant><option value="all_snp">All SNPs</option><option value="transversion_only">Transversions only</option></select></label></div>
+            <div class="table-scroll"><table class="lab-table"><thead><tr><th>Metric</th><th>Museum − modern</th><th>95% interval</th><th>Exact p</th><th>Direction</th></tr></thead><tbody data-damage-body><tr><td colspan="5">Loading…</td></tr></tbody></table></div>
+            <p class="lab-boundary">Geography is confounded with period; a damage-reduced direction cannot identify temporal erosion.</p>
+          </article>
+
+          <article class="lab-panel" id="ne-design">
+            <div class="lab-panel__heading"><span>03</span><div><h3>Known-truth N<sub>e</sub> design landscape</h3><p>Scenario outcomes stay separate from empirical downsampling.</p></div></div>
+            <p class="lab-result"><strong>0/15 tested designs qualify.</strong> The neutral scenarios calibrate the decision pipeline; they do not prescribe an exact empirical sample size.</p>
+            <div class="lab-controls">
+              <label>True scenario N<sub>e</sub><select data-ne-truth><option>100</option><option selected>250</option><option>500</option><option>1000</option></select></label>
+              <label>Individuals<select data-ne-sample><option>5</option><option>10</option><option>15</option><option>20</option><option selected>30</option></select></label>
+              <label>Markers<select data-ne-markers><option>250</option><option selected>500</option><option>1000</option></select></label>
+            </div>
+            <dl class="lab-readout"><div><dt data-ne-correct-label>Correct confident</dt><dd data-ne-correct>—</dd></div><div><dt>Indeterminate</dt><dd data-ne-indeterminate>—</dd></div><div><dt data-ne-incorrect-label>Incorrect confident</dt><dd data-ne-incorrect>—</dd></div><div><dt>Attempts</dt><dd data-ne-attempts>—</dd></div></dl>
+            <p class="lab-boundary">Simplified neutral truth calibrates this pipeline; it is not a guarantee for a future real sample. Empirical observed-n repetitions reuse one individual subset and lower-n subsets overlap, so their Wilson bands describe seeded subset/marker-panel sensitivity, not independent biological-sampling uncertainty.</p>
+          </article>
+
+          <article class="lab-panel" id="wolf-roh-localization">
+            <div class="lab-panel__heading"><span>04</span><div><h3>Wolf ROH-localized burden</h3><p>Observed burden per eligible polarized SNP-genotype call against within-chromosome circular interval shifts.</p></div></div>
+            <p class="lab-result"><strong>§13.4 IMPLEMENT · 24/24</strong> predeclared long-ROH population × GERP cells exceed the null upper bound with p ≤ 0.05.</p>
+            <div class="lab-controls">
+              <label>Cohort<select data-localization-pop><option>1983-1990</option><option>1991-1998</option><option>1999-2006</option><option>2007-2014I</option><option selected>2007-2014S</option><option>Finland</option><option>Immigrants</option><option>Russia</option></select></label>
+              <label>GERP threshold<select data-localization-gerp><option>2</option><option>3</option><option selected>4</option></select></label>
+              <label>ROH cutoff (Mb)<select data-localization-roh><option>0.1</option><option>0.5</option><option>1</option><option selected>1.5</option><option>2</option></select></label>
+            </div>
+            <dl class="lab-readout"><div><dt>Observed log2 ratio</dt><dd data-localization-estimate>—</dd></div><div><dt>Null 95% interval</dt><dd data-localization-ci>—</dd></div><div><dt>Permutation p</dt><dd data-localization-p>—</dd></div><div><dt>Eligible calls in / out</dt><dd data-localization-callable>—</dd></div></dl>
+            <p class="lab-boundary">The denominator counts eligible calls at assayed SNP records, not callable genomic bases; ascertainment remains. Localization between genomic proxies only—not individual harm, fitness, causal inbreeding depression, or a management-unit result.</p>
+          </article>
+          <noscript><p class="lab-fallback">Interactive row controls require JavaScript. Frozen headlines remain visible: 15/15 association, 1/4 damage concordance, 0/15 qualifying designs, §13.4 IMPLEMENT, 24/24 localization, and §13.5 DEFER_DUPLICATES_SOURCE_STUDY.</p></noscript>
         </div>
 
         <div class="gallery" data-gallery>
@@ -223,8 +356,8 @@
         <div class="launch-card" data-reveal>
           <div>
             <p class="label">Run locally</p>
-            <h3>Launch the complete interactive explorer</h3>
-            <p>No extra hardware is required. The app reads tracked outputs; it does not rerun whole-genome analysis.</p>
+            <h3 data-edit-key="explorer.launch_title">Launch the complete interactive explorer</h3>
+            <p data-edit-key="explorer.launch_body">No extra hardware is required. The app reads tracked outputs; it does not rerun whole-genome analysis.</p>
           </div>
           <div class="command" aria-label="Streamlit launch command">
             <code>streamlit run app/streamlit_app.py</code>
@@ -242,9 +375,9 @@
     <section class="section section--paper evidence-gallery" id="evidence">
       <div class="shell">
         <div class="section-heading" data-reveal>
-          <p class="eyebrow"><span></span> Key evidence</p>
-          <h2>Figures that show both the result and its limits.</h2>
-          <p>Each figure links to its full-resolution artifact. Captions state what the visual supports—and what it cannot establish.</p>
+          <p class="eyebrow"><span></span> <span data-edit-key="evidence.eyebrow">Key evidence</span></p>
+          <h2 data-edit-key="evidence.title">Figures that show both the result and its limits.</h2>
+          <p data-edit-key="evidence.summary">Each figure links to its full-resolution artifact. Captions state what the visual supports—and what it cannot establish.</p>
         </div>
 
         <div class="figure-grid">
@@ -276,15 +409,15 @@
       <div class="shell">
         <div class="section-heading section-heading--split" data-reveal>
           <div>
-            <p class="eyebrow"><span></span> Complete deliverable library</p>
-            <h2>Choose your depth.</h2>
+            <p class="eyebrow"><span></span> <span data-edit-key="deliverables.eyebrow">Complete deliverable library</span></p>
+            <h2 data-edit-key="deliverables.title">Choose your depth.</h2>
           </div>
-          <p>Every public-facing artifact is explained below. Begin with the brief, follow the reasoning, inspect the evidence, or reproduce the complete workflow.</p>
+          <p data-edit-key="deliverables.summary">Every public-facing artifact is explained below. Begin with the brief, follow the reasoning, inspect the evidence, or reproduce the complete workflow.</p>
         </div>
 
         <div class="reading-paths" data-reveal>
           <a href="admissions/graphical_abstract.svg"><span>30 seconds</span><strong>See the graphical abstract</strong><small>One-image project logic</small></a>
-          <a href="admissions/research_brief.html"><span>5 minutes</span><strong>Read the illustrated brief</strong><small>Best admissions entry point</small></a>
+          <a href="admissions/research_brief.html"><span>8 minutes</span><strong>Read the illustrated brief</strong><small>Project-wide research journey</small></a>
           <a href="report/report.html"><span>Deep dive</span><strong>Open the technical report</strong><small>Methods, results, limits, references</small></a>
         </div>
 
@@ -302,14 +435,14 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16.5 16.5 4 4"></path></svg>
             <input id="deliverable-search" type="search" placeholder="Search deliverables" autocomplete="off" data-search>
           </label>
-          <p class="result-count" aria-live="polite" data-result-count>20 deliverables</p>
+          <p class="result-count" aria-live="polite" data-result-count>26 deliverables</p>
         </div>
 
         <div class="deliverable-grid" data-deliverable-grid>
-          <article class="deliverable-card deliverable-card--featured" data-deliverable data-category="start" data-search-text="illustrated research brief summary admissions html">
-            <div class="deliverable-card__meta"><span>Start here</span><small>HTML · 5 min</small></div>
+          <article class="deliverable-card deliverable-card--featured" data-deliverable data-category="start" data-search-text="illustrated research brief project journey models corrections admissions html">
+            <div class="deliverable-card__meta"><span>Start here</span><small>HTML · 8 min</small></div>
             <h3>Illustrated research brief</h3>
-            <p>The clearest two-page explanation of the question, design, three headline results, limitations, and original contribution.</p>
+            <p>A four-page walk from the initial questions through model choices, corrections, secondary hypotheses, final verdicts, and the project’s scientific contribution.</p>
             <a href="admissions/research_brief.html">Read the brief <span aria-hidden="true">↗</span></a>
           </article>
 
@@ -397,32 +530,74 @@
             <div class="card-links"><a href="results/tables/wolf_load.tsv" download>Load ↓</a><a href="results/tables/wolf_roh.tsv" download>ROH ↓</a></div>
           </article>
 
+          <article class="deliverable-card deliverable-card--featured" data-deliverable data-category="evidence explore" data-search-text="phase5b claim trace uncertainty falsifier provenance validator report workflow">
+            <div class="deliverable-card__meta"><span>Evidence</span><small>TSV · six claims</small></div>
+            <h3>Phase-5B claim trace</h3>
+            <p>Six headline and gate outcomes joined to uncertainty, numeric mind-change conditions, provenance, validators, report sections, explorer panels, and workflow rules.</p>
+            <a href="results/tables/phase5b_claim_trace.tsv" download>Download the trace <span aria-hidden="true">↓</span></a>
+          </article>
+
+          <article class="deliverable-card" data-deliverable data-category="evidence explore" data-search-text="peafowl damage transversion permutation ne sample design calibration simulation empirical">
+            <div class="deliverable-card__meta"><span>Evidence</span><small>TSV + PNG · peafowl</small></div>
+            <h3>Damage and sampling-design extensions</h3>
+            <p>All 462 temporal allocations, damage and influence checks, 60 known-truth N<sub>e</sub> scenarios, and empirical sensitivity rows remain machine-readable.</p>
+            <div class="card-links"><a href="results/tables/peafowl_damage_effects.tsv" download>Damage ↓</a><a href="results/tables/peafowl_ne_design_summary.tsv" download>Design ↓</a></div>
+          </article>
+
+          <article class="deliverable-card" data-deliverable data-category="evidence explore" data-search-text="wolf individual association robustness rank localization circular shift eligible SNP genotype calls">
+            <div class="deliverable-card__meta"><span>Evidence</span><small>TSV + PNG · wolf</small></div>
+            <h3>Wolf association and localization</h3>
+            <p>The complete individual 3 × 5 robustness surface and eligible-SNP-genotype ROH-localization results, including circular-shift null outcomes, ascertainment caveats, and reconciliations.</p>
+            <div class="card-links"><a href="results/tables/wolf_froh_load_associations.tsv" download>Associations ↓</a><a href="results/tables/wolf_roh_localization_cohort.tsv" download>Localization ↓</a></div>
+          </article>
+
+          <article class="deliverable-card" data-deliverable data-category="evidence reproduce" data-search-text="phase5b data dictionary schema columns provenance tables">
+            <div class="deliverable-card__meta"><span>Evidence</span><small>Markdown + TSV · schema</small></div>
+            <h3>Phase-5B data dictionary</h3>
+            <p>A generated inventory of delivered machine tables, columns, storage types, completeness, row counts, and definitions.</p>
+            <div class="card-links"><a href="results/PHASE5B_DATA_DICTIONARY.md">Read →</a><a href="results/tables/phase5b_data_dictionary.tsv" download>TSV ↓</a></div>
+          </article>
+
+          <article class="deliverable-card deliverable-card--featured" data-deliverable data-category="evidence reproduce" data-search-text="phase5b final scientific validation all analyses claims offline integration">
+            <div class="deliverable-card__meta"><span>Evidence</span><small>Markdown · Phase 5B gate</small></div>
+            <h3>Phase-5B final validation</h3>
+            <p>The independent numeric, uncertainty, traceability, dictionary, report, explorer, provenance, and offline-data gate.</p>
+            <a href="results/PHASE5B_VALIDATION.md">Inspect the gate <span aria-hidden="true">→</span></a>
+          </article>
+
           <article class="deliverable-card" data-deliverable data-category="evidence reproduce" data-search-text="phase validation scientific quality gates pass warn fail">
             <div class="deliverable-card__meta"><span>Evidence</span><small>Markdown · 5 gates</small></div>
             <h3>Scientific validation suite</h3>
-            <p>The Phase 1–4 gates record 32 PASS, 12 scientific WARN, and 0 FAIL; the scorecard adds 10 PASS.</p>
+            <p>The per-phase gates preserve scientific warnings alongside pass/fail results, and the scorecard reconciles its synthesis to the underlying tables.</p>
             <div class="card-links card-links--wrap"><a href="results/PHASE1_VALIDATION.md">P1</a><a href="results/PHASE2_VALIDATION.md">P2</a><a href="results/PHASE3_VALIDATION.md">P3</a><a href="results/PHASE4_VALIDATION.md">P4</a><a href="results/PHASE5A1_VALIDATION.md">Scorecard</a></div>
           </article>
 
-          <article class="deliverable-card deliverable-card--featured" data-deliverable data-category="evidence reproduce" data-search-text="final phase5a admissions readiness validation 24 pass zero fail">
+          <article class="deliverable-card deliverable-card--featured" data-deliverable data-category="evidence reproduce" data-search-text="final phase5a admissions readiness validation">
             <div class="deliverable-card__meta"><span>Evidence</span><small>Markdown · final gate</small></div>
             <h3>Admissions-readiness validation</h3>
-            <p>The strict final artifact, portability, app, and scientific gate: 24 PASS and 0 FAIL.</p>
-            <a href="results/PHASE5A_VALIDATION.md">Inspect all 24 checks <span aria-hidden="true">→</span></a>
+            <p>The Phase-5A artifact, portability, app, and scientific readiness gate, retained as the historical baseline for the Phase-5B release.</p>
+            <a href="results/PHASE5A_VALIDATION.md">Inspect the checks <span aria-hidden="true">→</span></a>
           </article>
 
-          <article class="deliverable-card" data-deliverable data-category="evidence reproduce" data-search-text="website validation accessibility links responsive offline 10 pass zero fail">
+          <article class="deliverable-card" data-deliverable data-category="evidence reproduce" data-search-text="website validation accessibility links responsive offline dynamic gate">
             <div class="deliverable-card__meta"><span>Evidence</span><small>Markdown · website gate</small></div>
             <h3>Project website validation</h3>
-            <p>Ten checks cover local targets, essential artifact coverage, semantic structure, accessibility affordances, responsiveness, and offline operation.</p>
-            <a href="results/WEBSITE_VALIDATION.md">Inspect all 10 checks <span aria-hidden="true">→</span></a>
+            <p>The dynamic gate covers local targets, essential artifact coverage, semantic structure, accessibility affordances, responsiveness, and offline operation.</p>
+            <a href="results/WEBSITE_VALIDATION.md">Inspect the current checks <span aria-hidden="true">→</span></a>
           </article>
 
           <article class="deliverable-card" data-deliverable data-category="reproduce evidence" data-search-text="clean clone reproducibility 162 jobs deterministic hashes">
             <div class="deliverable-card__meta"><span>Reproduce</span><small>Markdown · audit trail</small></div>
             <h3>Clean-clone reproduction record</h3>
-            <p>The exact command, 162/162-job outcome, resolved determinism issues, and matching output hashes.</p>
+            <p>The recorded clean-clone command, resolved determinism issues, job outcome, and matching output hashes for the Phase-5A baseline.</p>
             <a href="results/PHASE5A_REPRODUCIBILITY.md">Read the record <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="deliverable-card" data-deliverable data-category="reproduce evidence" data-search-text="phase5b clean verification reproducibility isolated run">
+            <div class="deliverable-card__meta"><span>Reproduce</span><small>Markdown · verification record</small></div>
+            <h3>Phase-5B clean verification record</h3>
+            <p>Two isolated clean-science builds, bounded memory, matching science hashes and manifests, final-source reconciliation, and no-op proof.</p>
+            <a href="results/PHASE5B_REPRODUCIBILITY.md">Read the record <span aria-hidden="true">→</span></a>
           </article>
 
           <article class="deliverable-card" data-deliverable data-category="reproduce" data-search-text="workflow snakemake config thresholds source code reproducible pipeline">
@@ -458,7 +633,7 @@
 
           <div class="artifact-groups">
             <details>
-              <summary><span>All analysis figures</span><small>8 PNG files</small></summary>
+              <summary><span>All analysis figures</span><small>14 PNG files</small></summary>
               <ul class="link-list">
                 <li><a href="results/figures/kinship_heatmap.png">KING kinship heatmap</a><span>Relatedness screen; cross-population estimates require caution.</span></li>
                 <li><a href="results/figures/pca.png">PCA structure</a><span>Geographic structure among modern peafowl.</span></li>
@@ -468,6 +643,12 @@
                 <li><a href="results/figures/ne_cube.png">N<sub>e</sub> cube</a><span>Filter × structure contemporary estimates and intervals.</span></li>
                 <li><a href="results/figures/gone2_trajectory.png">GONE2 trajectory</a><span>Historical context only.</span></li>
                 <li><a href="results/figures/fragility_scorecard.png">Fragility scorecard</a><span>Cross-chapter robustness synthesis.</span></li>
+                <li><a href="results/figures/wolf_froh_load_surface.png">Wolf individual association surface</a><span>Frozen 3 × 5 grid before and after the generic-homozygosity control.</span></li>
+                <li><a href="results/figures/wolf_froh_load_forest.png">Wolf cohort-aware association forest</a><span>Individual proxy association and cohort uncertainty.</span></li>
+                <li><a href="results/figures/peafowl_damage_falsification.png">Peafowl damage-aware falsification</a><span>Effect intervals and individual influence.</span></li>
+                <li><a href="results/figures/peafowl_ne_design.png">Peafowl N<sub>e</sub> study design</a><span>Known-truth resolution separated from empirical sensitivity.</span></li>
+                <li><a href="results/figures/wolf_roh_localization_forest.png">Wolf ROH-localization forest</a><span>Observed long-ROH enrichment against circular-shift null intervals.</span></li>
+                <li><a href="results/figures/wolf_roh_localization_ribbon.png">Wolf ROH-localization grid</a><span>All GERP and ROH cutoff cells with spatial-null ribbons.</span></li>
               </ul>
             </details>
 
@@ -512,15 +693,69 @@
             </details>
 
             <details>
-              <summary><span>Validation and evidence records</span><small>10 human-readable reports</small></summary>
+              <summary><span>Phase-5B mechanism, falsification, and design tables</span><small>26 primary downloads</small></summary>
+              <ul class="link-list link-list--compact">
+                <li><a href="results/tables/wolf_froh_load_associations.tsv" download>Wolf association surface</a></li>
+                <li><a href="results/tables/wolf_froh_load_rank_stability.tsv" download>Wolf rank stability</a></li>
+                <li><a href="results/tables/wolf_froh_load_individual_scores.tsv" download>Wolf individual risk-proxy scores</a></li>
+                <li><a href="results/tables/wolf_froh_load_figure_values.tsv" download>Wolf association figure bridge</a></li>
+                <li><a href="results/tables/peafowl_damage_effects.tsv" download>Damage-aware effects</a></li>
+                <li><a href="results/tables/peafowl_damage_permutations.tsv" download>All 462 label allocations</a></li>
+                <li><a href="results/tables/peafowl_damage_influence.tsv" download>Equal-n and leave-one influence</a></li>
+                <li><a href="results/tables/peafowl_damage_blocks.tsv" download>Damage bootstrap blocks</a></li>
+                <li><a href="results/tables/peafowl_damage_classification.tsv" download>Transition/transversion classification</a></li>
+                <li><a href="results/tables/peafowl_damage_figure_values.tsv" download>Damage figure bridge</a></li>
+                <li><a href="results/tables/peafowl_ne_design_replicates.tsv" download>N<sub>e</sub> scenario replicates</a></li>
+                <li><a href="results/tables/peafowl_ne_design_pilot.tsv" download>N<sub>e</sub> repeated pilot audit</a></li>
+                <li><a href="results/tables/peafowl_ne_design_summary.tsv" download>N<sub>e</sub> scenario summary</a></li>
+                <li><a href="results/tables/peafowl_ne_design_empirical.tsv" download>N<sub>e</sub> empirical sensitivity</a></li>
+                <li><a href="results/tables/peafowl_ne_design_figure_values.tsv" download>N<sub>e</sub> figure bridge</a></li>
+                <li><a href="results/tables/wolf_roh_localization_individual.tsv" download>ROH-localization individual results</a></li>
+                <li><a href="results/tables/wolf_roh_localization_cohort.tsv" download>ROH-localization cohort results</a></li>
+                <li><a href="results/tables/wolf_roh_localization_null.tsv" download>ROH circular-shift null</a></li>
+                <li><a href="results/tables/wolf_roh_localization_qc.tsv" download>ROH-localization chromosome QC</a></li>
+                <li><a href="results/tables/wolf_roh_localization_figure_values.tsv" download>ROH-localization figure bridge</a></li>
+                <li><a href="results/tables/phase5b_core_claim_contract.tsv" download>Core seven-step claim contract</a></li>
+                <li><a href="results/tables/phase5b_optional_decisions.tsv" download>Optional-study decisions</a></li>
+                <li><a href="results/tables/phase5b_annotation_inventory.tsv" download>Wolf annotation inventory</a></li>
+                <li><a href="results/tables/phase5b_claim_trace.tsv" download>Final claim trace</a></li>
+                <li><a href="results/tables/phase5b_fragility_scorecard.tsv" download>Phase-5B fragility scorecard</a></li>
+                <li><a href="results/tables/phase5b_data_dictionary.tsv" download>Phase-5B data dictionary</a></li>
+              </ul>
+            </details>
+
+            <details>
+              <summary><span>Phase-5B provenance records</span><small>7 JSON records</small></summary>
+              <ul class="link-list link-list--compact">
+                <li><a href="results/provenance/wolf_froh_load.json">Wolf robustness provenance</a></li>
+                <li><a href="results/provenance/peafowl_damage.json">Damage falsification provenance</a></li>
+                <li><a href="results/provenance/peafowl_ne_design.json">N<sub>e</sub> design provenance</a></li>
+                <li><a href="results/provenance/phase5b_core_integration.json">Core integration provenance</a></li>
+                <li><a href="results/provenance/phase5b_optional_decisions.json">Optional-study decision provenance</a></li>
+                <li><a href="results/provenance/wolf_roh_localization.json">ROH-localization provenance</a></li>
+                <li><a href="results/provenance/phase5b_synthesis.json">Phase-5B synthesis provenance</a></li>
+              </ul>
+            </details>
+
+            <details>
+              <summary><span>Validation and evidence records</span><small>19 human-readable reports</small></summary>
               <ul class="link-list">
                 <li><a href="results/PHASE1_VALIDATION.md">Phase 1 validation</a><span>QC, structure, diversity, and temporal contrast.</span></li>
                 <li><a href="results/PHASE2_VALIDATION.md">Phase 2 validation</a><span>Contemporary N<sub>e</sub>, convergence, and context.</span></li>
                 <li><a href="results/PHASE3_VALIDATION.md">Phase 3 validation</a><span>GBF tables reconciled to the cube.</span></li>
                 <li><a href="results/PHASE4_VALIDATION.md">Phase 4 validation</a><span>Wolf anchor reconciliation and threshold sweeps.</span></li>
                 <li><a href="results/PHASE5A1_VALIDATION.md">Scorecard validation</a><span>Machine-readable synthesis reconciliation.</span></li>
-                <li><a href="results/PHASE5A_VALIDATION.md">Final readiness gate</a><span>24 PASS, 0 FAIL.</span></li>
+                <li><a href="results/PHASE5A_VALIDATION.md">Final readiness gate</a><span>Historical Phase-5A artifact, portability, app, and scientific readiness checks.</span></li>
+                <li><a href="results/WOLF_ROBUSTNESS_VALIDATION.md">Wolf robustness validation</a><span>Join, frozen grid, uncertainty, ranks, negative control, and figures.</span></li>
+                <li><a href="results/PEAFOWL_DAMAGE_VALIDATION.md">Peafowl damage validation</a><span>Classification, allocations, influence, intervals, and reconciliation.</span></li>
+                <li><a href="results/PEAFOWL_NE_DESIGN_VALIDATION.md">Peafowl design validation</a><span>Known truth, pilots, failures, empirical limits, and decision rates.</span></li>
+                <li><a href="results/PHASE5B_CORE_INTEGRATION_VALIDATION.md">Core communication validation</a><span>Seven-step claims and exact offline controls.</span></li>
+                <li><a href="results/PHASE5B_DECISIONS_VALIDATION.md">Optional-study decision validation</a><span>Numeric Section 13.4 gate and evidence-backed Section 13.5 deferral.</span></li>
+                <li><a href="results/WOLF_ROH_LOCALIZATION_VALIDATION.md">Wolf ROH-localization validation</a><span>Coordinates, partitions, spatial null, provenance, and deterministic collation.</span></li>
+                <li><a href="results/PHASE5B_VALIDATION.md">Phase-5B final validation</a><span>Numeric claims, traceability, data dictionary, and offline payload.</span></li>
+                <li><a href="results/PHASE5B_RELEASE_CONTENT_VALIDATION.md">Phase-5B release-content validation</a><span>Completion markers, exact claims, clean-run evidence, science hashes, and input manifests.</span></li>
                 <li><a href="results/PHASE5A_REPRODUCIBILITY.md">Reproducibility record</a><span>Clean clone, resolved issues, hashes.</span></li>
+                <li><a href="results/PHASE5B_REPRODUCIBILITY.md">Phase-5B clean verification record</a><span>Isolated full-chain verification command, environment, and artifact checks.</span></li>
                 <li><a href="results/APP_SMOKE.md">Explorer smoke test</a><span>Every interactive state exercised.</span></li>
                 <li><a href="results/WEBSITE_VALIDATION.md">Project website validation</a><span>Links, artifact coverage, accessibility, and offline behavior.</span></li>
                 <li><a href="report/populations_maintained.md">Populations Maintained evidence</a><span>Country-level evidence and interpretation limits.</span></li>
@@ -528,7 +763,7 @@
             </details>
 
             <details>
-              <summary><span>Machine-readable validation outcomes</span><small>6 TSV files</small></summary>
+              <summary><span>Machine-readable validation outcomes</span><small>14 TSV files</small></summary>
               <ul class="link-list link-list--compact">
                 <li><a href="results/tables/validation_report.tsv" download>Phase 1 validation rows</a></li>
                 <li><a href="results/tables/validation_phase2.tsv" download>Phase 2 validation rows</a></li>
@@ -536,11 +771,19 @@
                 <li><a href="results/tables/validation_phase4.tsv" download>Phase 4 validation rows</a></li>
                 <li><a href="results/tables/validation_fragility_scorecard.tsv" download>Scorecard validation rows</a></li>
                 <li><a href="results/tables/validation_phase5a.tsv" download>Final readiness validation rows</a></li>
+                <li><a href="results/tables/validation_wolf_robustness.tsv" download>Wolf robustness validation rows</a></li>
+                <li><a href="results/tables/validation_peafowl_damage.tsv" download>Peafowl damage validation rows</a></li>
+                <li><a href="results/tables/validation_peafowl_ne_design.tsv" download>Peafowl design validation rows</a></li>
+                <li><a href="results/tables/validation_phase5b_core_integration.tsv" download>Phase-5B core integration rows</a></li>
+                <li><a href="results/tables/validation_phase5b_decisions.tsv" download>Phase-5B decision rows</a></li>
+                <li><a href="results/tables/validation_wolf_roh_localization.tsv" download>ROH-localization validation rows</a></li>
+                <li><a href="results/tables/validation_phase5b.tsv" download>Phase-5B final validation rows</a></li>
+                <li><a href="results/tables/validation_phase5b_release_content.tsv" download>Phase-5B release-content validation rows</a></li>
               </ul>
             </details>
 
             <details>
-              <summary><span>Sources and reproducibility documentation</span><small>16 entry points</small></summary>
+              <summary><span>Sources and reproducibility documentation</span><small>17 entry points</small></summary>
               <ul class="link-list">
                 <li><a href="README.md">Repository README</a><span>60-second overview, reproduction, and layout.</span></li>
                 <li><a href="PROJECT_STATUS.md">Project status</a><span>Phase completion and remaining optional work.</span></li>
@@ -558,6 +801,7 @@
                 <li><a href="tools/README.md">Source-built tools</a><span>currentNe2 and GONE2 provenance.</span></li>
                 <li><a href="website/README.md">Website source notes</a><span>Offline preview, file map, and validation instructions.</span></li>
                 <li><a href="tests/test_streamlit_app.py">Explorer tests</a><span>Automated coverage of every interactive state.</span></li>
+                <li><a href="results/PHASE5B_REPRODUCIBILITY.md">Phase-5B verification record</a><span>Clean verification procedure and artifact audit trail.</span></li>
               </ul>
             </details>
           </div>
@@ -568,9 +812,9 @@
     <section class="section section--ink reproduce" id="reproduce">
       <div class="shell reproduce-grid">
         <div data-reveal>
-          <p class="eyebrow"><span></span> Reproducibility</p>
-          <h2>After one-time setup, one workflow command rebuilds the derived evidence chain.</h2>
-          <p class="reproduce__lede">The static portfolio needs no software to read. Reproducing the analysis uses a pinned environment, source-built tools, declared thresholds, and a Snakemake DAG designed for an 8 GB laptop. The recorded 162-job clean clone covers the core scientific and admissions artifacts; the newer portal has its own 10-check gate and is included in the current <code>all</code> target.</p>
+          <p class="eyebrow"><span></span> <span data-edit-key="reproduce.eyebrow">Reproducibility</span></p>
+          <h2 data-edit-key="reproduce.title">After one-time setup, one workflow command rebuilds the derived evidence chain.</h2>
+          <p class="reproduce__lede">The static portfolio needs no software to read. Reproducing the analysis uses a pinned environment, source-built tools, declared thresholds, and a Snakemake DAG designed for an 8 GB laptop. The canonical <code>phase5b</code> target rebuilds the analytical chain and its generated claim trace; the linked audit record verifies the clean builds, hashes, manifests, resource bound, and final no-op.</p>
 
           <ol class="pipeline" aria-label="Reproducibility pipeline">
             <li><span>01</span><div><strong>Public deposits</strong><small>Deposited peafowl and wolf variant data</small></div></li>
@@ -582,16 +826,18 @@
 
         <aside class="repro-card" data-reveal>
           <div class="repro-card__header"><span>Complete workflow</span><small>congen environment</small></div>
-          <pre><code>snakemake all --cores 4</code></pre>
-          <button type="button" class="copy-button" data-copy="snakemake all --cores 4">Copy command</button>
+          <pre><code>snakemake --snakefile workflow/Snakefile phase5b --cores 4 --resources mem_mb=7000</code></pre>
+          <button type="button" class="copy-button" data-copy="snakemake --snakefile workflow/Snakefile phase5b --cores 4 --resources mem_mb=7000">Copy command</button>
           <dl>
-            <div><dt>Core clean clone</dt><dd>162 / 162 jobs</dd></div>
-            <div><dt>Scientific checks</dt><dd>32 PASS · 12 WARN · 0 FAIL</dd></div>
-            <div><dt>Phase-5A gate</dt><dd>24 PASS · 0 FAIL</dd></div>
-            <div><dt>Website gate</dt><dd>10 PASS · 0 FAIL</dd></div>
-            <div><dt>Report</dt><dd>Byte-deterministic</dd></div>
+            <div><dt>Phase-5B science</dt><dd>COMPLETE</dd></div>
+            <div><dt>Claim contract</dt><dd>Six traced outcomes</dd></div>
+            <div><dt>Optional decisions</dt><dd>IMPLEMENT + DEFER</dd></div>
+            <div><dt>Clean verification</dt><dd>PASS</dd></div>
+            <div><dt>Report + explorer</dt><dd>Generated-table readers</dd></div>
           </dl>
           <div class="repro-card__links">
+            <a href="results/PHASE5B_VALIDATION.md">Phase-5B gate →</a>
+            <a href="results/PHASE5B_REPRODUCIBILITY.md">Phase-5B verification →</a>
             <a href="results/PHASE5A_REPRODUCIBILITY.md">Audit trail →</a>
             <a href="environment.lock.yml">Environment →</a>
             <a href="config/config.yaml">Parameters →</a>
@@ -604,21 +850,21 @@
       <div class="shell">
         <div class="section-heading section-heading--split" data-reveal>
           <div>
-            <p class="eyebrow"><span></span> Scientific maturity</p>
-            <h2>The strongest claim is the one the evidence can carry.</h2>
+            <p class="eyebrow"><span></span> <span data-edit-key="limitations.eyebrow">Scientific maturity</span></p>
+            <h2 data-edit-key="limitations.title">The strongest claim is the one the evidence can carry.</h2>
           </div>
-          <p>The project makes its boundary explicit: a reproducible public-data reanalysis can demonstrate analytical sensitivity and conservation risk, but not measured inbreeding depression or new field evidence.</p>
+          <p data-edit-key="limitations.summary">The project makes its boundary explicit: a reproducible public-data reanalysis can demonstrate analytical sensitivity and conservation risk, but not measured inbreeding depression or new field evidence.</p>
         </div>
 
         <div class="boundary-grid">
           <article data-reveal><span>Claim</span><h3>No sampled peafowl population confidently clears N<sub>e</sub> &gt; 500.</h3><p>Not: “all true population sizes are known to be below 500.”</p></article>
           <article data-reveal><span>Claim</span><h3>Wolf genomic-risk direction survives the tested GERP thresholds.</h3><p>Not: “genetic load has directly caused reduced survival or fertility.”</p></article>
           <article data-reveal><span>Context</span><h3>GONE2 suggests a recent decline on a different timescale.</h3><p>It uses an approximate recombination rate and does not decide the contemporary verdict.</p></article>
-          <article data-reveal><span>Next evidence</span><h3>For resolving the present peafowl N<sub>e</sub> uncertainty, more independent individuals are the priority over simply adding SNPs.</h3><p>Better sampling, functional evidence, and finer occurrence records would change the conclusions most.</p></article>
+          <article data-reveal><span>Next evidence</span><h3>0/15 tested scenario designs resolved both predeclared resolution truths (N<sub>e</sub>=250 and 1,000), so this analysis does not prescribe an exact empirical sample size.</h3><p>A future design needs prospective calibration under its own sampling and ascertainment process; empirical downsampling here has unknown truth and dependent, overlapping subsets.</p></article>
         </div>
 
         <div class="closing" data-reveal>
-          <p>“An uncertain estimate is not an empty result. It tells us what the present data cannot yet support.”</p>
+          <p data-edit-key="limitations.closing_quote">“An uncertain estimate is not an empty result. It tells us what the present data cannot yet support.”</p>
           <div>
             <a class="button button--solid" href="RESEARCH_JOURNEY.md">Read the research journey <span aria-hidden="true">→</span></a>
             <a class="button button--ghost" href="report/report.html#limitations">Inspect every limitation <span aria-hidden="true">↗</span></a>
@@ -637,7 +883,7 @@
           </span>
           <span><strong>Conservation Genomics</strong><small>Fragility-first reanalysis</small></span>
         </a>
-        <p>Reanalysis of two public whole-genome deposits. No new field sampling, external researcher, ML model, or publication process is required to use this portfolio.</p>
+        <p data-edit-key="footer.summary">Reanalysis of two public whole-genome deposits. No new field sampling, external researcher, ML model, or publication process is required to use this portfolio.</p>
       </div>
       <div>
         <p class="label">Read</p>
@@ -647,7 +893,9 @@
       </div>
       <div>
         <p class="label">Verify</p>
-        <a href="results/PHASE5A_VALIDATION.md">Final validation</a>
+        <a href="results/PHASE5B_VALIDATION.md">Phase-5B validation</a>
+        <a href="results/PHASE5B_REPRODUCIBILITY.md">Phase-5B verification</a>
+        <a href="results/PHASE5A_VALIDATION.md">Phase-5A validation</a>
         <a href="results/PHASE5A_REPRODUCIBILITY.md">Reproduction record</a>
         <a href="PROJECT_STATUS.md">Project status</a>
       </div>

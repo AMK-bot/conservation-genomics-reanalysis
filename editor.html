@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A local visual editor for personalizing the Conservation Genomics website without editing HTML.">
+  <title>Personalize the Conservation Genomics website</title>
+  <link rel="stylesheet" href="website/editor.css">
+</head>
+<body>
+  <header class="editor-toolbar">
+    <div class="editor-brand">
+      <p>Conservation Genomics</p>
+      <h1>Website text editor</h1>
+    </div>
+    <div class="editor-actions" aria-label="Editor actions">
+      <button type="button" id="discardButton">Discard draft</button>
+      <button type="button" id="undoButton">Undo last save</button>
+      <button type="button" id="exportButton">Export copy</button>
+      <button type="button" id="importButton">Import copy</button>
+      <button type="button" id="resetButton" class="danger-button">Restore original</button>
+      <button type="button" id="saveButton" class="primary-button">Save website text</button>
+      <a id="openSiteLink" class="button-link" href="index.html" target="_blank" rel="noopener">Open full website</a>
+    </div>
+  </header>
+
+  <div id="connectionBanner" class="connection-banner" hidden>
+    Saving is unavailable when this file is opened directly. Double-click <strong>EDIT_WEBSITE.command</strong> in the project folder, then use the editor page it opens.
+  </div>
+
+  <main class="editor-layout">
+    <aside class="editor-guide" aria-labelledby="guideTitle">
+      <p class="kicker">No HTML required</p>
+      <h2 id="guideTitle">Click highlighted text and type</h2>
+      <ol>
+        <li>Select any outlined heading or paragraph in the preview.</li>
+        <li>Type or paste plain text. The page updates immediately.</li>
+        <li>Select <strong>Save website text</strong> when ready.</li>
+      </ol>
+
+      <div class="locked-note">
+        <strong>Protected scientific content</strong>
+        <p>Evidence numbers, accepted/rejected/non-conclusive decisions, links, figures, model outputs, and reproducibility records are intentionally locked. This editor focuses on narrative wording and personal-contribution text.</p>
+      </div>
+
+      <nav class="jump-list" aria-label="Jump through website preview">
+        <p>Jump to section</p>
+        <button type="button" data-jump="top">Opening</button>
+        <button type="button" data-jump="question">Question</button>
+        <button type="button" data-jump="findings">Findings</button>
+        <button type="button" data-jump="decision-boundaries">Decision boundaries</button>
+        <button type="button" data-jump="explorer">Interactive models</button>
+        <button type="button" data-jump="evidence">Visual evidence</button>
+        <button type="button" data-jump="deliverables">Deliverables</button>
+        <button type="button" data-jump="reproduce">Reproduce</button>
+        <button type="button" data-jump="limitations">Limitations</button>
+      </nav>
+
+      <div class="selection-panel" aria-live="polite">
+        <p>Selected text</p>
+        <strong id="selectionLabel">Nothing selected yet</strong>
+      </div>
+
+      <p class="editor-footnote">Personalizations are stored separately from the original page, so restoring the canonical wording is always possible.</p>
+    </aside>
+
+    <section class="preview-panel" aria-labelledby="previewTitle">
+      <div class="preview-heading">
+        <div>
+          <p class="kicker">Live website</p>
+          <h2 id="previewTitle">Editable preview</h2>
+        </div>
+        <p id="saveStatus" class="save-status" role="status" aria-live="polite">Connecting…</p>
+      </div>
+      <iframe id="sitePreview" src="index.html?editor-preview=1" title="Editable preview of the Conservation Genomics website"></iframe>
+    </section>
+  </main>
+
+  <label for="importFile" hidden>Choose a website text export to import</label>
+  <input id="importFile" type="file" accept="application/json,.json" hidden>
+  <script src="website/editor.js"></script>
+</body>
+</html>

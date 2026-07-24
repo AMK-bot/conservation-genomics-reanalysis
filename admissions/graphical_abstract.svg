@@ -1,103 +1,113 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900"
      role="img" aria-labelledby="title description">
-  <title id="title">Can we trust a conservation-genomics verdict?</title>
-  <desc id="description">Graphical abstract showing public peafowl and wolf genome data passing
-  through defensible analyst choices. The peafowl headline is robust while estimates are fragile;
-  the wolf biological pattern is robust while magnitudes are threshold-sensitive.</desc>
+  <title id="title">Phase 5B: six conservation-genomics claims with explicit boundaries</title>
+  <desc id="description">Six validated claims: 15/15 controlled wolf realized-load associations,
+  1/4 fully robust peafowl diversity metrics with geography confounded, 0/15 resolving neutral
+  simulation designs, an IMPLEMENT localization gate, 24/24 localization cells beyond a spatial
+  circular-shift null, and DEFER_DUPLICATES_SOURCE_STUDY for annotation triangulation. Association,
+  localization, and predicted impact remain genomic proxies rather than fitness or causal effects;
+  the simulation landscape is not an empirical sampling prescription.</desc>
   <defs>
-    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
-      <path d="M0,0 L12,6 L0,12 Z" fill="#315C55"/>
-    </marker>
     <style>
-      .title { font: 700 54px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #173B36; }
-      .subtitle { font: 400 24px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #49645F; }
-      .section { font: 700 25px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #173B36; letter-spacing: 1px; }
-      .label { font: 700 28px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #173B36; }
-      .body { font: 400 22px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #294A45; }
-      .small { font: 400 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #49645F; }
-      .metric { font: 700 38px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #173B36; }
+      .title { font: 700 48px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #173B36; }
+      .subtitle { font: 400 22px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #49645F; }
+      .kicker { font: 700 17px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #315C55; letter-spacing: 1.2px; }
+      .metric { font: 750 42px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #173B36; }
+      .metric-long { font: 750 19px ui-monospace, SFMono-Regular, Menlo, monospace; fill: #173B36; }
+      .heading { font: 700 22px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #173B36; }
+      .body { font: 400 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #294A45; }
+      .boundary { font: 600 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #7A4B16; }
+      .pill { font: 700 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #FFFFFF; letter-spacing: 0.5px; }
+      .footer { font: 700 25px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #FFFFFF; }
+      .footer-small { font: 400 17px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #DDEBE7; }
       .card { fill: #FFFFFF; stroke: #B8CBC6; stroke-width: 2; }
-      .choice { fill: #E7F0ED; stroke: #81A39B; stroke-width: 2; }
+      .rule { stroke: #D4E0DD; stroke-width: 2; }
     </style>
   </defs>
 
   <rect width="1600" height="900" fill="#F4F7F5"/>
-  <rect x="0" y="0" width="1600" height="14" fill="#315C55"/>
+  <rect width="1600" height="14" fill="#315C55"/>
+  <text class="title" x="70" y="82">Six claims. Six boundaries. One traceable decision system.</text>
+  <text class="subtitle" x="72" y="122">Phase 5B: COMPLETE · public peafowl and wolf genomes · predeclared tests · offline evidence</text>
 
-  <text class="title" x="90" y="92">Can we trust a conservation-genomics verdict?</text>
-  <text class="subtitle" x="92" y="133">A reproducible stress test of biological conclusions under defensible analyst choices</text>
+  <!-- Claim 1: wolf association -->
+  <g role="group" aria-label="Claim one: 15 of 15 controlled wolf association cells">
+    <rect class="card" x="65" y="165" rx="20" width="455" height="245"/>
+    <rect x="90" y="188" rx="13" width="102" height="28" fill="#2E7567"/>
+    <text class="pill" x="141" y="208" text-anchor="middle">WOLF · 13.1</text>
+    <text class="metric" x="90" y="268">15/15</text>
+    <text class="heading" x="90" y="302">controlled CIs above zero</text>
+    <line class="rule" x1="90" y1="322" x2="495" y2="322"/>
+    <text class="body" x="90" y="350">Realized-load association survives</text>
+    <text class="body" x="90" y="375">generic-homozygosity control.</text>
+    <text class="boundary" x="90" y="397">Boundary: proxy association, not fitness or cause.</text>
+  </g>
 
-  <text class="section" x="90" y="205">PUBLIC WHOLE-GENOME DATA</text>
-  <text class="section" x="590" y="205">ANALYST CHOICES</text>
-  <text class="section" x="1065" y="205">WHAT SURVIVES?</text>
+  <!-- Claim 2: damage-aware peafowl falsification -->
+  <g role="group" aria-label="Claim two: one of four peafowl metrics fully robust">
+    <rect class="card" x="572" y="165" rx="20" width="455" height="245"/>
+    <rect x="597" y="188" rx="13" width="142" height="28" fill="#2E7567"/>
+    <text class="pill" x="668" y="208" text-anchor="middle">PEAFOWL · 13.3</text>
+    <text class="metric" x="597" y="268">1/4</text>
+    <text class="heading" x="597" y="302">metrics fully robust</text>
+    <line class="rule" x1="597" y1="322" x2="1002" y2="322"/>
+    <text class="body" x="597" y="350">Damage and influence checks leave</text>
+    <text class="body" x="597" y="375">a mixed sample contrast.</text>
+    <text class="boundary" x="597" y="397">Boundary: geography remains confounded with time.</text>
+  </g>
 
-  <!-- Input cards -->
-  <rect class="card" x="85" y="235" rx="22" width="390" height="220"/>
-  <circle cx="140" cy="290" r="28" fill="#2E7567"/>
-  <text x="140" y="299" text-anchor="middle" style="font:700 24px sans-serif;fill:#fff">P</text>
-  <text class="label" x="185" y="300">Green peafowl</text>
-  <text class="body" x="120" y="350">22 modern birds · 3 populations</text>
-  <text class="body" x="120" y="388">n = 7 / 10 / 5</text>
-  <text class="small" x="120" y="425">GBF indicators · contemporary Nₑ</text>
+  <!-- Claim 3: Ne design calibration -->
+  <g role="group" aria-label="Claim three: zero of fifteen simulated designs resolve both predeclared resolution truths, N e 250 and 1,000">
+    <rect class="card" x="1079" y="165" rx="20" width="455" height="245"/>
+    <rect x="1104" y="188" rx="13" width="142" height="28" fill="#2E7567"/>
+    <text class="pill" x="1175" y="208" text-anchor="middle">PEAFOWL · 13.2</text>
+    <text class="metric" x="1104" y="268">0/15</text>
+    <text class="heading" x="1104" y="302">designs meet resolution rule</text>
+    <line class="rule" x1="1104" y1="322" x2="1509" y2="322"/>
+    <text class="body" x="1104" y="350">Known-truth neutral simulations retain</text>
+    <text class="body" x="1104" y="375">incorrect and indeterminate outcomes.</text>
+    <text class="boundary" x="1104" y="397">Boundary: landscape, not sampling prescription.</text>
+  </g>
 
-  <rect class="card" x="85" y="485" rx="22" width="390" height="220"/>
-  <circle cx="140" cy="540" r="28" fill="#A56A24"/>
-  <text x="140" y="549" text-anchor="middle" style="font:700 24px sans-serif;fill:#fff">W</text>
-  <text class="label" x="185" y="550">Scandinavian wolf</text>
-  <text class="body" x="120" y="600">211 individuals · temporal cohorts</text>
-  <text class="body" x="120" y="638">Polarized variants + GERP</text>
-  <text class="small" x="120" y="675">Genetic load · runs of homozygosity</text>
+  <!-- Claim 4: localization gate -->
+  <g role="group" aria-label="Claim four: implement the localization analysis">
+    <rect class="card" x="65" y="440" rx="20" width="455" height="245"/>
+    <rect x="90" y="463" rx="13" width="112" height="28" fill="#A56A24"/>
+    <text class="pill" x="146" y="483" text-anchor="middle">GATE · 13.4</text>
+    <text class="metric" x="90" y="543">IMPLEMENT</text>
+    <text class="heading" x="90" y="577">15/15 ≥ predeclared 12/15</text>
+    <line class="rule" x1="90" y1="597" x2="495" y2="597"/>
+    <text class="body" x="90" y="625">The negative-control result opens</text>
+    <text class="body" x="90" y="650">the streamed localization analysis.</text>
+    <text class="boundary" x="90" y="672">Boundary: authorization is not evidence itself.</text>
+  </g>
 
-  <!-- Arrows into choices -->
-  <path d="M475 345 C525 345, 530 345, 565 345" fill="none" stroke="#315C55" stroke-width="5" marker-end="url(#arrow)"/>
-  <path d="M475 595 C525 595, 530 595, 565 595" fill="none" stroke="#315C55" stroke-width="5" marker-end="url(#arrow)"/>
+  <!-- Claim 5: localization result -->
+  <g role="group" aria-label="Claim five: 24 of 24 localization cells beyond spatial null">
+    <rect class="card" x="572" y="440" rx="20" width="455" height="245"/>
+    <rect x="597" y="463" rx="13" width="148" height="28" fill="#A56A24"/>
+    <text class="pill" x="671" y="483" text-anchor="middle">LOCALIZE · 13.4</text>
+    <text class="metric" x="597" y="543">24/24</text>
+    <text class="heading" x="597" y="577">cells beyond spatial null</text>
+    <line class="rule" x1="597" y1="597" x2="1002" y2="597"/>
+    <text class="body" x="597" y="625">At 1.5 Mb, enrichment exceeds</text>
+    <text class="body" x="597" y="650">the circular-shift bound; p ≤ 0.05.</text>
+    <text class="boundary" x="597" y="672">Boundary: co-localization, not fitness or causation.</text>
+  </g>
 
-  <!-- Choice cards -->
-  <rect class="choice" x="590" y="235" rx="22" width="380" height="220"/>
-  <text class="label" x="625" y="290">Peafowl fragility cube</text>
-  <rect x="625" y="325" rx="18" width="130" height="50" fill="#315C55"/>
-  <text x="690" y="358" text-anchor="middle" style="font:700 20px sans-serif;fill:#fff">FILTER</text>
-  <text class="metric" x="778" y="361">×</text>
-  <rect x="815" y="325" rx="18" width="120" height="50" fill="#315C55"/>
-  <text x="875" y="358" text-anchor="middle" style="font:700 20px sans-serif;fill:#fff">STRUCTURE</text>
-  <text class="small" x="625" y="415">3 presets · modeled vs pooled</text>
+  <!-- Claim 6: evidence-backed deferral -->
+  <g role="group" aria-label="Claim six: defer duplicate source study">
+    <rect class="card" x="1079" y="440" rx="20" width="455" height="245"/>
+    <rect x="1104" y="463" rx="13" width="130" height="28" fill="#A56A24"/>
+    <text class="pill" x="1169" y="483" text-anchor="middle">DECIDE · 13.5</text>
+    <text class="metric-long" x="1104" y="545">DEFER_DUPLICATES_SOURCE_STUDY</text>
+    <line class="rule" x1="1104" y1="582" x2="1509" y2="582"/>
+    <text class="body" x="1104" y="612">0 independent definitions; source already</text>
+    <text class="body" x="1104" y="637">tested VEP, SIFT, and GERP on 211/211.</text>
+    <text class="boundary" x="1104" y="665">Boundary: predicted impact is not proven harm.</text>
+  </g>
 
-  <rect class="choice" x="590" y="485" rx="22" width="380" height="220"/>
-  <text class="label" x="625" y="540">Wolf sensitivity</text>
-  <rect x="625" y="575" rx="18" width="130" height="50" fill="#8E5A1F"/>
-  <text x="690" y="608" text-anchor="middle" style="font:700 20px sans-serif;fill:#fff">GERP</text>
-  <text class="metric" x="778" y="611">×</text>
-  <rect x="815" y="575" rx="18" width="120" height="50" fill="#8E5A1F"/>
-  <text x="875" y="608" text-anchor="middle" style="font:700 20px sans-serif;fill:#fff">ROH</text>
-  <text class="small" x="625" y="665">3 deleteriousness · 5 length cutoffs</text>
-
-  <!-- Arrows into conclusions -->
-  <path d="M970 345 C1010 345, 1015 345, 1045 345" fill="none" stroke="#315C55" stroke-width="5" marker-end="url(#arrow)"/>
-  <path d="M970 595 C1010 595, 1015 595, 1045 595" fill="none" stroke="#315C55" stroke-width="5" marker-end="url(#arrow)"/>
-
-  <!-- Conclusion cards -->
-  <rect class="card" x="1070" y="235" rx="22" width="445" height="220"/>
-  <text class="metric" x="1105" y="300">0 / 3 confidently secure</text>
-  <line x1="1105" y1="325" x2="1475" y2="325" stroke="#B8CBC6" stroke-width="2"/>
-  <circle cx="1120" cy="365" r="8" fill="#2E7567"/>
-  <text class="body" x="1145" y="373">Headline: robust</text>
-  <circle cx="1120" cy="410" r="8" fill="#C9822B"/>
-  <text class="body" x="1145" y="418">Estimates/convergence: fragile</text>
-
-  <rect class="card" x="1070" y="485" rx="22" width="445" height="220"/>
-  <text class="metric" x="1105" y="550">Pattern survives</text>
-  <line x1="1105" y1="575" x2="1475" y2="575" stroke="#B8CBC6" stroke-width="2"/>
-  <circle cx="1120" cy="615" r="8" fill="#2E7567"/>
-  <text class="body" x="1145" y="623">Realized vs masked: robust</text>
-  <circle cx="1120" cy="660" r="8" fill="#C9822B"/>
-  <text class="body" x="1145" y="668">Load and F<tspan baseline-shift="sub" font-size="15">ROH</tspan>: magnitude-sensitive</text>
-
-  <!-- Bottom conclusion -->
-  <rect x="85" y="770" rx="24" width="1430" height="90" fill="#173B36"/>
-  <text x="800" y="815" text-anchor="middle" style="font:700 29px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#fff">
-    The result is not one number—it is which conclusions survive reasonable choices.
-  </text>
-  <text x="800" y="842" text-anchor="middle" style="font:400 18px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#DDEBE7">
-    Config-driven workflow · four validated phases · uncertainty reported, not hidden
-  </text>
+  <rect x="65" y="735" rx="22" width="1469" height="112" fill="#173B36"/>
+  <text class="footer" x="800" y="782" text-anchor="middle">Result → uncertainty → falsifier → boundary → next evidence</text>
+  <text class="footer-small" x="800" y="817" text-anchor="middle">Every headline traces to a table, provenance record, validator, report section, explorer anchor, and workflow rule.</text>
 </svg>

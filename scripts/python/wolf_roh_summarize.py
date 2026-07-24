@@ -3,9 +3,10 @@
 
 Reads the RG (region) records bcftools roh emits, per chromosome, and for each individual
 computes F_ROH = (total ROH length >= cutoff) / autosome length, at each ROH-length cutoff
-(the wolf-side ROH knob: short ROH = ancient/background, long ROH >= ~1.5 Mb = recent
-inbreeding). Sweeping the cutoff is the fragility axis — the recent-inbreeding signal (long
-ROH) should stand out from the ancient background as the cutoff rises.
+(the wolf-side ROH knob). Longer intervals are treated as an autozygosity proxy shifted toward
+more recent shared ancestry, not as a dated or causal inbreeding measurement; the constant-rate,
+map-limited caller prevents a categorical age interpretation. Sweeping the cutoff is the
+fragility axis.
 
 RG columns (bcftools roh): RG <sample> <chrom> <start> <end> <length_bp> <n_markers> <quality>.
 
@@ -60,7 +61,9 @@ def summarize(roh, popmap, genome_len, cutoffs_mb, long_cut_mb):
                 "F_ROH": (sum(kept) / genome_len) if genome_len else float("nan"),
                 "n_roh": len(kept),
                 "total_roh_mb": sum(kept) / 1_000_000,
-                "n_long_recent": n_long,               # ROH >= long_cut (recent inbreeding), fixed classifier
+                # Historical schema name retained for Phase-4 compatibility; this is a
+                # length-threshold autozygosity proxy, not a dated inbreeding class.
+                "n_long_recent": n_long,
                 "froh_long_recent": froh_long,
             })
     return pd.DataFrame(rows).sort_values(["min_length_mb", "POP", "IND"]).reset_index(drop=True)

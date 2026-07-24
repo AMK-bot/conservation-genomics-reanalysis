@@ -23,6 +23,9 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 
+# Local website-editor undo snapshot (current overrides remain tracked)
+website/content-overrides.previous.json
+
 # Tools built from source — keep only the README
 /tools/*
 !/tools/README.md

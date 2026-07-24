@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="620" viewBox="0 0 1600 620"
+     role="img" aria-labelledby="title description">
+  <title id="title">Peafowl model routing and three-state conservation decision</title>
+  <desc id="description">Normalized peafowl variants split into model-specific branches. An
+  LD-pruned callset feeds PCA and ADMIXTURE for structure. Complete-call variants feed diversity
+  metrics. An unpruned callset feeds cross-chromosome currentNe2 because linkage disequilibrium is
+  the estimator signal. The point estimate and 90 percent interval are compared with 500 to assign
+  pass, fail, or indeterminate. Pooled estimates and GONE2 remain cautionary context, not GBF inputs.
+  The baseline results generate damage and sample-design questions for the final project phase.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#52736c"/>
+    </marker>
+    <style>
+      .title { font: 700 31px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #173b36; }
+      .kicker { font: 700 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #2e7567; letter-spacing: 1.1px; }
+      .head { font: 700 20px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #173b36; }
+      .body { font: 400 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #36534d; }
+      .small { font: 600 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #536b66; }
+      .metric { font: 750 28px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #173b36; }
+      .card { fill: #ffffff; stroke: #b8cbc6; stroke-width: 2; }
+      .input { fill: #dceee8; stroke: #6ea99b; stroke-width: 2; }
+      .context { fill: #f7efe4; stroke: #c28a43; stroke-width: 2; }
+      .decision { fill: #eef3f5; stroke: #7c9aa5; stroke-width: 2; }
+      .arrow { fill: none; stroke: #52736c; stroke-width: 3; marker-end: url(#arrow); }
+      .dash { fill: none; stroke: #9a7448; stroke-width: 2.5; stroke-dasharray: 8 7; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="620" rx="28" fill="#f4f7f5"/>
+  <text class="title" x="58" y="55">Peafowl: one VCF, different model assumptions</text>
+  <text class="kicker" x="60" y="88">MODEL ROUTING · STRUCTURE AND DIVERSITY DESCRIBE DATA; CURRENTNE2 MAKES THE THRESHOLD DECISION</text>
+
+  <g role="group" aria-label="Input and correction">
+    <rect class="input" x="55" y="132" width="236" height="172" rx="19"/>
+    <text class="head" x="79" y="170">Normalized variants</text>
+    <text class="metric" x="79" y="213">22 birds</text>
+    <text class="body" x="79" y="242">Thailand 5 · Vietnam 10</text>
+    <text class="body" x="79" y="267">Yunnan 7</text>
+    <text class="small" x="79" y="291">IDs fixed before LD extraction</text>
+  </g>
+
+  <path class="arrow" d="M 291 184 C 335 184, 329 166, 374 166"/>
+  <path class="arrow" d="M 291 220 C 335 220, 329 310, 374 310"/>
+  <path class="arrow" d="M 291 256 C 335 256, 329 447, 374 447"/>
+
+  <g role="group" aria-label="Structure model branch">
+    <rect class="card" x="378" y="117" width="337" height="116" rx="18"/>
+    <text class="head" x="402" y="151">LD-pruned structure branch</text>
+    <text class="body" x="402" y="179">PCA geometry + ADMIXTURE CV</text>
+    <text class="small" x="402" y="207">19,611 SNPs; no management-unit claim</text>
+  </g>
+
+  <g role="group" aria-label="Diversity model branch">
+    <rect class="card" x="378" y="253" width="337" height="116" rx="18"/>
+    <text class="head" x="402" y="287">Complete-call diversity branch</text>
+    <text class="body" x="402" y="315">Hₒ · Hₑ · FIS · allelic richness · π</text>
+    <text class="small" x="402" y="343">Description, not a fitness measurement</text>
+  </g>
+
+  <g role="group" aria-label="Effective population size model branch">
+    <rect class="input" x="378" y="389" width="337" height="130" rx="18"/>
+    <text class="head" x="402" y="423">Unpruned LD branch</text>
+    <text class="body" x="402" y="451">cross-chromosome currentNe2</text>
+    <text class="body" x="402" y="478">point estimate + 90% interval</text>
+    <text class="small" x="402" y="505">LD is signal here—do not prune it away</text>
+  </g>
+
+  <path class="arrow" d="M 715 454 L 779 454"/>
+
+  <g role="group" aria-label="Three-state decision model">
+    <rect class="decision" x="783" y="356" width="405" height="198" rx="20"/>
+    <text class="head" x="808" y="393">Compare the full interval with Nₑ = 500</text>
+    <rect x="808" y="417" width="106" height="55" rx="12" fill="#dceee8"/>
+    <text class="head" x="861" y="451" text-anchor="middle">PASS</text>
+    <text class="small" x="861" y="491" text-anchor="middle" style="font-size:12px">CI low &gt; 500</text>
+    <rect x="931" y="417" width="106" height="55" rx="12" fill="#f7ead7"/>
+    <text class="head" x="984" y="451" text-anchor="middle">FAIL</text>
+    <text class="small" x="984" y="491" text-anchor="middle" style="font-size:12px">CI high &lt; 500</text>
+    <rect x="1054" y="417" width="109" height="55" rx="12" fill="#e8eef2"/>
+    <text class="head" x="1108" y="451" text-anchor="middle">INDETER.</text>
+    <text class="small" x="1108" y="491" text-anchor="middle" style="font-size:12px">CI crosses 500 / no fit</text>
+    <text class="metric" x="808" y="532" style="font-size:22px">0/3 confident passes · every preset</text>
+  </g>
+
+  <path class="dash" d="M 715 166 C 852 166, 817 215, 915 215"/>
+  <path class="dash" d="M 715 311 C 830 311, 826 260, 915 260"/>
+
+  <g role="group" aria-label="Context models that do not feed the decision">
+    <rect class="context" x="919" y="119" width="278" height="172" rx="18"/>
+    <text class="head" x="943" y="154">Context—not verdict inputs</text>
+    <text class="body" x="943" y="187">Pooled ALL: Wahlund caution</text>
+    <text class="body" x="943" y="216">GONE2: recent trajectory only</text>
+    <text class="body" x="943" y="245">Populations Maintained: 7/10</text>
+    <text class="small" x="943" y="265">Different models answer</text>
+    <text class="small" x="943" y="283">different questions</text>
+  </g>
+
+  <g role="group" aria-label="Questions generated by the peafowl baseline">
+    <rect class="card" x="1240" y="119" width="305" height="435" rx="20"/>
+    <text class="head" x="1265" y="156">The baseline raised two tests</text>
+    <text class="metric" x="1265" y="204">2/3</text>
+    <text class="body" x="1265" y="231">populations move between</text>
+    <text class="body" x="1265" y="254">fail and indeterminate</text>
+    <line x1="1265" y1="278" x2="1520" y2="278" stroke="#b8cbc6" stroke-width="2"/>
+    <text class="head" x="1265" y="315">Question A</text>
+    <text class="body" x="1265" y="343">Is the museum–modern direction</text>
+    <text class="body" x="1265" y="366">damage- or individual-driven?</text>
+    <text class="head" x="1265" y="410">Question B</text>
+    <text class="body" x="1265" y="438">Can sample size and marker density</text>
+    <text class="body" x="1265" y="461">resolve the Nₑ decision?</text>
+    <text class="small" x="1265" y="511">Both were tested in Phase 5B.</text>
+  </g>
+
+  <rect x="55" y="574" width="1490" height="28" rx="9" fill="#173b36"/>
+  <text x="800" y="594" text-anchor="middle"
+        style="font: 700 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill:#ffffff">
+    Correction: “more filtered” is not universally “more appropriate”; each estimator needs the input its assumptions require.
+  </text>
+</svg>

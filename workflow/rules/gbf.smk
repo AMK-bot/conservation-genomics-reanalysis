@@ -19,5 +19,8 @@ rule gbf_indicators:
         pm_tbl   = "results/tables/gbf_populations_maintained.tsv",
         summary  = "results/tables/gbf_summary.tsv",
     log: "results/logs/gbf_indicators.log"
+    threads: 1
+    resources:
+        mem_mb = 512
     shell:
         "python {input.script} > {log} 2>&1 || (cat {log}; exit 1)"

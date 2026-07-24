@@ -7,6 +7,19 @@
 from pathlib import Path
 
 
+PHASE5B_PUBLIC_ARTIFACTS = [
+    *PHASE5B_INPUT_MANIFEST_OUTPUTS,
+    *WOLF_ROBUSTNESS_OUTPUTS,
+    *PEAFOWL_DAMAGE_OUTPUTS,
+    *PEAFOWL_NE_DESIGN_OUTPUTS,
+    *PHASE5B_CORE_INTEGRATION_OUTPUTS,
+    *PHASE5B_OPTIONAL_DECISION_OUTPUTS,
+    *WOLF_ROH_LOCALIZATION_OUTPUTS,
+    *PHASE5B_INTEGRATION_OUTPUTS,
+    *PHASE5B_RELEASE_CONTENT_OUTPUTS,
+]
+
+
 REPORT_TABLES = [
     "results/tables/qc_snp_counts.tsv",
     "results/tables/pca_coords.tsv",
@@ -27,12 +40,26 @@ REPORT_TABLES = [
     "results/tables/wolf_roh.tsv",
     "results/tables/validation_phase4.tsv",
     "results/tables/fragility_scorecard.tsv",
+    "results/tables/wolf_froh_load_associations.tsv",
+    "results/tables/wolf_froh_load_rank_stability.tsv",
+    "results/tables/peafowl_damage_effects.tsv",
+    "results/tables/peafowl_ne_design_summary.tsv",
+    "results/tables/wolf_roh_localization_cohort.tsv",
+    "results/tables/validation_wolf_roh_localization.tsv",
+    "results/tables/phase5b_optional_decisions.tsv",
+    "results/tables/phase5b_claim_trace.tsv",
+    "results/tables/validation_phase5b.tsv",
 ]
 
 REPORT_FIGURES = [
     "results/figures/pca.png",
     "results/figures/ne_cube.png",
     "results/figures/fragility_scorecard.png",
+    "results/figures/wolf_froh_load_surface.png",
+    "results/figures/peafowl_damage_falsification.png",
+    "results/figures/peafowl_ne_design.png",
+    "results/figures/wolf_roh_localization_forest.png",
+    "results/figures/wolf_roh_localization_ribbon.png",
 ]
 
 ADMISSIONS_SCREENSHOTS = [
@@ -40,6 +67,13 @@ ADMISSIONS_SCREENSHOTS = [
     "admissions/screenshots/02-structure-diversity.jpg",
     "admissions/screenshots/03-wolf-load-roh.jpg",
     "admissions/screenshots/04-about-limitations.jpg",
+]
+
+BRIEF_DIAGRAMS = [
+    "admissions/brief_project_route.svg",
+    "admissions/brief_peafowl_models.svg",
+    "admissions/brief_wolf_models.svg",
+    "admissions/brief_phase5b_tests.svg",
 ]
 
 APP_ARTIFACTS = [
@@ -58,9 +92,23 @@ APP_ARTIFACTS = [
     "results/figures/kinship_heatmap.png",
     "results/figures/diversity_perpop.png",
     "results/figures/temporal_diversity.png",
+    "results/tables/wolf_froh_load_associations.tsv",
+    "results/tables/wolf_froh_load_rank_stability.tsv",
+    "results/tables/peafowl_damage_effects.tsv",
+    "results/tables/peafowl_ne_design_summary.tsv",
+    "results/tables/phase5b_claim_trace.tsv",
+    "results/tables/phase5b_optional_decisions.tsv",
+    "results/tables/wolf_roh_localization_cohort.tsv",
+    "results/figures/wolf_froh_load_surface.png",
+    "results/figures/wolf_froh_load_forest.png",
+    "results/figures/peafowl_damage_falsification.png",
+    "results/figures/peafowl_ne_design.png",
+    "results/figures/wolf_roh_localization_forest.png",
+    "results/figures/wolf_roh_localization_ribbon.png",
+    "results/tables/validation_phase5b.tsv",
 ]
 
-WEBSITE_ASSETS = [
+WEBSITE_BASE_ASSETS = [
     "index.html",
     ".nojekyll",
     "website/site.css",
@@ -68,6 +116,32 @@ WEBSITE_ASSETS = [
     "website/favicon.svg",
     "website/README.md",
 ]
+
+WEBSITE_PHASE5B_ASSETS = [
+    "website/phase5b-data.js",
+]
+
+WEBSITE_EDITOR_ASSETS = [
+    "EDIT_WEBSITE.command",
+    "EDIT_WEBSITE.md",
+    "editor.html",
+    "scripts/python/edit_website.py",
+    "website/apply-content.js",
+    "website/content-overrides.js",
+    "website/content-overrides.json",
+    "website/editor.css",
+    "website/editor.js",
+]
+
+WEBSITE_ASSETS = WEBSITE_BASE_ASSETS + WEBSITE_PHASE5B_ASSETS + WEBSITE_EDITOR_ASSETS
+
+# This table is produced *after* the ZIP and therefore must never become a
+# parse-time package input on a subsequent invocation.  Without the exclusion,
+# the broad artifact inventory below creates a rerun-only cycle:
+# package_website -> validate_phase5b_delivery -> package_website.
+WEBSITE_DISCOVERY_EXCLUDES = {
+    "results/tables/validation_phase5b_delivery.tsv",
+}
 
 WEBSITE_DELIVERABLES = [
     "admissions/research_brief.html",
@@ -81,12 +155,20 @@ WEBSITE_DELIVERABLES = [
     "results/tables/fragility_scorecard.tsv",
     "results/PHASE5A_VALIDATION.md",
     "results/PHASE5A_REPRODUCIBILITY.md",
+    "results/PHASE5B_VALIDATION.md",
+    "results/PHASE5B_DATA_DICTIONARY.md",
+    "results/PHASE5B_REPRODUCIBILITY.md",
+    "results/PHASE5B_RELEASE_CONTENT_VALIDATION.md",
+    "results/tables/validation_phase5b_release_content.tsv",
+    "results/tables/phase5b_claim_trace.tsv",
+    "results/tables/phase5b_fragility_scorecard.tsv",
     "PROJECT_STATUS.md",
 ]
 
 WEBSITE_BUNDLE_INPUTS = sorted(set(
     WEBSITE_ASSETS
     + WEBSITE_DELIVERABLES
+    + PHASE5B_PUBLIC_ARTIFACTS
     + [
         ".gitignore",
         ".Rprofile",
@@ -129,7 +211,11 @@ WEBSITE_BUNDLE_INPUTS = sorted(set(
             "workflow",
         ]
         for path in Path(directory).rglob("*")
-        if path.is_file() and "__pycache__" not in path.parts
+        if (
+            path.is_file()
+            and "__pycache__" not in path.parts
+            and path.as_posix() not in WEBSITE_DISCOVERY_EXCLUDES
+        )
     ]
 ))
 
@@ -147,24 +233,34 @@ rule render_report_html:
     output:
         html = "report/report.html",
     log: "results/logs/render_report.log"
+    threads: 1
+    resources:
+        mem_mb = 2048
     shell:
         "bash {input.render} > {log} 2>&1 || (cat {log}; exit 1)"
 
 
 rule render_research_brief:
-    """Render the self-contained two-page admissions research brief."""
+    """Render the self-contained four-page, project-wide admissions research brief."""
     input:
         md          = "admissions/research_brief.md",
         css         = "admissions/brief.css",
         abstract    = "admissions/graphical_abstract.svg",
+        diagrams    = BRIEF_DIAGRAMS,
         screenshots = ADMISSIONS_SCREENSHOTS,
     output:
         html = "admissions/research_brief.html",
     log: "results/logs/render_research_brief.log"
+    threads: 1
+    resources:
+        mem_mb = 512
     shell:
         "pandoc {input.md} --standalone --embed-resources --resource-path=admissions "
         "--css {input.css} --metadata pagetitle='Conservation genomics research brief' "
-        "--output {output.html} > {log} 2>&1 || (cat {log}; exit 1)"
+        "--metadata lang=en "
+        "--output {output.html} > {log} 2>&1 "
+        "&& perl -pi -e 's/[ \\t]+$//' {output.html} "
+        "|| (cat {log}; exit 1)"
 
 
 rule app_smoke:
@@ -178,6 +274,9 @@ rule app_smoke:
     output:
         md  = "results/APP_SMOKE.md",
         log = "results/logs/app_smoke.log",
+    threads: 1
+    resources:
+        mem_mb = 2048
     shell:
         "python {input.runner} --test {input.test} --out-md {output.md} --log {output.log}"
 
@@ -187,12 +286,79 @@ rule validate_website:
     input:
         site         = WEBSITE_ASSETS,
         deliverables = WEBSITE_DELIVERABLES,
+        phase5b_gate  = "results/tables/validation_phase5b.tsv",
+        report        = "report/report.html",
+        app_smoke     = "results/APP_SMOKE.md",
         script       = "scripts/python/validate_website.py",
     output:
         md = "results/WEBSITE_VALIDATION.md",
     log: "results/logs/validate_website.log"
+    threads: 1
+    resources:
+        mem_mb = 1024
     shell:
         "python {input.script} --root . --html index.html --out {output.md} "
+        "> {log} 2>&1 || (cat {log}; exit 1)"
+
+
+rule validate_phase5b_release_content:
+    """Fail closed on synchronized claims, completion markers, and clean-run evidence."""
+    input:
+        # The reproducibility record independently reconciles these seven TSVs.
+        # Keep them direct inputs so later corruption or regeneration always
+        # invalidates this gate, even when the final science gate is unchanged.
+        validators         = [
+            "results/tables/validation_wolf_robustness.tsv",
+            "results/tables/validation_peafowl_damage.tsv",
+            "results/tables/validation_peafowl_ne_design.tsv",
+            "results/tables/validation_phase5b_core_integration.tsv",
+            "results/tables/validation_phase5b_decisions.tsv",
+            "results/tables/validation_wolf_roh_localization.tsv",
+            "results/tables/validation_phase5b.tsv",
+        ],
+        claims             = "results/tables/phase5b_claim_trace.tsv",
+        decisions          = "results/tables/phase5b_optional_decisions.tsv",
+        reproducibility    = "results/PHASE5B_REPRODUCIBILITY.md",
+        input_manifests    = PHASE5B_INPUT_MANIFEST_OUTPUTS,
+        # These four unique files supply five of the six frozen science hashes:
+        # the Ne provenance carries separate scenario and empirical hashes. The
+        # sixth is the claim trace already declared above as `claims`.
+        science_hash_artifacts = [
+            "results/provenance/wolf_froh_load.json",
+            "results/tables/peafowl_damage_effects.tsv",
+            "results/provenance/peafowl_ne_design.json",
+            "results/provenance/wolf_roh_localization.json",
+        ],
+        surfaces           = [
+            "README.md",
+            "PROJECT_STATUS.md",
+            "CGplan.md",
+            "scripts/python/README.md",
+            "website/README.md",
+            "RESEARCH_JOURNEY.md",
+            "INTERVIEW_NOTES.md",
+            "admissions/research_brief.md",
+            "admissions/research_brief.html",
+            "admissions/demo_script.md",
+            "app/streamlit_app.py",
+            "index.html",
+            "admissions/graphical_abstract.svg",
+            "report/report.qmd",
+            "report/report.html",
+        ],
+        workflow           = "workflow/rules/phase5b.smk",
+        script             = "scripts/python/validate_phase5b_release_content.py",
+    output:
+        tsv = "results/tables/validation_phase5b_release_content.tsv",
+        md  = "results/PHASE5B_RELEASE_CONTENT_VALIDATION.md",
+    log: "results/logs/validate_phase5b_release_content.log"
+    threads: 1
+    resources:
+        mem_mb = 1024
+    shell:
+        "python {input.script} --root . --claims {input.claims} "
+        "--decisions {input.decisions} --reproducibility {input.reproducibility} "
+        "--out-tsv {output.tsv} --out-md {output.md} "
         "> {log} 2>&1 || (cat {log}; exit 1)"
 
 
@@ -200,14 +366,51 @@ rule package_website:
     """Create and verify the single-file, offline-sendable project portfolio."""
     input:
         sources = WEBSITE_BUNDLE_INPUTS,
+        phase5b = PHASE5B_PUBLIC_ARTIFACTS,
+        website_gate = "results/WEBSITE_VALIDATION.md",
+        phase5b_gate = "results/tables/validation_phase5b.tsv",
+        release_content_gate = "results/tables/validation_phase5b_release_content.tsv",
+        app_smoke = "results/APP_SMOKE.md",
+        report_html = "report/report.html",
         builder = "scripts/python/package_website.py",
     output:
         archive = "dist/conservation-genomics-portfolio.zip",
         report  = "results/WEBSITE_BUNDLE_VALIDATION.md",
     log: "results/logs/package_website.log"
+    threads: 1
+    resources:
+        mem_mb = 2048
     shell:
         "python {input.builder} --root . --html index.html --out {output.archive} "
-        "--report {output.report} > {log} 2>&1 || (cat {log}; exit 1)"
+        "--required-files {input.phase5b} --report {output.report} "
+        "> {log} 2>&1 || (cat {log}; exit 1)"
+
+
+rule validate_phase5b_delivery:
+    """Fail closed after science, rendering, app smoke, website, and ZIP packaging reconcile."""
+    input:
+        science       = PHASE5B_PUBLIC_ARTIFACTS,
+        report        = "report/report.html",
+        brief         = "admissions/research_brief.html",
+        smoke_md      = "results/APP_SMOKE.md",
+        smoke_log     = "results/logs/app_smoke.log",
+        website_gate  = "results/WEBSITE_VALIDATION.md",
+        archive       = "dist/conservation-genomics-portfolio.zip",
+        bundle_gate   = "results/WEBSITE_BUNDLE_VALIDATION.md",
+        readme        = "README.md",
+        status        = "PROJECT_STATUS.md",
+        plan          = "CGplan.md",
+        script        = "scripts/python/validate_phase5b_delivery.py",
+    output:
+        tsv = "results/tables/validation_phase5b_delivery.tsv",
+        md  = "results/PHASE5B_DELIVERY_VALIDATION.md",
+    log: "results/logs/validate_phase5b_delivery.log"
+    threads: 1
+    resources:
+        mem_mb = 2048
+    shell:
+        "python {input.script} --root . --out-tsv {output.tsv} --out-md {output.md} "
+        "--science-files {input.science} > {log} 2>&1 || (cat {log}; exit 1)"
 
 
 rule validate_phase5a:
@@ -241,6 +444,9 @@ rule validate_phase5a:
         tsv = "results/tables/validation_phase5a.tsv",
         md  = "results/PHASE5A_VALIDATION.md",
     log: "results/logs/validate_phase5a.log"
+    threads: 1
+    resources:
+        mem_mb = 1024
     shell:
         "python {input.script} --root . --out-tsv {output.tsv} --out-md {output.md} "
         "> {log} 2>&1 || (cat {log}; exit 1)"

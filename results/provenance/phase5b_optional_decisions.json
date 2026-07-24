@@ -1,0 +1,48 @@
+{
+  "analysis": "Phase 5B optional-study gate review",
+  "common_sample_fraction": 1.0,
+  "common_samples": 211,
+  "inputs": {
+    "associations": {
+      "path": "results/tables/wolf_froh_load_associations.tsv",
+      "sha256": "1b79eec3e30891291af9fa2893650b4a9b7c128f096b250167daf1dd3c5d9cf5"
+    },
+    "coding_vcf": {
+      "path": "data/wolf/vcf/Pol.2out.mac2/100S95F14R.chr1-38.vepfinal.wfm.vcf.gz",
+      "sha256": "162bfc9cbd8eed896e0d88db630561c07ec1c3cac5d9adbdc62c43334ad7ad6b"
+    },
+    "config": {
+      "path": "config/config.yaml",
+      "sha256": "e51b79fdef037285e0efc383f06ffbc96b20f35d0bcfc3e6c14721c1ca7642f2"
+    },
+    "sift": {
+      "path": "data/wolf/vep/Pol.2out.mac2/sifttypes.chr1-X.txt",
+      "sha256": "5c3b723ef5fe3c8945ff4437a8193f1cfc4bf307dd4f3d3b5fe59926a13623ee"
+    },
+    "vep": {
+      "path": "data/wolf/vep/Pol.2out.mac2/veptypes.chr1-X.txt",
+      "sha256": "678be7ae39e80ed0fbd69f7fa8af8dd06af8a553eb7bf707e21de196bb9e4f1a"
+    },
+    "wolf_load": {
+      "path": "results/tables/wolf_load.tsv",
+      "sha256": "61826829ed830368c0f269a25d6b4a5fabf6093ecfe35177e7dfdbc177c77872"
+    }
+  },
+  "outputs": [
+    "results/tables/phase5b_optional_decisions.tsv",
+    "results/tables/phase5b_annotation_inventory.tsv"
+  ],
+  "review_date": "2026-07-19",
+  "scientific_outcome": {
+    "13.4": "IMPLEMENT",
+    "13.5": "DEFER_DUPLICATES_SOURCE_STUDY"
+  },
+  "source_deposit": "https://doi.org/10.5061/dryad.7m0cfxpzj",
+  "source_overlap_review": {
+    "discordant_nonsense_and_weakly_conserved_sift_sites_reported": true,
+    "sift_deleterious_intersect_gerp_gt4_evaluated": true,
+    "vep_release_and_sift_used": true,
+    "vep_sift_vs_gerp_directions_compared": true
+  },
+  "source_study": "https://doi.org/10.1111/mec.16802"
+}

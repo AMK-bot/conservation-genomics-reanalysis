@@ -74,12 +74,14 @@ to use it for temporal effective population size, but that sample size cannot su
 LD-$N_e$ comparison. I changed the question to a narrower museum-versus-modern diversity contrast using
 heterozygosity, rarefied allelic richness, and windowed nucleotide diversity.
 
-That change did not produce a dramatic conclusion, which is itself informative. Median nucleotide
-diversity and observed heterozygosity are slightly higher in the museum group, but expected
-heterozygosity and rarefied allelic richness are essentially flat. Ancient-DNA damage and geographic
-mismatch further limit interpretation. I therefore report a weak, metric-dependent contrast, not a
-claim of temporal erosion. The exact values and caveats are in the
-[Phase 1 validation](results/PHASE1_VALIDATION.md).
+That change did not produce a dramatic conclusion, which is itself informative. Phase 5B then tested
+whether the direction survived transversion-only genotypes, equal-size rarefaction,
+leave-one-individual-out influence checks, all 462 exact label allocations, and block uncertainty.
+Only **1/4** diversity metrics remained fully robust across the complete stress test. The museum and
+modern groups also remain geographically mismatched. I therefore report a weak, metric-dependent,
+geography-confounded contrast, not temporal erosion. The initial contrast is in the
+[Phase 1 validation](results/PHASE1_VALIDATION.md), and the falsification result is in the
+[damage validation](results/PEAFOWL_DAMAGE_VALIDATION.md).
 
 ## 5. What the wolf anchor does—and does not—establish
 
@@ -95,6 +97,24 @@ turn a reproduction into a novel biological discovery. The sensitivity extension
 magnitude changes with the GERP threshold, while the realized-versus-masked direction remains stable.
 The [Phase 4 validation](results/PHASE4_VALIDATION.md) separates those claims explicitly.
 
+Phase 5B next asked whether individual $F_{ROH}$ and realized load remained associated after a
+generic-homozygosity control. The partial realized-load bootstrap interval is above zero in all
+**15/15** predeclared GERP × ROH cells. That consistency supports an association between genomic
+proxies; it does not show individual harm, fitness effects, or causal inbreeding depression.
+
+That result passed the predeclared §13.4 go/no-go gate as **`IMPLEMENT`**, so I ran the chromosome-
+localized analysis rather than deciding after seeing its outcome. At the predeclared 1.5-Mb cutoff,
+observed enrichment is beyond the within-chromosome circular-shift null rule in **24/24** population ×
+GERP cells. This is genomic colocalization that can support a mechanistic interpretation between
+proxies, not proof that ROH caused the burden or that either measure predicts fitness or harm.
+
+The other optional branch produced a useful negative decision. Section 13.5 is
+**`DEFER_DUPLICATES_SOURCE_STUDY`** because the inventory found **0/1** annotation definitions
+independent of the deposited source classes and 211/211 sample overlap. It reopens only with at least
+one independent definition, at least 0.95 common-sample coverage, and at least 0.90 auditable
+callable-denominator coverage. Leaving that study undone avoids presenting duplicated source evidence
+as independent triangulation.
+
 ## 6. The result that changed how I think about uncertainty
 
 The most interesting outcome is a combination I did not initially expect: a stable headline can be
@@ -108,15 +128,31 @@ robust; the individual numbers and convergence are fragile. The complete cells a
 [results cube](results/cube/results_cube.csv), and their reconciliation is checked in the
 [Phase 3 validation](results/PHASE3_VALIDATION.md).
 
+Phase 5B made the next-study question testable rather than rhetorical. I ran a bounded known-truth
+scenario grid across five sample sizes and three marker densities. **0/15** sample-size ×
+marker-density designs resolved both predeclared resolution truths ($N_e=250$ and $N_e=1{,}000$)
+under the predeclared uncertainty rule.
+That result does not say that more sampling is useless; it says this project has no evidence-backed
+sample number that guarantees resolution in real peafowl.
+
+The $N_e$ branch also forced a debugging correction. currentNe2 output can contain a preferred
+cross-chromosome estimate and a whole-genome fallback, each with its own convergence state. I retained
+the chosen `ne_basis` per row and independently reparsed the raw output so a fallback could not be
+mistaken for cross-chromosome convergence. The summary then exposed a separate schema bug: a generic
+rate helper emitted `n_convergence`, while the declared table required `n_converged`. Renaming that
+field before table assembly, and independently recomputing it in the validator, restored explicit
+convergence counts. Execution failures, successful-but-nonconverged attempts, and indeterminate
+decisions remain separate outcomes rather than being silently dropped.
+
 This changed my view of an indeterminate result. It is not a failed answer to replace with a more
 confident point estimate. It tells us that the present data cannot distinguish the policy categories.
-Likewise, the validators' warnings report scientific sensitivity or limitations; they are not hidden
-software failures. Across Phases 1–4, the tracked validation reports contain 32 passes, 12
-reported-not-asserted warnings, and zero failures.
+Likewise, validator warnings report scientific sensitivity or limitations; they are not hidden
+software failures. I avoid using a frozen aggregate pass count as a scientific claim: the important
+evidence is the named check, its machine-readable result, and the boundary attached to it.
 
 ## 7. Responsible claims
 
-I now use three boundaries when explaining the project:
+I now use six boundaries when explaining the project:
 
 1. I report **conservation risk**, not demonstrated inbreeding depression. Demonstrating depression
    would require measured fitness or reproductive outcomes.
@@ -124,15 +160,24 @@ I now use three boundaries when explaining the project:
    is a faithful reproduction; the GERP-threshold and ROH-length sweeps are sensitivity extensions.
 3. I separate a robust conclusion from a robust number. The peafowl 0/3 headline is stable across the
    tested presets, but the population estimates are not precise enough to be treated as fixed values.
+4. I report the damage-aware museum–modern result as **1/4** robust metrics with geography confounded,
+   not as temporal erosion.
+5. I report **0/15** $N_e$ designs as scenario calibration, not an empirical sampling prescription.
+6. I call the **15/15** wolf result proxy association and the **24/24** localization result genomic
+   colocalization, not fitness, harm, or causation. The annotation branch remains the explicit
+   `DEFER_DUPLICATES_SOURCE_STUDY` decision until its numeric reopening rule is met.
 
 The full limitations are stated in the [technical report](report/report.qmd#limitations).
 
 ## 8. What I would design differently next time
 
-For a future peafowl study, I would prioritize **more individuals within each population** before adding
-more SNPs. The present analysis already samples up to 25,000 SNPs per currentNe2 cell, yet $n=7/10/5$
-still produces wide intervals and non-convergence. More loci cannot fully replace independent
-individuals when uncertainty is dominated by sample size.
+For a future peafowl study, I would not quote an exact sample target from this project. The Phase-5B
+known-truth calibration tested sample size and marker density directly, and **0/15** designs resolved
+both predeclared resolution truths ($N_e=250$ and $N_e=1{,}000$). Independent, representative sampling
+remains biologically important, but the
+result does not justify promising that a particular number of individuals—or simply more SNPs—will
+resolve the indicator. A prospective study should preregister its decision rule and validate its design
+under assumptions matched more closely to the population.
 
 I would also match sampling locations and time points more carefully for a temporal comparison, obtain a
 species-specific recombination map before interpreting a recent-$N_e$ trajectory strongly, and pair
@@ -141,16 +186,29 @@ depression. For the Populations Maintained indicator, finer sub-country occurren
 more informative than a country-level yes/no category. These are study-design conclusions, not claims
 that the missing evidence has already been collected.
 
+An excluded candidate verification run added one more correction at the infrastructure boundary. I had assumed
+that putting the locked `congen` environment first on `PATH` was enough for every renderer, but the
+Quarto helper still trusted an inherited base `CONDA_PREFIX` and searched for Deno in the wrong
+architecture directory. The same candidate run also showed why long-run duration must use a monotonic
+clock: the system wall clock jumped during execution. I excluded that run, resolved Quarto's prefix
+from the selected executable, and changed the RSS sidecar to derive its interval end from monotonic
+elapsed time while retaining the raw observed end and clock drift. Verification evidence is useful
+only when its own timing and tool selection are auditable.
+
 ## 9. Ownership and assistance record
 
 | Part of the project | Origin and responsibility |
 |---|---|
 | Biological samples, sequencing, deposited VCFs, population labels, wolf GERP annotations, and the GERP $>4$ anchor | Produced by the source studies and reused from their public deposits. I do not claim these as original data. |
 | currentNe2, GONE2, PLINK, bcftools, VCFtools, ADMIXTURE, Streamlit, and statistical libraries | Existing scientific/software tools. Their outputs depend on the parameters and inputs recorded in this repository. |
-| Research question, dataset choice, filter/structure sensitivity design, three-state verdict, scope corrections, and interpretation boundaries | Student project decisions. I am responsible for understanding and defending them. |
+| Research question, dataset choice, filter/structure sensitivity design, three-state verdict, Phase-5B stress tests and go/no-go rules, scope corrections, and interpretation boundaries | Student project decisions. I am responsible for understanding and defending them. |
 | Workflow implementation, debugging, validation design, code review, and prose drafting | Developed with computational tool and AI coding assistance. I selected the accepted changes, ran or inspected the checks, and remain responsible for the final scientific claims. |
 | Correctness evidence | Workflow validators, result-table reconciliation, and the deposited wolf anchor. These checks support computational fidelity; they do not substitute for new biological observations. |
 
 This project is a computational reanalysis and admissions portfolio artifact, not a publication. Its
 value lies in showing a traceable change in reasoning: I made simplifying assumptions, found where they
 failed, corrected the workflow, and narrowed the claims to what the evidence can support.
+
+**Phase 5B status: COMPLETE.** The clean builds, synchronized rendering, offline package, and release
+gates pass; [`results/PHASE5B_REPRODUCIBILITY.md`](results/PHASE5B_REPRODUCIBILITY.md) records that
+verification without replacing the claim-level evidence above.

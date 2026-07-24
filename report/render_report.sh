@@ -13,7 +13,11 @@ fi
 # conda-forge installs Quarto's executables in bin/ and resources in share/quarto/, while the
 # upstream launcher assumes they are bundled under bin/tools/.  These overrides are harmless for
 # a normally bundled Quarto and make the split conda package relocatable.
-ENV_PREFIX="${CONDA_PREFIX:-$(cd "$(dirname "${QUARTO_BIN}")/.." && pwd)}"
+# Resolve the tool prefix from the selected Quarto executable.  A caller can put the
+# locked environment first on PATH while still inheriting a stale/base CONDA_PREFIX;
+# trusting that unrelated variable would skip these overrides and make Quarto look for
+# its bundled Deno under a nonexistent architecture-specific tools directory.
+ENV_PREFIX="$(cd "$(dirname "${QUARTO_BIN}")/.." && pwd)"
 [[ -d "${ENV_PREFIX}/share/quarto" ]] && export QUARTO_SHARE_PATH="${ENV_PREFIX}/share/quarto"
 [[ -x "${ENV_PREFIX}/bin/deno" ]] && export QUARTO_DENO="${ENV_PREFIX}/bin/deno"
 [[ -x "${ENV_PREFIX}/bin/pandoc" ]] && export QUARTO_PANDOC="${ENV_PREFIX}/bin/pandoc"
@@ -21,7 +25,7 @@ ENV_PREFIX="${CONDA_PREFIX:-$(cd "$(dirname "${QUARTO_BIN}")/.." && pwd)}"
 [[ -x "${ENV_PREFIX}/bin/esbuild" ]] && export QUARTO_ESBUILD="${ENV_PREFIX}/bin/esbuild"
 [[ -x "${ENV_PREFIX}/bin/typst" ]] && export QUARTO_TYPST="${ENV_PREFIX}/bin/typst"
 [[ -x "${ENV_PREFIX}/bin/python" ]] && export QUARTO_PYTHON="${ENV_PREFIX}/bin/python"
-[[ -f "${ENV_PREFIX}/lib/deno_dom.dylib" ]] && export DENO_DOM_PLUGIN="${ENV_PREFIX}/lib/deno_dom.dylib"
+[[ -f "${ENV_PREFIX}/lib/deno_dom.dylib" ]] && export QUARTO_DENO_DOM="${ENV_PREFIX}/lib/deno_dom.dylib"
 
 export RENV_CONFIG_AUTOLOADER_ENABLED=FALSE
 

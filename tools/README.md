@@ -17,5 +17,5 @@ excludes it from the contemporary N_e indicator. Built via its `macos` Makefile
 target with the env's libomp (`make macos`), `-std=c++11`.
 
 ## NeEstimator v2  *(manual cross-check only)* — not built
-Java GUI, not scriptable → used only to cross-check currentNe2's LD-N_e. Not part of
-the automated DAG.
+Java GUI, not scriptable → planned as an optional manual comparison with currentNe2's
+LD-N_e, but not built or run. Not part of the automated DAG.

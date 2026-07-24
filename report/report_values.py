@@ -36,6 +36,14 @@ SOURCE_FILES = {
     "Wolf ROH": "results/tables/wolf_roh.tsv",
     "Wolf validation": "results/tables/validation_phase4.tsv",
     "Fragility scorecard": "results/tables/fragility_scorecard.tsv",
+    "Wolf individual association": "results/tables/wolf_froh_load_associations.tsv",
+    "Wolf rank stability": "results/tables/wolf_froh_load_rank_stability.tsv",
+    "Damage-aware effects": "results/tables/peafowl_damage_effects.tsv",
+    "Ne design summary": "results/tables/peafowl_ne_design_summary.tsv",
+    "Wolf ROH localization": "results/tables/wolf_roh_localization_cohort.tsv",
+    "Wolf ROH localization validation": "results/tables/validation_wolf_roh_localization.tsv",
+    "Phase 5B decisions": "results/tables/phase5b_optional_decisions.tsv",
+    "Phase 5B claim trace": "results/tables/phase5b_claim_trace.tsv",
 }
 
 
@@ -97,6 +105,61 @@ def load_report_values(root: Path | None = None) -> SimpleNamespace:
         root,
         "Fragility scorecard",
         {"conclusion_id", "classification", "settings_supporting", "settings_tested", "evidence_needed"},
+    )
+    wolf_associations = _read(
+        root,
+        "Wolf individual association",
+        {"gerp_threshold", "roh_cutoff_mb", "outcome", "model", "coefficient", "ci_low", "ci_high"},
+    )
+    wolf_rank_stability = _read(
+        root,
+        "Wolf rank stability",
+        {"spearman_rho", "kendall_tau", "top_percentile", "top_overlap_fraction"},
+    )
+    damage_effects = _read(
+        root,
+        "Damage-aware effects",
+        {
+            "variant_set", "metric", "effect_museum_minus_modern", "ci_low", "ci_high",
+            "exact_permutation_p_two_sided", "direction", "equal_n_same_direction_n",
+            "equal_n_cases_n", "leave_one_same_direction_n", "leave_one_cases_n",
+            "same_direction_all_snp_vs_transversion", "supports_temporal_erosion_upgrade",
+        },
+    )
+    ne_design = _read(
+        root,
+        "Ne design summary",
+        {
+            "analysis_type", "true_ne", "sample_size", "marker_density", "n_attempted",
+            "correct_confident_rate", "correct_confident_ci_low",
+            "incorrect_confident_rate", "incorrect_confident_ci_high", "indeterminate_rate",
+            "boundary_confident_pass_rate", "boundary_confident_fail_rate",
+        },
+    )
+    roh_localization = _read(
+        root,
+        "Wolf ROH localization",
+        {
+            "POP", "gerp_threshold", "roh_cutoff_mb", "n_ind",
+            "inside_eligible_genotype_calls", "outside_eligible_genotype_calls", "inside_burden_rate",
+            "outside_burden_rate", "log2_enrichment", "null_ci_low", "null_ci_high",
+            "permutation_p_two_sided", "status",
+        },
+    )
+    roh_localization_validation = _read(
+        root, "Wolf ROH localization validation", {"check", "status", "detail"}
+    )
+    if not roh_localization_validation["status"].astype(str).eq("PASS").all():
+        raise ValueError("wolf ROH-localization validator is not all PASS")
+    phase5b_decisions = _read(
+        root,
+        "Phase 5B decisions",
+        {"section", "decision", "observed_value", "required_value", "evidence", "reopen_condition"},
+    )
+    phase5b_claims = _read(
+        root,
+        "Phase 5B claim trace",
+        {"claim_id", "headline", "claim_status", "estimate", "uncertainty", "what_changes_mind"},
     )
 
     postmac = (
@@ -173,6 +236,61 @@ def load_report_values(root: Path | None = None) -> SimpleNamespace:
     if not anchor_error_match or not anchor_delta_match:
         raise ValueError(f"cannot parse wolf anchor validation detail: {anchor_detail}")
 
+    wolf_partial_realized = wolf_associations.loc[
+        wolf_associations["outcome"].astype(str).eq("realized_load")
+        & wolf_associations["model"].astype(str).str.contains("partial")
+    ]
+    wolf_primary_realized = wolf_associations.loc[
+        wolf_associations["outcome"].astype(str).eq("realized_load")
+        & wolf_associations["model"].astype(str).eq("primary")
+    ]
+    wolf_partial_masked = wolf_associations.loc[
+        wolf_associations["outcome"].astype(str).eq("masked_load")
+        & wolf_associations["model"].astype(str).str.contains("partial")
+    ]
+    if not all(len(frame) == 15 for frame in (wolf_partial_realized, wolf_primary_realized, wolf_partial_masked)):
+        raise ValueError("wolf Phase-5B association subsets do not each cover the frozen 15-cell grid")
+
+    damage_concordant = 0
+    for _metric, group in damage_effects.groupby("metric"):
+        values = group["same_direction_all_snp_vs_transversion"].astype(str).str.lower().eq("true")
+        museum_higher = group["direction"].astype(str).eq("museum_higher").all()
+        equal_ok = (group["equal_n_same_direction_n"] == group["equal_n_cases_n"]).all()
+        leave_ok = (group["leave_one_same_direction_n"] == group["leave_one_cases_n"]).all()
+        damage_concordant += int(values.all() and museum_higher and equal_ok and leave_ok)
+
+    localization_primary = roh_localization.loc[
+        np.isclose(pd.to_numeric(roh_localization["roh_cutoff_mb"]), 1.5)
+    ].copy()
+    localization_primary["beyond_null"] = (
+        pd.to_numeric(localization_primary["log2_enrichment"])
+        > pd.to_numeric(localization_primary["null_ci_high"])
+    ) & pd.to_numeric(localization_primary["permutation_p_two_sided"]).le(0.05)
+    if (
+        len(roh_localization) != 120
+        or len(localization_primary) != 24
+        or roh_localization.groupby(["POP", "gerp_threshold", "roh_cutoff_mb"]).size().ne(1).any()
+        or not localization_primary["status"].astype(str).eq("ok").all()
+    ):
+        raise ValueError("wolf ROH-localization table lacks the complete 8 x 3 x 5 grid or primary slice")
+    localization_support = int(localization_primary["beyond_null"].sum())
+    localization_by_threshold = ", ".join(
+        f"GERP>{threshold:g}: {int(group['beyond_null'].sum())}/8"
+        for threshold, group in localization_primary.groupby("gerp_threshold", sort=True)
+    )
+
+    claims_by_id = phase5b_claims.set_index("claim_id")
+    required_claim_ids = {
+        "wolf_froh_load_association", "peafowl_damage_falsification", "peafowl_ne_study_design",
+        "wolf_roh_localization_gate", "wolf_roh_localized_realized_burden",
+        "wolf_annotation_triangulation_gate",
+    }
+    if required_claim_ids - set(claims_by_id.index):
+        raise ValueError("Phase-5B claim trace lacks one or more required headline claims")
+    decisions_by_section = phase5b_decisions.assign(
+        section=phase5b_decisions["section"].astype(str)
+    ).set_index("section")
+
     provenance = pd.DataFrame(
         [{"Result block": label, "Workflow output": path} for label, path in SOURCE_FILES.items()]
     )
@@ -238,6 +356,39 @@ def load_report_values(root: Path | None = None) -> SimpleNamespace:
         roh_high_cutoff=float(roh_means.index.max()),
         roh_mean_low=float(roh_means.iloc[0]),
         roh_mean_high=float(roh_means.iloc[-1]),
+        wolf_primary_realized_low=float(wolf_primary_realized["coefficient"].min()),
+        wolf_primary_realized_high=float(wolf_primary_realized["coefficient"].max()),
+        wolf_partial_realized_low=float(wolf_partial_realized["coefficient"].min()),
+        wolf_partial_realized_high=float(wolf_partial_realized["coefficient"].max()),
+        wolf_partial_realized_ci_positive=int(wolf_partial_realized["ci_low"].gt(0).sum()),
+        wolf_partial_masked_ci_excluding_zero=int(
+            (wolf_partial_masked["ci_low"].gt(0) | wolf_partial_masked["ci_high"].lt(0)).sum()
+        ),
+        wolf_rank_spearman_low=float(wolf_rank_stability["spearman_rho"].min()),
+        wolf_rank_spearman_high=float(wolf_rank_stability["spearman_rho"].max()),
+        wolf_rank_overlap_low=float(wolf_rank_stability["top_overlap_fraction"].min()),
+        damage_concordant_metrics=damage_concordant,
+        damage_exact_p_low=float(damage_effects["exact_permutation_p_two_sided"].min()),
+        damage_exact_p_high=float(damage_effects["exact_permutation_p_two_sided"].max()),
+        damage_effects=damage_effects.sort_values(["metric", "variant_set"]),
+        roh_localization_primary=localization_primary.sort_values(["gerp_threshold", "POP"]),
+        roh_localization_support_cells=localization_support,
+        roh_localization_support_by_threshold=localization_by_threshold,
+        roh_localization_log2_low=float(localization_primary["log2_enrichment"].min()),
+        roh_localization_log2_high=float(localization_primary["log2_enrichment"].max()),
+        roh_localization_p_low=float(localization_primary["permutation_p_two_sided"].min()),
+        roh_localization_p_high=float(localization_primary["permutation_p_two_sided"].max()),
+        roh_localization_claim=str(claims_by_id.loc["wolf_roh_localized_realized_burden", "headline"]),
+        ne_design_summary=ne_design,
+        ne_design_claim=str(claims_by_id.loc["peafowl_ne_study_design", "headline"]),
+        ne_design_estimate=str(claims_by_id.loc["peafowl_ne_study_design", "estimate"]),
+        wolf_claim=str(claims_by_id.loc["wolf_froh_load_association", "headline"]),
+        damage_claim=str(claims_by_id.loc["peafowl_damage_falsification", "headline"]),
+        section134_decision=str(decisions_by_section.loc["13.4", "decision"]),
+        section134_evidence=str(decisions_by_section.loc["13.4", "evidence"]),
+        section135_decision=str(decisions_by_section.loc["13.5", "decision"]),
+        section135_evidence=str(decisions_by_section.loc["13.5", "evidence"]),
+        phase5b_claims=phase5b_claims,
     )
 
 

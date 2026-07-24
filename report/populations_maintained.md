@@ -1,7 +1,9 @@
 # Populations Maintained — GBF complementary indicator (plan §6)
 
-**Why:** the N_e>500 indicator measures *genetic viability of the populations we have*;
-"Populations Maintained" (PM) measures *how many populations are left at all*. They are the
+**Why:** the N_e>500 indicator asks whether a contemporary genetic-drift risk proxy confidently
+clears its threshold for the sampled populations;
+"Populations Maintained" (PM) measures *how many coarse historical range-country units remain
+extant*. They are the
 two GBF Goal-A genetic indicators and are meant to be reported together. PM is **not**
 genomic — it comes from range/occurrence records, not the cube — so it is hand-curated here
 from the literature (the approach signed off in Phase-3 planning).
@@ -36,9 +38,10 @@ table. They do not establish abundance, within-country range retention, or genet
 ## Reading it against the genomic indicator
 
 The three sampled populations (Yunnan, Vietnam, Thailand) are **all** in the maintained set —
-yet none confidently passes N_e>500 (0/3, mostly indeterminate). **Still present ≠ genetically
-viable.** PM=0.70 looks moderate; the N_e indicator says the populations that remain are already
-genetically eroded. That gap is the conservation message.
+yet none confidently passes N_e>500 (0/3, mostly indeterminate). **Still present ≠ confidence that
+the genomic proxy clears its threshold.** PM=0.70 and the three-state N_e result describe different
+dimensions; neither establishes genetic viability or genetic erosion. That distinction is the
+conservation message.
 
 ## Caveats
 

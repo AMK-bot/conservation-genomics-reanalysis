@@ -3,9 +3,12 @@
 
 Sums the raw counts from wolf_gerp_load.py across all chromosomes by (IND, POP, THRES),
 then computes the three load measures exactly as Smeds & Ellegren 2022:
-    RELATIVE_LOAD = sum / tot_der          (GERP-weighted deleterious-derived fraction)
-    REALIZED_LOAD = hom_del_sum / calls    (expressed: homozygous derived-deleterious)
-    MASKED_LOAD   = het_del_sum / calls    (hidden: heterozygous derived-deleterious)
+    RELATIVE_LOAD = sum / tot_der          (GERP-weighted derived-allele proxy fraction)
+    REALIZED_LOAD = hom_del_sum / calls    (homozygous-derived GERP-weighted proxy)
+    MASKED_LOAD   = het_del_sum / calls    (heterozygous-derived GERP-weighted proxy)
+
+These inherited measure names reproduce the source analysis; they do not establish
+expression, phenotypic harm, or a causal masked-to-realized conversion.
 
 Writes results/tables/wolf_load.tsv (+ .parquet). The THRES column IS the wolf-side
 fragility axis (GERP 2/3/4): at THRES=4 this reproduces the deposit's LoadPerInd.thres4.

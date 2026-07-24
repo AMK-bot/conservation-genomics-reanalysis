@@ -44,4 +44,4 @@ dependencies:
   # ── reporting ──
   - quarto
 # Built from source (not reliably on bioconda/osx-64): currentNe2, GONE2 — tools/README.md
-# NeEstimator v2 is a Java GUI used only as a manual cross-check.
+# NeEstimator v2 is a planned optional Java-GUI comparison; it has not been run.

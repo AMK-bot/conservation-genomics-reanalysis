@@ -1,0 +1,529 @@
+figure	panel	record_type	cell_id	gerp_threshold	roh_cutoff_mb	outcome	model	IND	POP	x_value	y_value	estimate	ci_low	ci_high	n
+wolf_froh_load_surface.png	primary|realized_load	heatmap_cell	gerp2_roh0p1	2	0.10000000000000001	realized_load	primary					0.9275653599214441	0.907467591943979	0.9437476131955657	211
+wolf_froh_load_forest.png	forest|realized_load	forest_cell	gerp2_roh0p1	2	0.10000000000000001	realized_load	primary					0.9275653599214441	0.907467591943979	0.9437476131955657	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|realized_load	heatmap_cell	gerp2_roh0p1	2	0.10000000000000001	realized_load	partial_generic_homozygosity_control					0.8197222826096069	0.7706816365270145	0.8594076210151179	211
+wolf_froh_load_surface.png	primary|masked_load	heatmap_cell	gerp2_roh0p1	2	0.10000000000000001	masked_load	primary					-0.7592780903588392	-0.8116012714523202	-0.6939515991324311	211
+wolf_froh_load_forest.png	forest|masked_load	forest_cell	gerp2_roh0p1	2	0.10000000000000001	masked_load	primary					-0.7592780903588392	-0.8116012714523202	-0.6939515991324311	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|masked_load	heatmap_cell	gerp2_roh0p1	2	0.10000000000000001	masked_load	partial_generic_homozygosity_control					-0.005054869523248635	-0.1340670495907233	0.11013827853165323	211
+wolf_froh_load_surface.png	primary|realized_load	heatmap_cell	gerp2_roh0p5	2	0.5	realized_load	primary					0.9183963695517063	0.8963839971691281	0.9380361637725573	211
+wolf_froh_load_forest.png	forest|realized_load	forest_cell	gerp2_roh0p5	2	0.5	realized_load	primary					0.9183963695517063	0.8963839971691281	0.9380361637725573	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|realized_load	heatmap_cell	gerp2_roh0p5	2	0.5	realized_load	partial_generic_homozygosity_control					0.8085106473933393	0.7565563823777136	0.853577801890773	211
+wolf_froh_load_surface.png	primary|masked_load	heatmap_cell	gerp2_roh0p5	2	0.5	masked_load	primary					-0.7387511862713008	-0.7995022633799073	-0.6690989301787988	211
+wolf_froh_load_forest.png	forest|masked_load	forest_cell	gerp2_roh0p5	2	0.5	masked_load	primary					-0.7387511862713008	-0.7995022633799073	-0.6690989301787988	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|masked_load	heatmap_cell	gerp2_roh0p5	2	0.5	masked_load	partial_generic_homozygosity_control					-0.027485949963801624	-0.13977813585423152	0.08491439335861133	211
+wolf_froh_load_surface.png	primary|realized_load	heatmap_cell	gerp2_roh1	2	1	realized_load	primary					0.9149737686239315	0.890607518789051	0.9356381709590323	211
+wolf_froh_load_forest.png	forest|realized_load	forest_cell	gerp2_roh1	2	1	realized_load	primary					0.9149737686239315	0.890607518789051	0.9356381709590323	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|realized_load	heatmap_cell	gerp2_roh1	2	1	realized_load	partial_generic_homozygosity_control					0.7994719037206818	0.7450302291500225	0.8445156319404254	211
+wolf_froh_load_surface.png	primary|masked_load	heatmap_cell	gerp2_roh1	2	1	masked_load	primary					-0.7396596507885687	-0.7990101982764026	-0.6747442694113619	211
+wolf_froh_load_forest.png	forest|masked_load	forest_cell	gerp2_roh1	2	1	masked_load	primary					-0.7396596507885687	-0.7990101982764026	-0.6747442694113619	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|masked_load	heatmap_cell	gerp2_roh1	2	1	masked_load	partial_generic_homozygosity_control					-0.021575784163131953	-0.12174237675274771	0.09443415137019155	211
+wolf_froh_load_surface.png	primary|realized_load	heatmap_cell	gerp2_roh1p5	2	1.5	realized_load	primary					0.9160451220526873	0.8922541299720057	0.9372552882641665	211
+wolf_froh_load_forest.png	forest|realized_load	forest_cell	gerp2_roh1p5	2	1.5	realized_load	primary					0.9160451220526873	0.8922541299720057	0.9372552882641665	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|realized_load	heatmap_cell	gerp2_roh1p5	2	1.5	realized_load	partial_generic_homozygosity_control					0.8020249009413076	0.747666805446169	0.8485694901132619	211
+wolf_froh_load_surface.png	primary|masked_load	heatmap_cell	gerp2_roh1p5	2	1.5	masked_load	primary					-0.7392759270739657	-0.801197501940566	-0.6706949028750027	211
+wolf_froh_load_forest.png	forest|masked_load	forest_cell	gerp2_roh1p5	2	1.5	masked_load	primary					-0.7392759270739657	-0.801197501940566	-0.6706949028750027	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|masked_load	heatmap_cell	gerp2_roh1p5	2	1.5	masked_load	partial_generic_homozygosity_control					-0.016704180520517396	-0.1349837632822581	0.1027433739596857	211
+wolf_froh_load_surface.png	primary|realized_load	heatmap_cell	gerp2_roh2	2	2	realized_load	primary					0.9095360355430824	0.8830384161590313	0.9328614053217079	211
+wolf_froh_load_forest.png	forest|realized_load	forest_cell	gerp2_roh2	2	2	realized_load	primary					0.9095360355430824	0.8830384161590313	0.9328614053217079	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|realized_load	heatmap_cell	gerp2_roh2	2	2	realized_load	partial_generic_homozygosity_control					0.7878614313969097	0.7222936763066123	0.8417154808362572	211
+wolf_froh_load_surface.png	primary|masked_load	heatmap_cell	gerp2_roh2	2	2	masked_load	primary					-0.7358167370401717	-0.7947205528431278	-0.6678586902416458	211
+wolf_froh_load_forest.png	forest|masked_load	forest_cell	gerp2_roh2	2	2	masked_load	primary					-0.7358167370401717	-0.7947205528431278	-0.6678586902416458	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|masked_load	heatmap_cell	gerp2_roh2	2	2	masked_load	partial_generic_homozygosity_control					-0.00730192205287756	-0.12116030902632215	0.10346596141200963	211
+wolf_froh_load_surface.png	primary|realized_load	heatmap_cell	gerp3_roh0p1	3	0.10000000000000001	realized_load	primary					0.9135597177780798	0.8880415979189239	0.9339603956019789	211
+wolf_froh_load_forest.png	forest|realized_load	forest_cell	gerp3_roh0p1	3	0.10000000000000001	realized_load	primary					0.9135597177780798	0.8880415979189239	0.9339603956019789	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|realized_load	heatmap_cell	gerp3_roh0p1	3	0.10000000000000001	realized_load	partial_generic_homozygosity_control					0.7902750403474538	0.7317013628109325	0.8402365001692715	211
+wolf_froh_load_surface.png	primary|masked_load	heatmap_cell	gerp3_roh0p1	3	0.10000000000000001	masked_load	primary					-0.7506614153704616	-0.8100168700064639	-0.6798331205440538	211
+wolf_froh_load_forest.png	forest|masked_load	forest_cell	gerp3_roh0p1	3	0.10000000000000001	masked_load	primary					-0.7506614153704616	-0.8100168700064639	-0.6798331205440538	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|masked_load	heatmap_cell	gerp3_roh0p1	3	0.10000000000000001	masked_load	partial_generic_homozygosity_control					0.012912784909674619	-0.1103390572156028	0.12999188093272954	211
+wolf_froh_load_surface.png	primary|realized_load	heatmap_cell	gerp3_roh0p5	3	0.5	realized_load	primary					0.9042430355095982	0.8772690049417676	0.9292301207773964	211
+wolf_froh_load_forest.png	forest|realized_load	forest_cell	gerp3_roh0p5	3	0.5	realized_load	primary					0.9042430355095982	0.8772690049417676	0.9292301207773964	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|realized_load	heatmap_cell	gerp3_roh0p5	3	0.5	realized_load	partial_generic_homozygosity_control					0.7783956092137339	0.7204546073139645	0.8335132696770845	211
+wolf_froh_load_surface.png	primary|masked_load	heatmap_cell	gerp3_roh0p5	3	0.5	masked_load	primary					-0.7297236748568299	-0.790574963850278	-0.6643166794696125	211
+wolf_froh_load_forest.png	forest|masked_load	forest_cell	gerp3_roh0p5	3	0.5	masked_load	primary					-0.7297236748568299	-0.790574963850278	-0.6643166794696125	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|masked_load	heatmap_cell	gerp3_roh0p5	3	0.5	masked_load	partial_generic_homozygosity_control					0.001038686463415996	-0.11630302726811606	0.11537125883304174	211
+wolf_froh_load_surface.png	primary|realized_load	heatmap_cell	gerp3_roh1	3	1	realized_load	primary					0.9008331536575345	0.8747908751734652	0.9269982852359752	211
+wolf_froh_load_forest.png	forest|realized_load	forest_cell	gerp3_roh1	3	1	realized_load	primary					0.9008331536575345	0.8747908751734652	0.9269982852359752	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|realized_load	heatmap_cell	gerp3_roh1	3	1	realized_load	partial_generic_homozygosity_control					0.7697018932115299	0.7091040494900874	0.824757263860772	211
+wolf_froh_load_surface.png	primary|masked_load	heatmap_cell	gerp3_roh1	3	1	masked_load	primary					-0.7302943612459949	-0.7911383511144628	-0.6617736846105701	211
+wolf_froh_load_forest.png	forest|masked_load	forest_cell	gerp3_roh1	3	1	masked_load	primary					-0.7302943612459949	-0.7911383511144628	-0.6617736846105701	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|masked_load	heatmap_cell	gerp3_roh1	3	1	masked_load	partial_generic_homozygosity_control					0.00792433967516985	-0.10613802669783667	0.11200780926098186	211
+wolf_froh_load_surface.png	primary|realized_load	heatmap_cell	gerp3_roh1p5	3	1.5	realized_load	primary					0.903047090956099	0.8733246114796567	0.9264494082065275	211
+wolf_froh_load_forest.png	forest|realized_load	forest_cell	gerp3_roh1p5	3	1.5	realized_load	primary					0.903047090956099	0.8733246114796567	0.9264494082065275	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|realized_load	heatmap_cell	gerp3_roh1p5	3	1.5	realized_load	partial_generic_homozygosity_control					0.7748493966488413	0.7088769715836339	0.8329938591907632	211
+wolf_froh_load_surface.png	primary|masked_load	heatmap_cell	gerp3_roh1p5	3	1.5	masked_load	primary					-0.7318131377003233	-0.7945341790443157	-0.6727828196358401	211
+wolf_froh_load_forest.png	forest|masked_load	forest_cell	gerp3_roh1p5	3	1.5	masked_load	primary					-0.7318131377003233	-0.7945341790443157	-0.6727828196358401	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|masked_load	heatmap_cell	gerp3_roh1p5	3	1.5	masked_load	partial_generic_homozygosity_control					-0.003798382613774638	-0.13057406190881832	0.12204213637607561	211
+wolf_froh_load_surface.png	primary|realized_load	heatmap_cell	gerp3_roh2	3	2	realized_load	primary					0.8959617907907955	0.8651058026336338	0.9231260351787872	211
+wolf_froh_load_forest.png	forest|realized_load	forest_cell	gerp3_roh2	3	2	realized_load	primary					0.8959617907907955	0.8651058026336338	0.9231260351787872	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|realized_load	heatmap_cell	gerp3_roh2	3	2	realized_load	partial_generic_homozygosity_control					0.7596902840976661	0.6945479466797635	0.8150429206024817	211
+wolf_froh_load_surface.png	primary|masked_load	heatmap_cell	gerp3_roh2	3	2	masked_load	primary					-0.7280372666287838	-0.7917964187244995	-0.6540156321261766	211
+wolf_froh_load_forest.png	forest|masked_load	forest_cell	gerp3_roh2	3	2	masked_load	primary					-0.7280372666287838	-0.7917964187244995	-0.6540156321261766	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|masked_load	heatmap_cell	gerp3_roh2	3	2	masked_load	partial_generic_homozygosity_control					0.0056070119107198375	-0.12552217602224064	0.12348211726526354	211
+wolf_froh_load_surface.png	primary|realized_load	heatmap_cell	gerp4_roh0p1	4	0.10000000000000001	realized_load	primary					0.8965958950264064	0.8630189890649943	0.9238490604151852	211
+wolf_froh_load_forest.png	forest|realized_load	forest_cell	gerp4_roh0p1	4	0.10000000000000001	realized_load	primary					0.8965958950264064	0.8630189890649943	0.9238490604151852	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|realized_load	heatmap_cell	gerp4_roh0p1	4	0.10000000000000001	realized_load	partial_generic_homozygosity_control					0.7512773847087288	0.6794964039991234	0.8152097640154145	211
+wolf_froh_load_surface.png	primary|masked_load	heatmap_cell	gerp4_roh0p1	4	0.10000000000000001	masked_load	primary					-0.7429766174880639	-0.8032502683345547	-0.6732478256192294	211
+wolf_froh_load_forest.png	forest|masked_load	forest_cell	gerp4_roh0p1	4	0.10000000000000001	masked_load	primary					-0.7429766174880639	-0.8032502683345547	-0.6732478256192294	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|masked_load	heatmap_cell	gerp4_roh0p1	4	0.10000000000000001	masked_load	partial_generic_homozygosity_control					0.03042178954846451	-0.08376406597087407	0.13711368558738815	211
+wolf_froh_load_surface.png	primary|realized_load	heatmap_cell	gerp4_roh0p5	4	0.5	realized_load	primary					0.8847987790881904	0.8481595991874776	0.912707567256493	211
+wolf_froh_load_forest.png	forest|realized_load	forest_cell	gerp4_roh0p5	4	0.5	realized_load	primary					0.8847987790881904	0.8481595991874776	0.912707567256493	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|realized_load	heatmap_cell	gerp4_roh0p5	4	0.5	realized_load	partial_generic_homozygosity_control					0.7347811427144872	0.6526155857700598	0.7972545223616617	211
+wolf_froh_load_surface.png	primary|masked_load	heatmap_cell	gerp4_roh0p5	4	0.5	masked_load	primary					-0.7223885689997058	-0.7906936864126703	-0.6499436439645406	211
+wolf_froh_load_forest.png	forest|masked_load	forest_cell	gerp4_roh0p5	4	0.5	masked_load	primary					-0.7223885689997058	-0.7906936864126703	-0.6499436439645406	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|masked_load	heatmap_cell	gerp4_roh0p5	4	0.5	masked_load	partial_generic_homozygosity_control					0.01810762964112692	-0.08872121846833786	0.12541924293731652	211
+wolf_froh_load_surface.png	primary|realized_load	heatmap_cell	gerp4_roh1	4	1	realized_load	primary					0.8819411255133024	0.8462462648184295	0.913063535722224	211
+wolf_froh_load_forest.png	forest|realized_load	forest_cell	gerp4_roh1	4	1	realized_load	primary					0.8819411255133024	0.8462462648184295	0.913063535722224	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|realized_load	heatmap_cell	gerp4_roh1	4	1	realized_load	partial_generic_homozygosity_control					0.7273675532344712	0.6472729831020463	0.8021275439956222	211
+wolf_froh_load_surface.png	primary|masked_load	heatmap_cell	gerp4_roh1	4	1	masked_load	primary					-0.7230886941553686	-0.7899480998732301	-0.656845257016122	211
+wolf_froh_load_forest.png	forest|masked_load	forest_cell	gerp4_roh1	4	1	masked_load	primary					-0.7230886941553686	-0.7899480998732301	-0.656845257016122	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|masked_load	heatmap_cell	gerp4_roh1	4	1	masked_load	partial_generic_homozygosity_control					0.023098620901706696	-0.09301252874613852	0.1321010308511618	211
+wolf_froh_load_surface.png	primary|realized_load	heatmap_cell	gerp4_roh1p5	4	1.5	realized_load	primary					0.884723168398658	0.8467997933972788	0.9178005907630177	211
+wolf_froh_load_forest.png	forest|realized_load	forest_cell	gerp4_roh1p5	4	1.5	realized_load	primary					0.884723168398658	0.8467997933972788	0.9178005907630177	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|realized_load	heatmap_cell	gerp4_roh1p5	4	1.5	realized_load	partial_generic_homozygosity_control					0.7337847837664644	0.6584002950195529	0.8028387001705786	211
+wolf_froh_load_surface.png	primary|masked_load	heatmap_cell	gerp4_roh1p5	4	1.5	masked_load	primary					-0.7239821439545473	-0.7861980305679882	-0.6525870925876719	211
+wolf_froh_load_forest.png	forest|masked_load	forest_cell	gerp4_roh1p5	4	1.5	masked_load	primary					-0.7239821439545473	-0.7861980305679882	-0.6525870925876719	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|masked_load	heatmap_cell	gerp4_roh1p5	4	1.5	masked_load	partial_generic_homozygosity_control					0.017336628584483284	-0.09311640439495818	0.12953248892654348	211
+wolf_froh_load_surface.png	primary|realized_load	heatmap_cell	gerp4_roh2	4	2	realized_load	primary					0.878524495447719	0.8404177219670801	0.9104674255530916	211
+wolf_froh_load_forest.png	forest|realized_load	forest_cell	gerp4_roh2	4	2	realized_load	primary					0.878524495447719	0.8404177219670801	0.9104674255530916	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|realized_load	heatmap_cell	gerp4_roh2	4	2	realized_load	partial_generic_homozygosity_control					0.7209235321300645	0.6405588130633456	0.7883577930996313	211
+wolf_froh_load_surface.png	primary|masked_load	heatmap_cell	gerp4_roh2	4	2	masked_load	primary					-0.7208603492367894	-0.7870581160567558	-0.6459009828003782	211
+wolf_froh_load_forest.png	forest|masked_load	forest_cell	gerp4_roh2	4	2	masked_load	primary					-0.7208603492367894	-0.7870581160567558	-0.6459009828003782	211
+wolf_froh_load_surface.png	partial_generic_homozygosity_control|masked_load	heatmap_cell	gerp4_roh2	4	2	masked_load	partial_generic_homozygosity_control					0.020961177676349287	-0.09395583291045193	0.13528128063852826	211
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	100-G47-11	2007-2014I	0.0866198213901807	0.0850681036480656				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	102-G34-10	2007-2014S	0.5248486603272529	0.1147611968245515				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	103-D-11-17	1999-2006	0.2806722660293715	0.098909061564098				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	104-G100-14	2007-2014I	0.2295192537607422	0.1007888834448907				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	105-D-00-15	1991-1998	0.2571237748242468	0.0979717821671116				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	106-D-10-20	1999-2006	0.266838916200479	0.0970742162422697				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	107-D-10-53	2007-2014I	0.0555412504398234	0.0803008950982735				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	108-D-10-44	2007-2014S	0.5557986839868099	0.1168184153437511				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	109-D-10-30	1999-2006	0.3257239022601668	0.1019064488009742				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	11-M-98-03	1991-1998	0.123220617202314	0.0856170470031866				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	110-M-01-06	1999-2006	0.4044847962049482	0.108643476545913				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	111-G110-11	2007-2014S	0.453558245848447	0.111204871045789				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	112-D-10-29	1999-2006	0.3600682749253153	0.1040990135124067				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	12-M-01-04	1991-1998	0.3107221714175981	0.0964849707274965				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	13-M-98-08	1991-1998	0.1699024005937925	0.0884906090794621				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	14-M-00-09	1991-1998	0.2294234672249118	0.0936443484803769				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	15-M-01-10	1991-1998	0.3492583143769021	0.1019029585040471				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	16-D-89-03	1983-1990	0.3381691593390072	0.1066571104260735				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	17-D-92-05	1983-1990	0.2608312724865587	0.0995995934763937				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	19-D-94-01	1983-1990	0.312578182967491	0.101828883337518				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	21-M-02-15	Immigrants	0.1438266206807922	0.0926173882155398				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	22-D-99-02	1991-1998	0.1040084743306745	0.08552502077998				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	25-M-03-06	1999-2006	0.2866997970739021	0.1026521004048401				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	28-M-03-07	1991-1998	0.3118784544980049	0.0991583225677789				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	3-D-86-01	1983-1990	0.0614763110918165	0.0799554096826071				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	30-D-93-02	1983-1990	0.3316786710040453	0.1030985820440451				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	31-D-93-03	1983-1990	0.3408216451617209	0.100586679457953				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	32-D-05-18	Immigrants	0.0340175705552888	0.0833963829633727				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	33-M-05-01	Immigrants	0.0654743783229844	0.0848392387057998				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	35-D-05-23	1991-1998	0.303489698743456	0.1027038551610228				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	36-D-06-14	1999-2006	0.3428733109809726	0.1017184512696416				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	37-M-06-03	1999-2006	0.404954061790954	0.1110306339541382				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	38-D-06-16	1999-2006	0.431440450396295	0.1077412351431886				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	39-M-06-04	1999-2006	0.3867973663770792	0.108798472957033				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	4-D-89-01	1983-1990	0.3719712282259924	0.1057873487811639				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	40-D-07-28	1999-2006	0.5101868700199547	0.1165356950118492				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	42-M-07-02	Immigrants	0.068672071137434	0.0894363103600916				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	43-D-92-02	1991-1998	0.1016553326064905	0.0864927586829985				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	45-D-07-24	1999-2006	0.3479151247844437	0.090666601947493				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	48-D-08-21	2007-2014S	0.3143548947678511	0.0988731925031858				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	5-D-91-01	1983-1990	0.3426435959086781	0.1021752263796069				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	51-D-07-09	1999-2006	0.5324804374023133	0.1188733827777202				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	52-D-07-17	1999-2006	0.406197181722713	0.1099700193299376				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	53-D-08-08	1999-2006	0.5050944682418161	0.117448114127697				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	54-M-07-06	1999-2006	0.4182497685022965	0.1110791564389058				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	55-D-08-10	1999-2006	0.5235956981475431	0.1147860842600533				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	56-D-07-16	2007-2014S	0.5521814908779636	0.0995459858653988				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	57-D-92-06	1983-1990	0.3460676740390616	0.1012284768663135				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	59-D-96-01	1991-1998	0.089384078666593	0.0853661386790749				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	6-M-98-02	1983-1990	0.2438532935811306	0.0968915698651476				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	60-M-00-10	1999-2006	0.3407851144945346	0.1000613986489653				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	61-G97-13	2007-2014S	0.3283339380000872	0.1019477403344708				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	62-G174-13	2007-2014S	0.3308048082563974	0.1032277737798409				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	63-M-10-10	Immigrants	0.0312061911912468	0.0813179363026726				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	65-M-10-04	2007-2014I	0.1497135046861774	0.0866742704261227				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	67-M-11-02	2007-2014I	0.1536853136710491	0.0863135839403497				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	68-D-10-68	2007-2014S	0.3428349221300446	0.0978895703508715				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	69-D-10-15	2007-2014S	0.5328258608274866	0.1130703592965586				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	7-D-77-01	Immigrants	0.0505630908871718	0.0826358080799671				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	70-D-10-23	2007-2014S	0.529558134678691	0.1117335662361288				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	71-G82-10	Immigrants	0.0620162216926773	0.0835120635551829				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	73-D-11-22	2007-2014S	0.3889518526042444	0.1011783993115589				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	75-G9-05	1999-2006	0.1982826092295014	0.090914162857247				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	76-G109-11	2007-2014I	0.2097620196084424	0.0881921740487612				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	77-G87-12	2007-2014S	0.3642647530720521	0.0954879551255536				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	78-D-11-58	2007-2014S	0.297901498149048	0.0829692921585619				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	79-M-09-03	Immigrants	0.0540966852397039	0.0822466848051767				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	8-D-79-01	Immigrants	0.037577891897415	0.0819601423003716				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	80-M-09-17	1999-2006	0.3024436261516509	0.0941998156852404				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	81-M-09-05	1999-2006	0.3150939581964708	0.0982731512613821				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	82-G23-13	Immigrants	0.133878101863284	0.0845634110115456				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	83-G31-13	Immigrants	0.216891131435883	0.0917566413446656				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	84-G37-10	2007-2014I	0.0820606539107315	0.0804133045164068				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	85-G100-12	2007-2014I	0.173912214541083	0.084656418832464				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	86-G126-13	2007-2014S	0.310305656922718	0.0957150180647876				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	87-G139-12	2007-2014I	0.1988902607241068	0.0837003615908018				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	88-G50-12	2007-2014S	0.4232999339228046	0.1038465565354328				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	89-G67-15	2007-2014I	0.2831886987695214	0.1074973291390177				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	91-G24-14	2007-2014S	0.3383069063409625	0.0907308569714389				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	92-G58-15	2007-2014S	0.4723880861331937	0.1072555047349574				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	94-D-92-01	1991-1998	0.066526782806348	0.0830390945760281				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	95-G175-13	2007-2014S	0.4548172281804648	0.1135156652950674				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	96-G111-14	2007-2014I	0.1390336564775816	0.0881686105344161				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	97-G32-12	2007-2014S	0.389964735629447	0.1054827441631542				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	98-G32-15	2007-2014I	0.3832993361639263	0.1106405776687295				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	99-G106-13	2007-2014I	0.2579861830829589	0.0985821017933981				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	D-00-12	1999-2006	0.3267177238141999	0.1046276176190508				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	D-01-18	1991-1998	0.1658198452192205	0.0912546714419184				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	D-08-19	2007-2014S	0.303630259112737	0.1005019528587125				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	D-08-20	1999-2006	0.2652400119377165	0.1020705830243998				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	D-10-50	2007-2014S	0.2981448929930791	0.1000960201786858				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	D-84-03	1983-1990	0.0603832371149153	0.0823212647078552				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	D-85-01	1983-1990	0.0330437493203278	0.0805571861482783				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	D-85-02	1983-1990	0.0579787959063919	0.0826112003729239				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	D-93-01	1991-1998	0.1160006168208032	0.0874955748668455				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	FM1	1983-1990	0.2421405482246095	0.0954785662923056				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	FM2	1991-1998	0.2547007721979076	0.1013486329793517				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	M-05-07	1999-2006	0.3888890341957819	0.1135171327830483				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	M-98-01	1991-1998	0.2873656476093287	0.0996260108444278				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	V113	Russia	0.1341227590924603	0.0945864759305331				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	V114	Russia	0.0365936866144087	0.0836757770507783				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	V115	Russia	0.0334089765826294	0.0823626736542175				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	V116	Russia	0.0669626423779747	0.0849643016514957				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	V117	Russia	0.0682623001025261	0.0872010934681228				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	V119	Russia	0.0612489547103864	0.0867898028688196				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	V120	Russia	0.0385100984381708	0.0856213532022467				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	V126	Russia	0.0376173498279268	0.083912970215675				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	V132	Russia	0.0476678790758201	0.0852666510674136				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	V134	Russia	0.0661405714539482	0.0861293167310316				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	V136	Russia	0.0829234406127257	0.0869940438982013				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	V141	Russia	0.0644017552576964	0.0874044867540645				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	V142	Russia	0.0886563866871962	0.0882648150697104				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	V143	Russia	0.0838947720176035	0.0896729833351264				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W10	Finland	0.1447062385796969	0.0933017033379304				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W100r	Finland	0.0304748568087011	0.0833102456549289				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W101r	Finland	0.0423008295728133	0.0846231733788675				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W11	Finland	0.0659396030967264	0.084746932850599				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W12	Finland	0.1096434816433104	0.0921509613106277				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W13r	Finland	0.0711797878841012	0.0890795605945557				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W14	Finland	0.0768902283812729	0.0884558167629536				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W15r	Finland	0.0811126276239958	0.0898390941417762				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W16r	Finland	0.223661404613696	0.1051138270196547				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W17	Finland	0.0527272764250769	0.0863816840032835				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W18	Finland	0.0701638532628882	0.0878453248435273				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W19	Finland	0.0721309093286642	0.088223962152212				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W20	Finland	0.0359612838401022	0.0831892269778909				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W21r	Finland	0.0715937644493922	0.0884357896421072				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W22	Finland	0.0745017353353348	0.0905083718193327				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W23	Finland	0.0513682934052362	0.0859817962963966				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W24	Finland	0.0388298167613656	0.0848478969589865				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W25	Finland	0.0512962398916426	0.0846385901139645				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W26	Finland	0.1144168747928505	0.0916892705368958				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W27r	Finland	0.1764770049816413	0.1039496260364999				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W28r	Finland	0.0635013030124382	0.0863483795853642				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W29r	Finland	0.1321369905038171	0.0919498913507716				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W3	Finland	0.0637315308436162	0.0858800485923599				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W30	Finland	0.0602562049585506	0.0849480729935595				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W31r	Finland	0.0716853617905208	0.0884233630299263				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W32	Finland	0.060320583878341	0.0852280553613664				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W33	Finland	0.0238632720686629	0.0825481747160505				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W34r	Finland	0.0590290767511935	0.0859602767922564				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W35r	Finland	0.0321457202011211	0.0825218148420415				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W36r	Finland	0.0750961453989835	0.091113859259854				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W37r	Finland	0.0276677097474087	0.0818781884000015				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W38r	Finland	0.0627305238586794	0.0854148935802917				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W4	Finland	0.2359043252220102	0.1069010628384729				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W40r	Finland	0.0746252108508771	0.0883562001941607				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W41r	Finland	0.0594363556871736	0.0860512417058544				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W42r	Finland	0.0573385973819796	0.0866544490307906				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W43r	Finland	0.0532208363454779	0.0854938791995358				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W44r	Finland	0.0315679820614907	0.0833049086061229				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W45	Finland	0.0665288161448942	0.0873038721652158				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W46r	Finland	0.0447355407986856	0.084546632252211				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W47r	Finland	0.0800715365074328	0.0875412163982331				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W48	Finland	0.0771037384577714	0.0876890114430877				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W49	Finland	0.1022948954006409	0.087606394120883				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W5	Finland	0.0808105831466023	0.0898950756302454				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W50	Finland	0.0654353741613961	0.0868849745149656				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W51r	Finland	0.0626789924984201	0.0872043325509288				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W52r	Finland	0.064484514541502	0.0865819931316713				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W53r	Finland	0.0724413081457082	0.0893963553370405				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W54r	Finland	0.0747643845023279	0.0875284762596317				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W55r	Finland	0.0468559503410028	0.0849352384251542				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W56r	Finland	0.081048078994628	0.0885112537224777				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W57r	Finland	0.0552718805013044	0.0869121113795945				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W58	Finland	0.3140595814986688	0.11528857803756				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W59	Finland	0.0517053325420099	0.0841136678825935				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W6	Finland	0.1860748897454277	0.0982157595909747				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W60	Finland	0.0383748262919243	0.0850807788276366				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W61r	Finland	0.0931276114804267	0.0881921588589395				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W62r	Finland	0.0335547725377497	0.0833066197341202				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W63r	Finland	0.0459985167509991	0.0843052134447233				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W64r	Finland	0.0399375864986233	0.0853670968537424				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W65r	Finland	0.219312788637364	0.1044338765447537				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W66r	Finland	0.0885907022742129	0.0881131076222428				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W67r	Finland	0.0918907630889593	0.0891416988748052				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W68r	Finland	0.0744103358374568	0.087734606243128				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W69r	Finland	0.1831537668210064	0.1018871412462727				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W7	Finland	0.0985839613462714	0.0926732136692853				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W70r	Finland	0.1752635016399812	0.0937760400379126				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W71r	Finland	0.037376841408018	0.0847314261407815				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W72r	Finland	0.0622869497615844	0.0862404623729937				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W73	Finland	0.1085889952681257	0.0909440078452768				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W74r	Finland	0.0435544079707212	0.0848949108272456				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W75r	Finland	0.1177620484064333	0.0957721183323698				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W76	Finland	0.1138325157108573	0.0921057963003639				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W77r	Finland	0.0663906530368361	0.0863564025573331				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W78r	Finland	0.0550581421790374	0.0854677297194212				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W79r	Finland	0.0989274803032727	0.0872489100821534				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W8	Finland	0.0472224513326726	0.0857677175682739				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W80r	Finland	0.0304556328882571	0.0843858416711281				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W81r	Finland	0.0419728767049637	0.0835063543790969				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W82r	Finland	0.3003285188992047	0.1090617044426568				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W83r	Finland	0.0511129290445409	0.0863520120962078				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W84r	Finland	0.0576059353432592	0.0827521173197619				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W85r	Finland	0.0945697685288692	0.091544015210697				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W86r	Finland	0.0792966602740638	0.0875670464861608				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W87r	Finland	0.0798298010963549	0.0887750125647493				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W88r	Finland	0.0635494642309027	0.0861910582412845				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W89r	2007-2014I	0.2264132690070386	0.0967748839967398				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W90r	Finland	0.0321492895474734	0.0826384163706816				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W91	Finland	0.1015472262443871	0.0929540998169193				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W92r	Finland	0.1140828759078642	0.0912128150231323				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W93r	Finland	0.0617722206133643	0.0865143255945475				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W94	Finland	0.1175228032792076	0.091448525709063				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W95r	Finland	0.0514616314039554	0.0860024639222147				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W96r	Finland	0.0354689613475556	0.0839409713417712				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W97r	Finland	0.0466705671312275	0.0849227986898198				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W98r	Finland	0.0539273967598762	0.0875311448765231				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W99r	2007-2014I	0.2361669412638719	0.0959649617291006				1
+wolf_froh_load_forest.png	scatter|realized_load	scatter_individual	gerp4_roh1p5	4	1.5	realized_load	primary	W9r	2007-2014I	0.1604292818643669	0.0890217365272956				1
+wolf_froh_load_forest.png	scatter|realized_load	cohort_centroid	gerp4_roh1p5	4	1.5	realized_load	primary		1983-1990	0.23883124031226763	0.09562693555987037				14
+wolf_froh_load_forest.png	scatter|realized_load	cohort_centroid	gerp4_roh1p5	4	1.5	realized_load	primary		1991-1998	0.20253002807116202	0.09288261228381921				16
+wolf_froh_load_forest.png	scatter|realized_load	cohort_centroid	gerp4_roh1p5	4	1.5	realized_load	primary		1999-2006	0.3696551987116841	0.10523316775697887				24
+wolf_froh_load_forest.png	scatter|realized_load	cohort_centroid	gerp4_roh1p5	4	1.5	realized_load	primary		2007-2014I	0.18913885371010014	0.09142238730842708				16
+wolf_froh_load_forest.png	scatter|realized_load	cohort_centroid	gerp4_roh1p5	4	1.5	realized_load	primary		2007-2014S	0.40509883060770396	0.10313583985611703				21
+wolf_froh_load_forest.png	scatter|realized_load	cohort_centroid	gerp4_roh1p5	4	1.5	realized_load	primary		Finland	0.08181603596839089	0.08869775068225716				95
+wolf_froh_load_forest.png	scatter|realized_load	cohort_centroid	gerp4_roh1p5	4	1.5	realized_load	primary		Immigrants	0.08165635953671647	0.08529836433130783				11
+wolf_froh_load_forest.png	scatter|realized_load	cohort_centroid	gerp4_roh1p5	4	1.5	realized_load	primary		Russia	0.06502939806081952	0.08663191034981689				14
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	100-G47-11	2007-2014I	0.0866198213901807	0.0821919842029262				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	102-G34-10	2007-2014S	0.5248486603272529	0.0405544426451783				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	103-D-11-17	1999-2006	0.2806722660293715	0.055609691957689				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	104-G100-14	2007-2014I	0.2295192537607422	0.0840663839440724				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	105-D-00-15	1991-1998	0.2571237748242468	0.0576503494178239				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	106-D-10-20	1999-2006	0.266838916200479	0.0585089038724381				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	107-D-10-53	2007-2014I	0.0555412504398234	0.0960201955555883				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	108-D-10-44	2007-2014S	0.5557986839868099	0.0370514801734192				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	109-D-10-30	1999-2006	0.3257239022601668	0.0545173575456079				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	11-M-98-03	1991-1998	0.123220617202314	0.0712773060464518				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	110-M-01-06	1999-2006	0.4044847962049482	0.0450376690205612				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	111-G110-11	2007-2014S	0.453558245848447	0.0457725667359375				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	112-D-10-29	1999-2006	0.3600682749253153	0.052874637516548				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	12-M-01-04	1991-1998	0.3107221714175981	0.0598500310956584				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	13-M-98-08	1991-1998	0.1699024005937925	0.0665964685083661				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	14-M-00-09	1991-1998	0.2294234672249118	0.0617509373381958				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	15-M-01-10	1991-1998	0.3492583143769021	0.0527660651135221				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	16-D-89-03	1983-1990	0.3381691593390072	0.0512138222190608				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	17-D-92-05	1983-1990	0.2608312724865587	0.0574271257963825				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	19-D-94-01	1983-1990	0.312578182967491	0.0532747975014387				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	21-M-02-15	Immigrants	0.1438266206807922	0.0884511308684051				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	22-D-99-02	1991-1998	0.1040084743306745	0.0759138540016448				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	25-M-03-06	1999-2006	0.2866997970739021	0.0547223339713882				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	28-M-03-07	1991-1998	0.3118784544980049	0.0555345616932982				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	3-D-86-01	1983-1990	0.0614763110918165	0.0863445295871407				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	30-D-93-02	1983-1990	0.3316786710040453	0.0560569190931959				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	31-D-93-03	1983-1990	0.3408216451617209	0.05475659739026				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	32-D-05-18	Immigrants	0.0340175705552888	0.1002608863824023				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	33-M-05-01	Immigrants	0.0654743783229844	0.0972501011719925				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	35-D-05-23	1991-1998	0.303489698743456	0.053760744908155				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	36-D-06-14	1999-2006	0.3428733109809726	0.0539281344401798				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	37-M-06-03	1999-2006	0.404954061790954	0.0435875149977209				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	38-D-06-16	1999-2006	0.431440450396295	0.0441950063302412				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	39-M-06-04	1999-2006	0.3867973663770792	0.0451013742902286				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	4-D-89-01	1983-1990	0.3719712282259924	0.051353972915287				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	40-D-07-28	1999-2006	0.5101868700199547	0.0362923950900821				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	42-M-07-02	Immigrants	0.068672071137434	0.1012243648036593				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	43-D-92-02	1991-1998	0.1016553326064905	0.076057249452394				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	45-D-07-24	1999-2006	0.3479151247844437	0.0808253789146927				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	48-D-08-21	2007-2014S	0.3143548947678511	0.0598396744172475				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	5-D-91-01	1983-1990	0.3426435959086781	0.0540155995069142				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	51-D-07-09	1999-2006	0.5324804374023133	0.0366066344236768				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	52-D-07-17	1999-2006	0.406197181722713	0.0454546918780214				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	53-D-08-08	1999-2006	0.5050944682418161	0.0389896740586716				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	54-M-07-06	1999-2006	0.4182497685022965	0.0446884344009987				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	55-D-08-10	1999-2006	0.5235956981475431	0.0410137581027287				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	56-D-07-16	2007-2014S	0.5521814908779636	0.0603767509157194				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	57-D-92-06	1983-1990	0.3460676740390616	0.0539537658921104				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	59-D-96-01	1991-1998	0.089384078666593	0.0757168863224134				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	6-M-98-02	1983-1990	0.2438532935811306	0.056492696461231				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	60-M-00-10	1999-2006	0.3407851144945346	0.0551196085901224				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	61-G97-13	2007-2014S	0.3283339380000872	0.0556606510758361				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	62-G174-13	2007-2014S	0.3308048082563974	0.0509776154034577				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	63-M-10-10	Immigrants	0.0312061911912468	0.1040447148953953				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	65-M-10-04	2007-2014I	0.1497135046861774	0.0807798643212191				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	67-M-11-02	2007-2014I	0.1536853136710491	0.0848680500543024				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	68-D-10-68	2007-2014S	0.3428349221300446	0.0605072495932778				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	69-D-10-15	2007-2014S	0.5328258608274866	0.0446001803048515				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	7-D-77-01	Immigrants	0.0505630908871718	0.0956048721254634				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	70-D-10-23	2007-2014S	0.529558134678691	0.0431204540978589				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	71-G82-10	Immigrants	0.0620162216926773	0.1088683598578826				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	73-D-11-22	2007-2014S	0.3889518526042444	0.0691243080478679				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	75-G9-05	1999-2006	0.1982826092295014	0.0689759243791291				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	76-G109-11	2007-2014I	0.2097620196084424	0.0836206216731288				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	77-G87-12	2007-2014S	0.3642647530720521	0.0854668536435266				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	78-D-11-58	2007-2014S	0.297901498149048	0.0950320586228195				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	79-M-09-03	Immigrants	0.0540966852397039	0.0970871077360158				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	8-D-79-01	Immigrants	0.037577891897415	0.1003004319023449				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	80-M-09-17	1999-2006	0.3024436261516509	0.0703438829519722				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	81-M-09-05	1999-2006	0.3150939581964708	0.0652372525000522				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	82-G23-13	Immigrants	0.133878101863284	0.1145492977669568				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	83-G31-13	Immigrants	0.216891131435883	0.1043181916716856				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	84-G37-10	2007-2014I	0.0820606539107315	0.0955612885384677				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	85-G100-12	2007-2014I	0.173912214541083	0.089760638121269				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	86-G126-13	2007-2014S	0.310305656922718	0.0741567848314202				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	87-G139-12	2007-2014I	0.1988902607241068	0.0985970159490461				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	88-G50-12	2007-2014S	0.4232999339228046	0.0614384203841884				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	89-G67-15	2007-2014I	0.2831886987695214	0.0768957748058294				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	91-G24-14	2007-2014S	0.3383069063409625	0.0998674062731091				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	92-G58-15	2007-2014S	0.4723880861331937	0.0564765199636671				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	94-D-92-01	1991-1998	0.066526782806348	0.0790639592871649				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	95-G175-13	2007-2014S	0.4548172281804648	0.0421000030245556				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	96-G111-14	2007-2014I	0.1390336564775816	0.0788191683591138				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	97-G32-12	2007-2014S	0.389964735629447	0.0505195871318994				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	98-G32-15	2007-2014I	0.3832993361639263	0.0515217938547739				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	99-G106-13	2007-2014I	0.2579861830829589	0.0621272844599572				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	D-00-12	1999-2006	0.3267177238141999	0.0517551551939776				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	D-01-18	1991-1998	0.1658198452192205	0.0664744238554967				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	D-08-19	2007-2014S	0.303630259112737	0.0549303406876308				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	D-08-20	1999-2006	0.2652400119377165	0.0525213223223901				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	D-10-50	2007-2014S	0.2981448929930791	0.0577689164976266				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	D-84-03	1983-1990	0.0603832371149153	0.0799975212014364				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	D-85-01	1983-1990	0.0330437493203278	0.0851474381539475				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	D-85-02	1983-1990	0.0579787959063919	0.0791500542245489				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	D-93-01	1991-1998	0.1160006168208032	0.0721306735813544				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	FM1	1983-1990	0.2421405482246095	0.0637641631776579				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	FM2	1991-1998	0.2547007721979076	0.0663018366940754				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	M-05-07	1999-2006	0.3888890341957819	0.0411612992750101				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	M-98-01	1991-1998	0.2873656476093287	0.0576064149278416				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	V113	Russia	0.1341227590924603	0.0934281675986812				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	V114	Russia	0.0365936866144087	0.1018376821028009				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	V115	Russia	0.0334089765826294	0.1035978072300581				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	V116	Russia	0.0669626423779747	0.0992763748087142				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	V117	Russia	0.0682623001025261	0.0979160011476447				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	V119	Russia	0.0612489547103864	0.1002571239682667				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	V120	Russia	0.0385100984381708	0.1029674666053046				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	V126	Russia	0.0376173498279268	0.1002442505791948				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	V132	Russia	0.0476678790758201	0.0994109111700001				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	V134	Russia	0.0661405714539482	0.1026449894430537				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	V136	Russia	0.0829234406127257	0.0985972606900487				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	V141	Russia	0.0644017552576964	0.1004673809019997				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	V142	Russia	0.0886563866871962	0.0992453183644414				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	V143	Russia	0.0838947720176035	0.0973643030197758				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W10	Finland	0.1447062385796969	0.0881386956541765				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W100r	Finland	0.0304748568087011	0.1036484329849475				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W101r	Finland	0.0423008295728133	0.0979342845077849				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W11	Finland	0.0659396030967264	0.0994522667031524				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W12	Finland	0.1096434816433104	0.1027956983620503				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W13r	Finland	0.0711797878841012	0.1033067042788538				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W14	Finland	0.0768902283812729	0.0999236518986721				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W15r	Finland	0.0811126276239958	0.0997611444869873				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W16r	Finland	0.223661404613696	0.0872181686724574				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W17	Finland	0.0527272764250769	0.1068792466427674				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W18	Finland	0.0701638532628882	0.1044914806264159				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W19	Finland	0.0721309093286642	0.1031404994469236				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W20	Finland	0.0359612838401022	0.1053526357334788				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W21r	Finland	0.0715937644493922	0.1004746801116323				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W22	Finland	0.0745017353353348	0.1002240859879841				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W23	Finland	0.0513682934052362	0.1022125120023814				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W24	Finland	0.0388298167613656	0.1036831003021638				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W25	Finland	0.0512962398916426	0.1041093460472944				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W26	Finland	0.1144168747928505	0.0991046707898647				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W27r	Finland	0.1764770049816413	0.0869170964418264				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W28r	Finland	0.0635013030124382	0.1032452476143968				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W29r	Finland	0.1321369905038171	0.0968950809845408				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W3	Finland	0.0637315308436162	0.1026585083060084				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W30	Finland	0.0602562049585506	0.1048297205789965				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W31r	Finland	0.0716853617905208	0.1033667775729599				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W32	Finland	0.060320583878341	0.1029546767368838				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W33	Finland	0.0238632720686629	0.107821594703029				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W34r	Finland	0.0590290767511935	0.1063384860302341				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W35r	Finland	0.0321457202011211	0.1070128018610731				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W36r	Finland	0.0750961453989835	0.1001475370083994				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W37r	Finland	0.0276677097474087	0.1061305499210047				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W38r	Finland	0.0627305238586794	0.1052654415150087				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W4	Finland	0.2359043252220102	0.0835788384616404				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W40r	Finland	0.0746252108508771	0.1067290243240889				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W41r	Finland	0.0594363556871736	0.1107303445885943				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W42r	Finland	0.0573385973819796	0.103017528893279				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W43r	Finland	0.0532208363454779	0.1055440183960586				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W44r	Finland	0.0315679820614907	0.1060316605898037				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W45	Finland	0.0665288161448942	0.1020169598793094				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W46r	Finland	0.0447355407986856	0.1060163353842206				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W47r	Finland	0.0800715365074328	0.0996538773907915				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W48	Finland	0.0771037384577714	0.101076803146083				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W49	Finland	0.1022948954006409	0.0996912579697464				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W5	Finland	0.0808105831466023	0.0986610744130458				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W50	Finland	0.0654353741613961	0.1053462266477483				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W51r	Finland	0.0626789924984201	0.1050423605459165				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W52r	Finland	0.064484514541502	0.1052091440996546				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W53r	Finland	0.0724413081457082	0.0996454268146135				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W54r	Finland	0.0747643845023279	0.1038921749194121				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W55r	Finland	0.0468559503410028	0.1036917238651145				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W56r	Finland	0.081048078994628	0.1026979776209856				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W57r	Finland	0.0552718805013044	0.1040690650725878				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W58	Finland	0.3140595814986688	0.0758869655096528				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W59	Finland	0.0517053325420099	0.1035115124870191				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W6	Finland	0.1860748897454277	0.0836875716042342				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W60	Finland	0.0383748262919243	0.1059070673215157				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W61r	Finland	0.0931276114804267	0.1003647924832099				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W62r	Finland	0.0335547725377497	0.1070026940778397				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W63r	Finland	0.0459985167509991	0.1020689599132935				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W64r	Finland	0.0399375864986233	0.1046109640471884				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W65r	Finland	0.219312788637364	0.0857679890435864				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W66r	Finland	0.0885907022742129	0.1003624398086059				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W67r	Finland	0.0918907630889593	0.1015395687700572				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W68r	Finland	0.0744103358374568	0.0991300391495509				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W69r	Finland	0.1831537668210064	0.0891459102917188				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W7	Finland	0.0985839613462714	0.0985546188836595				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W70r	Finland	0.1752635016399812	0.0918870034250467				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W71r	Finland	0.037376841408018	0.1025887754765636				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W72r	Finland	0.0622869497615844	0.1062035170184587				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W73	Finland	0.1085889952681257	0.0993616055236297				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W74r	Finland	0.0435544079707212	0.1034649220594081				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W75r	Finland	0.1177620484064333	0.0953379189806671				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W76	Finland	0.1138325157108573	0.0980511035265702				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W77r	Finland	0.0663906530368361	0.0994833780774953				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W78r	Finland	0.0550581421790374	0.1038055105635682				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W79r	Finland	0.0989274803032727	0.0965625128380349				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W8	Finland	0.0472224513326726	0.105387822945475				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W80r	Finland	0.0304556328882571	0.1024922098655802				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W81r	Finland	0.0419728767049637	0.1026645934615309				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W82r	Finland	0.3003285188992047	0.0796255241764587				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W83r	Finland	0.0511129290445409	0.1039583730076335				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W84r	Finland	0.0576059353432592	0.1062295424322297				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W85r	Finland	0.0945697685288692	0.0984077779122442				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W86r	Finland	0.0792966602740638	0.1018516912755504				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W87r	Finland	0.0798298010963549	0.1030033947358458				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W88r	Finland	0.0635494642309027	0.1043593507897233				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W89r	2007-2014I	0.2264132690070386	0.0641773972180721				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W90r	Finland	0.0321492895474734	0.1046677519508328				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W91	Finland	0.1015472262443871	0.0979649771319598				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W92r	Finland	0.1140828759078642	0.0999419541758542				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W93r	Finland	0.0617722206133643	0.1041167726726236				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W94	Finland	0.1175228032792076	0.0955841029189365				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W95r	Finland	0.0514616314039554	0.1041964290196622				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W96r	Finland	0.0354689613475556	0.1072070845015662				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W97r	Finland	0.0466705671312275	0.106220829744649				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W98r	Finland	0.0539273967598762	0.1018125191133595				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W99r	2007-2014I	0.2361669412638719	0.0635766548816055				1
+wolf_froh_load_forest.png	scatter|masked_load	scatter_individual	gerp4_roh1p5	4	1.5	masked_load	primary	W9r	2007-2014I	0.1604292818643669	0.0738333665062226				1
+wolf_froh_load_forest.png	scatter|masked_load	cohort_centroid	gerp4_roh1p5	4	1.5	masked_load	primary		1983-1990	0.23883124031226763	0.06306778593718657				14
+wolf_froh_load_forest.png	scatter|masked_load	cohort_centroid	gerp4_roh1p5	4	1.5	masked_load	primary		1991-1998	0.20253002807116202	0.06552823514024103				16
+wolf_froh_load_forest.png	scatter|masked_load	cohort_centroid	gerp4_roh1p5	4	1.5	masked_load	primary		1999-2006	0.3696551987116841	0.05154450150100536				24
+wolf_froh_load_forest.png	scatter|masked_load	cohort_centroid	gerp4_roh1p5	4	1.5	masked_load	primary		2007-2014I	0.18913885371010014	0.07915109265284966				16
+wolf_froh_load_forest.png	scatter|masked_load	cohort_centroid	gerp4_roh1p5	4	1.5	masked_load	primary		2007-2014S	0.40509883060770396	0.059302012593861676				21
+wolf_froh_load_forest.png	scatter|masked_load	cohort_centroid	gerp4_roh1p5	4	1.5	masked_load	primary		Finland	0.08181603596839089	0.10086059673946669				95
+wolf_froh_load_forest.png	scatter|masked_load	cohort_centroid	gerp4_roh1p5	4	1.5	masked_load	primary		Immigrants	0.08165635953671647	0.1010872235620185				11
+wolf_froh_load_forest.png	scatter|masked_load	cohort_centroid	gerp4_roh1p5	4	1.5	masked_load	primary		Russia	0.06502939806081952	0.09980393125928462				14

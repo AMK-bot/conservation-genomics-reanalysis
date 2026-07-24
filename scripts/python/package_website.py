@@ -8,6 +8,7 @@ from dataclasses import dataclass
 import hashlib
 from html.parser import HTMLParser
 import io
+import json
 import os
 from pathlib import Path, PurePosixPath
 import re
@@ -23,11 +24,31 @@ ARCHIVE_FOLDER = "conservation-genomics-portfolio"
 DEFAULT_ARCHIVE = "dist/conservation-genomics-portfolio.zip"
 DEFAULT_REPORT = "results/WEBSITE_BUNDLE_VALIDATION.md"
 FIXED_ZIP_TIME = (2026, 7, 18, 0, 0, 0)
-RUNTIME_TAGS = {"script", "link", "img", "source", "video", "audio", "css"}
+SUPPORT_HTML_ENTRIES = ("editor.html",)
+RUNTIME_TAGS = {
+    "script", "link", "img", "source", "video", "audio", "iframe", "object",
+    "embed", "input", "image", "css",
+}
 EXTRA_FILES = {
     ".nojekyll",
+    "EDIT_WEBSITE.command",
+    "EDIT_WEBSITE.md",
+    "editor.html",
     "requirements.txt",
+    "scripts/python/edit_website.py",
     "scripts/python/validate_website.py",
+    "website/apply-content.js",
+    "website/content-overrides.js",
+    "website/content-overrides.json",
+    "website/editor.css",
+    "website/editor.js",
+    "results/provenance/wolf_froh_load.json",
+    "results/provenance/peafowl_damage.json",
+    "results/provenance/peafowl_ne_design.json",
+    "results/provenance/phase5b_core_integration.json",
+    "results/provenance/phase5b_optional_decisions.json",
+    "results/provenance/wolf_roh_localization.json",
+    "results/provenance/phase5b_synthesis.json",
 }
 PORTABLE_SOURCE_FILES = {
     ".gitignore",
@@ -46,6 +67,7 @@ PORTABLE_SOURCE_DIRECTORIES = {
     "workflow",
 }
 EXECUTABLE_FILES = {
+    "EDIT_WEBSITE.command",
     "report/render_report.sh",
     "report/report_values.py",
     "scripts/build_tools.sh",
@@ -55,6 +77,62 @@ EXECUTABLE_FILES = {
 }
 IGNORED_SOURCE_PARTS = {"__pycache__", ".DS_Store"}
 CSS_URL = re.compile(r"url\(\s*(['\"]?)(.*?)\1\s*\)", re.IGNORECASE)
+CSS_IMPORT = re.compile(
+    r"@import\s+(?:url\(\s*)?['\"]?([^'\"\s\)]+)", re.IGNORECASE
+)
+DYNAMIC_EXTERNAL_RUNTIME_RE = re.compile(
+    r"""
+    (?:
+        \.\s*(?:src|srcset|poster)\s*=
+      | \[\s*['\"](?:src|srcset|poster)['\"]\s*\]\s*=
+      | \bsetAttribute\s*\(\s*['\"](?:src|srcset|poster)['\"]\s*,
+      | \b(?:fetch|import|importScripts)\s*\(
+      | \bnew\s+(?:Worker|SharedWorker|WebSocket|EventSource)\s*\(
+      | \.\s*open\s*\(\s*['\"][A-Z]+['\"]\s*,
+    )
+    (?:\s|/\*[\s\S]*?\*/|//[^\r\n]*(?:\r?\n|$))*['\"`]\s*(?:https?:)?//
+    """,
+    re.IGNORECASE | re.VERBOSE,
+)
+DYNAMIC_RUNTIME_ELEMENT_RE = re.compile(
+    r"""
+    \b(?P<variable>[A-Za-z_$][\w$]*)\s*=\s*
+    (?:document\s*\.\s*)?createElement\s*\(\s*
+    ['\"](?P<tag>script|link|img|source|video|audio|iframe|object|embed|input)['\"]\s*\)
+    """,
+    re.IGNORECASE | re.VERBOSE,
+)
+DYNAMIC_RUNTIME_ELEMENT_ATTRIBUTES = {
+    "script": {"src"},
+    "link": {"href"},
+    "img": {"src", "srcset"},
+    "source": {"src", "srcset"},
+    "video": {"src", "poster"},
+    "audio": {"src"},
+    "iframe": {"src"},
+    "object": {"data"},
+    "embed": {"src"},
+    "input": {"src"},
+}
+JS_GAP = r"(?:\s|/\*[\s\S]*?\*/|//[^\r\n]*(?:\r?\n|$))*"
+JS_REMOTE_LITERAL = r"['\"`]\s*(?:https?:)?//"
+PHASE5B_DATA_PATH = "website/phase5b-data.js"
+PHASE5B_CLAIM_TAG = "phase5b-claim"
+PHASE5B_CLAIM_FIELDS = (
+    "result_table",
+    "provenance",
+    "validator",
+    "report_anchor",
+    "explorer_anchor",
+    "workflow_rule",
+)
+PHASE5B_ASSIGNMENT = re.compile(r"\bwindow\.PHASE5B_DATA\s*=\s*")
+VALIDATION_SUMMARY = re.compile(
+    r"^\*\*Summary:\s*(\d+)\s+PASS"
+    r"(?:,\s*(\d+)\s+WARN)?"
+    r",\s*(\d+)\s+FAIL\*\*\s*$",
+    re.MULTILINE,
+)
 
 
 class BundleError(RuntimeError):
@@ -101,9 +179,12 @@ class ReferenceParser(HTMLParser):
         values = dict(attrs)
         if identifier := values.get("id"):
             self.ids.add(identifier)
-        for attribute in ("href", "xlink:href", "src"):
+        for attribute in ("href", "xlink:href", "src", "srcset", "poster", "data"):
             if value := values.get(attribute):
-                self.references.append(Reference(self.source, tag, value))
+                candidates = split_srcset(value) if attribute == "srcset" else [value]
+                self.references.extend(
+                    Reference(self.source, tag, candidate) for candidate in candidates
+                )
 
 
 def parse_args() -> argparse.Namespace:
@@ -113,6 +194,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--out", default=DEFAULT_ARCHIVE, help="Output ZIP path")
     parser.add_argument("--report", default=DEFAULT_REPORT, help="Validation report path")
     parser.add_argument("--folder", default=ARCHIVE_FOLDER, help="Top-level folder inside ZIP")
+    parser.add_argument(
+        "--required-files",
+        nargs="*",
+        default=[],
+        help="Complete workflow-owned artifact inventory that must be bundled even if unlinked",
+    )
+    parser.add_argument("--self-check", action="store_true", help="Run parser checks and exit")
     return parser.parse_args()
 
 
@@ -122,9 +210,122 @@ def html_references(path: Path, relative: str) -> tuple[list[Reference], set[str
     return parser.references, parser.ids
 
 
+def split_srcset(value: str) -> list[str]:
+    remaining = value.strip()
+    candidates: list[str] = []
+    while remaining:
+        remaining = remaining.lstrip(" \t\r\n,")
+        if not remaining:
+            break
+        is_data = remaining.lower().startswith("data:")
+        match = re.match(r"\S+" if is_data else r"[^\s,]+", remaining)
+        if match is None:
+            break
+        token = match.group(0)
+        consumed_delimiter = is_data and token.endswith(",")
+        candidate = token[:-1] if consumed_delimiter else token
+        if candidate:
+            candidates.append(candidate)
+        remaining = remaining[match.end():]
+        if consumed_delimiter:
+            continue
+        stripped = remaining.lstrip()
+        if stripped.startswith(","):
+            remaining = stripped[1:]
+            continue
+        delimiter = remaining.find(",")
+        if delimiter < 0:
+            break
+        remaining = remaining[delimiter + 1:]
+    candidates.extend(
+        match.group(1)
+        for match in re.finditer(r"(?:^|,)\s*((?:https?:)?//[^\s,]+)", value, re.IGNORECASE)
+    )
+    return list(dict.fromkeys(candidates))
+
+
 def css_references(path: Path, relative: str) -> list[Reference]:
     text = path.read_text(encoding="utf-8")
-    return [Reference(relative, "css", match.group(2)) for match in CSS_URL.finditer(text)]
+    references = [
+        Reference(relative, "css", match.group(2)) for match in CSS_URL.finditer(text)
+    ]
+    references.extend(
+        Reference(relative, "css", match.group(1)) for match in CSS_IMPORT.finditer(text)
+    )
+    return references
+
+
+def dynamic_external_runtime_references(text: str) -> list[str]:
+    """Find literal remote URLs assigned to executable browser-loading APIs."""
+    matches = [match.group(0).strip() for match in DYNAMIC_EXTERNAL_RUNTIME_RE.finditer(text)]
+    for declaration in DYNAMIC_RUNTIME_ELEMENT_RE.finditer(text):
+        variable = re.escape(declaration.group("variable"))
+        attributes = "|".join(
+            sorted(DYNAMIC_RUNTIME_ELEMENT_ATTRIBUTES[declaration.group("tag").lower()])
+        )
+        use_re = re.compile(
+            rf"""
+            \b{variable}\s*(?:\.\s*(?:{attributes})|\[\s*['\"](?:{attributes})['\"]\s*\])
+            \s*=\s*{JS_GAP}{JS_REMOTE_LITERAL}
+            |
+            \b{variable}\s*\.\s*setAttribute\s*\(\s*['\"](?:{attributes})['\"]\s*,
+            {JS_GAP}{JS_REMOTE_LITERAL}
+            """,
+            re.IGNORECASE | re.VERBOSE,
+        )
+        matches.extend(match.group(0).strip() for match in use_re.finditer(text))
+    return list(dict.fromkeys(matches))
+
+
+def parse_phase5b_payload(source: str) -> dict[str, object]:
+    """Decode the generated browser payload as JSON without evaluating JavaScript."""
+    assignments = list(PHASE5B_ASSIGNMENT.finditer(source))
+    if len(assignments) != 1:
+        raise BundleError(
+            f"{PHASE5B_DATA_PATH} must contain exactly one window.PHASE5B_DATA assignment"
+        )
+    assignment = assignments[0]
+    try:
+        payload, end = json.JSONDecoder().raw_decode(source, assignment.end())
+    except json.JSONDecodeError as exc:
+        raise BundleError(f"Malformed Phase 5B JSON payload: {exc}") from exc
+    if not re.fullmatch(r"\s*;\s*", source[end:]):
+        raise BundleError(
+            f"{PHASE5B_DATA_PATH} contains executable content after its JSON payload"
+        )
+    if not isinstance(payload, dict):
+        raise BundleError("Phase 5B browser payload must be a JSON object")
+    return payload
+
+
+def phase5b_claim_references(path: Path, rendered_from: str) -> list[Reference]:
+    """Return local claim-trace links using the HTML page as their URL base."""
+    payload = parse_phase5b_payload(path.read_text(encoding="utf-8"))
+    claims = payload.get("claims")
+    if not isinstance(claims, list):
+        raise BundleError("Phase 5B browser payload must contain a claims array")
+
+    references: list[Reference] = []
+    for position, claim in enumerate(claims):
+        if not isinstance(claim, dict):
+            raise BundleError(f"Phase 5B claim {position} is not a JSON object")
+        for field in PHASE5B_CLAIM_FIELDS:
+            value = claim.get(field)
+            if value is None or value == "":
+                continue
+            if not isinstance(value, str):
+                raise BundleError(
+                    f"Phase 5B claim {position} field {field!r} must be a string"
+                )
+            parsed = urlsplit(value.strip())
+            if parsed.scheme or value.strip().startswith("//"):
+                raise BundleError(
+                    f"Phase 5B claim {position} field {field!r} is not local: {value}"
+                )
+            # These hrefs are created in index.html at runtime, so browser URL
+            # resolution uses the entry document rather than phase5b-data.js.
+            references.append(Reference(rendered_from, PHASE5B_CLAIM_TAG, value))
+    return references
 
 
 def ensure_within_root(root: Path, source: str, path_text: str) -> tuple[Path, str]:
@@ -150,6 +351,26 @@ def has_symlink_component(root: Path, relative: str) -> bool:
     return False
 
 
+def normalize_required_files(root: Path, required_files: list[str] | tuple[str, ...]) -> set[str]:
+    """Validate the explicit workflow inventory before dependency discovery."""
+    normalized: set[str] = set()
+    for raw in required_files:
+        relative = PurePosixPath(raw).as_posix()
+        if (
+            not relative
+            or PurePosixPath(relative).is_absolute()
+            or ".." in PurePosixPath(relative).parts
+        ):
+            raise BundleError(f"Unsafe required bundle path: {raw!r}")
+        path = root / relative
+        if not path.is_file():
+            raise BundleError(f"Missing explicit workflow artifact: {relative}")
+        if has_symlink_component(root, relative):
+            raise BundleError(f"Symlink-backed workflow artifact is not portable: {relative}")
+        normalized.add(relative)
+    return normalized
+
+
 def classify_reference(root: Path, reference: Reference) -> tuple[str | None, str]:
     value = reference.value.strip()
     if not value or value.startswith("//"):
@@ -167,7 +388,9 @@ def classify_reference(root: Path, reference: Reference) -> tuple[str | None, st
     return target_relative, unquote(parsed.fragment)
 
 
-def collect_files(root: Path, entry: str) -> Collection:
+def collect_files(
+    root: Path, entry: str, required_files: list[str] | tuple[str, ...] = (),
+) -> Collection:
     entry_path = (root / entry).resolve()
     if not entry_path.is_file():
         raise BundleError(f"Missing website entry point: {entry_path}")
@@ -176,11 +399,26 @@ def collect_files(root: Path, entry: str) -> Collection:
     except ValueError as exc:
         raise BundleError("Website entry point is outside the repository") from exc
 
+    support_entries: list[str] = []
+    for support in SUPPORT_HTML_ENTRIES:
+        support_path = (root / support).resolve()
+        if not support_path.is_file():
+            raise BundleError(f"Missing website support entry point: {support_path}")
+        try:
+            support_relative = support_path.relative_to(root).as_posix()
+        except ValueError as exc:
+            raise BundleError("Website support entry point is outside the repository") from exc
+        if has_symlink_component(root, support_relative):
+            raise BundleError(f"Symlink-backed support entry is not portable: {support_relative}")
+        support_entries.append(support_relative)
+
     files: set[str] = set()
     entry_targets: set[str] = set()
     local_references: list[LocalReference] = []
     external_runtime: list[Reference] = []
-    queue = [entry_relative]
+    # The editor is intentionally absent from the public navigation, but it is
+    # still a first-class offline entry whose dependency graph must close.
+    queue = [entry_relative, *support_entries]
 
     while queue:
         relative = queue.pop()
@@ -198,8 +436,14 @@ def collect_files(root: Path, entry: str) -> Collection:
             references, _ids = html_references(path, relative)
         elif suffix == ".css":
             references = css_references(path, relative)
+        elif relative == PHASE5B_DATA_PATH:
+            references = phase5b_claim_references(path, entry_relative)
         else:
             references = []
+
+        if suffix in {".html", ".htm", ".svg", ".js", ".mjs"}:
+            for value in dynamic_external_runtime_references(path.read_text(encoding="utf-8")):
+                external_runtime.append(Reference(relative, "dynamic-runtime", value))
 
         for reference in references:
             parsed = urlsplit(reference.value.strip())
@@ -210,8 +454,11 @@ def collect_files(root: Path, entry: str) -> Collection:
             target, fragment = classify_reference(root, reference)
             if target is None:
                 continue
-            local_references.append(LocalReference(relative, target, fragment))
-            if relative == entry_relative and target != entry_relative:
+            local_references.append(LocalReference(reference.source, target, fragment))
+            if (
+                target != entry_relative
+                and (relative == entry_relative or reference.tag == PHASE5B_CLAIM_TAG)
+            ):
                 entry_targets.add(target)
             if target not in files:
                 queue.append(target)
@@ -229,7 +476,9 @@ def collect_files(root: Path, entry: str) -> Collection:
                 continue
             portable_sources.add(relative)
 
-    for relative in sorted(EXTRA_FILES | portable_sources):
+    explicit_required = normalize_required_files(root, required_files)
+
+    for relative in sorted(EXTRA_FILES | portable_sources | explicit_required):
         path = root / relative
         if not path.is_file():
             raise BundleError(f"Missing required bundle support file: {relative}")
@@ -246,9 +495,11 @@ def collect_files(root: Path, entry: str) -> Collection:
 
 def case_collisions(paths: set[str]) -> list[str]:
     groups: dict[str, list[str]] = {}
-    for path in paths:
+    for path in sorted(paths, key=lambda value: (value.casefold(), value)):
         groups.setdefault(path.casefold(), []).append(path)
-    return [", ".join(sorted(group)) for group in groups.values() if len(group) > 1]
+    return sorted(
+        ", ".join(sorted(group)) for group in groups.values() if len(group) > 1
+    )
 
 
 def recipient_readme(entry_targets: int, source_files: int) -> bytes:
@@ -260,10 +511,16 @@ START HERE
 1. Extract this entire ZIP archive. Do not open index.html from inside the ZIP.
 2. Open index.html in any modern web browser.
 3. No installation or internet connection is required for the website itself.
+4. To personalize selected narrative text, double-click EDIT_WEBSITE.command (or run
+   python3 scripts/python/edit_website.py), then follow EDIT_WEBSITE.md. Keep the
+   launcher window open while editing; Python is needed to save edits, not to view
+   the website.
 
 WHAT IS INCLUDED
 ----------------
 - The complete offline project website and all {entry_targets} local targets it links to.
+- A private localhost editor for selected narrative text, with undo, reset, import,
+  and export controls; scientific results and decision gates remain locked.
 - All static CSS, JavaScript, figures, screenshots, reports, tables, validation records,
   project documentation, and the precomputed files used by the optional explorer app.
 - {source_files} project files in total, plus this guide and MANIFEST.sha256.
@@ -403,7 +660,7 @@ def verify_executable_modes(
         missing = sorted(expected - actual)
         extra = sorted(actual - expected)
         return False, f"executable mode mismatch; missing={missing}, extra={extra}"
-    return True, f"all {len(expected)} runnable source scripts retain mode 0755"
+    return True, f"all {len(expected)} runnable scripts and launchers retain mode 0755"
 
 
 def validate_fragments(root: Path, references: list[LocalReference]) -> tuple[bool, str]:
@@ -438,12 +695,119 @@ def extracted_website_validation(extracted_root: Path, temporary: Path) -> tuple
         str(report),
     ]
     completed = subprocess.run(command, capture_output=True, text=True, check=False)
-    text = report.read_text(encoding="utf-8") if report.is_file() else ""
-    ok = completed.returncode == 0 and "**Summary: 10 PASS, 0 FAIL**" in text
-    detail = "10 PASS, 0 FAIL after fresh extraction" if ok else (
-        completed.stdout + completed.stderr
-    ).strip()[-500:]
+    report_text = report.read_text(encoding="utf-8") if report.is_file() else ""
+    summaries = list(VALIDATION_SUMMARY.finditer(report_text))
+    if len(summaries) == 1:
+        passed = int(summaries[0].group(1))
+        warned = int(summaries[0].group(2) or 0)
+        failed = int(summaries[0].group(3))
+        parsed_detail = f"{passed} PASS, {warned} WARN, {failed} FAIL after fresh extraction"
+    else:
+        passed = warned = failed = -1
+        parsed_detail = f"expected one validation summary, found {len(summaries)}"
+    ok = completed.returncode == 0 and passed > 0 and failed == 0
+    detail = parsed_detail if ok else " ".join(
+        part for part in [parsed_detail, completed.stdout.strip(), completed.stderr.strip()] if part
+    )[-500:]
     return ok, detail or "validation report was not produced"
+
+
+def self_check() -> None:
+    assert case_collisions({"c.txt", "C.txt", "b.txt", "B.txt", "a.txt", "A.txt"}) == [
+        "A.txt, a.txt",
+        "B.txt, b.txt",
+        "C.txt, c.txt",
+    ]
+    fixture = {
+        "claims": [
+            {
+                "result_table": "results/tables/example.tsv",
+                "provenance": "results/provenance/example.json",
+                "validator": "results/tables/validation_example.tsv",
+                "report_anchor": "report/report.html#example",
+                "explorer_anchor": "index.html#example",
+                "workflow_rule": "workflow/rules/phase5b.smk#example",
+            }
+        ]
+    }
+    source = "/* generated */\nwindow.PHASE5B_DATA = " + json.dumps(fixture) + ";\n"
+    assert parse_phase5b_payload(source) == fixture
+    with tempfile.TemporaryDirectory(prefix="cg-package-self-check-") as temporary_name:
+        fixture_root = Path(temporary_name).resolve()
+        unlinked = fixture_root / "results/tables/unlinked.tsv"
+        unlinked.parent.mkdir(parents=True, exist_ok=True)
+        unlinked.write_text("value\n1\n", encoding="utf-8")
+        assert normalize_required_files(
+            fixture_root, ["results/tables/unlinked.tsv"]
+        ) == {"results/tables/unlinked.tsv"}
+        try:
+            normalize_required_files(fixture_root, [])
+        except BundleError:
+            raise AssertionError("empty helper inventory should be handled by main, not normalization")
+        fixture_path = fixture_root / "phase5b-data.js"
+        fixture_path.write_text(source, encoding="utf-8")
+        references = phase5b_claim_references(fixture_path, "index.html")
+        for reference in references:
+            parsed = urlsplit(reference.value)
+            target_path = fixture_root / parsed.path
+            target_path.parent.mkdir(parents=True, exist_ok=True)
+            target_path.touch()
+            target, _fragment = classify_reference(fixture_root, reference)
+            assert target == parsed.path
+    assert len(references) == len(PHASE5B_CLAIM_FIELDS)
+    assert all(reference.source == "index.html" for reference in references)
+    assert {reference.value for reference in references} == {
+        fixture["claims"][0][field] for field in PHASE5B_CLAIM_FIELDS
+    }
+    summary = "**Summary: 17 PASS, 2 WARN, 0 FAIL**\n"
+    match = VALIDATION_SUMMARY.search(summary)
+    assert match is not None and match.groups() == ("17", "2", "0")
+    summary_without_warn = "**Summary: 21 PASS, 0 FAIL**\n"
+    match_without_warn = VALIDATION_SUMMARY.search(summary_without_warn)
+    assert match_without_warn is not None and match_without_warn.groups() == ("21", None, "0")
+    try:
+        parse_phase5b_payload(source + "alert('unsafe')")
+    except BundleError:
+        pass
+    else:
+        raise AssertionError("trailing executable JavaScript was accepted")
+    assert dynamic_external_runtime_references(
+        '<script>const loader = document.createElement("script"); '
+        'loader.src = /* delayed */ "https://cdn.example/runtime.js";</script>'
+    )
+    assert dynamic_external_runtime_references(
+        '<script>fetch("//api.example/runtime.json")</script>'
+    )
+    assert not dynamic_external_runtime_references(
+        '<a href="https://doi.org/10.1000/example">citation</a>'
+    )
+    assert dynamic_external_runtime_references(
+        '<script>const loader = document.createElement("link"); '
+        'loader.setAttribute("href", "https://cdn.example/theme.css");</script>'
+    )
+    assert not dynamic_external_runtime_references(
+        '<script>const citation = document.createElement("a"); '
+        'citation.setAttribute("href", "https://doi.org/10.1000/example");</script>'
+    )
+    assert not dynamic_external_runtime_references(
+        '<script>const link = document.createElement("a"); '
+        'link.href = "https://doi.org/10.1000/example";</script>'
+    )
+    parser = ReferenceParser("fixture.html")
+    parser.feed(
+        '<iframe src="//cdn.example/frame"></iframe>'
+        '<object data="https://cdn.example/object"></object>'
+        '<img srcset="local.png 1x, https://cdn.example/image.png 2x">'
+    )
+    assert {reference.value for reference in parser.references} == {
+        "//cdn.example/frame", "https://cdn.example/object", "local.png",
+        "https://cdn.example/image.png",
+    }
+    assert "https://cdn.example/mixed.png" in split_srcset(
+        "data:image/png;base64,AA== 1x, https://cdn.example/mixed.png 2x"
+    )
+    assert CSS_IMPORT.search('@import "https://cdn.example/theme.css";')
+    print("package_website self-check: OK")
 
 
 def verify_bundle(
@@ -547,6 +911,15 @@ def validation_report(
 
 def main() -> None:
     args = parse_args()
+    if args.self_check:
+        self_check()
+        return
+    if not args.required_files:
+        print(
+            "Website bundle error: --required-files must contain the complete workflow artifact inventory",
+            file=sys.stderr,
+        )
+        raise SystemExit(2)
     root = Path(args.root).resolve()
     archive_path = Path(args.out)
     if not archive_path.is_absolute():
@@ -556,7 +929,7 @@ def main() -> None:
         report_path = root / report_path
 
     try:
-        collection = collect_files(root, args.html)
+        collection = collect_files(root, args.html, args.required_files)
         payload = source_payload(root, collection)
         first = zip_bytes(payload, args.folder)
         second = zip_bytes(payload, args.folder)

@@ -1,0 +1,149 @@
+{
+  "analysis": "phase5b_peafowl_damage_falsification",
+  "basis": {
+    "Ho_He_allelic_richness": {
+      "definition": "complete-call biallelic autosomal SNPs from the existing normalized comparative basis",
+      "input": "results/qc/comparative.norm.vcf.gz"
+    },
+    "allelic_richness": "Analytical hypergeometric rarefaction without Monte Carlo sampling; baseline n=5, leave-one-museum cases n=4.",
+    "exact_relabeling": "Each basis is frozen to sites called in all 11 birds before any of the 462 label allocations; labels never alter site inclusion.",
+    "pi": {
+      "definition": "sum of unbiased pairwise-difference contributions at complete-call biallelic SNPs divided by all raw-VCF contig-length base pairs",
+      "genomic_opportunity_bp": 1061885041,
+      "input": "data/peafowl/raw/Comparative_genomic_dataset_F.vcf.gz"
+    }
+  },
+  "bootstrap": "999 seeded 5-Mb blocks, resampled with replacement within chromosome; terminal blocks retain their recorded opportunity length.",
+  "caveats": [
+    "Museum and modern birds are geographically mismatched; no outcome can isolate time from geography.",
+    "Ancient-DNA damage reduction by transversion filtering does not remove all museum-specific technical bias.",
+    "Genomic diversity differences are associations in deposited samples, not fitness effects or causal temporal erosion."
+  ],
+  "exact_permutation": "All C(11,5)=462 label allocations; genotype patterns are base-3 aggregated and evaluated in bounded matrix batches.",
+  "inputs": {
+    "autosomes": {
+      "path": "config/peafowl_autosomes.txt",
+      "sha256": "92d064744b488d74e8b3396dd2e84ea9901f1a8a24a69c5af08a0d13669c8a38"
+    },
+    "config": {
+      "path": "config/config.yaml",
+      "sha256": "e51b79fdef037285e0efc383f06ffbc96b20f35d0bcfc3e6c14721c1ca7642f2"
+    },
+    "normalized_vcf": {
+      "path": "results/qc/comparative.norm.vcf.gz",
+      "sha256": "09018965eb927d6031132baf081c9a42feec56d719d2a96dc8bc8b3d9c067d6b"
+    },
+    "popmap": {
+      "path": "results/qc/temporal_popmap.tsv",
+      "sha256": "87c9fa289613149b1d98db61893b485bec78dceb0fdca57e0c310e9bc62a7d83"
+    },
+    "raw_vcf": {
+      "path": "data/peafowl/raw/Comparative_genomic_dataset_F.vcf.gz",
+      "sha256": "3c6ed0ac1d8a2c6025b403982053627ca2063dce4ce7dce1d9d0912357630ff7"
+    }
+  },
+  "numeric_falsifier": {
+    "claim": "museum-higher temporal-erosion direction",
+    "claim_upgrade_condition": "The directional condition must pass and the museum-modern geographic mismatch must be resolved by the study design.",
+    "directional_condition": "All 4 metrics must remain museum-higher after every predeclared all-SNP/transversion, six equal-n, and 11 leave-one stress test.",
+    "directional_condition_met_before_design_limitations": false,
+    "observed_concordant_metrics": {
+      "all_snp": 2,
+      "transversion_only": 2
+    },
+    "upgrade_supported": {
+      "all_snp": false,
+      "transversion_only": false
+    }
+  },
+  "outputs": {
+    "blocks": {
+      "path": "results/tables/peafowl_damage_blocks.tsv",
+      "sha256": "ca2d3cdee47d40a6e07e27b8752e3d42b8926bcfaaf0e16169fce4cb6871a217"
+    },
+    "classification": {
+      "path": "results/tables/peafowl_damage_classification.tsv",
+      "sha256": "bc864c01d41cb0359855a0063174357e79c8797209eb7363a755e7de5ceae7ff"
+    },
+    "effects": {
+      "path": "results/tables/peafowl_damage_effects.tsv",
+      "sha256": "a938aeb0d0b1a7b21716ee89bae98b744b1360534cca5ae99c602d8a4a759bd5"
+    },
+    "figure": {
+      "path": "results/figures/peafowl_damage_falsification.png",
+      "sha256": "e2fd26c3045495e610e072909a43becdb2c94120784a89f6c9d5461518d38ed2"
+    },
+    "figure_values": {
+      "path": "results/tables/peafowl_damage_figure_values.tsv",
+      "sha256": "527ee726446e4a0e4bc7187d7179f61c6829343f5530318dbc961d7448080538"
+    },
+    "influence": {
+      "path": "results/tables/peafowl_damage_influence.tsv",
+      "sha256": "a09c33b80dba1521a796f20e6788972c855499b47750ae9427c2dc42e14c29f7"
+    },
+    "permutations": {
+      "path": "results/tables/peafowl_damage_permutations.tsv",
+      "sha256": "96794cb3fc22d6da6c805e99b8a73f4ee83ab362a32986236ca1404afc36eed8"
+    }
+  },
+  "question": "Does the weak museum-higher diversity direction survive damage-aware and individual-influence stress tests?",
+  "samples": {
+    "modern": [
+      "s_5",
+      "s_6",
+      "s_7",
+      "s_8",
+      "s_9_1",
+      "PE125_220"
+    ],
+    "modern_n": 6,
+    "museum": [
+      "kiz14594",
+      "kiz4651",
+      "kiz4652",
+      "kiz4653",
+      "kiz8252"
+    ],
+    "museum_n": 5,
+    "order": [
+      "kiz14594",
+      "kiz4651",
+      "kiz4652",
+      "kiz4653",
+      "kiz8252",
+      "s_5",
+      "s_6",
+      "s_7",
+      "s_8",
+      "s_9_1",
+      "PE125_220"
+    ]
+  },
+  "schema_version": "1.0",
+  "settings": {
+    "block_size_bp": 5000000,
+    "bootstrap_reps": 999,
+    "ci_pct": 95.0,
+    "exact_allocations": 462,
+    "rarefy_n": 5,
+    "seed": 1303,
+    "transition_pairs": [
+      "A>G",
+      "C>T",
+      "G>A",
+      "T>C"
+    ],
+    "upgrade_min_concordant_metrics": 4
+  },
+  "software": {
+    "matplotlib": "3.11.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.3",
+    "python": "3.11.15"
+  },
+  "variant_handling": {
+    "all_snp": "transition plus transversion biallelic single-base SNPs",
+    "other_records": "MNV, indel, multiallelic, and symbolic/other records are reconciled in the classification table and excluded from SNP metrics.",
+    "transversion_only": "biallelic single-base SNPs excluding C<->T and G<->A transitions"
+  }
+}

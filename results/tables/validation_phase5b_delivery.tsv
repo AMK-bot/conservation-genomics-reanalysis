@@ -1,0 +1,29 @@
+check	status	detail
+claim trace is complete and locally addressable	PASS	6 unique claims with complete delivery traces
+scientific validator has no FAIL or unknown status — validation_wolf_robustness.tsv	PASS	24 PASS, 0 WARN, 0 FAIL, 0 unknown
+scientific validator has no FAIL or unknown status — validation_peafowl_damage.tsv	PASS	30 PASS, 0 WARN, 0 FAIL, 0 unknown
+scientific validator has no FAIL or unknown status — validation_peafowl_ne_design.tsv	PASS	36 PASS, 0 WARN, 0 FAIL, 0 unknown
+scientific validator has no FAIL or unknown status — validation_phase5b_core_integration.tsv	PASS	14 PASS, 0 WARN, 0 FAIL, 0 unknown
+scientific validator has no FAIL or unknown status — validation_phase5b_decisions.tsv	PASS	7 PASS, 0 WARN, 0 FAIL, 0 unknown
+scientific validator has no FAIL or unknown status — validation_wolf_roh_localization.tsv	PASS	38 PASS, 0 WARN, 0 FAIL, 0 unknown
+scientific validator has no FAIL or unknown status — validation_phase5b.tsv	PASS	20 PASS, 0 WARN, 0 FAIL, 0 unknown
+scientific validator has no FAIL or unknown status — validation_phase5b_release_content.tsv	PASS	42 PASS, 0 WARN, 0 FAIL, 0 unknown
+rendered report is a self-contained HTML document	PASS	complete 3,143,576-byte HTML; all runtime assets embedded
+rendered report anchors and machine-derived headline values reconcile	PASS	6 claim rows resolve to rendered anchors and machine-derived headline markers; 5 required Phase-5B sections present
+admissions brief is self-contained and carries every final Phase-5B headline	PASS	complete 59,999-byte HTML; all runtime assets embedded; exactly four ordered fixed-A4 pages; four accessible model diagrams; all 6 final claim headlines represented
+Streamlit smoke Markdown and log show zero failures	PASS	PASS; 4 tests; Markdown/log return code 0; unittest OK
+static website validation has one reconciled zero-FAIL summary	PASS	30 PASS, 0 WARN, 0 FAIL; table reconciles
+offline bundle validation has one reconciled zero-FAIL summary	PASS	10 PASS, 0 WARN, 0 FAIL; table reconciles
+ZIP CRC, paths, root, collisions, and link modes are safe	PASS	CRC clean; one safe root 'conservation-genomics-portfolio'; 226 files; no links/collisions/traversal
+ZIP MANIFEST.sha256 has exact coverage and hashes	PASS	exact coverage and SHA-256 match for all 225 non-manifest files
+ZIP contains every required Phase-5B delivery member	PASS	all 87 required report/app/site/claim/data/validator/provenance/docs files present
+ZIP scientific and delivery members match the current workspace byte-for-byte	PASS	all 86 required workspace artifacts are byte-identical in the ZIP
+ZIP has a closed local dependency graph and no external runtime assets	PASS	310 HTML/SVG references close locally; no external runtime assets or site network APIs
+ZIP text artifacts contain no build-host paths	PASS	192 text artifacts contain no workspace, macOS home, or private-temp paths
+bundle report checksum matches the delivered ZIP	PASS	bundle report and ZIP agree at SHA-256 182eb844db02022cabb36d4b39cf8d42ad7dd20200b213a035cacf932dec3627
+README.md marks Phase 5B complete	PASS	Phase 5B has a completion marker and no stale PLANNED/0% marker
+PROJECT_STATUS.md marks Phase 5B complete	PASS	Phase 5B has a completion marker and no stale PLANNED/0% marker
+CGplan.md marks Phase 5B complete	PASS	Phase 5B has a completion marker and no stale PLANNED/0% marker
+README contains the canonical laptop-safe Phase-5B command	PASS	# Build the pinned osx-64 toolchain. Classic conda OOM-kills on 8 GB RAM - use micromamba. CONDA_SUBDIR=osx-64 micromamba create -n congen -f environment.lock.yml micromamba activate congen scripts/build_tools.sh # compile currentNe2 + GONE2 (pinned commits) scripts/fetch_data.sh && scripts/extract_data.sh # Dryad data (needs DRYAD_CLIENT_ID/SECRET) snakemake --snakefile workflow/Snakefile phase5b --cores 4 --resources mem_mb=7000 streamlit run app/streamlit_app.py # explore the verdict # Optional explicit post-reproduction checks: python -m unittest discover -s tests -v report/render_report.sh
+provenance records are valid JSON with checksum fields	PASS	7 valid provenance objects with checksum fields (wolf_froh_load.json:11, peafowl_damage.json:12, peafowl_ne_design.json:14, phase5b_core_integration.json:13, phase5b_optional_decisions.json:6, wolf_roh_localization.json:249, phase5b_synthesis.json:38)
+claim, provenance, checksum, validation, report, app, site, and documentation artifacts exist	PASS	all 89 required delivery, trace, validation, provenance, and checksum artifacts exist
