@@ -125,7 +125,8 @@ data/         raw VCFs + intermediates (symlinked to internal SSD; see data/READ
 tools/        currentNe2 / GONE2 (built from source) — see tools/README.md
 ```
 
-See **PROJECT_STATUS.md** for the current phase table, **CGplan.md** for the full execution plan,
+See **[PROJECT_MAP.md](PROJECT_MAP.md)** for a one-page orientation (pipeline diagram, directory map,
+invariants), **PROJECT_STATUS.md** for the current phase table, **CGplan.md** for the full execution plan,
 and **SETUP.md** for environment setup status. **Phase 5B status: COMPLETE.** Sections 13.1, 13.2,
 13.3, 13.4, and 13.6 are complete; §13.5 records the
 evidence-backed `DEFER_DUPLICATES_SOURCE_STUDY` decision, with reopening requiring at least one

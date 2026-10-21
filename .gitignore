@@ -3,6 +3,10 @@
 .gstack/
 .claude/          # session-local state (scheduled-task locks, etc.)
 
+# Private working notes (kept locally, not published)
+/HANDOFF.md
+/misc/
+
 # Data (large / external) — keep only the README
 /data/*
 !/data/README.md
