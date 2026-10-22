@@ -20,11 +20,11 @@ The project portfolio is packaged as one deterministic ZIP with its complete loc
 ## Bundle
 
 - Archive: `dist/conservation-genomics-reanalysis.zip`
-- Compressed size: 8,269,343 bytes
+- Compressed size: 8,269,789 bytes
 - ZIP entries: 226
 - Bundled project files: 224
 - Website-local targets: 144
-- SHA-256: `182eb844db02022cabb36d4b39cf8d42ad7dd20200b213a035cacf932dec3627`
+- SHA-256: `a46c94c92e2732312729082fc2af8e890f5dffa613876ed2d438ea2f8f8cf171`
 
 The bundle excludes raw public genomic datasets and regenerable intermediates; these are not
 website dependencies. External DOI citations require internet only when opened.

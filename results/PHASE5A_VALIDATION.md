@@ -20,7 +20,7 @@ This is the strict readiness gate before optional Phase 6. It combines the scien
 | screenshot 02-structure-diversity.jpg is a valid JPEG | **PASS** | JPEG signature; 63,794 bytes |
 | screenshot 03-wolf-load-roh.jpg is a valid JPEG | **PASS** | JPEG signature; 66,565 bytes |
 | screenshot 04-about-limitations.jpg is a valid JPEG | **PASS** | JPEG signature; 137,770 bytes |
-| research brief HTML is complete | **PASS** | HTML signature; 59,999 bytes |
+| research brief HTML is complete | **PASS** | HTML signature; 59,989 bytes |
 | technical report HTML is complete | **PASS** | HTML signature; 3,143,576 bytes |
 | environment lock has no machine-specific prefix | **PASS** | no prefix key |
 | R profile does not activate renv | **PASS** | no active renv loader |
