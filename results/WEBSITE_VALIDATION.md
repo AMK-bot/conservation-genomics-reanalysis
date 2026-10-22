@@ -6,7 +6,7 @@ The root project portal is checked as a dependency-free, offline-readable static
 
 | check | status | evidence |
 |---|---|---|
-| complete HTML document | **PASS** | 79,704 bytes |
+| complete HTML document | **PASS** | 79,620 bytes |
 | semantic and accessible page structure | **PASS** | title, description, skip link, one H1, and all landmarks present |
 | narrow allowlisted website-text contract | **PASS** | exactly 37 unique allowlisted text-only narrative leaves; scientific/status contexts remain locked |
 | versioned editor state and text-only application | **PASS** | all 9 editor artifacts present; revision and generated JavaScript agree for 0 saved overrides |

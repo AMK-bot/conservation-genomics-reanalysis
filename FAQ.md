@@ -1,8 +1,7 @@
-# Interview notes: conservation-genomics reanalysis
+# Questions and answers: conservation-genomics reanalysis
 
-Use these notes to practise explaining the project in your own words. Do not memorise every decimal;
-be able to define the quantity, describe the pattern, name the main limitation, and say what evidence
-would resolve it.
+Short answers to the questions this project most often raises. Each answer defines the quantity,
+describes the pattern, names the main limitation, and says what evidence would resolve it.
 
 ## The project in one sentence
 
@@ -134,7 +133,7 @@ The scenario calibration and damage-aware stress test are evidence already prese
 the new biological samples, matched time/location design, recombination map, and fitness phenotypes are
 not.
 
-## Methodological choice to defend
+## A methodological choice, explained
 
 **Question:** Why use a three-state verdict instead of forcing pass/fail?
 
@@ -144,15 +143,11 @@ the estimator does not converge. That makes the decision rule reproducible and p
 point above 500 from being misreported as secure. The validator checks that every cube cell uses one of
 these states and that non-converged cells remain indeterminate.
 
-## Figure-reading exercise
+## How to read the $N_e$ cube figure
 
-Open [the static $N_e$ cube figure](results/figures/ne_cube.png) and answer aloud before reading the
-model response.
-
-**Prompt:** Describe the figure without interpreting it first. Then identify one stable conclusion, one
-unstable feature, and one limitation. What would you measure next?
-
-**Model response:**
+[The static $N_e$ cube figure](results/figures/ne_cube.png) is best read in five steps: describe it before
+interpreting it, then name one stable conclusion, one unstable feature, one limitation, and the next
+measurement.
 
 1. **Describe:** The figure compares contemporary $N_e$ estimates across three filtering presets and
    two structure treatments. Per-population points have uncertainty intervals; pooled points are a
@@ -168,7 +163,7 @@ unstable feature, and one limitation. What would you measure next?
    the full decision pipeline before choosing a target; the current 0/15 result supplies no guaranteed
    sample number.
 
-## Likely follow-up questions
+## Follow-up questions
 
 ### Why not quote Vietnam's point estimate as evidence that it passes?
 
@@ -180,7 +175,7 @@ part of the result most relevant to a threshold decision.
 
 No. Warnings are deliberately “reported, not asserted”: they flag scientific sensitivity such as
 metric-dependent diversity, fragile verdicts, and threshold-sensitive magnitude. A `FAIL` is different:
-it stops the dependent workflow gate. I cite the relevant named validator rather than memorising a
+it stops the dependent workflow gate. I cite the relevant named validator rather than quoting a
 fixed aggregate count that can become stale as checks are added.
 
 ### What is original here if the data are public and one wolf result is reproduced?
@@ -205,7 +200,7 @@ uncertainty rules pass; and a localization cell changes when it crosses the circ
 two-sided permutation threshold. Section 13.5 reopens only under the coverage and independence rule
 stated above.
 
-## 60–90 second spoken summary
+## 60–90 second summary
 
 > My project asks whether conservation-genomics conclusions survive defensible analytical choices. I
 > reanalysed public whole-genome data from 22 green peafowl and 211 wolves. For peafowl, no sampled
@@ -220,7 +215,7 @@ stated above.
 > I also deferred an annotation study because it duplicated the source evidence. The lesson is that a
 > negative result or a no-go decision can make a conservation claim more honest.
 
-## Evidence checklist before an interview
+## Where the evidence lives
 
 - [Phase 1 validation](results/PHASE1_VALIDATION.md): QC, structure, diversity, temporal caveats.
 - [Phase 2 validation](results/PHASE2_VALIDATION.md): cube shape, estimates, convergence, GONE2 context.

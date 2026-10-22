@@ -201,11 +201,11 @@ only when its own timing and tool selection are auditable.
 |---|---|
 | Biological samples, sequencing, deposited VCFs, population labels, wolf GERP annotations, and the GERP $>4$ anchor | Produced by the source studies and reused from their public deposits. I do not claim these as original data. |
 | currentNe2, GONE2, PLINK, bcftools, VCFtools, ADMIXTURE, Streamlit, and statistical libraries | Existing scientific/software tools. Their outputs depend on the parameters and inputs recorded in this repository. |
-| Research question, dataset choice, filter/structure sensitivity design, three-state verdict, Phase-5B stress tests and go/no-go rules, scope corrections, and interpretation boundaries | Student project decisions. I am responsible for understanding and defending them. |
-| Workflow implementation, debugging, validation design, code review, and prose drafting | Developed with computational tool and AI coding assistance. I selected the accepted changes, ran or inspected the checks, and remain responsible for the final scientific claims. |
+| Research question, dataset choice, filter/structure sensitivity design, three-state verdict, Phase-5B stress tests and go/no-go rules, scope corrections, and interpretation boundaries | My project decisions. I am responsible for understanding and defending them. |
+| Workflow implementation, debugging, validation design, code review, and prose drafting | Developed with computational tools and AI coding assistance (see [Credits](README.md#credits)). I selected the accepted changes, ran or inspected the checks, and remain responsible for the final scientific claims. |
 | Correctness evidence | Workflow validators, result-table reconciliation, and the deposited wolf anchor. These checks support computational fidelity; they do not substitute for new biological observations. |
 
-This project is a computational reanalysis and admissions portfolio artifact, not a publication. Its
+This project is an independent computational reanalysis, not a publication. Its
 value lies in showing a traceable change in reasoning: I made simplifying assumptions, found where they
 failed, corrected the workflow, and narrowed the claims to what the evidence can support.
 

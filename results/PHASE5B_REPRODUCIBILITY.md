@@ -50,9 +50,9 @@ RSS measurements; the validator counts and hashes below were collected only afte
 reconciliation. Peak RSS is aggregate process-tree RSS converted from KiB to MiB and remained below
 the declared 7000-MB workflow budget.
 
-### Post-verification admissions revision
+### Post-verification brief revision
 
-After the science-verification freeze, the admissions brief was expanded from two pages to a
+After the science-verification freeze, the research brief was expanded from two pages to a
 four-page, project-wide research journey. This presentation-only revision adds four deterministic
 local SVG diagrams, restructures the narrative and CSS, synchronizes release-facing copy, and
 strengthens the delivery validator's page contract. It does not change frozen scientific inputs,
@@ -110,7 +110,7 @@ records. The persisted TSV header is excluded from the aggregate.
 The canonical target completed in the main workspace and both isolated workspaces after the final
 science-source reconciliation. Each exact canonical dry-run then reported that all requested files
 were present and up to date. At that freeze, the rendered report and then-current research brief were
-byte-identical across the three workspaces. The later four-page admissions revision is intentionally
+byte-identical across the three workspaces. The later four-page brief revision is intentionally
 verified in the current main-workspace release rather than retrofitted into the historical clean
 science workspaces. The release-content, website, bundle, delivery, application-smoke, and Phase-5A
 gates reported their declared passing totals; the promoted release-content state is 42 PASS, 0 WARN,

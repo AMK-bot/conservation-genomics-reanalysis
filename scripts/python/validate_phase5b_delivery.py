@@ -64,12 +64,12 @@ PROVENANCE_PATHS = (
 CORE_DELIVERY_PATHS = (
     "EDIT_WEBSITE.command",
     "EDIT_WEBSITE.md",
-    "admissions/research_brief.md",
-    "admissions/research_brief.html",
-    "admissions/graphical_abstract.svg",
-    "admissions/demo_script.md",
+    "brief/research_brief.md",
+    "brief/research_brief.html",
+    "brief/graphical_abstract.svg",
+    "brief/walkthrough.md",
     "RESEARCH_JOURNEY.md",
-    "INTERVIEW_NOTES.md",
+    "FAQ.md",
     "report/report.html",
     "app/streamlit_app.py",
     "editor.html",
@@ -91,7 +91,7 @@ CORE_DELIVERY_PATHS = (
     "results/WEBSITE_VALIDATION.md",
     "results/WEBSITE_BUNDLE_VALIDATION.md",
     "results/PHASE5B_REPRODUCIBILITY.md",
-    "dist/conservation-genomics-portfolio.zip",
+    "dist/conservation-genomics-reanalysis.zip",
     "README.md",
     "PROJECT_STATUS.md",
     "CGplan.md",
@@ -568,7 +568,7 @@ def validate_brief_page_contract(text: str, parser: DeliveryHTMLParser) -> str:
     return "exactly four ordered fixed-A4 pages; four accessible model diagrams"
 
 
-def validate_admissions_brief(path: Path, claims: list[dict[str, str]]) -> str:
+def validate_research_brief(path: Path, claims: list[dict[str, str]]) -> str:
     """Require the sendable brief to carry every final machine-derived headline."""
     text = path.read_text(encoding="utf-8")
     self_contained = validate_report_self_contained(path)
@@ -577,7 +577,7 @@ def validate_admissions_brief(path: Path, claims: list[dict[str, str]]) -> str:
     visible = normalized_text(" ".join(parser.visible)).casefold()
     visible_words = re.sub(r"[_-]+", " ", visible)
     if "phase 5b" not in visible_words:
-        raise DeliveryError("rendered admissions brief does not identify the Phase 5B extension")
+        raise DeliveryError("rendered research brief does not identify the Phase 5B extension")
     missing: list[str] = []
     for claim in claims:
         markers = headline_markers(claim)
@@ -807,12 +807,12 @@ def required_zip_paths(
         "README_FIRST.txt",
         "editor.html",
         "index.html",
-        "admissions/research_brief.md",
-        "admissions/research_brief.html",
-        "admissions/graphical_abstract.svg",
-        "admissions/demo_script.md",
+        "brief/research_brief.md",
+        "brief/research_brief.html",
+        "brief/graphical_abstract.svg",
+        "brief/walkthrough.md",
         "RESEARCH_JOURNEY.md",
-        "INTERVIEW_NOTES.md",
+        "FAQ.md",
         "report/report.html",
         "app/streamlit_app.py",
         "scripts/python/edit_website.py",
@@ -1353,9 +1353,9 @@ def main() -> None:
         lambda: validate_report_claims(report_path, read_claims(claims_path)),
     )
     audit.run(
-        "admissions brief is self-contained and carries every final Phase-5B headline",
-        lambda: validate_admissions_brief(
-            root / "admissions/research_brief.html", read_claims(claims_path)
+        "research brief is self-contained and carries every final Phase-5B headline",
+        lambda: validate_research_brief(
+            root / "brief/research_brief.html", read_claims(claims_path)
         ),
     )
     audit.run(
@@ -1371,7 +1371,7 @@ def main() -> None:
         lambda: validate_markdown_gate(root / "results/WEBSITE_BUNDLE_VALIDATION.md"),
     )
 
-    archive_path = root / "dist/conservation-genomics-portfolio.zip"
+    archive_path = root / "dist/conservation-genomics-reanalysis.zip"
     audit.run("ZIP CRC, paths, root, collisions, and link modes are safe", lambda: inspect_zip_safety(archive_path))
     audit.run("ZIP MANIFEST.sha256 has exact coverage and hashes", lambda: validate_zip_manifest(archive_path))
     audit.run(

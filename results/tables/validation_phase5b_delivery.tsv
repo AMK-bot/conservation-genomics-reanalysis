@@ -14,7 +14,7 @@ admissions brief is self-contained and carries every final Phase-5B headline	PAS
 Streamlit smoke Markdown and log show zero failures	PASS	PASS; 4 tests; Markdown/log return code 0; unittest OK
 static website validation has one reconciled zero-FAIL summary	PASS	30 PASS, 0 WARN, 0 FAIL; table reconciles
 offline bundle validation has one reconciled zero-FAIL summary	PASS	10 PASS, 0 WARN, 0 FAIL; table reconciles
-ZIP CRC, paths, root, collisions, and link modes are safe	PASS	CRC clean; one safe root 'conservation-genomics-portfolio'; 226 files; no links/collisions/traversal
+ZIP CRC, paths, root, collisions, and link modes are safe	PASS	CRC clean; one safe root 'conservation-genomics-reanalysis'; 226 files; no links/collisions/traversal
 ZIP MANIFEST.sha256 has exact coverage and hashes	PASS	exact coverage and SHA-256 match for all 225 non-manifest files
 ZIP contains every required Phase-5B delivery member	PASS	all 87 required report/app/site/claim/data/validator/provenance/docs files present
 ZIP scientific and delivery members match the current workspace byte-for-byte	PASS	all 86 required workspace artifacts are byte-identical in the ZIP

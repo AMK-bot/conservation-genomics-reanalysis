@@ -14,13 +14,13 @@ Phase-5B completion marker — README.md	PASS	unconditional Phase 5B completion 
 Phase-5B completion marker — PROJECT_STATUS.md	PASS	unconditional Phase 5B completion marker present
 Phase-5B completion marker — CGplan.md	PASS	unconditional Phase 5B completion marker present
 Phase-5B completion marker — RESEARCH_JOURNEY.md	PASS	unconditional Phase 5B completion marker present
-Phase-5B completion marker — INTERVIEW_NOTES.md	PASS	unconditional Phase 5B completion marker present
-Phase-5B completion marker — admissions/research_brief.md	PASS	unconditional Phase 5B completion marker present
-Phase-5B completion marker — admissions/research_brief.html	PASS	unconditional Phase 5B completion marker present
-Phase-5B completion marker — admissions/demo_script.md	PASS	unconditional Phase 5B completion marker present
+Phase-5B completion marker — FAQ.md	PASS	unconditional Phase 5B completion marker present
+Phase-5B completion marker — brief/research_brief.md	PASS	unconditional Phase 5B completion marker present
+Phase-5B completion marker — brief/research_brief.html	PASS	unconditional Phase 5B completion marker present
+Phase-5B completion marker — brief/walkthrough.md	PASS	unconditional Phase 5B completion marker present
 Phase-5B completion marker — app/streamlit_app.py	PASS	unconditional Phase 5B completion marker present
 Phase-5B completion marker — index.html	PASS	unconditional Phase 5B completion marker present
-Phase-5B completion marker — admissions/graphical_abstract.svg	PASS	unconditional Phase 5B completion marker present
+Phase-5B completion marker — brief/graphical_abstract.svg	PASS	unconditional Phase 5B completion marker present
 Phase-5B completion marker — report/report.qmd	PASS	unconditional Phase 5B completion marker present
 Phase-5B completion marker — report/report.html	PASS	unconditional Phase 5B completion marker present
 core Phase-5B sections complete — PROJECT_STATUS.md	PASS	core sections 13.1, 13.2, 13.3, 13.4, 13.6 are explicitly complete
@@ -31,13 +31,13 @@ Section-13.5 duplicate-source deferral — CGplan.md	PASS	exact DEFER_DUPLICATES
 Section-13.5 duplicate-source deferral — scripts/python/README.md	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
 Section-13.5 duplicate-source deferral — website/README.md	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
 Section-13.5 duplicate-source deferral — RESEARCH_JOURNEY.md	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
-Section-13.5 duplicate-source deferral — INTERVIEW_NOTES.md	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
-Section-13.5 duplicate-source deferral — admissions/research_brief.md	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
-Section-13.5 duplicate-source deferral — admissions/research_brief.html	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
-Section-13.5 duplicate-source deferral — admissions/demo_script.md	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
+Section-13.5 duplicate-source deferral — FAQ.md	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
+Section-13.5 duplicate-source deferral — brief/research_brief.md	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
+Section-13.5 duplicate-source deferral — brief/research_brief.html	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
+Section-13.5 duplicate-source deferral — brief/walkthrough.md	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
 Section-13.5 duplicate-source deferral — app/streamlit_app.py	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
 Section-13.5 duplicate-source deferral — index.html	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
-Section-13.5 duplicate-source deferral — admissions/graphical_abstract.svg	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
+Section-13.5 duplicate-source deferral — brief/graphical_abstract.svg	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
 Section-13.5 duplicate-source deferral — report/report.qmd	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
 Section-13.5 duplicate-source deferral — report/report.html	PASS	exact DEFER_DUPLICATES_SOURCE_STUDY marker present
 final Phase-5B reproducibility schema and status	PASS	PASS; two unique successful runs (isolated_run_1, isolated_run_2) have complete timing/job/RSS fields; all 7 exact validator TSV paths reconcile independently to 169 PASS, 0 WARN, 0 FAIL; all 6 frozen workspace/run-1/run-2 science hashes match exactly; methods={'file_sha256': 2, 'json_pointer': 4}; exact two-class manifest hashes match across workspace/run-1/run-2 (frozen_upstream_inputs:123:8ac4e5f69221a1dfd245af1b67ba97502dbdac5fd53140095ac7d45b376f3740, external_source_leaves:7:5714afb526b82b81aa2d95a8563cbec6e6b334874734cbfb84c797e37a88a737); science no-op dry-run recorded; canonical no-op dry-run recorded

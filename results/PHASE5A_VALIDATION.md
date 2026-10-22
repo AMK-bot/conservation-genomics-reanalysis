@@ -1,6 +1,6 @@
 # Phase 5A — completion validation
 
-This is the strict readiness gate before optional Phase 6. It combines the scientific validators with the admissions artifacts, environment portability, runtime app smoke test, and the separately recorded clean-clone/local-data reproduction.
+This is the strict readiness gate before optional Phase 6. It combines the scientific validators with the communication artifacts, environment portability, runtime app smoke test, and the separately recorded clean-clone/local-data reproduction.
 
 | check | status | detail |
 |---|---|---|
@@ -11,10 +11,10 @@ This is the strict readiness gate before optional Phase 6. It combines the scien
 | Phase 5A.1 validation has zero FAIL | **PASS** | 10 PASS, 0 WARN, 0 FAIL |
 | evidence map is complete in explorer | **PASS** | all 6 concepts present |
 | evidence map is complete in technical report | **PASS** | all 6 concepts present |
-| research journey exists and is non-empty | **PASS** | 16,057 bytes |
-| interview notes exists and is non-empty | **PASS** | 15,522 bytes |
-| demonstration script exists and is non-empty | **PASS** | 7,009 bytes |
-| research brief Markdown exists and is non-empty | **PASS** | 12,539 bytes |
+| research journey exists and is non-empty | **PASS** | 16,067 bytes |
+| questions and answers exists and is non-empty | **PASS** | 15,388 bytes |
+| narrated walkthrough exists and is non-empty | **PASS** | 7,035 bytes |
+| research brief Markdown exists and is non-empty | **PASS** | 12,529 bytes |
 | graphical abstract is a valid SVG | **PASS** | SVG signature; 7,851 bytes |
 | screenshot 01-ne-gbf-verdict.jpg is a valid JPEG | **PASS** | JPEG signature; 64,213 bytes |
 | screenshot 02-structure-diversity.jpg is a valid JPEG | **PASS** | JPEG signature; 63,794 bytes |

@@ -4,7 +4,7 @@
 
 **What it is:** a config-driven Snakemake reanalysis of two public genome deposits — endangered **green peafowl** (GBF indicators, contemporary *N*ₑ, structure, museum–modern diversity) and inbred **Scandinavian wolf** (GERP-weighted genetic load, ROH autozygosity) — built to show **how fragile each conservation verdict is to defensible analyst choices**, with a read-only explorer that makes that fragility visible.
 
-**State:** Phases 0–5B **COMPLETE** (local acceptance gates). Only optional work remains (public hosting, a Phase-6 preprint, personal rehearsal). Full table: [PROJECT_STATUS.md](PROJECT_STATUS.md).
+**State:** Phases 0–5B **COMPLETE** (local acceptance gates). Only optional work remains (public hosting, a Phase-6 preprint). Full table: [PROJECT_STATUS.md](PROJECT_STATUS.md).
 
 ---
 
@@ -80,7 +80,7 @@ flowchart TB
 | 2 — contemporary *N*ₑ + results cube | `phase2` | `results_cube.parquet`, GONE2 trajectory, metapop cross-check | `PHASE2_VALIDATION.md` |
 | 3 — GBF Goal-A indicators | `phase3` | `gbf_ne500`, `gbf_robustness`, `gbf_summary` | `PHASE3_VALIDATION.md` |
 | 4 — wolf load + ROH | `phase4` | `wolf_load.parquet`, `wolf_roh.parquet` | `PHASE4_VALIDATION.md` |
-| 5A — admissions package + reproducibility | `phase5a` | website, brief, report, sendable ZIP, clean-clone proof | `PHASE5A_VALIDATION.md` |
+| 5A — communication package + reproducibility | `phase5a` | website, brief, report, sendable ZIP, clean-clone proof | `PHASE5A_VALIDATION.md` |
 | 5B — mechanism / falsification / design | `phase5b` | wolf robustness, ROH localization, damage falsification, *N*ₑ design, integration | `PHASE5B_VALIDATION.md` |
 | (default) `all` | *(no arg)* | Phases 1–4 + 5A gate + 5B extension | all of the above |
 
@@ -115,8 +115,8 @@ CG/
 ├─ app/streamlit_app.py   ← fragility explorer (reads cube ONLY)
 ├─ report/report.qmd      ← paper-grade methods/results/limitations → report.html
 ├─ website/ + index.html  ← offline static portfolio site (editor.html = localhost text editor)
-├─ admissions/            ← admissions package: research_brief.(md|html), demo_script.md, graphical_abstract.svg, screenshots/
-├─ dist/                  ← conservation-genomics-portfolio.zip (sendable, validated)
+├─ brief/                 ← research brief: research_brief.(md|html), walkthrough.md, graphical_abstract.svg, screenshots/
+├─ dist/                  ← conservation-genomics-reanalysis.zip (sendable, validated)
 ├─ data/                  ← VCFs, SYMLINKED to internal SSD + git-ignored (see data/README.md)
 ├─ tools/                 ← currentNe2 / GONE2, built from source (git-ignored; scripts/build_tools.sh)
 ├─ tests/                 ← test_streamlit_app.py (python -m unittest discover -s tests)
@@ -140,7 +140,7 @@ CG/
 | Data layout / how to fetch | `data/README.md`; `scripts/fetch_data.sh` (needs `DRYAD_CLIENT_ID/SECRET`) |
 | Build the *N*ₑ tools | `scripts/build_tools.sh`; `tools/README.md` |
 | A field's meaning in the cube/tables | `results/PHASE5B_DATA_DICTIONARY.md` |
-| Interview / demo material | `INTERVIEW_NOTES.md`, `admissions/` |
+| Q&A, brief, and walkthrough | `FAQ.md`, `brief/` |
 
 ---
 

@@ -1,4 +1,4 @@
-# Fragility Explorer: 2–3 minute demonstration script
+# Fragility Explorer: 2–3 minute narrated walkthrough
 
 ## Recording goal
 
@@ -126,7 +126,7 @@ Association and colocalization—not fitness or causation
 - Name §13.5 exactly as **`DEFER_DUPLICATES_SOURCE_STUDY`** because 0/1 definitions are independent
   and source overlap is 211/211. Its reopening rule is ≥1 independent definition, ≥0.95 common-sample
   coverage, and ≥0.90 auditable callable-denominator coverage.
-- Credit the source deposits and disclose computational/AI assistance if asked about ownership.
+- Credit the source deposits, tools, and AI coding assistance listed under Credits in the [README](../README.md#credits).
 - If asked about reproducibility, open the clean Phase-5B record and distinguish the 169 scientific
   PASS checks from the separate release-content, website, package, and delivery gates.
 

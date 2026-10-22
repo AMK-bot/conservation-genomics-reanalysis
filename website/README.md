@@ -119,7 +119,7 @@ artifact inventory is passed to the fail-closed packager:
 snakemake --snakefile workflow/Snakefile package_website --cores 4 --resources mem_mb=7000
 ```
 
-This creates `dist/conservation-genomics-portfolio.zip` and
+This creates `dist/conservation-genomics-reanalysis.zip` and
 `results/WEBSITE_BUNDLE_VALIDATION.md`. The packager builds the archive twice to check deterministic
 bytes, rejects external runtime dependencies and unsafe paths, verifies CRCs and the exact
 `MANIFEST.sha256`, extracts into a fresh temporary directory, and reruns the website validator from
@@ -133,7 +133,7 @@ Phase-5B result tables, figures, provenance, validators, and the generated brows
 included through the site's local links and claim trace.
 
 For an additional manual check after copying the ZIP, extract the whole archive and run inside its
-top-level `conservation-genomics-portfolio` folder:
+top-level `conservation-genomics-reanalysis` folder:
 
 ```bash
 shasum -a 256 -c MANIFEST.sha256

@@ -13,11 +13,11 @@ Two chapters:
 2. **Scandinavian wolf** (*Canis lupus*) — GERP-weighted load proxies (realized vs masked) and
    map-limited ROH autozygosity proxies. Dryad `10.5061/dryad.7m0cfxpzj`.
 
-**[Open the complete project website](index.html)** — the admissions-facing summary, evidence gallery,
+**[Open the complete project website](index.html)** — the project summary, evidence gallery,
 searchable deliverable library, reproducibility record, and links to every public artifact. It is a
 dependency-free static site and works offline.
 
-**Sendable website bundle:** `dist/conservation-genomics-portfolio.zip`. Phase 5B is the current,
+**Sendable website bundle:** `dist/conservation-genomics-reanalysis.zip`. Phase 5B is the current,
 cleanly verified release; its two isolated builds, bounded-memory evidence, science-hash comparison,
 and no-op proof are recorded in [`results/PHASE5B_REPRODUCIBILITY.md`](results/PHASE5B_REPRODUCIBILITY.md).
 
@@ -29,7 +29,7 @@ generated Phase-5B evidence remain locked. See [`EDIT_WEBSITE.md`](EDIT_WEBSITE.
 
 ## Understand the project in 60 seconds
 
-![Graphical abstract: two public genome datasets are stress-tested across defensible analyst choices to separate robust conclusions from sensitive magnitudes.](admissions/graphical_abstract.svg)
+![Graphical abstract: two public genome datasets are stress-tested across defensible analyst choices to separate robust conclusions from sensitive magnitudes.](brief/graphical_abstract.svg)
 
 - **Question:** do conservation-genomics conclusions survive defensible analyst choices, or does
   the reading move when filtering, population structure, GERP site classes, or ROH definitions move?
@@ -54,9 +54,9 @@ generated Phase-5B evidence remain locked. See [`EDIT_WEBSITE.md`](EDIT_WEBSITE.
 - **Boundary:** this demonstrates genomic-proxy association, conservation relevance, and analytical
   sensitivity, not measured fitness, inbreeding depression, individual harm, or a new field estimate.
 
-Admissions-ready path: [project website](index.html) · [four-page project-wide illustrated brief](admissions/research_brief.html) ·
-[research journey](RESEARCH_JOURNEY.md) · [interview notes](INTERVIEW_NOTES.md) ·
-[2–3 minute demo script](admissions/demo_script.md) · [offline technical report](report/report.html)
+Start here: [project website](index.html) · [four-page project-wide illustrated brief](brief/research_brief.html) ·
+[research journey](RESEARCH_JOURNEY.md) · [questions and answers](FAQ.md) ·
+[2–3 minute walkthrough](brief/walkthrough.md) · [offline technical report](report/report.html)
 
 ## Deliverables
 
@@ -77,7 +77,7 @@ Admissions-ready path: [project website](index.html) · [four-page project-wide 
   reproduction instructions. Its separate localhost editor changes only allowlisted narrative text
   and stores personalization outside the HTML. Validate both with
   `python scripts/python/validate_website.py`.
-- **Sendable website bundle** (`dist/conservation-genomics-portfolio.zip`) — a deterministic,
+- **Sendable website bundle** (`dist/conservation-genomics-reanalysis.zip`) — a deterministic,
   self-contained ZIP of the site and every local dependency/deliverable. Rebuild and verify it with
   `snakemake --snakefile workflow/Snakefile package_website --cores 4 --resources mem_mb=7000`, so
   Snakemake passes the complete fail-closed artifact inventory to the packager.
@@ -133,3 +133,17 @@ evidence-backed `DEFER_DUPLICATES_SOURCE_STUDY` decision, with reopening requiri
 independent definition, at least 0.95 common-sample coverage, and at least 0.90 auditable
 callable-denominator coverage. The synchronized report, explorer, static site, manifest, offline ZIP,
 and release gates all pass; see the [clean verification record](results/PHASE5B_REPRODUCIBILITY.md).
+
+## Credits
+
+- **Data and original methods:** green peafowl genomes from Dong et al. 2021 (Dryad
+  `10.5061/dryad.ffbg79ctc`); Scandinavian wolf genomes, VEP/GERP annotations, and the GERP $>4$
+  load anchor from Smeds & Ellegren 2022 (Dryad `10.5061/dryad.7m0cfxpzj`). The wolf load calculation
+  re-implements their `gerp_load_polarized.py` (`linneas/wolf-deleterious`). Full citations are in
+  [`report/references.bib`](report/references.bib).
+- **Scientific software:** currentNe2, GONE2, PLINK, bcftools, VCFtools, ADMIXTURE, SNPRelate,
+  hierfstat, adegenet, dartR, Snakemake, Streamlit, Quarto, and pandoc.
+- **AI coding assistance:** Claude (Anthropic), used through Claude Code for workflow implementation,
+  debugging, code review, and prose drafting. The research question, design decisions, and final
+  scientific claims are the author's; see the
+  [ownership and assistance record](RESEARCH_JOURNEY.md#9-ownership-and-assistance-record).

@@ -172,27 +172,27 @@ rule phase5a1:
     input: PHASE5A1
 
 
-# ── Full Phase 5A outputs (admissions package + reproducibility gate) ──────────
+# ── Full Phase 5A outputs (communication package + reproducibility gate) ──────────
 # Keep the historical Phase-5A asset list distinct from the generated Phase-5B
 # browser payload. Current report/app/package rules still render the latest
 # integrated project when explicitly requested.
 PHASE5A = PHASE5A1 + WEBSITE_BASE_ASSETS + [
     "RESEARCH_JOURNEY.md",
-    "INTERVIEW_NOTES.md",
-    "admissions/demo_script.md",
-    "admissions/graphical_abstract.svg",
-    "admissions/research_brief.md",
-    "admissions/research_brief.html",
-    "admissions/screenshots/01-ne-gbf-verdict.jpg",
-    "admissions/screenshots/02-structure-diversity.jpg",
-    "admissions/screenshots/03-wolf-load-roh.jpg",
-    "admissions/screenshots/04-about-limitations.jpg",
+    "FAQ.md",
+    "brief/walkthrough.md",
+    "brief/graphical_abstract.svg",
+    "brief/research_brief.md",
+    "brief/research_brief.html",
+    "brief/screenshots/01-ne-gbf-verdict.jpg",
+    "brief/screenshots/02-structure-diversity.jpg",
+    "brief/screenshots/03-wolf-load-roh.jpg",
+    "brief/screenshots/04-about-limitations.jpg",
     "report/report.html",
     "results/APP_SMOKE.md",
     "results/logs/app_smoke.log",
     "results/PHASE5A_REPRODUCIBILITY.md",
     "results/WEBSITE_VALIDATION.md",
-    "dist/conservation-genomics-portfolio.zip",
+    "dist/conservation-genomics-reanalysis.zip",
     "results/WEBSITE_BUNDLE_VALIDATION.md",
     "results/tables/validation_phase5a.tsv",
     "results/PHASE5A_VALIDATION.md",
@@ -206,7 +206,7 @@ rule phase5a:
 rule all:
     default_target: True
     input:
-        # Phases 1-4 plus the Phase-5A admissions/reproducibility gate and the
+        # Phases 1-4 plus the Phase-5A communication/reproducibility gate and the
         # dependency-ordered Phase-5B scientific-impact extension.
         # (The live Streamlit app is launched separately, not a DAG target.)
         PHASE1,

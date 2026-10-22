@@ -6,7 +6,7 @@
 
 ## I began with a decision question, not a number
 
-<div class="brief-meta"><strong>Applicant research brief</strong> · endangered green peafowl × inbred Scandinavian wolf · public genomic deposits · Phases 0–5B complete</div>
+<div class="brief-meta"><strong>Research brief</strong> · endangered green peafowl × inbred Scandinavian wolf · public genomic deposits · Phases 0–5B complete</div>
 
 ::: {.hero-statement}
 I began by asking whether a conservation-genomics conclusion stays stable when an analyst makes

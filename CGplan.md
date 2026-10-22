@@ -2,7 +2,7 @@
 
 **Status:** Execution plan. Decisions locked via a structured grilling session (2026-06-17).
 **Companion to:** `conservation-genomics-reanalysis-project-scoping.md` (the scoping doc — the "why/what"; this is the "how").
-**Goal:** An impressive, reproducible artifact for competitive university (transfer) applications.
+**Goal:** A rigorous, reproducible, and clearly communicated public-data reanalysis.
 **Ship bound:** January 2027 (~28 weeks out). Planned as if no time limit (depth-maximizing); January is the outer ship date, not a scope constraint. See §10 for the critical path.
 **Access:** 100% remote — **no fieldwork, wet lab, specimen handling, or physical-site visits**. Data-access **verified 2026-06-17**: all four turnkey datasets (peafowl, wolf, ibex, trout) are openly downloadable with **no embargo, login, or access request**. (The pangolin SEA fallback is also openly downloadable, but is *reads-only* — a scope caveat, not an access one; see §3.3.) All compute is the user's laptop; deployment/publication is online.
 
@@ -173,7 +173,7 @@ CLI-streaming-first throughout — the 12 GB VCF never enters RAM (verified: per
 - Write `report.qmd`: intro → methods → results → **limitations** → reproducibility statement.
 - Finalize repo: `environment.lock.yml` (R included — no `renv.lock`), Snakefile, config, README one-command reproduction (`micromamba create -f environment.lock.yml` → activate → `snakemake --snakefile workflow/Snakefile phase5b --cores 4 --resources mem_mb=7000`). **Re-run the whole DAG from scratch to prove reproducibility.**
 
-### Phase 5A — Admissions-facing process completion *(additive, local-first, no external blockers)*
+### Phase 5A — Communication and reproducibility package *(additive, local-first, no external blockers)*
 
 > **Status update (2026-07-18): COMPLETE — 24 PASS, 0 FAIL.** All six subphases pass the local
 > completion gate; `results/PHASE5A_VALIDATION.md` and `results/PHASE5A_REPRODUCIBILITY.md` record
@@ -223,7 +223,7 @@ next observation for each conclusion without mistaking a caveat for a failed ana
 
 #### 5A.3 Research journey and ownership record
 
-- Create `RESEARCH_JOURNEY.md`, written in the student's own voice, covering:
+- Create `RESEARCH_JOURNEY.md`, written in the author's own voice, covering:
   1. why these biological questions and public datasets were chosen;
   2. the LD-pruning/currentNe2 correction and what exposed it;
   3. why GONE2 moved from method axis to context panel;
@@ -231,13 +231,13 @@ next observation for each conclusion without mistaking a caveat for a failed ana
   5. what exact reconciliation of the wolf anchor establishes;
   6. what was learned about uncertainty, reproducibility, and responsible claims;
   7. what would be designed differently in a future study.
-- Distinguish student decisions from source-paper methods and agent/tool assistance; never imply that
+- Distinguish the author's decisions from source-paper methods and agent/tool assistance; never imply that
   automation or publication occurred when it did not.
 
 **Acceptance:** the document demonstrates a traceable change in reasoning, including at least one
 mistake, the evidence that revealed it, the correction, and the biological consequence.
 
-#### 5A.4 Offline admissions package
+#### 5A.4 Offline project package
 
 - Add a root-level, dependency-free project website linking and explaining every public deliverable;
   reuse validated project figures and keep all links functional offline/static-hosted.
@@ -256,8 +256,8 @@ mistake, the evidence that revealed it, the correction, and the biological conse
   are fragile/uncertain; the wolf magnitude is threshold-sensitive while the biological direction is
   stable.
 
-**Acceptance:** a biosciences admissions reader can understand the question, methods, results,
-limitations, and student contribution in five minutes using only tracked local artifacts.
+**Acceptance:** a non-specialist biosciences reader can understand the question, methods, results,
+limitations, and the author's contribution in five minutes using only tracked local artifacts.
 
 #### 5A.5 Local reproducibility proof
 
@@ -266,7 +266,7 @@ limitations, and student contribution in five minutes using only tracked local a
 - Clean repository state: ignore regenerable QC/$N_e$ intermediates, remove the tracked session-lock
   artifact, and align README/SETUP/HANDOFF/plan status text with the implementation.
 - Rebuild or revalidate the full existing DAG on the current laptop using already-verified local raw
-  archives/data; a forced redownload is not required for this admissions completion gate.
+  archives/data; a forced redownload is not required for this completion gate.
 - Add a lightweight automated Streamlit smoke test and publish a compact validation summary showing
   the four phase gates and their fail counts.
 
@@ -274,9 +274,9 @@ limitations, and student contribution in five minutes using only tracked local a
 report; all phase validators report zero failures; the app smoke test covers all main filter × structure
 states; the exact commands and run outcome are recorded.
 
-#### 5A.6 Interview/data-interpretation preparation
+#### 5A.6 Questions and data-interpretation guide
 
-- Create `INTERVIEW_NOTES.md` with concise, student-authored answers to:
+- Create `FAQ.md` with concise, author-written answers to:
   - $N_e$ vs census size;
   - why structure biases LD-based $N_e$;
   - why LD-pruning is wrong for currentNe2 but useful for structure/NeEstimator;
@@ -295,10 +295,10 @@ Phase 5A is complete when all six sections above pass their acceptance checks on
 The following **remain in the overall plan but are not blockers for this gate**: formal preprint/journal
 publication, a permanent DOI, NeEstimator GUI work if it becomes slow or unreliable, new
 species/datasets, raw-read variant calling, and HPC/GPU analyses.
-None should delay the admissions-ready local artifact.
+None should delay the complete local artifact.
 
-**Gate result (2026-07-18): PASS.** The final validator reports **24 PASS / 0 FAIL**. Student-owned
-voice review and spoken rehearsal are still recommended before submission, while the public URL,
+**Gate result (2026-07-18): PASS.** The final validator reports **24 PASS / 0 FAIL**. A final
+author voice review is recommended, while the public URL,
 NeEstimator GUI table, and formal preprint remain optional rather than missing subphases.
 
 ---
@@ -620,7 +620,7 @@ per-chromosome wolf intermediates (~180 MB) are git-ignored — only the final `
 **Phase 5B status: COMPLETE (updated 2026-07-19).** Scientific gates, synchronized rendering, two isolated verification
 builds, the offline bundle, and release validation pass; the evidence is frozen in
 [`results/PHASE5B_REPRODUCIBILITY.md`](results/PHASE5B_REPRODUCIBILITY.md). This additive extension does **not** retroactively reduce the
-completed Phase-5A admissions-ready baseline. It deepens the two existing species chapters; it does not add a third species or
+completed Phase-5A communication baseline. It deepens the two existing species chapters; it does not add a third species or
 make publication, deployment, fieldwork, or outside coordination a completion dependency.
 
 **Locked constraints for every 5B task:**
@@ -784,7 +784,7 @@ coverage**; predicted-impact classes would still remain separate genomic proxies
 
 This is the presentation layer for 13.1–13.3, not a substitute for new analysis.
 
-- [x] Reorder the admissions-facing scientific path to: **question → prediction → stress test → result → correction →
+- [x] Reorder the reader-facing scientific path to: **question → prediction → stress test → result → correction →
       falsifier → conservation consequence**. Preserve the full artifact inventory lower on the page.
 - [x] Embed the precomputed wolf 3×5 robustness surface and peafowl sample-design landscape in local HTML/CSS/JavaScript;
       opening the sendable ZIP must require no Python, network, or package installation.
@@ -822,7 +822,7 @@ evidence-backed `DEFER_DUPLICATES_SOURCE_STUDY` decision rather than an implemen
    ML, publication, deployment, or network-at-run-time dependency.
 4. The global validation suite, report render, Streamlit smoke test, static-site checks, and offline-bundle checks pass.
 5. `PROJECT_STATUS.md`, completion percentages, README commands, data dictionary, manifest/checksums, and
-   `dist/conservation-genomics-portfolio.zip` are rebuilt and synchronized only after the analysis is actually complete.
+   `dist/conservation-genomics-reanalysis.zip` are rebuilt and synchronized only after the analysis is actually complete.
 
 **Current completion boundary: PASS.** The scientific analyses, numeric decisions, provenance, validators, clean end-to-end
 verification, synchronized rendering, offline package, manifest/checksum checks, and delivery gate satisfy items 1–5. Section

@@ -62,18 +62,18 @@ REPORT_FIGURES = [
     "results/figures/wolf_roh_localization_ribbon.png",
 ]
 
-ADMISSIONS_SCREENSHOTS = [
-    "admissions/screenshots/01-ne-gbf-verdict.jpg",
-    "admissions/screenshots/02-structure-diversity.jpg",
-    "admissions/screenshots/03-wolf-load-roh.jpg",
-    "admissions/screenshots/04-about-limitations.jpg",
+BRIEF_SCREENSHOTS = [
+    "brief/screenshots/01-ne-gbf-verdict.jpg",
+    "brief/screenshots/02-structure-diversity.jpg",
+    "brief/screenshots/03-wolf-load-roh.jpg",
+    "brief/screenshots/04-about-limitations.jpg",
 ]
 
 BRIEF_DIAGRAMS = [
-    "admissions/brief_project_route.svg",
-    "admissions/brief_peafowl_models.svg",
-    "admissions/brief_wolf_models.svg",
-    "admissions/brief_phase5b_tests.svg",
+    "brief/brief_project_route.svg",
+    "brief/brief_peafowl_models.svg",
+    "brief/brief_wolf_models.svg",
+    "brief/brief_phase5b_tests.svg",
 ]
 
 APP_ARTIFACTS = [
@@ -144,12 +144,12 @@ WEBSITE_DISCOVERY_EXCLUDES = {
 }
 
 WEBSITE_DELIVERABLES = [
-    "admissions/research_brief.html",
-    "admissions/graphical_abstract.svg",
+    "brief/research_brief.html",
+    "brief/graphical_abstract.svg",
     "report/report.html",
     "RESEARCH_JOURNEY.md",
-    "INTERVIEW_NOTES.md",
-    "admissions/demo_script.md",
+    "FAQ.md",
+    "brief/walkthrough.md",
     "app/streamlit_app.py",
     "results/cube/results_cube.csv",
     "results/tables/fragility_scorecard.tsv",
@@ -199,7 +199,7 @@ WEBSITE_BUNDLE_INPUTS = sorted(set(
     + [
         path.as_posix()
         for directory in [
-            "admissions",
+            "brief",
             "app",
             "config",
             "report",
@@ -241,21 +241,21 @@ rule render_report_html:
 
 
 rule render_research_brief:
-    """Render the self-contained four-page, project-wide admissions research brief."""
+    """Render the self-contained four-page, project-wide research brief."""
     input:
-        md          = "admissions/research_brief.md",
-        css         = "admissions/brief.css",
-        abstract    = "admissions/graphical_abstract.svg",
+        md          = "brief/research_brief.md",
+        css         = "brief/brief.css",
+        abstract    = "brief/graphical_abstract.svg",
         diagrams    = BRIEF_DIAGRAMS,
-        screenshots = ADMISSIONS_SCREENSHOTS,
+        screenshots = BRIEF_SCREENSHOTS,
     output:
-        html = "admissions/research_brief.html",
+        html = "brief/research_brief.html",
     log: "results/logs/render_research_brief.log"
     threads: 1
     resources:
         mem_mb = 512
     shell:
-        "pandoc {input.md} --standalone --embed-resources --resource-path=admissions "
+        "pandoc {input.md} --standalone --embed-resources --resource-path=brief "
         "--css {input.css} --metadata pagetitle='Conservation genomics research brief' "
         "--metadata lang=en "
         "--output {output.html} > {log} 2>&1 "
@@ -336,13 +336,13 @@ rule validate_phase5b_release_content:
             "scripts/python/README.md",
             "website/README.md",
             "RESEARCH_JOURNEY.md",
-            "INTERVIEW_NOTES.md",
-            "admissions/research_brief.md",
-            "admissions/research_brief.html",
-            "admissions/demo_script.md",
+            "FAQ.md",
+            "brief/research_brief.md",
+            "brief/research_brief.html",
+            "brief/walkthrough.md",
             "app/streamlit_app.py",
             "index.html",
-            "admissions/graphical_abstract.svg",
+            "brief/graphical_abstract.svg",
             "report/report.qmd",
             "report/report.html",
         ],
@@ -374,7 +374,7 @@ rule package_website:
         report_html = "report/report.html",
         builder = "scripts/python/package_website.py",
     output:
-        archive = "dist/conservation-genomics-portfolio.zip",
+        archive = "dist/conservation-genomics-reanalysis.zip",
         report  = "results/WEBSITE_BUNDLE_VALIDATION.md",
     log: "results/logs/package_website.log"
     threads: 1
@@ -391,11 +391,11 @@ rule validate_phase5b_delivery:
     input:
         science       = PHASE5B_PUBLIC_ARTIFACTS,
         report        = "report/report.html",
-        brief         = "admissions/research_brief.html",
+        brief         = "brief/research_brief.html",
         smoke_md      = "results/APP_SMOKE.md",
         smoke_log     = "results/logs/app_smoke.log",
         website_gate  = "results/WEBSITE_VALIDATION.md",
-        archive       = "dist/conservation-genomics-portfolio.zip",
+        archive       = "dist/conservation-genomics-reanalysis.zip",
         bundle_gate   = "results/WEBSITE_BUNDLE_VALIDATION.md",
         readme        = "README.md",
         status        = "PROJECT_STATUS.md",
@@ -430,12 +430,12 @@ rule validate_phase5a:
         lock            = "environment.lock.yml",
         rprofile        = ".Rprofile",
         journey         = "RESEARCH_JOURNEY.md",
-        interview       = "INTERVIEW_NOTES.md",
-        demo            = "admissions/demo_script.md",
-        abstract        = "admissions/graphical_abstract.svg",
-        brief_md        = "admissions/research_brief.md",
-        brief_html      = "admissions/research_brief.html",
-        screenshots     = ADMISSIONS_SCREENSHOTS,
+        faq             = "FAQ.md",
+        walkthrough     = "brief/walkthrough.md",
+        abstract        = "brief/graphical_abstract.svg",
+        brief_md        = "brief/research_brief.md",
+        brief_html      = "brief/research_brief.html",
+        screenshots     = BRIEF_SCREENSHOTS,
         smoke_md        = "results/APP_SMOKE.md",
         smoke_log       = "results/logs/app_smoke.log",
         reproducibility = "results/PHASE5A_REPRODUCIBILITY.md",

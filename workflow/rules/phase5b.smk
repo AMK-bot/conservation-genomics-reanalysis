@@ -169,13 +169,13 @@ PHASE5B = (
 # polish.smk after the final Phase-5B scientific validator passes.
 PHASE5B_DELIVERY_OUTPUTS = [
     *PHASE5B_RELEASE_CONTENT_OUTPUTS,
-    "admissions/research_brief.html",
+    "brief/research_brief.html",
     "report/report.html",
     "results/APP_SMOKE.md",
     "results/logs/app_smoke.log",
     "results/PHASE5A_VALIDATION.md",
     "results/WEBSITE_VALIDATION.md",
-    "dist/conservation-genomics-portfolio.zip",
+    "dist/conservation-genomics-reanalysis.zip",
     "results/WEBSITE_BUNDLE_VALIDATION.md",
     "results/tables/validation_phase5b_delivery.tsv",
     "results/PHASE5B_DELIVERY_VALIDATION.md",

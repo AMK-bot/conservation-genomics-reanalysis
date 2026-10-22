@@ -20,8 +20,8 @@ from urllib.parse import unquote, urlsplit
 import zipfile
 
 
-ARCHIVE_FOLDER = "conservation-genomics-portfolio"
-DEFAULT_ARCHIVE = "dist/conservation-genomics-portfolio.zip"
+ARCHIVE_FOLDER = "conservation-genomics-reanalysis"
+DEFAULT_ARCHIVE = "dist/conservation-genomics-reanalysis.zip"
 DEFAULT_REPORT = "results/WEBSITE_BUNDLE_VALIDATION.md"
 FIXED_ZIP_TIME = (2026, 7, 18, 0, 0, 0)
 SUPPORT_HTML_ENTRIES = ("editor.html",)
@@ -53,7 +53,7 @@ EXTRA_FILES = {
 PORTABLE_SOURCE_FILES = {
     ".gitignore",
     ".Rprofile",
-    "admissions/brief.css",
+    "brief/brief.css",
     "data/README.md",
     "environment.yml",
     "renv/.gitignore",
@@ -531,7 +531,7 @@ reanalysis also needs network access to obtain the cited public datasets and too
 OPTIONAL LOCAL SERVER
 ---------------------
 Directly opening index.html works. For a hosting-style preview, run this command inside the
-extracted conservation-genomics-portfolio folder:
+extracted conservation-genomics-reanalysis folder:
 
     python -m http.server 8000
 

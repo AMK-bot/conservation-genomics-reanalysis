@@ -2,7 +2,7 @@
 """Final Phase-5A readiness gate.
 
 This validator checks the completed Phase-1--4 and Phase-5A.1 gates, the
-admissions-facing artifact set, the evidence map, environment portability, the
+communication artifact set, the evidence map, environment portability, the
 Streamlit runtime smoke result, and the recorded clean-clone/local-data run. It
 does not perform rendering, launch the app, or run the scientific workflow.
 """
@@ -27,16 +27,16 @@ VALIDATION_TABLES = [
 
 TEXT_ARTIFACTS = [
     ("research journey", "RESEARCH_JOURNEY.md"),
-    ("interview notes", "INTERVIEW_NOTES.md"),
-    ("demonstration script", "admissions/demo_script.md"),
-    ("research brief Markdown", "admissions/research_brief.md"),
+    ("questions and answers", "FAQ.md"),
+    ("narrated walkthrough", "brief/walkthrough.md"),
+    ("research brief Markdown", "brief/research_brief.md"),
 ]
 
 SCREENSHOTS = [
-    "admissions/screenshots/01-ne-gbf-verdict.jpg",
-    "admissions/screenshots/02-structure-diversity.jpg",
-    "admissions/screenshots/03-wolf-load-roh.jpg",
-    "admissions/screenshots/04-about-limitations.jpg",
+    "brief/screenshots/01-ne-gbf-verdict.jpg",
+    "brief/screenshots/02-structure-diversity.jpg",
+    "brief/screenshots/03-wolf-load-roh.jpg",
+    "brief/screenshots/04-about-limitations.jpg",
 ]
 
 
@@ -170,7 +170,7 @@ def main() -> None:
         ok, detail = _evidence_map(root / relative)
         add(f"evidence map is complete in {label}", ok, detail)
 
-    # Student-facing written artifacts.
+    # Written communication artifacts.
     for label, relative in TEXT_ARTIFACTS:
         path = root / relative
         text, error = _read_text(path)
@@ -178,14 +178,14 @@ def main() -> None:
         ok = error is None and text is not None and bool(text.strip()) and size > 100
         add(f"{label} exists and is non-empty", ok, f"{size:,} bytes" if ok else (error or "empty"))
 
-    ok, detail = _svg_signature(root / "admissions/graphical_abstract.svg")
+    ok, detail = _svg_signature(root / "brief/graphical_abstract.svg")
     add("graphical abstract is a valid SVG", ok, detail)
 
     for relative in SCREENSHOTS:
         ok, detail = _jpeg_signature(root / relative)
         add(f"screenshot {Path(relative).name} is a valid JPEG", ok, detail)
 
-    ok, detail = _html_signature(root / "admissions/research_brief.html")
+    ok, detail = _html_signature(root / "brief/research_brief.html")
     add("research brief HTML is complete", ok, detail)
     ok, detail = _html_signature(root / "report/report.html")
     add("technical report HTML is complete", ok, detail)
@@ -291,7 +291,7 @@ def main() -> None:
         handle.write("# Phase 5A — completion validation\n\n")
         handle.write(
             "This is the strict readiness gate before optional Phase 6. It combines the scientific "
-            "validators with the admissions artifacts, environment portability, runtime app smoke "
+            "validators with the communication artifacts, environment portability, runtime app smoke "
             "test, and the separately recorded clean-clone/local-data reproduction.\n\n"
         )
         handle.write("| check | status | detail |\n|---|---|---|\n")

@@ -18,12 +18,12 @@ from urllib.parse import unquote, urlsplit
 
 
 REQUIRED_DELIVERABLES = {
-    "admissions/research_brief.html",
-    "admissions/graphical_abstract.svg",
+    "brief/research_brief.html",
+    "brief/graphical_abstract.svg",
     "report/report.html",
     "RESEARCH_JOURNEY.md",
-    "INTERVIEW_NOTES.md",
-    "admissions/demo_script.md",
+    "FAQ.md",
+    "brief/walkthrough.md",
     "app/streamlit_app.py",
     "results/cube/results_cube.csv",
     "results/tables/fragility_scorecard.tsv",
